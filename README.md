@@ -41,4 +41,4 @@ Licence and Copyright
 
 Licensed under the Apache License. See LICENCE.
 
-Copyright (c) 2014 Samsung Ltd
+Copyright (c) 2014 Samsung Electronics Co., Ltd.
