@@ -6,8 +6,8 @@ This SDK helps you connect your Android apps to SAMI. The SDK helps authenticati
 Prerequisites
 -------------
 
- * Eclipse 
- * Maven Integration for Eclipse
+ * [Eclipse](https://www.eclipse.org/) 
+ * [Maven Integration for Eclipse](https://www.eclipse.org/m2e/) or [Maven][http://maven.apache.org/]
  * Wordnik
  * Jackson JSON Processor  2.1.4
  * JUnit 4.8.1
@@ -20,12 +20,12 @@ Installation
 
 In Eclipse, 
 - import the SDK library project as "Existing Maven Projects".
-- right click the project, and choose "Run As" then "Marven install"
+- right click the project, and choose "Run As" then "Maven install"
 
 After the installation succeeds, you can use the generated libraries in one of the following ways depending on your scenario:
 
-- To use them in an Android project, copy libraries under `target` and `target/lib` directories to `libs` directory in your Android project.
-- To use them in an Marven project, modify `pom.xml` file in your project to add dependency to sami-android-xxx.jar as following
+- To use them in an Android project, copy libraries under `target` and `target/lib` directories of the imported Maven project to `libs` directory in your Android project.
+- To use them in your Maven project, modify `pom.xml` file in your project to add dependency to sami-android-xxx.jar under `target` of the imported Maven project as following
 
 ~~~
 <dependency>
