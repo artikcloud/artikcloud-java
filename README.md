@@ -7,8 +7,7 @@ Prerequisites
 -------------
 
  * Eclipse 
- * Maven
- * Maven plugin 1.0.0
+ * Maven Integration for Eclipse
  * Wordnik
  * Jackson JSON Processor  2.1.4
  * JUnit 4.8.1
@@ -19,20 +18,28 @@ The SDK was developed with Eclipse and Maven and tested with Android 4.4.2. When
 Installation
 ---------------------
 
-Import the library in Eclipse and build. We included a `pom.xml` file to make it easier.
+In Eclipse, 
+- import the SDK library project as "Existing Maven Projects".
+- right click the project, and choose "Run As" then "Marven install"
 
-In your project's AndroidManifest.xml, add the following activity to the `<application>` node, and the permissions required by the library. You could accomplish this automatically if you are using manifest merger (`manifestmerger.enabled`, requires SDK tools rev 20 or above).
+After the installation succeeds, you can use the generated libraries in one of the following ways depending on your scenario:
 
-```xml
+- To use them in an Android project, copy libraries under `target` and `target/lib` directories to `libs` directory in your Android project.
+- To use them in an Marven project, modify `pom.xml` file in your project to add dependency to sami-android-xxx.jar as following
+
+~~~
+<dependency>
+   <groupId>io.samsungsami</groupId>
+   <artifactId>sami-android</artifactId>
+   <version>the actual version number</version>
+</dependency>
+~~~
+
+Finally, in your Android project's `AndroidManifest.xml`, add the permissions required by the SDK library. You could accomplish this automatically if you are using manifest merger (`manifestmerger.enabled`, requires SDK tools rev 20 or above).
+
+~~~
 <uses-permission android:name="android.permission.INTERNET" />
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-<activity
-        android:name="io.samsungsami.android.AccountsActivity"
-        android:label="@string/title_activity_accounts"
-        android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize">
-</activity>
-```
+~~~
 
 You're ready to go.
 
