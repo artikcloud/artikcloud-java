@@ -7,7 +7,7 @@ Prerequisites
 -------------
 
  * [Eclipse](https://www.eclipse.org/) 
- * [Maven Integration for Eclipse](https://www.eclipse.org/m2e/) or [Maven][http://maven.apache.org/]
+ * [Maven Integration for Eclipse](https://www.eclipse.org/m2e/) or [Maven](http://maven.apache.org/)
  * Wordnik
  * Jackson JSON Processor  2.1.4
  * JUnit 4.8.1
