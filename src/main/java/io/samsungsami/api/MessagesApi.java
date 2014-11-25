@@ -181,7 +181,7 @@ public class MessagesApi {
   }
   
   
-  public ExportEnvelope  exportNormalizedMessages (String uid, String sdid, String mid, String fieldPresence, String filter, String offset, Long startDate, Long endDate, String order, String format) throws ApiException {
+  public ExportEnvelope  exportNormalizedMessages (String uid, String sdid, Long startDate, Long endDate, String order, String format) throws ApiException {
     Object postBody = null;
 
     
@@ -197,14 +197,6 @@ public class MessagesApi {
       queryParams.put("uid", String.valueOf(uid));
     if(!"null".equals(String.valueOf(sdid)))
       queryParams.put("sdid", String.valueOf(sdid));
-    if(!"null".equals(String.valueOf(mid)))
-      queryParams.put("mid", String.valueOf(mid));
-    if(!"null".equals(String.valueOf(fieldPresence)))
-      queryParams.put("fieldPresence", String.valueOf(fieldPresence));
-    if(!"null".equals(String.valueOf(filter)))
-      queryParams.put("filter", String.valueOf(filter));
-    if(!"null".equals(String.valueOf(offset)))
-      queryParams.put("offset", String.valueOf(offset));
     if(!"null".equals(String.valueOf(startDate)))
       queryParams.put("startDate", String.valueOf(startDate));
     if(!"null".equals(String.valueOf(endDate)))

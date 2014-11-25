@@ -45,7 +45,7 @@ public class ExportEnvelope  {
   
   /**
    **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = false, value = "")
   public String getSdid() {
     return sdid;
   }
