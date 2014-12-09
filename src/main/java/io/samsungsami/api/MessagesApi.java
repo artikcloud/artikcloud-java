@@ -267,7 +267,7 @@ public class MessagesApi {
   }
   
   
-  public NormalizedMessagesEnvelope  getLastNormalizedMessages (Integer count, String sdids, String field) throws ApiException {
+  public NormalizedMessagesEnvelope  getLastNormalizedMessages (Integer count, String sdids, String fieldPresence) throws ApiException {
     Object postBody = null;
 
     
@@ -283,8 +283,8 @@ public class MessagesApi {
       queryParams.put("count", String.valueOf(count));
     if(!"null".equals(String.valueOf(sdids)))
       queryParams.put("sdids", String.valueOf(sdids));
-    if(!"null".equals(String.valueOf(field)))
-      queryParams.put("field", String.valueOf(field));
+    if(!"null".equals(String.valueOf(fieldPresence)))
+      queryParams.put("fieldPresence", String.valueOf(fieldPresence));
     
 
     
