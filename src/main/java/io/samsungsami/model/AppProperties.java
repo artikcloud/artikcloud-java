@@ -2,18 +2,21 @@ package io.samsungsami.model;
 
 
 import com.wordnik.swagger.annotations.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-public class AppProperties  { 
+public class AppProperties  {
+  
   private String uid = null;
   private String aid = null;
   private String properties = null;
-  
+
   
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  @JsonProperty("uid")
   public String getUid() {
     return uid;
   }
@@ -25,6 +28,7 @@ public class AppProperties  {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  @JsonProperty("aid")
   public String getAid() {
     return aid;
   }
@@ -36,6 +40,7 @@ public class AppProperties  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
+  @JsonProperty("properties")
   public String getProperties() {
     return properties;
   }

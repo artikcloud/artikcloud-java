@@ -7,11 +7,11 @@ import io.samsungsami.model.*;
 
 import java.util.*;
 
-import io.samsungsami.model.DeviceTypesEnvelope;
 import io.samsungsami.model.UserEnvelope;
+import io.samsungsami.model.DevicesEnvelope;
+import io.samsungsami.model.DeviceTypesEnvelope;
 import io.samsungsami.model.PropertiesEnvelope;
 import io.samsungsami.model.AppProperties;
-import io.samsungsami.model.DevicesEnvelope;
 
 import java.util.Map;
 import java.util.HashMap;

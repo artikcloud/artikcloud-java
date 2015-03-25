@@ -3,16 +3,19 @@ package io.samsungsami.model;
 import io.samsungsami.model.User;
 
 import com.wordnik.swagger.annotations.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-public class UserEnvelope  { 
-  private User data = null;
+public class UserEnvelope  {
   
+  private User data = null;
+
   
   /**
    **/
   @ApiModelProperty(required = true, value = "")
+  @JsonProperty("data")
   public User getData() {
     return data;
   }

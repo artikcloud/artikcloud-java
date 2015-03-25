@@ -3,26 +3,23 @@ package io.samsungsami.model;
 import java.math.BigDecimal;
 
 import com.wordnik.swagger.annotations.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-public class RawMessage  { 
+public class RawMessage  {
+  
   private BigDecimal cts = null;
-  
-  //public enum ctsEnum {  }; 
-  
   private BigDecimal ts = null;
-  
-  //public enum tsEnum {  }; 
-  
   private String mid = null;
   private String sdid = null;
   private String data = null;
-  
+
   
   /**
    **/
   @ApiModelProperty(required = true, value = "")
+  @JsonProperty("cts")
   public BigDecimal getCts() {
     return cts;
   }
@@ -34,6 +31,7 @@ public class RawMessage  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
+  @JsonProperty("ts")
   public BigDecimal getTs() {
     return ts;
   }
@@ -45,6 +43,7 @@ public class RawMessage  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
+  @JsonProperty("mid")
   public String getMid() {
     return mid;
   }
@@ -56,6 +55,7 @@ public class RawMessage  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
+  @JsonProperty("sdid")
   public String getSdid() {
     return sdid;
   }
@@ -67,6 +67,7 @@ public class RawMessage  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
+  @JsonProperty("data")
   public String getData() {
     return data;
   }

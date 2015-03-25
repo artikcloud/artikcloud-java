@@ -4,16 +4,19 @@ import java.util.Map;
 import java.util.*;
 
 import com.wordnik.swagger.annotations.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-public class ManifestProperties  { 
-  private Map<String, Object> properties = new HashMap<String, Object>() ;
+public class ManifestProperties  {
   
+  private Map<String, Object> properties = new HashMap<String, Object>() ;
+
   
   /**
    **/
   @ApiModelProperty(required = true, value = "")
+  @JsonProperty("properties")
   public Map<String, Object> getProperties() {
     return properties;
   }

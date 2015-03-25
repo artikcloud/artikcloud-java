@@ -5,35 +5,26 @@ import java.math.BigDecimal;
 import java.util.*;
 
 import com.wordnik.swagger.annotations.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-public class RawMessagesEnvelope  { 
+public class RawMessagesEnvelope  {
+  
   private String sdid = null;
   private String mid = null;
   private BigDecimal startDate = null;
-  
-  //public enum startDateEnum {  }; 
-  
   private BigDecimal endDate = null;
-  
-  //public enum endDateEnum {  }; 
-  
   private Long count = null;
-  
-  //public enum countEnum {  }; 
-  
   private String order = null;
   private BigDecimal size = null;
-  
-  //public enum sizeEnum {  }; 
-  
   private List<RawMessage> data = new ArrayList<RawMessage>() ;
-  
+
   
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  @JsonProperty("sdid")
   public String getSdid() {
     return sdid;
   }
@@ -45,6 +36,7 @@ public class RawMessagesEnvelope  {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  @JsonProperty("mid")
   public String getMid() {
     return mid;
   }
@@ -56,6 +48,7 @@ public class RawMessagesEnvelope  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
+  @JsonProperty("startDate")
   public BigDecimal getStartDate() {
     return startDate;
   }
@@ -67,6 +60,7 @@ public class RawMessagesEnvelope  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
+  @JsonProperty("endDate")
   public BigDecimal getEndDate() {
     return endDate;
   }
@@ -78,6 +72,7 @@ public class RawMessagesEnvelope  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
+  @JsonProperty("count")
   public Long getCount() {
     return count;
   }
@@ -89,6 +84,7 @@ public class RawMessagesEnvelope  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
+  @JsonProperty("order")
   public String getOrder() {
     return order;
   }
@@ -100,6 +96,7 @@ public class RawMessagesEnvelope  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
+  @JsonProperty("size")
   public BigDecimal getSize() {
     return size;
   }
@@ -111,6 +108,7 @@ public class RawMessagesEnvelope  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
+  @JsonProperty("data")
   public List<RawMessage> getData() {
     return data;
   }

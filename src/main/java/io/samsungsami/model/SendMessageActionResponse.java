@@ -1,25 +1,28 @@
 package io.samsungsami.model;
 
-import io.samsungsami.model.ManifestProperties;
+import io.samsungsami.model.SendMessageActionData;
 
 import com.wordnik.swagger.annotations.*;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
+/**
+ * 
+ **/
 @ApiModel(description = "")
-public class ManifestPropertiesEnvelope  {
+public class SendMessageActionResponse  {
   
-  private ManifestProperties data = null;
+  private SendMessageActionData data = null;
 
   
   /**
    **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = false, value = "")
   @JsonProperty("data")
-  public ManifestProperties getData() {
+  public SendMessageActionData getData() {
     return data;
   }
-  public void setData(ManifestProperties data) {
+  public void setData(SendMessageActionData data) {
     this.data = data;
   }
 
@@ -28,7 +31,7 @@ public class ManifestPropertiesEnvelope  {
   @Override
   public String toString()  {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ManifestPropertiesEnvelope {\n");
+    sb.append("class SendMessageActionResponse {\n");
     
     sb.append("  data: ").append(data).append("\n");
     sb.append("}\n");

@@ -7,9 +7,9 @@ import io.samsungsami.model.*;
 
 import java.util.*;
 
-import io.samsungsami.model.DeviceTokenEnvelope;
 import io.samsungsami.model.Device;
 import io.samsungsami.model.DeviceEnvelope;
+import io.samsungsami.model.DeviceTokenEnvelope;
 
 import java.util.Map;
 import java.util.HashMap;

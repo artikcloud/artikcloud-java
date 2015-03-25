@@ -5,30 +5,24 @@ import java.util.*;
 import io.samsungsami.model.Aggregates;
 
 import com.wordnik.swagger.annotations.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-public class AggregatesEnvelope  { 
+public class AggregatesEnvelope  {
+  
   private String sdid = null;
   private String field = null;
   private Long startDate = null;
-  
-  //public enum startDateEnum {  }; 
-  
   private Long endDate = null;
-  
-  //public enum endDateEnum {  }; 
-  
   private BigDecimal size = null;
-  
-  //public enum sizeEnum {  }; 
-  
   private List<Aggregates> data = new ArrayList<Aggregates>() ;
-  
+
   
   /**
    **/
   @ApiModelProperty(required = true, value = "")
+  @JsonProperty("sdid")
   public String getSdid() {
     return sdid;
   }
@@ -40,6 +34,7 @@ public class AggregatesEnvelope  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
+  @JsonProperty("field")
   public String getField() {
     return field;
   }
@@ -51,6 +46,7 @@ public class AggregatesEnvelope  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
+  @JsonProperty("startDate")
   public Long getStartDate() {
     return startDate;
   }
@@ -62,6 +58,7 @@ public class AggregatesEnvelope  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
+  @JsonProperty("endDate")
   public Long getEndDate() {
     return endDate;
   }
@@ -73,6 +70,7 @@ public class AggregatesEnvelope  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
+  @JsonProperty("size")
   public BigDecimal getSize() {
     return size;
   }
@@ -84,6 +82,7 @@ public class AggregatesEnvelope  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
+  @JsonProperty("data")
   public List<Aggregates> getData() {
     return data;
   }

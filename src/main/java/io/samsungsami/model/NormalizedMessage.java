@@ -5,32 +5,26 @@ import java.math.BigDecimal;
 import java.util.*;
 
 import com.wordnik.swagger.annotations.*;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-public class NormalizedMessage  { 
+public class NormalizedMessage  {
+  
   private BigDecimal cts = null;
-  
-  //public enum ctsEnum {  }; 
-  
   private BigDecimal ts = null;
-  
-  //public enum tsEnum {  }; 
-  
   private String mid = null;
   private String sdid = null;
   private String sdtid = null;
   private String uid = null;
   private BigDecimal mv = null;
-  
-  //public enum mvEnum {  }; 
-  
   private Map<String, Object> data = new HashMap<String, Object>() ;
-  
+
   
   /**
    **/
   @ApiModelProperty(required = true, value = "")
+  @JsonProperty("cts")
   public BigDecimal getCts() {
     return cts;
   }
@@ -42,6 +36,7 @@ public class NormalizedMessage  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
+  @JsonProperty("ts")
   public BigDecimal getTs() {
     return ts;
   }
@@ -53,6 +48,7 @@ public class NormalizedMessage  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
+  @JsonProperty("mid")
   public String getMid() {
     return mid;
   }
@@ -64,6 +60,7 @@ public class NormalizedMessage  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
+  @JsonProperty("sdid")
   public String getSdid() {
     return sdid;
   }
@@ -75,6 +72,7 @@ public class NormalizedMessage  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
+  @JsonProperty("sdtid")
   public String getSdtid() {
     return sdtid;
   }
@@ -86,6 +84,7 @@ public class NormalizedMessage  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
+  @JsonProperty("uid")
   public String getUid() {
     return uid;
   }
@@ -97,6 +96,7 @@ public class NormalizedMessage  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
+  @JsonProperty("mv")
   public BigDecimal getMv() {
     return mv;
   }
@@ -108,6 +108,7 @@ public class NormalizedMessage  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
+  @JsonProperty("data")
   public Map<String, Object> getData() {
     return data;
   }
