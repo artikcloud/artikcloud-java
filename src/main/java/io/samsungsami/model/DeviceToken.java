@@ -2,22 +2,19 @@ package io.samsungsami.model;
 
 
 import com.wordnik.swagger.annotations.*;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-public class DeviceToken  {
-  
+public class DeviceToken  { 
   private String accessToken = null;
   private String uid = null;
   private String did = null;
   private String cid = null;
-
+  
   
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("accessToken")
   public String getAccessToken() {
     return accessToken;
   }
@@ -29,7 +26,6 @@ public class DeviceToken  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("uid")
   public String getUid() {
     return uid;
   }
@@ -41,7 +37,6 @@ public class DeviceToken  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("did")
   public String getDid() {
     return did;
   }
@@ -53,7 +48,6 @@ public class DeviceToken  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("cid")
   public String getCid() {
     return cid;
   }

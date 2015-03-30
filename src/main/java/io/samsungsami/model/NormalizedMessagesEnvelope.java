@@ -5,28 +5,37 @@ import java.math.BigDecimal;
 import java.util.*;
 
 import com.wordnik.swagger.annotations.*;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-public class NormalizedMessagesEnvelope  {
-  
+public class NormalizedMessagesEnvelope  { 
   private String sdids = null;
   private String sdid = null;
   private String uid = null;
   private BigDecimal startDate = null;
+  
+  //public enum startDateEnum {  }; 
+  
   private BigDecimal endDate = null;
+  
+  //public enum endDateEnum {  }; 
+  
   private String order = null;
   private String next = null;
   private Long count = null;
+  
+  //public enum countEnum {  }; 
+  
   private Long size = null;
+  
+  //public enum sizeEnum {  }; 
+  
   private List<NormalizedMessage> data = new ArrayList<NormalizedMessage>() ;
-
+  
   
   /**
    **/
   @ApiModelProperty(required = false, value = "")
-  @JsonProperty("sdids")
   public String getSdids() {
     return sdids;
   }
@@ -38,7 +47,6 @@ public class NormalizedMessagesEnvelope  {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
-  @JsonProperty("sdid")
   public String getSdid() {
     return sdid;
   }
@@ -50,7 +58,6 @@ public class NormalizedMessagesEnvelope  {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
-  @JsonProperty("uid")
   public String getUid() {
     return uid;
   }
@@ -62,7 +69,6 @@ public class NormalizedMessagesEnvelope  {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
-  @JsonProperty("startDate")
   public BigDecimal getStartDate() {
     return startDate;
   }
@@ -74,7 +80,6 @@ public class NormalizedMessagesEnvelope  {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
-  @JsonProperty("endDate")
   public BigDecimal getEndDate() {
     return endDate;
   }
@@ -86,7 +91,6 @@ public class NormalizedMessagesEnvelope  {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
-  @JsonProperty("order")
   public String getOrder() {
     return order;
   }
@@ -98,7 +102,6 @@ public class NormalizedMessagesEnvelope  {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
-  @JsonProperty("next")
   public String getNext() {
     return next;
   }
@@ -110,7 +113,6 @@ public class NormalizedMessagesEnvelope  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("count")
   public Long getCount() {
     return count;
   }
@@ -122,7 +124,6 @@ public class NormalizedMessagesEnvelope  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("size")
   public Long getSize() {
     return size;
   }
@@ -134,7 +135,6 @@ public class NormalizedMessagesEnvelope  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("data")
   public List<NormalizedMessage> getData() {
     return data;
   }

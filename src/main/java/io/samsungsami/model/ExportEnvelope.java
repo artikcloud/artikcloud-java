@@ -1,16 +1,14 @@
 package io.samsungsami.model;
 
-import java.math.BigDecimal;
-import java.util.*;
-import io.samsungsami.model.Aggregates;
 
 import com.wordnik.swagger.annotations.*;
 
 
 @ApiModel(description = "")
-public class AggregatesEnvelope  { 
+public class ExportEnvelope  { 
+  private String exportId = null;
+  private String uid = null;
   private String sdid = null;
-  private String field = null;
   private Long startDate = null;
   
   //public enum startDateEnum {  }; 
@@ -19,32 +17,40 @@ public class AggregatesEnvelope  {
   
   //public enum endDateEnum {  }; 
   
-  private BigDecimal size = null;
-  
-  //public enum sizeEnum {  }; 
-  
-  private List<Aggregates> data = new ArrayList<Aggregates>() ;
+  private String order = null;
+  private String format = null;
   
   
   /**
    **/
-  @ApiModelProperty(required = true, value = "")
-  public String getSdid() {
-    return sdid;
+  @ApiModelProperty(required = false, value = "")
+  public String getExportId() {
+    return exportId;
   }
-  public void setSdid(String sdid) {
-    this.sdid = sdid;
+  public void setExportId(String exportId) {
+    this.exportId = exportId;
   }
 
   
   /**
    **/
-  @ApiModelProperty(required = true, value = "")
-  public String getField() {
-    return field;
+  @ApiModelProperty(required = false, value = "")
+  public String getUid() {
+    return uid;
   }
-  public void setField(String field) {
-    this.field = field;
+  public void setUid(String uid) {
+    this.uid = uid;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getSdid() {
+    return sdid;
+  }
+  public void setSdid(String sdid) {
+    this.sdid = sdid;
   }
 
   
@@ -73,22 +79,22 @@ public class AggregatesEnvelope  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  public BigDecimal getSize() {
-    return size;
+  public String getOrder() {
+    return order;
   }
-  public void setSize(BigDecimal size) {
-    this.size = size;
+  public void setOrder(String order) {
+    this.order = order;
   }
 
   
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  public List<Aggregates> getData() {
-    return data;
+  public String getFormat() {
+    return format;
   }
-  public void setData(List<Aggregates> data) {
-    this.data = data;
+  public void setFormat(String format) {
+    this.format = format;
   }
 
   
@@ -96,14 +102,15 @@ public class AggregatesEnvelope  {
   @Override
   public String toString()  {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AggregatesEnvelope {\n");
+    sb.append("class ExportEnvelope {\n");
     
+    sb.append("  exportId: ").append(exportId).append("\n");
+    sb.append("  uid: ").append(uid).append("\n");
     sb.append("  sdid: ").append(sdid).append("\n");
-    sb.append("  field: ").append(field).append("\n");
     sb.append("  startDate: ").append(startDate).append("\n");
     sb.append("  endDate: ").append(endDate).append("\n");
-    sb.append("  size: ").append(size).append("\n");
-    sb.append("  data: ").append(data).append("\n");
+    sb.append("  order: ").append(order).append("\n");
+    sb.append("  format: ").append(format).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

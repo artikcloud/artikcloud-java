@@ -3,19 +3,16 @@ package io.samsungsami.model;
 import io.samsungsami.model.DeviceToken;
 
 import com.wordnik.swagger.annotations.*;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-public class DeviceTokenEnvelope  {
-  
+public class DeviceTokenEnvelope  { 
   private DeviceToken data = null;
-
+  
   
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("data")
   public DeviceToken getData() {
     return data;
   }

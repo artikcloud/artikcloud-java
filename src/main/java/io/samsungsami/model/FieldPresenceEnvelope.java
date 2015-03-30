@@ -5,25 +5,31 @@ import java.util.*;
 import io.samsungsami.model.FieldPresence;
 
 import com.wordnik.swagger.annotations.*;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-public class FieldPresenceEnvelope  {
-  
+public class FieldPresenceEnvelope  { 
   private String sdid = null;
   private String fieldPresence = null;
   private Long startDate = null;
+  
+  //public enum startDateEnum {  }; 
+  
   private Long endDate = null;
+  
+  //public enum endDateEnum {  }; 
+  
   private String interval = null;
   private BigDecimal size = null;
+  
+  //public enum sizeEnum {  }; 
+  
   private List<FieldPresence> data = new ArrayList<FieldPresence>() ;
-
+  
   
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("sdid")
   public String getSdid() {
     return sdid;
   }
@@ -35,7 +41,6 @@ public class FieldPresenceEnvelope  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("fieldPresence")
   public String getFieldPresence() {
     return fieldPresence;
   }
@@ -47,7 +52,6 @@ public class FieldPresenceEnvelope  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("startDate")
   public Long getStartDate() {
     return startDate;
   }
@@ -59,7 +63,6 @@ public class FieldPresenceEnvelope  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("endDate")
   public Long getEndDate() {
     return endDate;
   }
@@ -71,7 +74,6 @@ public class FieldPresenceEnvelope  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("interval")
   public String getInterval() {
     return interval;
   }
@@ -83,7 +85,6 @@ public class FieldPresenceEnvelope  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("size")
   public BigDecimal getSize() {
     return size;
   }
@@ -95,7 +96,6 @@ public class FieldPresenceEnvelope  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("data")
   public List<FieldPresence> getData() {
     return data;
   }

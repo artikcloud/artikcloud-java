@@ -3,19 +3,16 @@ package io.samsungsami.model;
 import java.util.*;
 
 import com.wordnik.swagger.annotations.*;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-public class ManifestVersions  {
-  
+public class ManifestVersions  { 
   private List<String> versions = new ArrayList<String>() ;
-
+  
   
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("versions")
   public List<String> getVersions() {
     return versions;
   }

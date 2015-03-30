@@ -1,22 +1,19 @@
 package io.samsungsami.model;
 
-import java.util.*;
 import io.samsungsami.model.DeviceType;
+import java.util.*;
 
 import com.wordnik.swagger.annotations.*;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-public class DeviceTypeArray  {
-  
+public class DeviceTypeArray  { 
   private List<DeviceType> deviceTypes = new ArrayList<DeviceType>() ;
-
+  
   
   /**
    **/
   @ApiModelProperty(required = false, value = "")
-  @JsonProperty("deviceTypes")
   public List<DeviceType> getDeviceTypes() {
     return deviceTypes;
   }

@@ -3,25 +3,28 @@ package io.samsungsami.model;
 import java.math.BigDecimal;
 
 import com.wordnik.swagger.annotations.*;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-public class User  {
-  
+public class User  { 
   private String id = null;
   private String name = null;
   private String email = null;
   private String fullName = null;
   private String saIdentity = null;
   private BigDecimal createdOn = null;
+  
+  //public enum createdOnEnum {  }; 
+  
   private BigDecimal modifiedOn = null;
-
+  
+  //public enum modifiedOnEnum {  }; 
+  
+  
   
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("id")
   public String getId() {
     return id;
   }
@@ -33,7 +36,6 @@ public class User  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("name")
   public String getName() {
     return name;
   }
@@ -45,7 +47,6 @@ public class User  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("email")
   public String getEmail() {
     return email;
   }
@@ -57,7 +58,6 @@ public class User  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("fullName")
   public String getFullName() {
     return fullName;
   }
@@ -69,7 +69,6 @@ public class User  {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
-  @JsonProperty("saIdentity")
   public String getSaIdentity() {
     return saIdentity;
   }
@@ -81,7 +80,6 @@ public class User  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("createdOn")
   public BigDecimal getCreatedOn() {
     return createdOn;
   }
@@ -93,7 +91,6 @@ public class User  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("modifiedOn")
   public BigDecimal getModifiedOn() {
     return modifiedOn;
   }

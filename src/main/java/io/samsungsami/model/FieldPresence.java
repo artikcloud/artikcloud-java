@@ -2,19 +2,19 @@ package io.samsungsami.model;
 
 
 import com.wordnik.swagger.annotations.*;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-public class FieldPresence  {
-  
+public class FieldPresence  { 
   private Long startDate = null;
-
+  
+  //public enum startDateEnum {  }; 
+  
+  
   
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("startDate")
   public Long getStartDate() {
     return startDate;
   }

@@ -8,8 +8,8 @@ import io.samsungsami.model.*;
 import java.util.*;
 
 import io.samsungsami.model.DeviceTypesEnvelope;
-import io.samsungsami.model.DeviceTypeEnvelope;
 import io.samsungsami.model.ManifestVersionsEnvelope;
+import io.samsungsami.model.DeviceTypeEnvelope;
 import io.samsungsami.model.ManifestPropertiesEnvelope;
 
 import java.util.Map;

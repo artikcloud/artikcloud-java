@@ -2,23 +2,16 @@ package io.samsungsami.model;
 
 
 import com.wordnik.swagger.annotations.*;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 
-/**
- * 
- **/
 @ApiModel(description = "")
-public class SendMessageActionData  {
-  
+public class MessageID  { 
   private String mid = null;
-
+  
   
   /**
-   * Message ID.
    **/
-  @ApiModelProperty(required = false, value = "Message ID.")
-  @JsonProperty("mid")
+  @ApiModelProperty(required = true, value = "")
   public String getMid() {
     return mid;
   }
@@ -31,7 +24,7 @@ public class SendMessageActionData  {
   @Override
   public String toString()  {
     StringBuilder sb = new StringBuilder();
-    sb.append("class SendMessageActionData {\n");
+    sb.append("class MessageID {\n");
     
     sb.append("  mid: ").append(mid).append("\n");
     sb.append("}\n");

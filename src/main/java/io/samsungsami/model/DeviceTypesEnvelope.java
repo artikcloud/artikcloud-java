@@ -3,22 +3,28 @@ package io.samsungsami.model;
 import io.samsungsami.model.DeviceTypeArray;
 
 import com.wordnik.swagger.annotations.*;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-public class DeviceTypesEnvelope  {
-  
+public class DeviceTypesEnvelope  { 
   private Integer total = null;
+  
+  //public enum totalEnum {  }; 
+  
   private Integer count = null;
+  
+  //public enum countEnum {  }; 
+  
   private Integer offset = null;
+  
+  //public enum offsetEnum {  }; 
+  
   private DeviceTypeArray data = null;
-
+  
   
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("total")
   public Integer getTotal() {
     return total;
   }
@@ -30,7 +36,6 @@ public class DeviceTypesEnvelope  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("count")
   public Integer getCount() {
     return count;
   }
@@ -42,7 +47,6 @@ public class DeviceTypesEnvelope  {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  @JsonProperty("offset")
   public Integer getOffset() {
     return offset;
   }
@@ -54,7 +58,6 @@ public class DeviceTypesEnvelope  {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
-  @JsonProperty("data")
   public DeviceTypeArray getData() {
     return data;
   }

@@ -1,22 +1,22 @@
 package io.samsungsami.model;
 
-import io.samsungsami.model.User;
+import io.samsungsami.model.MessageID;
 
 import com.wordnik.swagger.annotations.*;
 
 
 @ApiModel(description = "")
-public class UserEnvelope  { 
-  private User data = null;
+public class MessageIDEnvelope  { 
+  private MessageID data = null;
   
   
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  public User getData() {
+  public MessageID getData() {
     return data;
   }
-  public void setData(User data) {
+  public void setData(MessageID data) {
     this.data = data;
   }
 
@@ -25,7 +25,7 @@ public class UserEnvelope  {
   @Override
   public String toString()  {
     StringBuilder sb = new StringBuilder();
-    sb.append("class UserEnvelope {\n");
+    sb.append("class MessageIDEnvelope {\n");
     
     sb.append("  data: ").append(data).append("\n");
     sb.append("}\n");
