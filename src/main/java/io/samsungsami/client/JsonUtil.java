@@ -12,8 +12,6 @@ public class JsonUtil {
     mapper = new ObjectMapper();
     mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-    mapper.configure(SerializationFeature.WRITE_NULL_MAP_VALUES, false);
-    mapper.setSerializationInclusion(Include.NON_NULL);
   }
 
   public static ObjectMapper getJsonMapper() {
