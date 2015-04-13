@@ -43,12 +43,23 @@ Finally, in your Android project's `AndroidManifest.xml`, add the permissions re
 
 You're ready to go.
 
+Usage
+------
+
+The easiest way to start using the SAMI Android SDK is to look at our sample applications, these will give you a good overview of what you can do and how to do it. Read more about it at
+ * https://github.com/samsungsamiio/sami-android-demo
+ * https://github.com/samsungsamiio/sample-android-SAMInBLE
+ * https://github.com/samsungsamiio/sample-android-SAMInBLEws
+ * https://github.com/samsungsamiio/sample-android-SAMIRemoteControl
+
 More about SAMI
 ---------------
 
 If you are not familiar with SAMI we have extensive documentation at http://developer.samsungsami.io
 
 The full SAMI API specification with examples can be found at http://developer.samsungsami.io/sami/api-spec.html
+
+We blog about advanced sample applications at http://blog.samsungsami.io/
 
 To create and manage your services and devices on SAMI visit developer portal at http://devportal.samsungsami.io
 
@@ -57,4 +68,4 @@ Licence and Copyright
 
 Licensed under the Apache License. See LICENCE.
 
-Copyright (c) 2014 Samsung Electronics Co., Ltd.
+Copyright (c) 2015 Samsung Electronics Co., Ltd.
