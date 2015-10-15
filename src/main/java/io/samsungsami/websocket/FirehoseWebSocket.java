@@ -15,7 +15,11 @@ public class FirehoseWebSocket extends WSProxy {
             sb.append("Authorization=bearer+").append(accessToken);
         }
         if (sdids != null) {
-            sb.append("&sdids=").append(sdids);
+        	if (sdids.indexOf(",") != -1) {
+                sb.append("&sdids=").append(sdids);
+        	} else { // temporary workaround code for the single device <== SAMIDE-280
+                sb.append("&sdid=").append(sdids);
+        	}
         }
         if (sdtids != null) {
             sb.append("&sdtids=").append(sdtids);
