@@ -60,14 +60,19 @@ public class SamiWebSocket extends WebSocketClient {
     
     @Override
     public void connect() {
-        this.status = ConnectionStatus.CONNECTING;
-        super.connect();
+        if (isSafeToConnect()) {
+           this.status = ConnectionStatus.CONNECTING;
+           super.connect();  
+        }
     }
     
     @Override
     public boolean connectBlocking() throws InterruptedException {
-        this.status = ConnectionStatus.CONNECTING;
-        return super.connectBlocking();
+        if (isSafeToConnect()) {
+           this.status = ConnectionStatus.CONNECTING;
+           return super.connectBlocking();
+        }
+        return super.isOpen();
     }
     
     @Override
@@ -148,6 +153,13 @@ public class SamiWebSocket extends WebSocketClient {
         error.setCode(500);
         error.setMessage(ex.getMessage());
         this.callback.onError(error);
+    }
+    
+    private boolean isSafeToConnect() {
+        if (super.isConnecting() || super.isOpen()) {
+        	return false;
+        }
+        return true;
     }
     
     private class ConnectionStatusTimer {
