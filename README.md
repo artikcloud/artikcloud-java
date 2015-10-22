@@ -18,9 +18,12 @@ The SDK was developed with Eclipse and Maven and tested with Android 4.4.2. When
 Installation
 ---------------------
 
-In Eclipse, 
+If using Eclipse, 
 - import the SDK library project as "Existing Maven Projects".
 - right click the project, and choose "Run As" then "Maven install"
+
+If using Maven commandline,
+- run "mvn package" in the root directory of the repository
 
 After the installation succeeds, you can use the generated libraries in one of the following ways depending on your scenario:
 
