@@ -6,28 +6,37 @@ This SDK helps you connect your Android apps to SAMI. The SDK helps authenticati
 Prerequisites
 -------------
 
- * [Eclipse](https://www.eclipse.org/) 
- * [Maven Integration for Eclipse](https://www.eclipse.org/m2e/) or [Maven](http://maven.apache.org/)
+ * [Maven](http://maven.apache.org/) or [Maven Integration for Eclipse](https://www.eclipse.org/m2e/)
  * Wordnik
  * Jackson JSON Processor  2.1.4
  * JUnit 4.8.1
  * Apache HTTP Client 4.0
 
-The SDK was developed with Eclipse and Maven and tested with Android 4.4.2. When building Maven will fetch the correct libraries. You might be able to build the SDK in a different environment and we would be happy to hear about your (success) stories.
+The SDK was developed with Maven and tested with Android 4.4.2. When building Maven will fetch the correct libraries. You might be able to build the SDK in a different environment and we would be happy to hear about your (success) stories.
 
 Installation
 ---------------------
+
+You can generate the SDK libraries using one of the following ways. 
+
+If using Maven command line,
+- run "mvn package" in the root directory of the repository
 
 If using Eclipse, 
 - import the SDK library project as "Existing Maven Projects".
 - right click the project, and choose "Run As" then "Maven install"
 
-If using Maven commandline,
-- run "mvn package" in the root directory of the repository
+After the generation succeeds, you can use the generated libraries in one of the following ways depending on your scenario:
 
-After the installation succeeds, you can use the generated libraries in one of the following ways depending on your scenario:
+- To use them in an Android Studio project, copy libraries under `target` and `target/lib` directories of the imported Maven project to `app/libs` directory in your Android Studio project. In the `build.gradle` of `app` module, declare the dependency of your Android application on the libraries as following.
 
-- To use them in an Android project, copy libraries under `target` and `target/lib` directories of the imported Maven project to `libs` directory in your Android project.
+~~~
+dependencies {
+    // Local binary dependency
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+}
+~~~
+
 - To use them in your Maven project, modify `pom.xml` file in your project to add dependency to sami-android-xxx.jar under `target` of the imported Maven project as following
 
 ~~~
