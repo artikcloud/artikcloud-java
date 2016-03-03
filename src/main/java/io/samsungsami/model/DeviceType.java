@@ -13,6 +13,8 @@ public class DeviceType  {
   private Boolean published = null;
   private Boolean approved = null;
   private BigDecimal latestVersion = null;
+  private Boolean hasCloudConnector = null;
+  private Boolean rsp = null;
   
   //public enum latestVersionEnum {  }; 
   
@@ -95,7 +97,26 @@ public class DeviceType  {
     this.uniqueName = uniqueName;
   }
 
-  
+  /**
+   **/
+  @ApiModelProperty(required = true, value = "")
+  public Boolean getHasCloudConnector() {
+    return hasCloudConnector;
+  }
+  public void setHasCloudConnector(Boolean hasCloudConnector) {
+    this.hasCloudConnector = hasCloudConnector;
+  }
+
+  /**
+   **/
+  @ApiModelProperty(required = true, value = "")
+  public Boolean getRsp() {
+    return rsp;
+  }
+  public void setRsp(Boolean rsp) {
+    this.rsp = rsp;
+  }
+
 
   @Override
   public String toString()  {
@@ -109,6 +130,8 @@ public class DeviceType  {
     sb.append("  approved: ").append(approved).append("\n");
     sb.append("  latestVersion: ").append(latestVersion).append("\n");
     sb.append("  uniqueName: ").append(uniqueName).append("\n");
+    sb.append("  hasCloudConnector: ").append(hasCloudConnector).append("\n");
+    sb.append("  rsp: ").append(rsp).append("\n");
     sb.append("}\n");
     return sb.toString();
   }
