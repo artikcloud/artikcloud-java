@@ -16,6 +16,6 @@ To create and manage your services and devices on ARTIK Cloud, create an account
 Licence and Copyright
 ---------------------
 
-Licensed under the Apache License. See LICENCE.
+Licensed under the Apache License. See [LICENCE](https://github.com/artikcloud/artikcloud-java/blob/master/LICENSE).
 
 Copyright (c) 2016 Samsung Electronics Co., Ltd.
