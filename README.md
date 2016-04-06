@@ -36,7 +36,7 @@ dependencies {
 }
 ~~~
 
-- To use them in your Maven project, modify `pom.xml` file in your project to add dependency to sami-android-xxx.jar under `target` of the imported Maven project as following
+- To use them in your Maven project, modify `pom.xml` file in your project to add dependency to sami-android-2.x.x.jar under `target` of the imported Maven project as following
 
 ~~~
 <dependency>
@@ -63,7 +63,7 @@ Usage
 
 Peek into [tests](https://github.com/artikcloud/artikcloud-java/tree/master/src/test/java/cloud/artik) for examples about how to use the SDK.
 
-In addtion, you can look at our tutorial and sample applications. These will give you a good overview of what you can do and how to do it. Read more about it at
+In addition, you can look at our tutorial and sample applications. These will give you a good overview of what you can do and how to do it. Read more about it at
 
 https://developer.artik.cloud/documentation/tutorials/your-first-android-app.html
 
