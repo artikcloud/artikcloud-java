@@ -16,7 +16,7 @@ Installation
 You can generate the SDK libraries using one of the following ways. 
 
 If using Maven command line,
-- run "mvn install" in the root directory of the repository to install to your local Maven repository.
+- run "mvn clean install -DskipTests" in the root directory of the repository to install to your local Maven repository.
 
 If using Eclipse, 
 - import the SDK library project as "Existing Maven Projects".
@@ -61,7 +61,9 @@ It's recommended to create an instance of `ApiClient` per thread in a multithrea
 Usage
 ------
 
-The easiest way to start using the SAMI Android SDK is to look at our tutorial and sample applications, these will give you a good overview of what you can do and how to do it. Read more about it at
+Peek into [tests](https://github.com/artikcloud/artikcloud-java/tree/master/src/test/java/cloud/artik) for examples about how to use the SDK.
+
+In addtion, you can look at our tutorial and sample applications. These will give you a good overview of what you can do and how to do it. Read more about it at
 
 https://developer.artik.cloud/documentation/tutorials/your-first-android-app.html
 
