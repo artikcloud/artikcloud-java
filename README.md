@@ -80,7 +80,7 @@ To create and manage your services and devices on ARTIK Cloud, create an account
 
 Also see the ARTIK Cloud blog for tutorials, updates, and more: http://artik.io/blog
 
-Licence and Copyright
+License and Copyright
 ---------------------
 
 Licensed under the Apache License. See [LICENCE](https://github.com/artikcloud/artikcloud-java/blob/master/LICENSE).
