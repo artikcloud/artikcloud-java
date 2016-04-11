@@ -13,25 +13,25 @@ import com.google.gson.annotations.SerializedName;
  * Action received in a WebSocket.
  **/
 @ApiModel(description = "Action received in a WebSocket.")
-public class ActionOut   {
-  
+public class ActionOut extends ActionIn {
+
   @SerializedName("mid")
   private String mid = null;
-  
+
   @SerializedName("uid")
   private String uid = null;
-  
+
   @SerializedName("sdtid")
   private String sdtid = null;
-  
+
   @SerializedName("cts")
   private Long cts = null;
-  
+
   @SerializedName("mv")
   private Integer mv = null;
-  
 
-  
+
+
   /**
    * Message ID.
    **/
@@ -43,7 +43,7 @@ public class ActionOut   {
     this.mid = mid;
   }
 
-  
+
   /**
    * User ID.
    **/
@@ -55,7 +55,7 @@ public class ActionOut   {
     this.uid = uid;
   }
 
-  
+
   /**
    * Source Device Type ID.
    **/
@@ -67,7 +67,7 @@ public class ActionOut   {
     this.sdtid = sdtid;
   }
 
-  
+
   /**
    * Created Timestamp (past, present or future). Defaults to current time if not provided.
    **/
@@ -79,7 +79,7 @@ public class ActionOut   {
     this.cts = cts;
   }
 
-  
+
   /**
    * Manifest Version.
    **/
@@ -91,14 +91,11 @@ public class ActionOut   {
     this.mv = mv;
   }
 
-  
+
 
   @Override
   public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
+    if (!super.equals(o)) {
       return false;
     }
     ActionOut actionOut = (ActionOut) o;
@@ -111,14 +108,20 @@ public class ActionOut   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(mid, uid, sdtid, cts, mv);
+    return Objects.hash(data, cid, ddid, sdid, ts, type, mid, uid, sdtid, cts, mv);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ActionOut {\n");
-    
+
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    cid: ").append(toIndentedString(cid)).append("\n");
+    sb.append("    ddid: ").append(toIndentedString(ddid)).append("\n");
+    sb.append("    sdid: ").append(toIndentedString(sdid)).append("\n");
+    sb.append("    ts: ").append(toIndentedString(ts)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    mid: ").append(toIndentedString(mid)).append("\n");
     sb.append("    uid: ").append(toIndentedString(uid)).append("\n");
     sb.append("    sdtid: ").append(toIndentedString(sdtid)).append("\n");

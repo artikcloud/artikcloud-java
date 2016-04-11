@@ -15,27 +15,27 @@ import com.google.gson.annotations.SerializedName;
  **/
 @ApiModel(description = "Action sent to a WebSocket.")
 public class ActionIn   {
-  
+
   @SerializedName("data")
-  private ActionDetailsArray data = null;
-  
+  protected ActionDetailsArray data = null;
+
   @SerializedName("cid")
-  private String cid = null;
-  
+  protected String cid = null;
+
   @SerializedName("ddid")
-  private String ddid = null;
-  
+  protected String ddid = null;
+
   @SerializedName("sdid")
-  private String sdid = null;
+  protected String sdid = null;
   
   @SerializedName("ts")
-  private Long ts = null;
-  
-  @SerializedName("type")
-  private String type = "action";
-  
+  protected Long ts = null;
 
-  
+  @SerializedName("type")
+  protected String type = "action";
+
+
+
   /**
    **/
   @ApiModelProperty(value = "")
@@ -46,7 +46,7 @@ public class ActionIn   {
     this.data = data;
   }
 
-  
+
   /**
    * Confirmation ID.
    **/
@@ -58,7 +58,7 @@ public class ActionIn   {
     this.cid = cid;
   }
 
-  
+
   /**
    * Destination Device ID.
    **/
@@ -70,7 +70,7 @@ public class ActionIn   {
     this.ddid = ddid;
   }
 
-  
+
   /**
    * Source Device ID.
    **/
@@ -82,7 +82,7 @@ public class ActionIn   {
     this.sdid = sdid;
   }
 
-  
+
   /**
    * Timestamp (past, present or future). Defaults to current time if not provided.
    **/
@@ -94,7 +94,7 @@ public class ActionIn   {
     this.ts = ts;
   }
 
-  
+
   /**
    * Type.
    **/
@@ -106,7 +106,7 @@ public class ActionIn   {
     this.type = type;
   }
 
-  
+
 
   @Override
   public boolean equals(Object o) {
@@ -134,7 +134,7 @@ public class ActionIn   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ActionIn {\n");
-    
+
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("    cid: ").append(toIndentedString(cid)).append("\n");
     sb.append("    ddid: ").append(toIndentedString(ddid)).append("\n");
