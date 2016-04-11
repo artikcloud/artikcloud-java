@@ -18,19 +18,19 @@ import com.google.gson.annotations.SerializedName;
 @ApiModel(description = "Contains the array of Action Details")
 public class ActionDetailsArray   {
   
-  @SerializedName("tags")
-  private List<ActionDetails> tags = new ArrayList<ActionDetails>();
+  @SerializedName("actions")
+  private List<ActionDetails> actions = new ArrayList<ActionDetails>();
   
 
   
   /**
    **/
   @ApiModelProperty(value = "")
-  public List<ActionDetails> getTags() {
-    return tags;
+  public List<ActionDetails> getActions() {
+    return actions;
   }
-  public void setTags(List<ActionDetails> tags) {
-    this.tags = tags;
+  public void setActions(List<ActionDetails> actions) {
+    this.actions = actions;
   }
 
   
@@ -44,12 +44,12 @@ public class ActionDetailsArray   {
       return false;
     }
     ActionDetailsArray actionDetailsArray = (ActionDetailsArray) o;
-    return Objects.equals(this.tags, actionDetailsArray.tags);
+    return Objects.equals(this.actions, actionDetailsArray.actions);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(tags);
+    return Objects.hash(actions);
   }
 
   @Override
@@ -57,7 +57,7 @@ public class ActionDetailsArray   {
     StringBuilder sb = new StringBuilder();
     sb.append("class ActionDetailsArray {\n");
     
-    sb.append("    tags: ").append(toIndentedString(tags)).append("\n");
+    sb.append("    actions: ").append(toIndentedString(actions)).append("\n");
     sb.append("}");
     return sb.toString();
   }
