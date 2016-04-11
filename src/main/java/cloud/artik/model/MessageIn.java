@@ -19,22 +19,22 @@ import com.google.gson.annotations.SerializedName;
 public class MessageIn   {
   
   @SerializedName("data")
-  private Map<String, Object> data = new HashMap<String, Object>();
+  protected Map<String, Object> data = new HashMap<String, Object>();
   
   @SerializedName("cid")
-  private String cid = null;
+  protected String cid = null;
   
   @SerializedName("ddid")
-  private String ddid = null;
+  protected String ddid = null;
   
   @SerializedName("sdid")
-  private String sdid = null;
+  protected String sdid = null;
   
   @SerializedName("ts")
-  private Long ts = null;
+  protected Long ts = null;
   
   @SerializedName("type")
-  private String type = "message";
+  protected String type = "message";
   
 
   
