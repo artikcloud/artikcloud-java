@@ -65,7 +65,8 @@ Peek into [tests](https://github.com/artikcloud/artikcloud-java/tree/master/src/
 
 In addition, you can look at our tutorial and sample applications. These will give you a good overview of what you can do and how to do it. Read more about it at
 
-https://developer.artik.cloud/documentation/tutorials/your-first-android-app.html
+- https://developer.artik.cloud/documentation/tutorials/your-first-android-app.html
+- https://developer.artik.cloud/documentation/tutorials/an-iot-remote-control.html
 
 More about ARTIK Cloud
 ----------------------
