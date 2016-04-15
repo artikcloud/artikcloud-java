@@ -79,7 +79,7 @@ Check out advanced sample applications at https://developer.artik.cloud/document
 
 To create and manage your services and devices on ARTIK Cloud, create an account at https://developer.artik.cloud
 
-Also see the ARTIK Cloud blog for tutorials, updates, and more: http://artik.io/blog
+Also see the ARTIK Cloud blog for tutorials, updates, and more: http://artik.io/blog/cloud
 
 License and Copyright
 ---------------------
