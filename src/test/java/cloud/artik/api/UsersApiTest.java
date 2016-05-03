@@ -13,6 +13,7 @@ import cloud.artik.model.AppProperties;
 import cloud.artik.model.DeviceTypesEnvelope;
 import cloud.artik.model.DevicesEnvelope;
 import cloud.artik.model.PropertiesEnvelope;
+import cloud.artik.model.RulesEnvelope;
 import cloud.artik.model.User;
 import cloud.artik.model.UserEnvelope;
 
@@ -105,5 +106,15 @@ public class UsersApiTest extends ArtikCloudApiTest {
                 .deleteUserProperties(userId, aid);
         assertNotNull(userProperties3);
         assertEquals(userProperties2, userProperties3);
+    }
+    
+    @Test
+    public void testGetUserRules() throws Exception {
+        RulesEnvelope rulesEnvelope = this.apiClient.getUserRules(userId, false , true, null, null);
+
+
+        assertNotNull(rulesEnvelope);
+
+        //assertNotNull(rulesEnvelope.getData());        
     }
 }

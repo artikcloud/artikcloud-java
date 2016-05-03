@@ -6,11 +6,31 @@
   <packaging>jar</packaging>
   <name>artikcloud-java</name>
   <version>2.0.0</version>
+  <description>Artik Cloud Java SDK</description>
+  <url>https://github.com/artikcloud/artikcloud-java</url>
+
+  <licenses>
+      <license>
+          <name>Apache license, Version 2.0</name>
+          <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+      </license>
+  </licenses>
+
+  <developers>
+      <developer>
+          <name>Artik Cloud</name>
+          <email>support@artik.cloud</email>
+          <organization>Samsung Artik Cloud</organization>
+          <organizationUrl>https://artik.cloud</organizationUrl>
+      </developer>
+  </developers>
+
   <scm>
-    <connection>scm:git:git@github.com:swagger-api/swagger-mustache.git</connection>
-    <developerConnection>scm:git:git@github.com:swagger-api/swagger-codegen.git</developerConnection>
-    <url>https://github.com/swagger-api/swagger-codegen</url>
+    <connection>scm:git:git@github.com:artikcloud/artikcloud-java.git</connection>
+    <developerConnection>scm:git:git@github.com:artikcloud/artikcloud-java.git</developerConnection>
+    <url>https://github.com/artikcloud/artikcloud-java</url>
   </scm>
+
   <prerequisites>
     <maven>2.2.0</maven>
   </prerequisites>
@@ -106,8 +126,31 @@
           <target>1.6</target>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.10.3</version>
+        <configuration>
+          <show>private</show>
+          <nohelp>true</nohelp>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.10.3</version>
+        <configuration>
+          <show>public</show>
+        </configuration>
+      </plugin>
+    </plugins>
+  </reporting>
+
   <dependencies>
     <dependency>
       <groupId>io.swagger</groupId>

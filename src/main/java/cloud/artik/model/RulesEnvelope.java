@@ -1,9 +1,11 @@
 package cloud.artik.model;
 
 import java.util.Objects;
-import cloud.artik.model.RuleArray;
+import cloud.artik.model.OutputRule;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -20,7 +22,7 @@ public class RulesEnvelope   {
   private Integer count = null;
   
   @SerializedName("data")
-  private RuleArray data = null;
+  private List<OutputRule> data = new ArrayList<OutputRule>();
   
   @SerializedName("offset")
   private Integer offset = null;
@@ -44,10 +46,10 @@ public class RulesEnvelope   {
   /**
    **/
   @ApiModelProperty(value = "")
-  public RuleArray getData() {
+  public List<OutputRule> getData() {
     return data;
   }
-  public void setData(RuleArray data) {
+  public void setData(List<OutputRule> data) {
     this.data = data;
   }
 

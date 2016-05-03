@@ -14,24 +14,24 @@ import com.google.gson.annotations.SerializedName;
  **/
 @ApiModel(description = "WebSocket Registration Message")
 public class RegisterMessage   {
-  
+
   @SerializedName("cid")
   private String cid = null;
-  
+
   @SerializedName("authorization")
   private String authorization = null;
-  
+
   @SerializedName("sdid")
   private String sdid = null;
-  
+
   @SerializedName("ts")
   private Long ts = null;
-  
+
   @SerializedName("type")
   private String type = "register";
-  
 
-  
+
+
   /**
    * Confirmation ID.
    **/
@@ -43,11 +43,11 @@ public class RegisterMessage   {
     this.cid = cid;
   }
 
-  
+
   /**
-   * Authorization header containing access token (Bearer <access_token>).
+   * Authorization header containing access token (Bearer access_token).
    **/
-  @ApiModelProperty(value = "Authorization header containing access token (Bearer <access_token>).")
+  @ApiModelProperty(value = "Authorization header containing access token (Bearer access_token).")
   public String getAuthorization() {
     return authorization;
   }
@@ -55,7 +55,7 @@ public class RegisterMessage   {
     this.authorization = authorization;
   }
 
-  
+
   /**
    * Source Device ID.
    **/
@@ -67,7 +67,7 @@ public class RegisterMessage   {
     this.sdid = sdid;
   }
 
-  
+
   /**
    * Timestamp (past, present or future). Defaults to current time if not provided.
    **/
@@ -79,7 +79,7 @@ public class RegisterMessage   {
     this.ts = ts;
   }
 
-  
+
   /**
    * Type.
    **/
@@ -91,7 +91,7 @@ public class RegisterMessage   {
     this.type = type;
   }
 
-  
+
 
   @Override
   public boolean equals(Object o) {
@@ -118,7 +118,7 @@ public class RegisterMessage   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class RegisterMessage {\n");
-    
+
     sb.append("    cid: ").append(toIndentedString(cid)).append("\n");
     sb.append("    authorization: ").append(toIndentedString(authorization)).append("\n");
     sb.append("    sdid: ").append(toIndentedString(sdid)).append("\n");
