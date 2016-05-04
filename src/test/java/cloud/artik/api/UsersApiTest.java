@@ -110,8 +110,7 @@ public class UsersApiTest extends ArtikCloudApiTest {
     
     @Test
     public void testGetUserRules() throws Exception {
-        RulesEnvelope rulesEnvelope = this.apiClient.getUserRules(userId, false , true, null, null);
-
+        RulesEnvelope rulesEnvelope = this.apiClient.getUserRules(userId, false, null, null);
 
         assertNotNull(rulesEnvelope);
 
