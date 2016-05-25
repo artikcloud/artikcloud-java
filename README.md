@@ -27,7 +27,7 @@ Use the Libraries
 
 After the generation succeeds, you can use the generated libraries in one of the following ways depending on your scenario:
 
-- To use them in an Android Studio project, copy libraries under `target` and `target/lib` directories of the imported Maven project to `app/libs` directory in your Android Studio project. In the `build.gradle` of `app` module, declare the dependency of your Android application on the libraries as following.
+- To use them in an Android Studio project, copy `artikcloud-java-x.x.x.jar` under `target` and all jar files under `target/lib` directories of the imported Maven project to `app/libs` directory in your Android Studio project. In the `build.gradle` of `app` module, declare the dependency of your Android application on the libraries as following.
 
 ~~~
 dependencies {
