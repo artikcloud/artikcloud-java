@@ -30,6 +30,10 @@ public class DeviceChannelWebSocketTest {
 
     @Test
     public void testSendMessage() throws Exception {
+        String accessToken = "f9f75bd0b0fc46a9a604703909f4331d";
+        String deviceId = "16f54be9b9ce4c69be14a6c8ff33ea8d";
+        String userId = "04ddbd35d57d4d7b8f07f219c44457b2";
+        
         OkHttpClient client = new OkHttpClient();
         client.setRetryOnConnectionFailure(true);
 
@@ -84,23 +88,23 @@ public class DeviceChannelWebSocketTest {
         ws.connectBlocking();
 
         RegisterMessage msg = new RegisterMessage();
-        msg.setAuthorization("bearer " + "1eef3e3251e147d1ac707a57f6779c49");
-        msg.setSdid("993925c3cd994bf7a51c620884be65e9");
+        msg.setAuthorization("bearer " + accessToken);
+        msg.setSdid(deviceId);
         msg.setCid("first");
 
         ws.registerChannel(msg);
         assertEquals(Boolean.TRUE,
-                new Boolean(registerLatch.await(1, TimeUnit.SECONDS)));
+                new Boolean(registerLatch.await(10, TimeUnit.SECONDS)));
 
         MessageIn message = new MessageIn();
-        message.setSdid("993925c3cd994bf7a51c620884be65e9");
+        message.setSdid(deviceId);
         message.setTs(new Long(System.currentTimeMillis()));
-        message.getData().put("volume", new Integer(5));
+        message.getData().put("steps", new Integer(500));
         message.setCid("second");
 
         ws.sendMessage(message);
         assertEquals(Boolean.TRUE,
-                new Boolean(messageLatch.await(1, TimeUnit.SECONDS)));
+                new Boolean(messageLatch.await(10, TimeUnit.SECONDS)));
 
         ws.closeBlocking();
     }

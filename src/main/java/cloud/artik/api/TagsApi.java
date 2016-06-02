@@ -45,110 +45,6 @@ public class TagsApi {
   }
 
   
-  /* Build call for getTagsByCategories */
-  private Call getTagsByCategoriesCall(String categories, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-    Object localVarPostBody = null;
-    
-
-    // create path and map variables
-    String localVarPath = "/tags".replaceAll("\\{format\\}","json");
-
-    List<Pair> localVarQueryParams = new ArrayList<Pair>();
-    if (categories != null)
-      localVarQueryParams.addAll(apiClient.parameterToPairs("", "categories", categories));
-
-    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-
-    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-    final String[] localVarAccepts = {
-      "application/json"
-    };
-    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-    if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
-
-    final String[] localVarContentTypes = {
-      
-    };
-    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-    localVarHeaderParams.put("Content-Type", localVarContentType);
-
-    if(progressListener != null) {
-      apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
-      @Override
-      public Response intercept(Interceptor.Chain chain) throws IOException {
-        Response originalResponse = chain.proceed(chain.request());
-        return originalResponse.newBuilder()
-                .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                .build();
-        }
-      });
-    }
-
-    String[] localVarAuthNames = new String[] { "artikcloud_oauth" };
-    return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
-  }
-
-  /**
-   * Get all tags of categories
-   * Get all tags related to the list of categories
-   * @param categories Comma separated list of categories.
-   * @return TagsEnvelope
-   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-   */
-  public TagsEnvelope getTagsByCategories(String categories) throws ApiException {
-    ApiResponse<TagsEnvelope> resp = getTagsByCategoriesWithHttpInfo(categories);
-    return resp.getData();
-  }
-
-  /**
-   * Get all tags of categories
-   * Get all tags related to the list of categories
-   * @param categories Comma separated list of categories.
-   * @return ApiResponse<TagsEnvelope>
-   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-   */
-  public ApiResponse<TagsEnvelope> getTagsByCategoriesWithHttpInfo(String categories) throws ApiException {
-    Call call = getTagsByCategoriesCall(categories, null, null);
-    Type localVarReturnType = new TypeToken<TagsEnvelope>(){}.getType();
-    return apiClient.execute(call, localVarReturnType);
-  }
-
-  /**
-   * Get all tags of categories (asynchronously)
-   * Get all tags related to the list of categories
-   * @param categories Comma separated list of categories.
-   * @param callback The callback to be executed when the API call finishes
-   * @return The request call
-   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-   */
-  public Call getTagsByCategoriesAsync(String categories, final ApiCallback<TagsEnvelope> callback) throws ApiException {
-
-    ProgressResponseBody.ProgressListener progressListener = null;
-    ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
-
-    if (callback != null) {
-      progressListener = new ProgressResponseBody.ProgressListener() {
-        @Override
-        public void update(long bytesRead, long contentLength, boolean done) {
-          callback.onDownloadProgress(bytesRead, contentLength, done);
-        }
-      };
-
-      progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
-        @Override
-        public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
-          callback.onUploadProgress(bytesWritten, contentLength, done);
-        }
-      };
-    }
-
-    Call call = getTagsByCategoriesCall(categories, progressListener, progressRequestListener);
-    Type localVarReturnType = new TypeToken<TagsEnvelope>(){}.getType();
-    apiClient.executeAsync(call, localVarReturnType, callback);
-    return call;
-  }
-  
   /* Build call for getTagCategories */
   private Call getTagCategoriesCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
     Object localVarPostBody = null;
@@ -301,10 +197,10 @@ public class TagsApi {
   /**
    * Get tag suggestions
    * Get tag suggestions for applications, device types that have been most used with a group of tags.
-   * @param entityType Entity type name.
-   * @param tags Comma separated list of tags.
-   * @param name Name of tags used for type ahead.
-   * @param count Number of results to return. Max 10.
+   * @param entityType Entity type name. (optional)
+   * @param tags Comma separated list of tags. (optional)
+   * @param name Name of tags used for type ahead. (optional)
+   * @param count Number of results to return. Max 10. (optional)
    * @return TagsEnvelope
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
    */
@@ -316,10 +212,10 @@ public class TagsApi {
   /**
    * Get tag suggestions
    * Get tag suggestions for applications, device types that have been most used with a group of tags.
-   * @param entityType Entity type name.
-   * @param tags Comma separated list of tags.
-   * @param name Name of tags used for type ahead.
-   * @param count Number of results to return. Max 10.
+   * @param entityType Entity type name. (optional)
+   * @param tags Comma separated list of tags. (optional)
+   * @param name Name of tags used for type ahead. (optional)
+   * @param count Number of results to return. Max 10. (optional)
    * @return ApiResponse<TagsEnvelope>
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
    */
@@ -332,10 +228,10 @@ public class TagsApi {
   /**
    * Get tag suggestions (asynchronously)
    * Get tag suggestions for applications, device types that have been most used with a group of tags.
-   * @param entityType Entity type name.
-   * @param tags Comma separated list of tags.
-   * @param name Name of tags used for type ahead.
-   * @param count Number of results to return. Max 10.
+   * @param entityType Entity type name. (optional)
+   * @param tags Comma separated list of tags. (optional)
+   * @param name Name of tags used for type ahead. (optional)
+   * @param count Number of results to return. Max 10. (optional)
    * @param callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -362,6 +258,110 @@ public class TagsApi {
     }
 
     Call call = getTagSuggestionsCall(entityType, tags, name, count, progressListener, progressRequestListener);
+    Type localVarReturnType = new TypeToken<TagsEnvelope>(){}.getType();
+    apiClient.executeAsync(call, localVarReturnType, callback);
+    return call;
+  }
+  
+  /* Build call for getTagsByCategories */
+  private Call getTagsByCategoriesCall(String categories, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    Object localVarPostBody = null;
+    
+
+    // create path and map variables
+    String localVarPath = "/tags".replaceAll("\\{format\\}","json");
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+    if (categories != null)
+      localVarQueryParams.addAll(apiClient.parameterToPairs("", "categories", categories));
+
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+    final String[] localVarContentTypes = {
+      
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+    localVarHeaderParams.put("Content-Type", localVarContentType);
+
+    if(progressListener != null) {
+      apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
+      @Override
+      public Response intercept(Interceptor.Chain chain) throws IOException {
+        Response originalResponse = chain.proceed(chain.request());
+        return originalResponse.newBuilder()
+                .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                .build();
+        }
+      });
+    }
+
+    String[] localVarAuthNames = new String[] { "artikcloud_oauth" };
+    return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+  }
+
+  /**
+   * Get all tags of categories
+   * Get all tags related to the list of categories
+   * @param categories Comma separated list of categories. (optional)
+   * @return TagsEnvelope
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+   */
+  public TagsEnvelope getTagsByCategories(String categories) throws ApiException {
+    ApiResponse<TagsEnvelope> resp = getTagsByCategoriesWithHttpInfo(categories);
+    return resp.getData();
+  }
+
+  /**
+   * Get all tags of categories
+   * Get all tags related to the list of categories
+   * @param categories Comma separated list of categories. (optional)
+   * @return ApiResponse<TagsEnvelope>
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+   */
+  public ApiResponse<TagsEnvelope> getTagsByCategoriesWithHttpInfo(String categories) throws ApiException {
+    Call call = getTagsByCategoriesCall(categories, null, null);
+    Type localVarReturnType = new TypeToken<TagsEnvelope>(){}.getType();
+    return apiClient.execute(call, localVarReturnType);
+  }
+
+  /**
+   * Get all tags of categories (asynchronously)
+   * Get all tags related to the list of categories
+   * @param categories Comma separated list of categories. (optional)
+   * @param callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   */
+  public Call getTagsByCategoriesAsync(String categories, final ApiCallback<TagsEnvelope> callback) throws ApiException {
+
+    ProgressResponseBody.ProgressListener progressListener = null;
+    ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+    if (callback != null) {
+      progressListener = new ProgressResponseBody.ProgressListener() {
+        @Override
+        public void update(long bytesRead, long contentLength, boolean done) {
+          callback.onDownloadProgress(bytesRead, contentLength, done);
+        }
+      };
+
+      progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+        @Override
+        public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+          callback.onUploadProgress(bytesWritten, contentLength, done);
+        }
+      };
+    }
+
+    Call call = getTagsByCategoriesCall(categories, progressListener, progressRequestListener);
     Type localVarReturnType = new TypeToken<TagsEnvelope>(){}.getType();
     apiClient.executeAsync(call, localVarReturnType, callback);
     return call;

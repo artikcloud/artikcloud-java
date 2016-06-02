@@ -104,8 +104,8 @@ public class RulesApi {
   /**
    * Create Rule
    * Create a new Rule
-   * @param ruleInfo Rule object that needs to be added
-   * @param userId User ID
+   * @param ruleInfo Rule object that needs to be added (required)
+   * @param userId User ID (required)
    * @return RuleEnvelope
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
    */
@@ -117,8 +117,8 @@ public class RulesApi {
   /**
    * Create Rule
    * Create a new Rule
-   * @param ruleInfo Rule object that needs to be added
-   * @param userId User ID
+   * @param ruleInfo Rule object that needs to be added (required)
+   * @param userId User ID (required)
    * @return ApiResponse<RuleEnvelope>
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
    */
@@ -131,8 +131,8 @@ public class RulesApi {
   /**
    * Create Rule (asynchronously)
    * Create a new Rule
-   * @param ruleInfo Rule object that needs to be added
-   * @param userId User ID
+   * @param ruleInfo Rule object that needs to be added (required)
+   * @param userId User ID (required)
    * @param callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -159,6 +159,114 @@ public class RulesApi {
     }
 
     Call call = createRuleCall(ruleInfo, userId, progressListener, progressRequestListener);
+    Type localVarReturnType = new TypeToken<RuleEnvelope>(){}.getType();
+    apiClient.executeAsync(call, localVarReturnType, callback);
+    return call;
+  }
+  
+  /* Build call for deleteRule */
+  private Call deleteRuleCall(String ruleId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    Object localVarPostBody = null;
+    
+    // verify the required parameter 'ruleId' is set
+    if (ruleId == null) {
+       throw new ApiException("Missing the required parameter 'ruleId' when calling deleteRule(Async)");
+    }
+    
+
+    // create path and map variables
+    String localVarPath = "/rules/{ruleId}".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "ruleId" + "\\}", apiClient.escapeString(ruleId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+    final String[] localVarContentTypes = {
+      
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+    localVarHeaderParams.put("Content-Type", localVarContentType);
+
+    if(progressListener != null) {
+      apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
+      @Override
+      public Response intercept(Interceptor.Chain chain) throws IOException {
+        Response originalResponse = chain.proceed(chain.request());
+        return originalResponse.newBuilder()
+                .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                .build();
+        }
+      });
+    }
+
+    String[] localVarAuthNames = new String[] { "artikcloud_oauth" };
+    return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+  }
+
+  /**
+   * Delete Rule
+   * Delete a Rule
+   * @param ruleId Rule ID. (required)
+   * @return RuleEnvelope
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+   */
+  public RuleEnvelope deleteRule(String ruleId) throws ApiException {
+    ApiResponse<RuleEnvelope> resp = deleteRuleWithHttpInfo(ruleId);
+    return resp.getData();
+  }
+
+  /**
+   * Delete Rule
+   * Delete a Rule
+   * @param ruleId Rule ID. (required)
+   * @return ApiResponse<RuleEnvelope>
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+   */
+  public ApiResponse<RuleEnvelope> deleteRuleWithHttpInfo(String ruleId) throws ApiException {
+    Call call = deleteRuleCall(ruleId, null, null);
+    Type localVarReturnType = new TypeToken<RuleEnvelope>(){}.getType();
+    return apiClient.execute(call, localVarReturnType);
+  }
+
+  /**
+   * Delete Rule (asynchronously)
+   * Delete a Rule
+   * @param ruleId Rule ID. (required)
+   * @param callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   */
+  public Call deleteRuleAsync(String ruleId, final ApiCallback<RuleEnvelope> callback) throws ApiException {
+
+    ProgressResponseBody.ProgressListener progressListener = null;
+    ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+    if (callback != null) {
+      progressListener = new ProgressResponseBody.ProgressListener() {
+        @Override
+        public void update(long bytesRead, long contentLength, boolean done) {
+          callback.onDownloadProgress(bytesRead, contentLength, done);
+        }
+      };
+
+      progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+        @Override
+        public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+          callback.onUploadProgress(bytesWritten, contentLength, done);
+        }
+      };
+    }
+
+    Call call = deleteRuleCall(ruleId, progressListener, progressRequestListener);
     Type localVarReturnType = new TypeToken<RuleEnvelope>(){}.getType();
     apiClient.executeAsync(call, localVarReturnType, callback);
     return call;
@@ -215,7 +323,7 @@ public class RulesApi {
   /**
    * Get Rule
    * Get a rule using the Rule ID
-   * @param ruleId Rule ID.
+   * @param ruleId Rule ID. (required)
    * @return RuleEnvelope
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
    */
@@ -227,7 +335,7 @@ public class RulesApi {
   /**
    * Get Rule
    * Get a rule using the Rule ID
-   * @param ruleId Rule ID.
+   * @param ruleId Rule ID. (required)
    * @return ApiResponse<RuleEnvelope>
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
    */
@@ -240,7 +348,7 @@ public class RulesApi {
   /**
    * Get Rule (asynchronously)
    * Get a rule using the Rule ID
-   * @param ruleId Rule ID.
+   * @param ruleId Rule ID. (required)
    * @param callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -328,8 +436,8 @@ public class RulesApi {
   /**
    * Update Rule
    * Update an existing Rule
-   * @param ruleId Rule ID.
-   * @param ruleInfo Rule object that needs to be updated
+   * @param ruleId Rule ID. (required)
+   * @param ruleInfo Rule object that needs to be updated (required)
    * @return RuleEnvelope
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
    */
@@ -341,8 +449,8 @@ public class RulesApi {
   /**
    * Update Rule
    * Update an existing Rule
-   * @param ruleId Rule ID.
-   * @param ruleInfo Rule object that needs to be updated
+   * @param ruleId Rule ID. (required)
+   * @param ruleInfo Rule object that needs to be updated (required)
    * @return ApiResponse<RuleEnvelope>
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
    */
@@ -355,8 +463,8 @@ public class RulesApi {
   /**
    * Update Rule (asynchronously)
    * Update an existing Rule
-   * @param ruleId Rule ID.
-   * @param ruleInfo Rule object that needs to be updated
+   * @param ruleId Rule ID. (required)
+   * @param ruleInfo Rule object that needs to be updated (required)
    * @param callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -383,114 +491,6 @@ public class RulesApi {
     }
 
     Call call = updateRuleCall(ruleId, ruleInfo, progressListener, progressRequestListener);
-    Type localVarReturnType = new TypeToken<RuleEnvelope>(){}.getType();
-    apiClient.executeAsync(call, localVarReturnType, callback);
-    return call;
-  }
-  
-  /* Build call for deleteRule */
-  private Call deleteRuleCall(String ruleId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-    Object localVarPostBody = null;
-    
-    // verify the required parameter 'ruleId' is set
-    if (ruleId == null) {
-       throw new ApiException("Missing the required parameter 'ruleId' when calling deleteRule(Async)");
-    }
-    
-
-    // create path and map variables
-    String localVarPath = "/rules/{ruleId}".replaceAll("\\{format\\}","json")
-      .replaceAll("\\{" + "ruleId" + "\\}", apiClient.escapeString(ruleId.toString()));
-
-    List<Pair> localVarQueryParams = new ArrayList<Pair>();
-
-    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-
-    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-    final String[] localVarAccepts = {
-      "application/json"
-    };
-    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-    if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
-
-    final String[] localVarContentTypes = {
-      
-    };
-    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-    localVarHeaderParams.put("Content-Type", localVarContentType);
-
-    if(progressListener != null) {
-      apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
-      @Override
-      public Response intercept(Interceptor.Chain chain) throws IOException {
-        Response originalResponse = chain.proceed(chain.request());
-        return originalResponse.newBuilder()
-                .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                .build();
-        }
-      });
-    }
-
-    String[] localVarAuthNames = new String[] { "artikcloud_oauth" };
-    return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
-  }
-
-  /**
-   * Delete Rule
-   * Delete a Rule
-   * @param ruleId Rule ID.
-   * @return RuleEnvelope
-   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-   */
-  public RuleEnvelope deleteRule(String ruleId) throws ApiException {
-    ApiResponse<RuleEnvelope> resp = deleteRuleWithHttpInfo(ruleId);
-    return resp.getData();
-  }
-
-  /**
-   * Delete Rule
-   * Delete a Rule
-   * @param ruleId Rule ID.
-   * @return ApiResponse<RuleEnvelope>
-   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-   */
-  public ApiResponse<RuleEnvelope> deleteRuleWithHttpInfo(String ruleId) throws ApiException {
-    Call call = deleteRuleCall(ruleId, null, null);
-    Type localVarReturnType = new TypeToken<RuleEnvelope>(){}.getType();
-    return apiClient.execute(call, localVarReturnType);
-  }
-
-  /**
-   * Delete Rule (asynchronously)
-   * Delete a Rule
-   * @param ruleId Rule ID.
-   * @param callback The callback to be executed when the API call finishes
-   * @return The request call
-   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-   */
-  public Call deleteRuleAsync(String ruleId, final ApiCallback<RuleEnvelope> callback) throws ApiException {
-
-    ProgressResponseBody.ProgressListener progressListener = null;
-    ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
-
-    if (callback != null) {
-      progressListener = new ProgressResponseBody.ProgressListener() {
-        @Override
-        public void update(long bytesRead, long contentLength, boolean done) {
-          callback.onDownloadProgress(bytesRead, contentLength, done);
-        }
-      };
-
-      progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
-        @Override
-        public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
-          callback.onUploadProgress(bytesWritten, contentLength, done);
-        }
-      };
-    }
-
-    Call call = deleteRuleCall(ruleId, progressListener, progressRequestListener);
     Type localVarReturnType = new TypeToken<RuleEnvelope>(){}.getType();
     apiClient.executeAsync(call, localVarReturnType, callback);
     return call;

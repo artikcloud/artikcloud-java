@@ -97,7 +97,7 @@ public class TokensApi {
   /**
    * Check Token
    * Check Token
-   * @param tokenInfo Token object to be checked
+   * @param tokenInfo Token object to be checked (required)
    * @return CheckTokenResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
    */
@@ -109,7 +109,7 @@ public class TokensApi {
   /**
    * Check Token
    * Check Token
-   * @param tokenInfo Token object to be checked
+   * @param tokenInfo Token object to be checked (required)
    * @return ApiResponse<CheckTokenResponse>
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
    */
@@ -122,7 +122,7 @@ public class TokensApi {
   /**
    * Check Token (asynchronously)
    * Check Token
-   * @param tokenInfo Token object to be checked
+   * @param tokenInfo Token object to be checked (required)
    * @param callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -213,8 +213,8 @@ public class TokensApi {
   /**
    * Refresh Token
    * Refresh Token
-   * @param grantType Grant Type.
-   * @param refreshToken Refresh Token.
+   * @param grantType Grant Type. (required)
+   * @param refreshToken Refresh Token. (required)
    * @return RefreshTokenResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
    */
@@ -226,8 +226,8 @@ public class TokensApi {
   /**
    * Refresh Token
    * Refresh Token
-   * @param grantType Grant Type.
-   * @param refreshToken Refresh Token.
+   * @param grantType Grant Type. (required)
+   * @param refreshToken Refresh Token. (required)
    * @return ApiResponse<RefreshTokenResponse>
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
    */
@@ -240,8 +240,8 @@ public class TokensApi {
   /**
    * Refresh Token (asynchronously)
    * Refresh Token
-   * @param grantType Grant Type.
-   * @param refreshToken Refresh Token.
+   * @param grantType Grant Type. (required)
+   * @param refreshToken Refresh Token. (required)
    * @param callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object

@@ -97,7 +97,7 @@ public class DevicesApi {
   /**
    * Add Device
    * Create a device
-   * @param device Device to be added to the user
+   * @param device Device to be added to the user (required)
    * @return DeviceEnvelope
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
    */
@@ -109,7 +109,7 @@ public class DevicesApi {
   /**
    * Add Device
    * Create a device
-   * @param device Device to be added to the user
+   * @param device Device to be added to the user (required)
    * @return ApiResponse<DeviceEnvelope>
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
    */
@@ -122,7 +122,7 @@ public class DevicesApi {
   /**
    * Add Device (asynchronously)
    * Create a device
-   * @param device Device to be added to the user
+   * @param device Device to be added to the user (required)
    * @param callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -150,6 +150,222 @@ public class DevicesApi {
 
     Call call = addDeviceCall(device, progressListener, progressRequestListener);
     Type localVarReturnType = new TypeToken<DeviceEnvelope>(){}.getType();
+    apiClient.executeAsync(call, localVarReturnType, callback);
+    return call;
+  }
+  
+  /* Build call for deleteDevice */
+  private Call deleteDeviceCall(String deviceId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    Object localVarPostBody = null;
+    
+    // verify the required parameter 'deviceId' is set
+    if (deviceId == null) {
+       throw new ApiException("Missing the required parameter 'deviceId' when calling deleteDevice(Async)");
+    }
+    
+
+    // create path and map variables
+    String localVarPath = "/devices/{deviceId}".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "deviceId" + "\\}", apiClient.escapeString(deviceId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+    final String[] localVarContentTypes = {
+      
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+    localVarHeaderParams.put("Content-Type", localVarContentType);
+
+    if(progressListener != null) {
+      apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
+      @Override
+      public Response intercept(Interceptor.Chain chain) throws IOException {
+        Response originalResponse = chain.proceed(chain.request());
+        return originalResponse.newBuilder()
+                .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                .build();
+        }
+      });
+    }
+
+    String[] localVarAuthNames = new String[] { "artikcloud_oauth" };
+    return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+  }
+
+  /**
+   * Delete Device
+   * Deletes a device
+   * @param deviceId deviceId (required)
+   * @return DeviceEnvelope
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+   */
+  public DeviceEnvelope deleteDevice(String deviceId) throws ApiException {
+    ApiResponse<DeviceEnvelope> resp = deleteDeviceWithHttpInfo(deviceId);
+    return resp.getData();
+  }
+
+  /**
+   * Delete Device
+   * Deletes a device
+   * @param deviceId deviceId (required)
+   * @return ApiResponse<DeviceEnvelope>
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+   */
+  public ApiResponse<DeviceEnvelope> deleteDeviceWithHttpInfo(String deviceId) throws ApiException {
+    Call call = deleteDeviceCall(deviceId, null, null);
+    Type localVarReturnType = new TypeToken<DeviceEnvelope>(){}.getType();
+    return apiClient.execute(call, localVarReturnType);
+  }
+
+  /**
+   * Delete Device (asynchronously)
+   * Deletes a device
+   * @param deviceId deviceId (required)
+   * @param callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   */
+  public Call deleteDeviceAsync(String deviceId, final ApiCallback<DeviceEnvelope> callback) throws ApiException {
+
+    ProgressResponseBody.ProgressListener progressListener = null;
+    ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+    if (callback != null) {
+      progressListener = new ProgressResponseBody.ProgressListener() {
+        @Override
+        public void update(long bytesRead, long contentLength, boolean done) {
+          callback.onDownloadProgress(bytesRead, contentLength, done);
+        }
+      };
+
+      progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+        @Override
+        public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+          callback.onUploadProgress(bytesWritten, contentLength, done);
+        }
+      };
+    }
+
+    Call call = deleteDeviceCall(deviceId, progressListener, progressRequestListener);
+    Type localVarReturnType = new TypeToken<DeviceEnvelope>(){}.getType();
+    apiClient.executeAsync(call, localVarReturnType, callback);
+    return call;
+  }
+  
+  /* Build call for deleteDeviceToken */
+  private Call deleteDeviceTokenCall(String deviceId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    Object localVarPostBody = null;
+    
+    // verify the required parameter 'deviceId' is set
+    if (deviceId == null) {
+       throw new ApiException("Missing the required parameter 'deviceId' when calling deleteDeviceToken(Async)");
+    }
+    
+
+    // create path and map variables
+    String localVarPath = "/devices/{deviceId}/tokens".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "deviceId" + "\\}", apiClient.escapeString(deviceId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+    final String[] localVarContentTypes = {
+      
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+    localVarHeaderParams.put("Content-Type", localVarContentType);
+
+    if(progressListener != null) {
+      apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
+      @Override
+      public Response intercept(Interceptor.Chain chain) throws IOException {
+        Response originalResponse = chain.proceed(chain.request());
+        return originalResponse.newBuilder()
+                .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                .build();
+        }
+      });
+    }
+
+    String[] localVarAuthNames = new String[] { "artikcloud_oauth" };
+    return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+  }
+
+  /**
+   * Delete Device Token
+   * Deletes a device&#39;s token
+   * @param deviceId deviceId (required)
+   * @return DeviceTokenEnvelope
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+   */
+  public DeviceTokenEnvelope deleteDeviceToken(String deviceId) throws ApiException {
+    ApiResponse<DeviceTokenEnvelope> resp = deleteDeviceTokenWithHttpInfo(deviceId);
+    return resp.getData();
+  }
+
+  /**
+   * Delete Device Token
+   * Deletes a device&#39;s token
+   * @param deviceId deviceId (required)
+   * @return ApiResponse<DeviceTokenEnvelope>
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+   */
+  public ApiResponse<DeviceTokenEnvelope> deleteDeviceTokenWithHttpInfo(String deviceId) throws ApiException {
+    Call call = deleteDeviceTokenCall(deviceId, null, null);
+    Type localVarReturnType = new TypeToken<DeviceTokenEnvelope>(){}.getType();
+    return apiClient.execute(call, localVarReturnType);
+  }
+
+  /**
+   * Delete Device Token (asynchronously)
+   * Deletes a device&#39;s token
+   * @param deviceId deviceId (required)
+   * @param callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   */
+  public Call deleteDeviceTokenAsync(String deviceId, final ApiCallback<DeviceTokenEnvelope> callback) throws ApiException {
+
+    ProgressResponseBody.ProgressListener progressListener = null;
+    ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+    if (callback != null) {
+      progressListener = new ProgressResponseBody.ProgressListener() {
+        @Override
+        public void update(long bytesRead, long contentLength, boolean done) {
+          callback.onDownloadProgress(bytesRead, contentLength, done);
+        }
+      };
+
+      progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+        @Override
+        public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+          callback.onUploadProgress(bytesWritten, contentLength, done);
+        }
+      };
+    }
+
+    Call call = deleteDeviceTokenCall(deviceId, progressListener, progressRequestListener);
+    Type localVarReturnType = new TypeToken<DeviceTokenEnvelope>(){}.getType();
     apiClient.executeAsync(call, localVarReturnType, callback);
     return call;
   }
@@ -205,7 +421,7 @@ public class DevicesApi {
   /**
    * Get Device
    * Retrieves a device
-   * @param deviceId deviceId
+   * @param deviceId deviceId (required)
    * @return DeviceEnvelope
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
    */
@@ -217,7 +433,7 @@ public class DevicesApi {
   /**
    * Get Device
    * Retrieves a device
-   * @param deviceId deviceId
+   * @param deviceId deviceId (required)
    * @return ApiResponse<DeviceEnvelope>
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
    */
@@ -230,7 +446,7 @@ public class DevicesApi {
   /**
    * Get Device (asynchronously)
    * Retrieves a device
-   * @param deviceId deviceId
+   * @param deviceId deviceId (required)
    * @param callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -258,6 +474,114 @@ public class DevicesApi {
 
     Call call = getDeviceCall(deviceId, progressListener, progressRequestListener);
     Type localVarReturnType = new TypeToken<DeviceEnvelope>(){}.getType();
+    apiClient.executeAsync(call, localVarReturnType, callback);
+    return call;
+  }
+  
+  /* Build call for getDeviceToken */
+  private Call getDeviceTokenCall(String deviceId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    Object localVarPostBody = null;
+    
+    // verify the required parameter 'deviceId' is set
+    if (deviceId == null) {
+       throw new ApiException("Missing the required parameter 'deviceId' when calling getDeviceToken(Async)");
+    }
+    
+
+    // create path and map variables
+    String localVarPath = "/devices/{deviceId}/tokens".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "deviceId" + "\\}", apiClient.escapeString(deviceId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<Pair>();
+
+    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+    final String[] localVarAccepts = {
+      "application/json"
+    };
+    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+    if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+    final String[] localVarContentTypes = {
+      
+    };
+    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+    localVarHeaderParams.put("Content-Type", localVarContentType);
+
+    if(progressListener != null) {
+      apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
+      @Override
+      public Response intercept(Interceptor.Chain chain) throws IOException {
+        Response originalResponse = chain.proceed(chain.request());
+        return originalResponse.newBuilder()
+                .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                .build();
+        }
+      });
+    }
+
+    String[] localVarAuthNames = new String[] { "artikcloud_oauth" };
+    return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+  }
+
+  /**
+   * Get Device Token
+   * Retrieves a device&#39;s token
+   * @param deviceId deviceId (required)
+   * @return DeviceTokenEnvelope
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+   */
+  public DeviceTokenEnvelope getDeviceToken(String deviceId) throws ApiException {
+    ApiResponse<DeviceTokenEnvelope> resp = getDeviceTokenWithHttpInfo(deviceId);
+    return resp.getData();
+  }
+
+  /**
+   * Get Device Token
+   * Retrieves a device&#39;s token
+   * @param deviceId deviceId (required)
+   * @return ApiResponse<DeviceTokenEnvelope>
+   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+   */
+  public ApiResponse<DeviceTokenEnvelope> getDeviceTokenWithHttpInfo(String deviceId) throws ApiException {
+    Call call = getDeviceTokenCall(deviceId, null, null);
+    Type localVarReturnType = new TypeToken<DeviceTokenEnvelope>(){}.getType();
+    return apiClient.execute(call, localVarReturnType);
+  }
+
+  /**
+   * Get Device Token (asynchronously)
+   * Retrieves a device&#39;s token
+   * @param deviceId deviceId (required)
+   * @param callback The callback to be executed when the API call finishes
+   * @return The request call
+   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+   */
+  public Call getDeviceTokenAsync(String deviceId, final ApiCallback<DeviceTokenEnvelope> callback) throws ApiException {
+
+    ProgressResponseBody.ProgressListener progressListener = null;
+    ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+    if (callback != null) {
+      progressListener = new ProgressResponseBody.ProgressListener() {
+        @Override
+        public void update(long bytesRead, long contentLength, boolean done) {
+          callback.onDownloadProgress(bytesRead, contentLength, done);
+        }
+      };
+
+      progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+        @Override
+        public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+          callback.onUploadProgress(bytesWritten, contentLength, done);
+        }
+      };
+    }
+
+    Call call = getDeviceTokenCall(deviceId, progressListener, progressRequestListener);
+    Type localVarReturnType = new TypeToken<DeviceTokenEnvelope>(){}.getType();
     apiClient.executeAsync(call, localVarReturnType, callback);
     return call;
   }
@@ -318,8 +642,8 @@ public class DevicesApi {
   /**
    * Update Device
    * Updates a device
-   * @param deviceId deviceId
-   * @param device Device to be updated
+   * @param deviceId deviceId (required)
+   * @param device Device to be updated (required)
    * @return DeviceEnvelope
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
    */
@@ -331,8 +655,8 @@ public class DevicesApi {
   /**
    * Update Device
    * Updates a device
-   * @param deviceId deviceId
-   * @param device Device to be updated
+   * @param deviceId deviceId (required)
+   * @param device Device to be updated (required)
    * @return ApiResponse<DeviceEnvelope>
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
    */
@@ -345,8 +669,8 @@ public class DevicesApi {
   /**
    * Update Device (asynchronously)
    * Updates a device
-   * @param deviceId deviceId
-   * @param device Device to be updated
+   * @param deviceId deviceId (required)
+   * @param device Device to be updated (required)
    * @param callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -378,222 +702,6 @@ public class DevicesApi {
     return call;
   }
   
-  /* Build call for deleteDevice */
-  private Call deleteDeviceCall(String deviceId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-    Object localVarPostBody = null;
-    
-    // verify the required parameter 'deviceId' is set
-    if (deviceId == null) {
-       throw new ApiException("Missing the required parameter 'deviceId' when calling deleteDevice(Async)");
-    }
-    
-
-    // create path and map variables
-    String localVarPath = "/devices/{deviceId}".replaceAll("\\{format\\}","json")
-      .replaceAll("\\{" + "deviceId" + "\\}", apiClient.escapeString(deviceId.toString()));
-
-    List<Pair> localVarQueryParams = new ArrayList<Pair>();
-
-    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-
-    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-    final String[] localVarAccepts = {
-      "application/json"
-    };
-    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-    if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
-
-    final String[] localVarContentTypes = {
-      
-    };
-    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-    localVarHeaderParams.put("Content-Type", localVarContentType);
-
-    if(progressListener != null) {
-      apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
-      @Override
-      public Response intercept(Interceptor.Chain chain) throws IOException {
-        Response originalResponse = chain.proceed(chain.request());
-        return originalResponse.newBuilder()
-                .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                .build();
-        }
-      });
-    }
-
-    String[] localVarAuthNames = new String[] { "artikcloud_oauth" };
-    return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
-  }
-
-  /**
-   * Delete Device
-   * Deletes a device
-   * @param deviceId deviceId
-   * @return DeviceEnvelope
-   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-   */
-  public DeviceEnvelope deleteDevice(String deviceId) throws ApiException {
-    ApiResponse<DeviceEnvelope> resp = deleteDeviceWithHttpInfo(deviceId);
-    return resp.getData();
-  }
-
-  /**
-   * Delete Device
-   * Deletes a device
-   * @param deviceId deviceId
-   * @return ApiResponse<DeviceEnvelope>
-   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-   */
-  public ApiResponse<DeviceEnvelope> deleteDeviceWithHttpInfo(String deviceId) throws ApiException {
-    Call call = deleteDeviceCall(deviceId, null, null);
-    Type localVarReturnType = new TypeToken<DeviceEnvelope>(){}.getType();
-    return apiClient.execute(call, localVarReturnType);
-  }
-
-  /**
-   * Delete Device (asynchronously)
-   * Deletes a device
-   * @param deviceId deviceId
-   * @param callback The callback to be executed when the API call finishes
-   * @return The request call
-   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-   */
-  public Call deleteDeviceAsync(String deviceId, final ApiCallback<DeviceEnvelope> callback) throws ApiException {
-
-    ProgressResponseBody.ProgressListener progressListener = null;
-    ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
-
-    if (callback != null) {
-      progressListener = new ProgressResponseBody.ProgressListener() {
-        @Override
-        public void update(long bytesRead, long contentLength, boolean done) {
-          callback.onDownloadProgress(bytesRead, contentLength, done);
-        }
-      };
-
-      progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
-        @Override
-        public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
-          callback.onUploadProgress(bytesWritten, contentLength, done);
-        }
-      };
-    }
-
-    Call call = deleteDeviceCall(deviceId, progressListener, progressRequestListener);
-    Type localVarReturnType = new TypeToken<DeviceEnvelope>(){}.getType();
-    apiClient.executeAsync(call, localVarReturnType, callback);
-    return call;
-  }
-  
-  /* Build call for getDeviceToken */
-  private Call getDeviceTokenCall(String deviceId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-    Object localVarPostBody = null;
-    
-    // verify the required parameter 'deviceId' is set
-    if (deviceId == null) {
-       throw new ApiException("Missing the required parameter 'deviceId' when calling getDeviceToken(Async)");
-    }
-    
-
-    // create path and map variables
-    String localVarPath = "/devices/{deviceId}/tokens".replaceAll("\\{format\\}","json")
-      .replaceAll("\\{" + "deviceId" + "\\}", apiClient.escapeString(deviceId.toString()));
-
-    List<Pair> localVarQueryParams = new ArrayList<Pair>();
-
-    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-
-    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-    final String[] localVarAccepts = {
-      "application/json"
-    };
-    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-    if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
-
-    final String[] localVarContentTypes = {
-      
-    };
-    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-    localVarHeaderParams.put("Content-Type", localVarContentType);
-
-    if(progressListener != null) {
-      apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
-      @Override
-      public Response intercept(Interceptor.Chain chain) throws IOException {
-        Response originalResponse = chain.proceed(chain.request());
-        return originalResponse.newBuilder()
-                .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                .build();
-        }
-      });
-    }
-
-    String[] localVarAuthNames = new String[] { "artikcloud_oauth" };
-    return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
-  }
-
-  /**
-   * Get Device Token
-   * Retrieves a device&#39;s token
-   * @param deviceId deviceId
-   * @return DeviceTokenEnvelope
-   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-   */
-  public DeviceTokenEnvelope getDeviceToken(String deviceId) throws ApiException {
-    ApiResponse<DeviceTokenEnvelope> resp = getDeviceTokenWithHttpInfo(deviceId);
-    return resp.getData();
-  }
-
-  /**
-   * Get Device Token
-   * Retrieves a device&#39;s token
-   * @param deviceId deviceId
-   * @return ApiResponse<DeviceTokenEnvelope>
-   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-   */
-  public ApiResponse<DeviceTokenEnvelope> getDeviceTokenWithHttpInfo(String deviceId) throws ApiException {
-    Call call = getDeviceTokenCall(deviceId, null, null);
-    Type localVarReturnType = new TypeToken<DeviceTokenEnvelope>(){}.getType();
-    return apiClient.execute(call, localVarReturnType);
-  }
-
-  /**
-   * Get Device Token (asynchronously)
-   * Retrieves a device&#39;s token
-   * @param deviceId deviceId
-   * @param callback The callback to be executed when the API call finishes
-   * @return The request call
-   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-   */
-  public Call getDeviceTokenAsync(String deviceId, final ApiCallback<DeviceTokenEnvelope> callback) throws ApiException {
-
-    ProgressResponseBody.ProgressListener progressListener = null;
-    ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
-
-    if (callback != null) {
-      progressListener = new ProgressResponseBody.ProgressListener() {
-        @Override
-        public void update(long bytesRead, long contentLength, boolean done) {
-          callback.onDownloadProgress(bytesRead, contentLength, done);
-        }
-      };
-
-      progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
-        @Override
-        public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
-          callback.onUploadProgress(bytesWritten, contentLength, done);
-        }
-      };
-    }
-
-    Call call = getDeviceTokenCall(deviceId, progressListener, progressRequestListener);
-    Type localVarReturnType = new TypeToken<DeviceTokenEnvelope>(){}.getType();
-    apiClient.executeAsync(call, localVarReturnType, callback);
-    return call;
-  }
-  
   /* Build call for updateDeviceToken */
   private Call updateDeviceTokenCall(String deviceId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
     Object localVarPostBody = null;
@@ -621,7 +729,7 @@ public class DevicesApi {
     if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
     final String[] localVarContentTypes = {
-      "application/json"
+      "text/plain"
     };
     final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
     localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -645,7 +753,7 @@ public class DevicesApi {
   /**
    * Update Device Token
    * Updates a device&#39;s token
-   * @param deviceId deviceId
+   * @param deviceId deviceId (required)
    * @return DeviceTokenEnvelope
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
    */
@@ -657,7 +765,7 @@ public class DevicesApi {
   /**
    * Update Device Token
    * Updates a device&#39;s token
-   * @param deviceId deviceId
+   * @param deviceId deviceId (required)
    * @return ApiResponse<DeviceTokenEnvelope>
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
    */
@@ -670,7 +778,7 @@ public class DevicesApi {
   /**
    * Update Device Token (asynchronously)
    * Updates a device&#39;s token
-   * @param deviceId deviceId
+   * @param deviceId deviceId (required)
    * @param callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -697,114 +805,6 @@ public class DevicesApi {
     }
 
     Call call = updateDeviceTokenCall(deviceId, progressListener, progressRequestListener);
-    Type localVarReturnType = new TypeToken<DeviceTokenEnvelope>(){}.getType();
-    apiClient.executeAsync(call, localVarReturnType, callback);
-    return call;
-  }
-  
-  /* Build call for deleteDeviceToken */
-  private Call deleteDeviceTokenCall(String deviceId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-    Object localVarPostBody = null;
-    
-    // verify the required parameter 'deviceId' is set
-    if (deviceId == null) {
-       throw new ApiException("Missing the required parameter 'deviceId' when calling deleteDeviceToken(Async)");
-    }
-    
-
-    // create path and map variables
-    String localVarPath = "/devices/{deviceId}/tokens".replaceAll("\\{format\\}","json")
-      .replaceAll("\\{" + "deviceId" + "\\}", apiClient.escapeString(deviceId.toString()));
-
-    List<Pair> localVarQueryParams = new ArrayList<Pair>();
-
-    Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-
-    Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-    final String[] localVarAccepts = {
-      "application/json"
-    };
-    final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-    if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
-
-    final String[] localVarContentTypes = {
-      
-    };
-    final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-    localVarHeaderParams.put("Content-Type", localVarContentType);
-
-    if(progressListener != null) {
-      apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
-      @Override
-      public Response intercept(Interceptor.Chain chain) throws IOException {
-        Response originalResponse = chain.proceed(chain.request());
-        return originalResponse.newBuilder()
-                .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                .build();
-        }
-      });
-    }
-
-    String[] localVarAuthNames = new String[] { "artikcloud_oauth" };
-    return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
-  }
-
-  /**
-   * Delete Device Token
-   * Deletes a device&#39;s token
-   * @param deviceId deviceId
-   * @return DeviceTokenEnvelope
-   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-   */
-  public DeviceTokenEnvelope deleteDeviceToken(String deviceId) throws ApiException {
-    ApiResponse<DeviceTokenEnvelope> resp = deleteDeviceTokenWithHttpInfo(deviceId);
-    return resp.getData();
-  }
-
-  /**
-   * Delete Device Token
-   * Deletes a device&#39;s token
-   * @param deviceId deviceId
-   * @return ApiResponse<DeviceTokenEnvelope>
-   * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-   */
-  public ApiResponse<DeviceTokenEnvelope> deleteDeviceTokenWithHttpInfo(String deviceId) throws ApiException {
-    Call call = deleteDeviceTokenCall(deviceId, null, null);
-    Type localVarReturnType = new TypeToken<DeviceTokenEnvelope>(){}.getType();
-    return apiClient.execute(call, localVarReturnType);
-  }
-
-  /**
-   * Delete Device Token (asynchronously)
-   * Deletes a device&#39;s token
-   * @param deviceId deviceId
-   * @param callback The callback to be executed when the API call finishes
-   * @return The request call
-   * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-   */
-  public Call deleteDeviceTokenAsync(String deviceId, final ApiCallback<DeviceTokenEnvelope> callback) throws ApiException {
-
-    ProgressResponseBody.ProgressListener progressListener = null;
-    ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
-
-    if (callback != null) {
-      progressListener = new ProgressResponseBody.ProgressListener() {
-        @Override
-        public void update(long bytesRead, long contentLength, boolean done) {
-          callback.onDownloadProgress(bytesRead, contentLength, done);
-        }
-      };
-
-      progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
-        @Override
-        public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
-          callback.onUploadProgress(bytesWritten, contentLength, done);
-        }
-      };
-    }
-
-    Call call = deleteDeviceTokenCall(deviceId, progressListener, progressRequestListener);
     Type localVarReturnType = new TypeToken<DeviceTokenEnvelope>(){}.getType();
     apiClient.executeAsync(call, localVarReturnType, callback);
     return call;

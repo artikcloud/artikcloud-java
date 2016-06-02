@@ -33,7 +33,7 @@ public class MessagesApiTest {
 
     @Before
     public void setUp() throws Exception {
-        String deviceToken = "1eef3e3251e147d1ac707a57f6779c49";
+        String deviceToken = "dc43d12e2b59495daf94631e6ddfe3e8";
         this.apiClient = api(deviceToken);
     }
 
@@ -45,10 +45,10 @@ public class MessagesApiTest {
     @Test
     public void testSendMessageAction() throws Exception {
         MessageAction message = new MessageAction();
-        message.setSdid("993925c3cd994bf7a51c620884be65e9");
+        message.setSdid("19da42ee01414722a6ad1224097c38d4");
         message.setTs(new Long(System.currentTimeMillis()));
         message.setType("message");
-        message.getData().put("volume", new Integer(5));
+        message.getData().put("steps", new Integer(500));
 
         String messageId = this.apiClient.sendMessageAction(message).getData()
                 .getMid();
@@ -66,9 +66,9 @@ public class MessagesApiTest {
         NormalizedMessage normalized = envelope.getData().get(0);
         assertEquals(messageId, normalized.getMid());
 
-        Object volume = normalized.getData().get("volume");
-        assertNotNull("Volume should not be null", volume);
-        assertEquals(new Double(5.0), volume);
+        Object steps = normalized.getData().get("steps");
+        assertNotNull("Volume should not be null", steps);
+        assertEquals(new Double(500.0), steps);
     }
 
 }

@@ -48,6 +48,7 @@ public class WebSocketProxy implements WebSocketListener {
             ArtikCloudWebSocketCallback callback) {
         this.request = new Request.Builder().url(host + url).build();
         this.client = client;
+        this.client.setReadTimeout(35, TimeUnit.SECONDS);
         this.callback = callback;
     }
 
@@ -86,12 +87,20 @@ public class WebSocketProxy implements WebSocketListener {
         }
         this.status = ConnectionStatus.CLOSED;
 
+        WebSocketError error = new WebSocketError();
         if (response != null) {
-            WebSocketError error = new WebSocketError();
             error.setCode(response.code());
             error.setMessage(response.message());
-            this.callback.onError(error);
+        } else {
+            error.setCode(-1); // Read Timeout
+            if (exc.getCause() != null) {
+                error.setMessage(exc.getCause().getMessage());
+            } else {
+                error.setMessage(exc.getMessage());    
+            }
         }
+        
+        this.callback.onError(error);
     }
 
     @SuppressWarnings("unchecked")
@@ -102,8 +111,9 @@ public class WebSocketProxy implements WebSocketListener {
         BufferedSource source = response.source();
         try {
             MediaType contentType = response.contentType();
-            System.out.println(contentType);
-            String message = source.readString(Charset.defaultCharset());
+            //System.out.println(contentType);
+            String message = source.readString(contentType.charset());
+            //String message = source.readString(Charset.defaultCharset());
 
             Map<String, Object> jsonMap = (Map<String, Object>) json.getGson()
                     .fromJson(message, Map.class);

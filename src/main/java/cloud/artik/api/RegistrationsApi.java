@@ -98,7 +98,7 @@ public class RegistrationsApi {
   /**
    * Confirm User
    * This call updates the registration request issued earlier by associating it with an authenticated user and captures all additional information required to add a new device.
-   * @param registrationInfo Device Registration information.
+   * @param registrationInfo Device Registration information. (required)
    * @return DeviceRegConfirmUserResponseEnvelope
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
    */
@@ -110,7 +110,7 @@ public class RegistrationsApi {
   /**
    * Confirm User
    * This call updates the registration request issued earlier by associating it with an authenticated user and captures all additional information required to add a new device.
-   * @param registrationInfo Device Registration information.
+   * @param registrationInfo Device Registration information. (required)
    * @return ApiResponse<DeviceRegConfirmUserResponseEnvelope>
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
    */
@@ -123,7 +123,7 @@ public class RegistrationsApi {
   /**
    * Confirm User (asynchronously)
    * This call updates the registration request issued earlier by associating it with an authenticated user and captures all additional information required to add a new device.
-   * @param registrationInfo Device Registration information.
+   * @param registrationInfo Device Registration information. (required)
    * @param callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -206,7 +206,7 @@ public class RegistrationsApi {
   /**
    * Get Request Status For User
    * This call checks the status of the request so users can poll and know when registration is complete.
-   * @param requestId Request ID.
+   * @param requestId Request ID. (required)
    * @return DeviceRegStatusResponseEnvelope
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
    */
@@ -218,7 +218,7 @@ public class RegistrationsApi {
   /**
    * Get Request Status For User
    * This call checks the status of the request so users can poll and know when registration is complete.
-   * @param requestId Request ID.
+   * @param requestId Request ID. (required)
    * @return ApiResponse<DeviceRegStatusResponseEnvelope>
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
    */
@@ -231,7 +231,7 @@ public class RegistrationsApi {
   /**
    * Get Request Status For User (asynchronously)
    * This call checks the status of the request so users can poll and know when registration is complete.
-   * @param requestId Request ID.
+   * @param requestId Request ID. (required)
    * @param callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -314,7 +314,7 @@ public class RegistrationsApi {
   /**
    * Unregister Device
    * This call clears any associations from the secure device registration.
-   * @param deviceId Device ID.
+   * @param deviceId Device ID. (required)
    * @return UnregisterDeviceResponseEnvelope
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
    */
@@ -326,7 +326,7 @@ public class RegistrationsApi {
   /**
    * Unregister Device
    * This call clears any associations from the secure device registration.
-   * @param deviceId Device ID.
+   * @param deviceId Device ID. (required)
    * @return ApiResponse<UnregisterDeviceResponseEnvelope>
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
    */
@@ -339,7 +339,7 @@ public class RegistrationsApi {
   /**
    * Unregister Device (asynchronously)
    * This call clears any associations from the secure device registration.
-   * @param deviceId Device ID.
+   * @param deviceId Device ID. (required)
    * @param callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object

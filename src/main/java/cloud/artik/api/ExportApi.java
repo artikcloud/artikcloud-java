@@ -98,7 +98,7 @@ public class ExportApi {
   /**
    * Create Export Request
    * Export normalized messages. The following input combinations are supported:&lt;br/&gt;&lt;table&gt;&lt;tr&gt;&lt;th&gt;Combination&lt;/th&gt;&lt;th&gt;Parameters&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Get by users&lt;/td&gt;&lt;td&gt;uids&lt;/td&gt;&lt;td&gt;Search by a list of User IDs. For each user in the list, the current authenticated user must have read access over the specified user.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Get by devices&lt;/td&gt;&lt;td&gt;sdids&lt;/td&gt;&lt;td&gt;Search by Source Device IDs.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Get by device types&lt;/td&gt;&lt;td&gt;uids,sdtids&lt;/td&gt;&lt;td&gt;Search by list of Source Device Type IDs for the given list of users.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Get by trial&lt;/td&gt;&lt;td&gt;trialId&lt;/td&gt;&lt;td&gt;Search by Trial ID.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Get by combination of parameters&lt;/td&gt;&lt;td&gt;uids,sdids,sdtids&lt;/td&gt;&lt;td&gt;Search by list of Source Device IDs. Each Device ID must belong to a Source Device Type ID and a User ID.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Common&lt;/td&gt;&lt;td&gt;startDate,endDate,order,format,url,csvHeaders&lt;/td&gt;&lt;td&gt;Parameters that can be used with the above combinations.&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-   * @param exportRequestInfo ExportRequest object that is passed in the body
+   * @param exportRequestInfo ExportRequest object that is passed in the body (required)
    * @return ExportRequestResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
    */
@@ -110,7 +110,7 @@ public class ExportApi {
   /**
    * Create Export Request
    * Export normalized messages. The following input combinations are supported:&lt;br/&gt;&lt;table&gt;&lt;tr&gt;&lt;th&gt;Combination&lt;/th&gt;&lt;th&gt;Parameters&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Get by users&lt;/td&gt;&lt;td&gt;uids&lt;/td&gt;&lt;td&gt;Search by a list of User IDs. For each user in the list, the current authenticated user must have read access over the specified user.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Get by devices&lt;/td&gt;&lt;td&gt;sdids&lt;/td&gt;&lt;td&gt;Search by Source Device IDs.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Get by device types&lt;/td&gt;&lt;td&gt;uids,sdtids&lt;/td&gt;&lt;td&gt;Search by list of Source Device Type IDs for the given list of users.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Get by trial&lt;/td&gt;&lt;td&gt;trialId&lt;/td&gt;&lt;td&gt;Search by Trial ID.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Get by combination of parameters&lt;/td&gt;&lt;td&gt;uids,sdids,sdtids&lt;/td&gt;&lt;td&gt;Search by list of Source Device IDs. Each Device ID must belong to a Source Device Type ID and a User ID.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Common&lt;/td&gt;&lt;td&gt;startDate,endDate,order,format,url,csvHeaders&lt;/td&gt;&lt;td&gt;Parameters that can be used with the above combinations.&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-   * @param exportRequestInfo ExportRequest object that is passed in the body
+   * @param exportRequestInfo ExportRequest object that is passed in the body (required)
    * @return ApiResponse<ExportRequestResponse>
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
    */
@@ -123,7 +123,7 @@ public class ExportApi {
   /**
    * Create Export Request (asynchronously)
    * Export normalized messages. The following input combinations are supported:&lt;br/&gt;&lt;table&gt;&lt;tr&gt;&lt;th&gt;Combination&lt;/th&gt;&lt;th&gt;Parameters&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Get by users&lt;/td&gt;&lt;td&gt;uids&lt;/td&gt;&lt;td&gt;Search by a list of User IDs. For each user in the list, the current authenticated user must have read access over the specified user.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Get by devices&lt;/td&gt;&lt;td&gt;sdids&lt;/td&gt;&lt;td&gt;Search by Source Device IDs.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Get by device types&lt;/td&gt;&lt;td&gt;uids,sdtids&lt;/td&gt;&lt;td&gt;Search by list of Source Device Type IDs for the given list of users.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Get by trial&lt;/td&gt;&lt;td&gt;trialId&lt;/td&gt;&lt;td&gt;Search by Trial ID.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Get by combination of parameters&lt;/td&gt;&lt;td&gt;uids,sdids,sdtids&lt;/td&gt;&lt;td&gt;Search by list of Source Device IDs. Each Device ID must belong to a Source Device Type ID and a User ID.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Common&lt;/td&gt;&lt;td&gt;startDate,endDate,order,format,url,csvHeaders&lt;/td&gt;&lt;td&gt;Parameters that can be used with the above combinations.&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-   * @param exportRequestInfo ExportRequest object that is passed in the body
+   * @param exportRequestInfo ExportRequest object that is passed in the body (required)
    * @param callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -206,9 +206,9 @@ public class ExportApi {
   /**
    * Get Export History
    * Get the history of export requests.
-   * @param trialId Filter by trialId.
-   * @param count Pagination count.
-   * @param offset Pagination offset.
+   * @param trialId Filter by trialId. (optional)
+   * @param count Pagination count. (optional)
+   * @param offset Pagination offset. (optional)
    * @return ExportHistoryResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
    */
@@ -220,9 +220,9 @@ public class ExportApi {
   /**
    * Get Export History
    * Get the history of export requests.
-   * @param trialId Filter by trialId.
-   * @param count Pagination count.
-   * @param offset Pagination offset.
+   * @param trialId Filter by trialId. (optional)
+   * @param count Pagination count. (optional)
+   * @param offset Pagination offset. (optional)
    * @return ApiResponse<ExportHistoryResponse>
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
    */
@@ -235,9 +235,9 @@ public class ExportApi {
   /**
    * Get Export History (asynchronously)
    * Get the history of export requests.
-   * @param trialId Filter by trialId.
-   * @param count Pagination count.
-   * @param offset Pagination offset.
+   * @param trialId Filter by trialId. (optional)
+   * @param count Pagination count. (optional)
+   * @param offset Pagination offset. (optional)
    * @param callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -320,7 +320,7 @@ public class ExportApi {
   /**
    * Get Export Result
    * Retrieve result of the export query in tgz format. The tar file may contain one or more files with the results.
-   * @param exportId Export ID of the export query.
+   * @param exportId Export ID of the export query. (required)
    * @return String
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
    */
@@ -332,7 +332,7 @@ public class ExportApi {
   /**
    * Get Export Result
    * Retrieve result of the export query in tgz format. The tar file may contain one or more files with the results.
-   * @param exportId Export ID of the export query.
+   * @param exportId Export ID of the export query. (required)
    * @return ApiResponse<String>
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
    */
@@ -345,7 +345,7 @@ public class ExportApi {
   /**
    * Get Export Result (asynchronously)
    * Retrieve result of the export query in tgz format. The tar file may contain one or more files with the results.
-   * @param exportId Export ID of the export query.
+   * @param exportId Export ID of the export query. (required)
    * @param callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -428,7 +428,7 @@ public class ExportApi {
   /**
    * Check Export Status
    * Check status of the export query.
-   * @param exportId Export ID of the export query.
+   * @param exportId Export ID of the export query. (required)
    * @return ExportStatusResponse
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
    */
@@ -440,7 +440,7 @@ public class ExportApi {
   /**
    * Check Export Status
    * Check status of the export query.
-   * @param exportId Export ID of the export query.
+   * @param exportId Export ID of the export query. (required)
    * @return ApiResponse<ExportStatusResponse>
    * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
    */
@@ -453,7 +453,7 @@ public class ExportApi {
   /**
    * Check Export Status (asynchronously)
    * Check status of the export query.
-   * @param exportId Export ID of the export query.
+   * @param exportId Export ID of the export query. (required)
    * @param callback The callback to be executed when the API call finishes
    * @return The request call
    * @throws ApiException If fail to process the API call, e.g. serializing the request body object
