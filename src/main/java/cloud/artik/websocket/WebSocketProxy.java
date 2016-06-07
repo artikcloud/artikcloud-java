@@ -1,7 +1,8 @@
 package cloud.artik.websocket;
 
 import java.io.IOException;
-import java.nio.charset.Charset;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executors;
@@ -94,13 +95,20 @@ public class WebSocketProxy implements WebSocketListener {
         } else {
             error.setCode(-1); // Read Timeout
             if (exc.getCause() != null) {
-                error.setMessage(exc.getCause().getMessage());
+                error.setMessage(asString(exc.getCause()));
             } else {
-                error.setMessage(exc.getMessage());    
+                error.setMessage(asString(exc));    
             }
         }
         
         this.callback.onError(error);
+    }
+    
+    protected String asString(Throwable exc) {
+        StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw);
+        exc.printStackTrace(pw);
+        return sw.toString();
     }
 
     @SuppressWarnings("unchecked")
