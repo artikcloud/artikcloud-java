@@ -17,15 +17,15 @@ import cloud.artik.model.ErrorEnvelope;
 import cloud.artik.model.MessageOut;
 import cloud.artik.model.WebSocketError;
 
-import com.squareup.okhttp.MediaType;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.squareup.okhttp.RequestBody;
-import com.squareup.okhttp.Response;
-import com.squareup.okhttp.ResponseBody;
-import com.squareup.okhttp.ws.WebSocket;
-import com.squareup.okhttp.ws.WebSocketCall;
-import com.squareup.okhttp.ws.WebSocketListener;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
+import okhttp3.ws.WebSocket;
+import okhttp3.ws.WebSocketCall;
+import okhttp3.ws.WebSocketListener;
 
 public class WebSocketProxy implements WebSocketListener {
     protected Request request = null;
@@ -49,7 +49,7 @@ public class WebSocketProxy implements WebSocketListener {
             ArtikCloudWebSocketCallback callback) {
         this.request = new Request.Builder().url(host + url).build();
         this.client = client;
-        this.client.setReadTimeout(35, TimeUnit.SECONDS);
+        //this.client.setReadTimeout(35, TimeUnit.SECONDS);
         this.callback = callback;
     }
 
@@ -206,8 +206,8 @@ public class WebSocketProxy implements WebSocketListener {
     public final void close() throws IOException {
         if (this.status != ConnectionStatus.CLOSING) {
             this.status = ConnectionStatus.CLOSING;
-
-            this.webSocket.close(2000, "OK");
+            
+            this.webSocket.close(4999, "OK");
         }
     }
 
@@ -218,15 +218,15 @@ public class WebSocketProxy implements WebSocketListener {
         this.close();
         closeSignal.await();
 
-        this.client.getDispatcher().getExecutorService().shutdownNow();
-        this.client.getDispatcher().getExecutorService()
+        this.client.dispatcher().executorService().shutdownNow();
+        this.client.dispatcher().executorService()
                 .awaitTermination(100, TimeUnit.MILLISECONDS);
 
         closeSignal = null;
     }
 
     protected void sendObject(Object object) throws IOException {
-        if (!client.getDispatcher().getExecutorService().isShutdown()) {
+        if (!client.dispatcher().executorService().isShutdown()) {
             RequestBody request = RequestBody.create(WebSocket.TEXT, this.json.getGson().toJson(object));
 
             webSocket.sendMessage(request);

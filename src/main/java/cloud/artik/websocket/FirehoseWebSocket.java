@@ -2,10 +2,19 @@ package cloud.artik.websocket;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.concurrent.TimeUnit;
 
-import com.squareup.okhttp.OkHttpClient;
+import okhttp3.OkHttpClient;
 
 public class FirehoseWebSocket extends WebSocketProxy {
+    
+    public FirehoseWebSocket(String accessToken,
+            String sdid, String sdids, String sdtids, String uid,
+            ArtikCloudWebSocketCallback callback) throws URISyntaxException,
+            IOException {
+        
+        this(new OkHttpClient().newBuilder().readTimeout(35, TimeUnit.SECONDS).build(), accessToken, sdid, sdids, sdtids, uid, callback);
+    }
 
     public FirehoseWebSocket(OkHttpClient client, String accessToken,
             String sdid, String sdids, String sdtids, String uid,

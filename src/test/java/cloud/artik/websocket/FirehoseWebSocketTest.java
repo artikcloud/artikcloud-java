@@ -16,8 +16,6 @@ import cloud.artik.model.MessageOut;
 import cloud.artik.model.RegisterMessage;
 import cloud.artik.model.WebSocketError;
 
-import com.squareup.okhttp.OkHttpClient;
-
 public class FirehoseWebSocketTest {
 
     @Before
@@ -34,16 +32,9 @@ public class FirehoseWebSocketTest {
         String deviceId = "3dd34bce025a4409ac1ff80be81b8dbc";
         String userId = "04ddbd35d57d4d7b8f07f219c44457b2";
         
-        OkHttpClient client = new OkHttpClient();
-        //client.setRetryOnConnectionFailure(true);
-
         final CountDownLatch messageLatch = new CountDownLatch(1000);
         
-        // Connect Firehose
-        OkHttpClient client2 = new OkHttpClient();
-        client2.setRetryOnConnectionFailure(true);
-        
-        FirehoseWebSocket firehoseWS = new FirehoseWebSocket(client2, accessToken, deviceId, null, null, userId,
+        FirehoseWebSocket firehoseWS = new FirehoseWebSocket(accessToken, deviceId, null, null, userId,
                 new ArtikCloudWebSocketCallback() {
 
                     @Override
@@ -98,13 +89,9 @@ public class FirehoseWebSocketTest {
         String deviceId = "16f54be9b9ce4c69be14a6c8ff33ea8d";
         String userId = "04ddbd35d57d4d7b8f07f219c44457b2";
         
-        OkHttpClient client = new OkHttpClient();
-        client.setRetryOnConnectionFailure(true);
-
         final CountDownLatch registerLatch = new CountDownLatch(1);
         final CountDownLatch messageLatch = new CountDownLatch(1000);
-        DeviceChannelWebSocket ws = new DeviceChannelWebSocket(true, client,
-                new ArtikCloudWebSocketCallback() {
+        DeviceChannelWebSocket ws = new DeviceChannelWebSocket(true, new ArtikCloudWebSocketCallback() {
 
                     @Override
                     public void onAck(Acknowledgement ack) {
@@ -159,10 +146,7 @@ public class FirehoseWebSocketTest {
                 new Boolean(registerLatch.await(10, TimeUnit.SECONDS)));
 
         // Connect Firehose
-        OkHttpClient client2 = new OkHttpClient();
-        client2.setRetryOnConnectionFailure(true);
-        
-        FirehoseWebSocket firehoseWS = new FirehoseWebSocket(client2, accessToken, deviceId, null, null, userId,
+        FirehoseWebSocket firehoseWS = new FirehoseWebSocket(accessToken, deviceId, null, null, userId,
                 new ArtikCloudWebSocketCallback() {
 
                     @Override

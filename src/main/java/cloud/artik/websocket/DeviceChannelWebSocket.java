@@ -2,14 +2,19 @@ package cloud.artik.websocket;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.concurrent.TimeUnit;
 
 import cloud.artik.model.ActionIn;
 import cloud.artik.model.MessageIn;
 import cloud.artik.model.RegisterMessage;
-
-import com.squareup.okhttp.OkHttpClient;
+import okhttp3.OkHttpClient;
 
 public class DeviceChannelWebSocket extends WebSocketProxy {
+    
+    public DeviceChannelWebSocket(boolean ack, ArtikCloudWebSocketCallback callback) throws URISyntaxException,
+            IOException {
+        this(ack, new OkHttpClient().newBuilder().readTimeout(35, TimeUnit.SECONDS).build(), callback);
+    }
 
     public DeviceChannelWebSocket(boolean ack, OkHttpClient client,
             ArtikCloudWebSocketCallback callback) throws URISyntaxException,

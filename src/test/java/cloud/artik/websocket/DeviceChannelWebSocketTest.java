@@ -16,8 +16,6 @@ import cloud.artik.model.MessageOut;
 import cloud.artik.model.RegisterMessage;
 import cloud.artik.model.WebSocketError;
 
-import com.squareup.okhttp.OkHttpClient;
-
 public class DeviceChannelWebSocketTest {
 
     @Before
@@ -34,12 +32,9 @@ public class DeviceChannelWebSocketTest {
         String deviceId = "16f54be9b9ce4c69be14a6c8ff33ea8d";
         String userId = "04ddbd35d57d4d7b8f07f219c44457b2";
         
-        OkHttpClient client = new OkHttpClient();
-        client.setRetryOnConnectionFailure(true);
-
         final CountDownLatch registerLatch = new CountDownLatch(1);
         final CountDownLatch messageLatch = new CountDownLatch(1);
-        DeviceChannelWebSocket ws = new DeviceChannelWebSocket(true, client,
+        DeviceChannelWebSocket ws = new DeviceChannelWebSocket(true,
                 new ArtikCloudWebSocketCallback() {
 
                     @Override
