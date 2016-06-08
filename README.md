@@ -53,6 +53,23 @@ Finally, in your Android project's `AndroidManifest.xml`, add the permissions re
 <uses-permission android:name="android.permission.INTERNET" />
 ~~~
 
+Use the Libraries from Maven Central Repository
+---------------------
+
+You can use the official library released at maven.org.
+
+- To use them in an Android Studio project, change dependency mentioned above to the following:
+
+~~~
+dependencies {
+    compile 'cloud.artik:artikcloud-java:2.0.3'
+}
+~~~
+
+You need to modify the `AndroidManifest.xml` as mentioned above.
+
+- To use the official library in your Maven project, modify `pom.xml` file in your project as mentioned above.
+
 Coding Recommendation
 ------
 
