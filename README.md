@@ -1,5 +1,6 @@
 ARTIK Cloud Java/Android SDK
 ================
+[![Build Status](https://travis-ci.org/artikcloud/artikcloud-java.svg?branch=master)](https://travis-ci.org/artikcloud/artikcloud-java)
 This SDK helps you connect your Java or Android apps to ARTIK Cloud. The SDK exposes a number of methods to easily execute REST and WebSockets API calls to ARTIK Cloud. 
 
 Prerequisites
