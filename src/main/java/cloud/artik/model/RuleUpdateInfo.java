@@ -38,7 +38,7 @@ import java.util.Map;
  * Class to update an existing Rule.
  */
 @ApiModel(description = "Class to update an existing Rule.")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-08-08T13:51:37.707-07:00")
+
 public class RuleUpdateInfo   {
   @SerializedName("description")
   private String description = null;

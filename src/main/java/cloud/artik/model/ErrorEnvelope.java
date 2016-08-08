@@ -36,7 +36,7 @@ import io.swagger.annotations.ApiModelProperty;
  * WebSocket Error Envelope
  */
 @ApiModel(description = "WebSocket Error Envelope")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-08-08T13:51:37.707-07:00")
+
 public class ErrorEnvelope   {
   @SerializedName("error")
   private WebSocketError error = null;

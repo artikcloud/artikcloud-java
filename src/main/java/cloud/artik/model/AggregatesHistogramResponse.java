@@ -38,7 +38,7 @@ import java.util.List;
  * Aggregates Histogram Response
  */
 @ApiModel(description = "Aggregates Histogram Response")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-08-08T13:51:37.707-07:00")
+
 public class AggregatesHistogramResponse   {
   @SerializedName("data")
   private List<AggregatesHistogramData> data = new ArrayList<AggregatesHistogramData>();

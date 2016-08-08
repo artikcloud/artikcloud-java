@@ -36,7 +36,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Manifest Properties
  */
 @ApiModel(description = "Manifest Properties")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-08-08T13:51:37.707-07:00")
+
 public class ManifestProperties   {
   @SerializedName("properties")
   private FieldsActions properties = null;

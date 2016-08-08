@@ -36,7 +36,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Export History Response.
  */
 @ApiModel(description = "Export History Response.")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-08-08T13:51:37.707-07:00")
+
 public class ExportHistoryResponse   {
   @SerializedName("count")
   private Long count = null;

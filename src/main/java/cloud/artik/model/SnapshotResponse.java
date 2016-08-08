@@ -38,7 +38,7 @@ import java.util.Map;
  * 
  */
 @ApiModel(description = "")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-08-08T13:51:37.707-07:00")
+
 public class SnapshotResponse   {
   @SerializedName("data")
   private Map<String, Object> data = new HashMap<String, Object>();

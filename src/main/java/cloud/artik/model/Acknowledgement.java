@@ -35,7 +35,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Acknowledgement received by a WebSocket in response to a RegisterMessage, MessageIn or ActionIn.
  */
 @ApiModel(description = "Acknowledgement received by a WebSocket in response to a RegisterMessage, MessageIn or ActionIn.")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-08-08T13:51:37.707-07:00")
+
 public class Acknowledgement   {
   @SerializedName("mid")
   private String mid = null;

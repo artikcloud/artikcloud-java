@@ -36,7 +36,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Device Token Envelope
  */
 @ApiModel(description = "Device Token Envelope")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-08-08T13:51:37.707-07:00")
+
 public class DeviceTokenEnvelope   {
   @SerializedName("data")
   private DeviceToken data = null;

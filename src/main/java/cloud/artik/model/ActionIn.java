@@ -36,7 +36,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Action sent to a WebSocket.
  */
 @ApiModel(description = "Action sent to a WebSocket.")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-08-08T13:51:37.707-07:00")
+
 public class ActionIn   {
   @SerializedName("data")
   private ActionDetailsArray data = null;

@@ -38,7 +38,7 @@ import java.util.Map;
  * Fields and Actions
  */
 @ApiModel(description = "Fields and Actions")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-08-08T13:51:37.707-07:00")
+
 public class FieldsActions   {
   @SerializedName("fields")
   private Map<String, Object> fields = new HashMap<String, Object>();

@@ -35,7 +35,7 @@ import io.swagger.annotations.ApiModelProperty;
  * WebSocket Error Information
  */
 @ApiModel(description = "WebSocket Error Information")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-08-08T13:51:37.707-07:00")
+
 public class WebSocketError   {
   @SerializedName("message")
   private String message = null;

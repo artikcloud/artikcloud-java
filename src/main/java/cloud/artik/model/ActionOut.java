@@ -35,8 +35,8 @@ import io.swagger.annotations.ApiModelProperty;
  * Action received in a WebSocket.
  */
 @ApiModel(description = "Action received in a WebSocket.")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-08-08T13:51:37.707-07:00")
-public class ActionOut  extends ActionIn {
+
+public class ActionOut extends ActionIn  {
   @SerializedName("mid")
   private String mid = null;
 

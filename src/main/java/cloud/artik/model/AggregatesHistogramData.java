@@ -35,7 +35,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Aggregates Histogram Data
  */
 @ApiModel(description = "Aggregates Histogram Data")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-08-08T13:51:37.707-07:00")
+
 public class AggregatesHistogramData   {
   @SerializedName("count")
   private Long count = null;

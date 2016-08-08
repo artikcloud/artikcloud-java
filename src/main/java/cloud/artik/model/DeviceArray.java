@@ -38,7 +38,7 @@ import java.util.List;
  * Holds an array of Devices
  */
 @ApiModel(description = "Holds an array of Devices")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-08-08T13:51:37.707-07:00")
+
 public class DeviceArray   {
   @SerializedName("devices")
   private List<Device> devices = new ArrayList<Device>();

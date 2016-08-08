@@ -35,7 +35,7 @@ import io.swagger.annotations.ApiModelProperty;
  * User Application Properties
  */
 @ApiModel(description = "User Application Properties")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-08-08T13:51:37.707-07:00")
+
 public class AppProperties   {
   @SerializedName("uid")
   private String uid = null;

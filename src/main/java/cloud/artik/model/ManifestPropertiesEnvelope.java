@@ -36,7 +36,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Manifest Properties Envelope
  */
 @ApiModel(description = "Manifest Properties Envelope")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-08-08T13:51:37.707-07:00")
+
 public class ManifestPropertiesEnvelope   {
   @SerializedName("data")
   private ManifestProperties data = null;

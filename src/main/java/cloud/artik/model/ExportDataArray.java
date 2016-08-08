@@ -38,7 +38,7 @@ import java.util.List;
  * Export Data Array.
  */
 @ApiModel(description = "Export Data Array.")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-08-08T13:51:37.707-07:00")
+
 public class ExportDataArray   {
   @SerializedName("exports")
   private List<ExportData> exports = new ArrayList<ExportData>();

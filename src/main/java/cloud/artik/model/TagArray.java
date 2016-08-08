@@ -38,7 +38,7 @@ import java.util.List;
  * Contains the arry of Tags.
  */
 @ApiModel(description = "Contains the arry of Tags.")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-08-08T13:51:37.707-07:00")
+
 public class TagArray   {
   @SerializedName("tags")
   private List<Tag> tags = new ArrayList<Tag>();

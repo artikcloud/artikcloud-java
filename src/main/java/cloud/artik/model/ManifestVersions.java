@@ -37,7 +37,7 @@ import java.util.List;
  * Manifest Versions
  */
 @ApiModel(description = "Manifest Versions")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-08-08T13:51:37.707-07:00")
+
 public class ManifestVersions   {
   @SerializedName("versions")
   private List<String> versions = new ArrayList<String>();

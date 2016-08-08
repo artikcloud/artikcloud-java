@@ -35,7 +35,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Export Status Response.
  */
 @ApiModel(description = "Export Status Response.")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-08-08T13:51:37.707-07:00")
+
 public class ExportStatusResponse   {
   @SerializedName("expirationDate")
   private Long expirationDate = null;

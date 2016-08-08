@@ -36,7 +36,7 @@ import io.swagger.annotations.ApiModelProperty;
  * Device Type Envelope
  */
 @ApiModel(description = "Device Type Envelope")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-08-08T13:51:37.707-07:00")
+
 public class DeviceTypeEnvelope   {
   @SerializedName("data")
   private DeviceType data = null;

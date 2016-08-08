@@ -40,7 +40,7 @@ import java.util.Map;
  * Rule information.
  */
 @ApiModel(description = "Rule information.")
-@javax.annotation.Generated(value = "class io.swagger.codegen.languages.JavaClientCodegen", date = "2016-08-08T13:51:37.707-07:00")
+
 public class OutputRule   {
   @SerializedName("aid")
   private String aid = null;
