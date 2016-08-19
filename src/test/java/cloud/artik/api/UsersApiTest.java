@@ -20,13 +20,10 @@ import cloud.artik.model.UserEnvelope;
 public class UsersApiTest extends ArtikCloudApiTest {
     protected UsersApi apiClient = null;
     protected String userId = null;
-    protected String aid = "b6951bf387b84f63b38911ae35d65e28";
-
-    // protected String aid = "e9acb939324d4a908b26f428334eabf0";
-
+    
     @Before
     public void setUp() throws Exception {
-        this.apiClient = (UsersApi) super.api(UsersApi.class);
+        this.apiClient = (UsersApi) super.api(UsersApi.class, "user1.token");
 
         userId = this.apiClient.getSelf().getData().getId();
     }
@@ -44,11 +41,11 @@ public class UsersApiTest extends ArtikCloudApiTest {
         User user = userEnvelope.getData();
         assertNotNull(user);
 
-        assertNotNull(user.getEmail());
-        assertNotNull(user.getId());
-        assertNotNull(user.getName());
-        assertNotNull(user.getFullName());
-        assertNotNull(user.getCreatedOn());
+        assertEquals(this.getProperty("user1.email"),user.getEmail());
+        assertEquals(this.getProperty("user1.id"), user.getId());
+        assertEquals(this.getProperty("user1.name"), user.getName());
+        assertEquals(this.getProperty("user1.fullname"), user.getFullName());
+        assertEquals(this.getProperty("user1.createdon"), user.getCreatedOn().toString());
         assertNotNull(user.getModifiedOn());
     }
 
@@ -74,6 +71,7 @@ public class UsersApiTest extends ArtikCloudApiTest {
 
     @Test
     public void testUserProperties() throws Exception {
+        String aid = this.getProperty("user1.aid");
         PropertiesEnvelope userProperties = null;
         try {
             // Retrieve

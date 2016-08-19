@@ -9,6 +9,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import cloud.artik.api.ArtikCloudApiTest;
 import cloud.artik.model.Acknowledgement;
 import cloud.artik.model.ActionOut;
 import cloud.artik.model.MessageIn;
@@ -16,7 +17,7 @@ import cloud.artik.model.MessageOut;
 import cloud.artik.model.RegisterMessage;
 import cloud.artik.model.WebSocketError;
 
-public class DeviceChannelWebSocketTest {
+public class DeviceChannelWebSocketTest extends ArtikCloudApiTest {
 
     @Before
     public void setUp() throws Exception {
@@ -28,9 +29,10 @@ public class DeviceChannelWebSocketTest {
 
     @Test
     public void testSendMessage() throws Exception {
-        String accessToken = "f9f75bd0b0fc46a9a604703909f4331d";
-        String deviceId = "16f54be9b9ce4c69be14a6c8ff33ea8d";
-        String userId = "04ddbd35d57d4d7b8f07f219c44457b2";
+        String deviceId = getProperty("device2.id");
+        String userId = getProperty("user1.id");
+        String accessToken = getProperty("device2.token");
+
         
         final CountDownLatch registerLatch = new CountDownLatch(1);
         final CountDownLatch messageLatch = new CountDownLatch(1);

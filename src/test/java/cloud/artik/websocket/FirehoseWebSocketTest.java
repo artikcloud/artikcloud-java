@@ -9,6 +9,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import cloud.artik.api.ArtikCloudApiTest;
 import cloud.artik.model.Acknowledgement;
 import cloud.artik.model.ActionOut;
 import cloud.artik.model.MessageIn;
@@ -16,7 +17,7 @@ import cloud.artik.model.MessageOut;
 import cloud.artik.model.RegisterMessage;
 import cloud.artik.model.WebSocketError;
 
-public class FirehoseWebSocketTest {
+public class FirehoseWebSocketTest extends ArtikCloudApiTest {
 
     @Before
     public void setUp() throws Exception {
@@ -28,9 +29,9 @@ public class FirehoseWebSocketTest {
 
     @Test
     public void testFirehose1() throws Exception {
-        String accessToken = "49db2612c46342458b61af535921bdca";
-        String deviceId = "3dd34bce025a4409ac1ff80be81b8dbc";
-        String userId = "04ddbd35d57d4d7b8f07f219c44457b2";
+        String deviceId = getProperty("device3.id");
+        String userId = getProperty("user1.id");
+        String accessToken = getProperty("device3.token");
         
         final CountDownLatch messageLatch = new CountDownLatch(1000);
         
@@ -85,9 +86,9 @@ public class FirehoseWebSocketTest {
     
     @Test
     public void testFirehose2() throws Exception {
-        String accessToken = "f9f75bd0b0fc46a9a604703909f4331d";
-        String deviceId = "16f54be9b9ce4c69be14a6c8ff33ea8d";
-        String userId = "04ddbd35d57d4d7b8f07f219c44457b2";
+        String deviceId = getProperty("device2.id");
+        String userId = getProperty("user1.id");
+        String accessToken = getProperty("device2.token");
         
         final CountDownLatch registerLatch = new CountDownLatch(1);
         final CountDownLatch messageLatch = new CountDownLatch(1000);

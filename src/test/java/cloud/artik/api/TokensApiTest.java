@@ -11,13 +11,13 @@ import cloud.artik.model.RefreshTokenResponse;
 import cloud.artik.model.TokenRequest;
 
 public class TokensApiTest {
-    protected String basePath = "https://accounts.artik.cloud";
+    //protected String basePath = "https://accounts.artik.cloud";
 
     protected TokensApi api(String accessToken) {
         try {
             ApiClient client = new ApiClient();
             client.setAccessToken(accessToken);
-            client.setBasePath(basePath);
+            //client.setBasePath(basePath);
             client.setDebugging(true);
 
             TokensApi retVal = new TokensApi();

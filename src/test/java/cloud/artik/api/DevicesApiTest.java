@@ -49,7 +49,7 @@ public class DevicesApiTest extends ArtikCloudApiTest {
 
     @Before
     public void setUp() throws Exception {
-        this.api = (DevicesApi) super.api(DevicesApi.class);
+        this.api = (DevicesApi) super.api(DevicesApi.class, "device1.token");
     }
 
     @After
@@ -131,14 +131,13 @@ public class DevicesApiTest extends ArtikCloudApiTest {
      */
     @Test
     public void getDevicePresenceTest() throws ApiException {
-        String deviceId = "19da42ee01414722a6ad1224097c38d4";
+        String deviceId = this.getProperty("device1.id");
         PresenceEnvelope response = api.getDevicePresence(deviceId);
 
         assertEquals("Sdids must match", deviceId, response.getSdid());
         
         assertNotNull("lastSeenOn", response.getData().getLastSeenOn());
         assertNotNull("connected", response.getData().getConnected());
-       
     }
     
     /**

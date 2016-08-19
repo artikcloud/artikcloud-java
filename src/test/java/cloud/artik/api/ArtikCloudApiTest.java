@@ -1,18 +1,37 @@
 package cloud.artik.api;
 
+import java.io.InputStream;
 import java.lang.reflect.Method;
+import java.util.Properties;
 
 import cloud.artik.client.ApiClient;
 
 public class ArtikCloudApiTest {
-    protected String accessToken = "56eecae18bcb45c48a0d62571ee852fe";
+    protected Properties properties = new Properties();
+    
+    /**
+     * Loads the artik.properties
+     */
+    public ArtikCloudApiTest() {
+        String filename = "artik.properties"; 
+        InputStream is = this.getClass().getClassLoader().getResourceAsStream(filename);
+        try {
+            properties.load(is);
+        } catch (Exception e) {
+            e.printStackTrace(); 
+        }
+    }
 
-    protected Object api(Class<?> className) {
+    protected String getProperty(String key) {
+        return this.properties.getProperty(key);
+    }
+    
+    protected Object api(Class<?> className, String tokenKey) {
         try {
             Object retVal = className.newInstance();
 
             ApiClient client = new ApiClient();
-            client.setAccessToken(accessToken);
+            client.setAccessToken(this.getProperty(tokenKey));
             client.setDebugging(true);
 
             Method setApiClient = className.getMethod("setApiClient",

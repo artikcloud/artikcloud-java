@@ -9,35 +9,17 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import cloud.artik.client.ApiClient;
 import cloud.artik.model.MessageAction;
 import cloud.artik.model.NormalizedMessage;
 import cloud.artik.model.NormalizedMessagesEnvelope;
 import cloud.artik.model.SnapshotResponses;
 
-public class MessagesApiTest {
+public class MessagesApiTest extends ArtikCloudApiTest {
     protected MessagesApi apiClient = null;
-
-    protected MessagesApi api(String deviceToken) {
-        try {
-            ApiClient client = new ApiClient();
-            client.setAccessToken(deviceToken);
-            client.setDebugging(true);
-
-            MessagesApi retVal = new MessagesApi();
-            retVal.setApiClient(client);
-
-            return retVal;
-        } catch (Exception exc) {
-            exc.printStackTrace();
-            return null;
-        }
-    }
 
     @Before
     public void setUp() throws Exception {
-        String deviceToken = "dc43d12e2b59495daf94631e6ddfe3e8";
-        this.apiClient = api(deviceToken);
+        this.apiClient = (MessagesApi) super.api(MessagesApi.class, "device1.token");
     }
 
     @After
@@ -48,7 +30,7 @@ public class MessagesApiTest {
     @Test
     public void testSendMessageAction() throws Exception {
         MessageAction message = new MessageAction();
-        message.setSdid("19da42ee01414722a6ad1224097c38d4");
+        message.setSdid(this.getProperty("device1.id"));
         message.setTs(new Long(System.currentTimeMillis()));
         message.setType("message");
         message.getData().put("steps", new Integer(500));
@@ -77,7 +59,7 @@ public class MessagesApiTest {
     @SuppressWarnings("unchecked")
     @Test
     public void testGetMessageSnapshots() throws Exception {
-        String sdids = "19da42ee01414722a6ad1224097c38d4";
+        String sdids = this.getProperty("device1.id");
         
         SnapshotResponses env = this.apiClient.getMessageSnapshots(sdids, false);
         
