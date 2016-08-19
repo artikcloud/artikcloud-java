@@ -42,7 +42,7 @@ import cloud.artik.model.AggregatesHistogramResponse;
 import cloud.artik.model.FieldPresenceEnvelope;
 import cloud.artik.model.NormalizedMessagesEnvelope;
 import cloud.artik.model.AggregatesResponse;
-import cloud.artik.model.SnapshotsResponseEnvelope;
+import cloud.artik.model.SnapshotResponses;
 import cloud.artik.model.MessageAction;
 import cloud.artik.model.MessageIDEnvelope;
 
@@ -649,11 +649,11 @@ public class MessagesApi {
      * Get message snapshots.
      * @param sdids Device IDs for which the snapshots are requested. Max 100 device ids per call. (required)
      * @param includeTimestamp Indicates whether to return timestamps of the last update for each field. (optional)
-     * @return SnapshotsResponseEnvelope
+     * @return SnapshotResponses
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public SnapshotsResponseEnvelope getMessageSnapshots(String sdids, Boolean includeTimestamp) throws ApiException {
-        ApiResponse<SnapshotsResponseEnvelope> resp = getMessageSnapshotsWithHttpInfo(sdids, includeTimestamp);
+    public SnapshotResponses getMessageSnapshots(String sdids, Boolean includeTimestamp) throws ApiException {
+        ApiResponse<SnapshotResponses> resp = getMessageSnapshotsWithHttpInfo(sdids, includeTimestamp);
         return resp.getData();
     }
 
@@ -662,12 +662,12 @@ public class MessagesApi {
      * Get message snapshots.
      * @param sdids Device IDs for which the snapshots are requested. Max 100 device ids per call. (required)
      * @param includeTimestamp Indicates whether to return timestamps of the last update for each field. (optional)
-     * @return ApiResponse&lt;SnapshotsResponseEnvelope&gt;
+     * @return ApiResponse&lt;SnapshotResponses&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<SnapshotsResponseEnvelope> getMessageSnapshotsWithHttpInfo(String sdids, Boolean includeTimestamp) throws ApiException {
+    public ApiResponse<SnapshotResponses> getMessageSnapshotsWithHttpInfo(String sdids, Boolean includeTimestamp) throws ApiException {
         com.squareup.okhttp.Call call = getMessageSnapshotsCall(sdids, includeTimestamp, null, null);
-        Type localVarReturnType = new TypeToken<SnapshotsResponseEnvelope>(){}.getType();
+        Type localVarReturnType = new TypeToken<SnapshotResponses>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -680,7 +680,7 @@ public class MessagesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getMessageSnapshotsAsync(String sdids, Boolean includeTimestamp, final ApiCallback<SnapshotsResponseEnvelope> callback) throws ApiException {
+    public com.squareup.okhttp.Call getMessageSnapshotsAsync(String sdids, Boolean includeTimestamp, final ApiCallback<SnapshotResponses> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -702,7 +702,7 @@ public class MessagesApi {
         }
 
         com.squareup.okhttp.Call call = getMessageSnapshotsCall(sdids, includeTimestamp, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<SnapshotsResponseEnvelope>(){}.getType();
+        Type localVarReturnType = new TypeToken<SnapshotResponses>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

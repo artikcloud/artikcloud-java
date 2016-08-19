@@ -3,6 +3,8 @@ package cloud.artik.api;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.util.Map;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,6 +13,7 @@ import cloud.artik.client.ApiClient;
 import cloud.artik.model.MessageAction;
 import cloud.artik.model.NormalizedMessage;
 import cloud.artik.model.NormalizedMessagesEnvelope;
+import cloud.artik.model.SnapshotResponses;
 
 public class MessagesApiTest {
     protected MessagesApi apiClient = null;
@@ -69,6 +72,22 @@ public class MessagesApiTest {
         Object steps = normalized.getData().get("steps");
         assertNotNull("Volume should not be null", steps);
         assertEquals(new Double(500.0), steps);
+    }
+    
+    @SuppressWarnings("unchecked")
+    @Test
+    public void testGetMessageSnapshots() throws Exception {
+        String sdids = "19da42ee01414722a6ad1224097c38d4";
+        
+        SnapshotResponses env = this.apiClient.getMessageSnapshots(sdids, false);
+        
+        assertEquals("SDIDs must match", sdids, env.getSdids()); 
+        
+        assertEquals("SDID must match", sdids, env.getData().get(0).getSdid());
+        
+        Map<String, Object> stepsInfo = (Map<String, Object>) env.getData().get(0).getData().get("steps");
+        
+        assertEquals("Steps must be 500", 500.0, stepsInfo.get("value"));       
     }
 
 }

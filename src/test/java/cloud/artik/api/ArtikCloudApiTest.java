@@ -5,7 +5,7 @@ import java.lang.reflect.Method;
 import cloud.artik.client.ApiClient;
 
 public class ArtikCloudApiTest {
-    protected String accessToken = "b4b13b4974a14330a147d069e3423e80";
+    protected String accessToken = "56eecae18bcb45c48a0d62571ee852fe";
 
     protected Object api(Class<?> className) {
         try {

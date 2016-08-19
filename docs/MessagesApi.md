@@ -253,7 +253,7 @@ Name | Type | Description  | Notes
 
 <a name="getMessageSnapshots"></a>
 # **getMessageSnapshots**
-> SnapshotsResponseEnvelope getMessageSnapshots(sdids, includeTimestamp)
+> SnapshotResponses getMessageSnapshots(sdids, includeTimestamp)
 
 Get Message Snapshots
 
@@ -278,7 +278,7 @@ MessagesApi apiInstance = new MessagesApi();
 String sdids = "sdids_example"; // String | Device IDs for which the snapshots are requested. Max 100 device ids per call.
 Boolean includeTimestamp = true; // Boolean | Indicates whether to return timestamps of the last update for each field.
 try {
-    SnapshotsResponseEnvelope result = apiInstance.getMessageSnapshots(sdids, includeTimestamp);
+    SnapshotResponses result = apiInstance.getMessageSnapshots(sdids, includeTimestamp);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling MessagesApi#getMessageSnapshots");
@@ -295,7 +295,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**SnapshotsResponseEnvelope**](SnapshotsResponseEnvelope.md)
+[**SnapshotResponses**](SnapshotResponses.md)
 
 ### Authorization
 

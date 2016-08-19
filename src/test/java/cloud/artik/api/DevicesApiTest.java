@@ -25,11 +25,15 @@
 
 package cloud.artik.api;
 
+import static org.junit.Assert.*;
 import cloud.artik.client.ApiException;
 import cloud.artik.model.Device;
 import cloud.artik.model.DeviceEnvelope;
 import cloud.artik.model.DeviceTokenEnvelope;
 import cloud.artik.model.PresenceEnvelope;
+
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -40,10 +44,18 @@ import java.util.Map;
 /**
  * API tests for DevicesApi
  */
-public class DevicesApiTest {
+public class DevicesApiTest extends ArtikCloudApiTest {
+    protected DevicesApi api = null;
 
-    private final DevicesApi api = new DevicesApi();
+    @Before
+    public void setUp() throws Exception {
+        this.api = (DevicesApi) super.api(DevicesApi.class);
+    }
 
+    @After
+    public void tearDown() throws Exception {
+        this.api = null;
+    }
     
     /**
      * Add Device
@@ -119,10 +131,14 @@ public class DevicesApiTest {
      */
     @Test
     public void getDevicePresenceTest() throws ApiException {
-        String deviceId = null;
-        // PresenceEnvelope response = api.getDevicePresence(deviceId);
+        String deviceId = "19da42ee01414722a6ad1224097c38d4";
+        PresenceEnvelope response = api.getDevicePresence(deviceId);
 
-        // TODO: test validations
+        assertEquals("Sdids must match", deviceId, response.getSdid());
+        
+        assertNotNull("lastSeenOn", response.getData().getLastSeenOn());
+        assertNotNull("connected", response.getData().getConnected());
+       
     }
     
     /**
