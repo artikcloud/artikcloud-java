@@ -78,7 +78,7 @@ public class TokensApi {
         
 
         // create path and map variables
-        String localVarPath = "/checkToken".replaceAll("\\{format\\}","json");
+        String localVarPath = "/accounts/checkToken".replaceAll("\\{format\\}","json");
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
 
@@ -189,7 +189,7 @@ public class TokensApi {
         
 
         // create path and map variables
-        String localVarPath = "/token".replaceAll("\\{format\\}","json");
+        String localVarPath = "/accounts/token".replaceAll("\\{format\\}","json");
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
 

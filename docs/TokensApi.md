@@ -4,8 +4,8 @@ All URIs are relative to *https://api.artik.cloud/v1.1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**checkToken**](TokensApi.md#checkToken) | **POST** /checkToken | Check Token
-[**refreshToken**](TokensApi.md#refreshToken) | **POST** /token | Refresh Token
+[**checkToken**](TokensApi.md#checkToken) | **POST** /accounts/checkToken | Check Token
+[**refreshToken**](TokensApi.md#refreshToken) | **POST** /accounts/token | Refresh Token
 
 
 <a name="checkToken"></a>
