@@ -9,8 +9,10 @@ Method | HTTP request | Description
 [**getLastNormalizedMessages**](MessagesApi.md#getLastNormalizedMessages) | **GET** /messages/last | Get Last Normalized Message
 [**getMessageAggregates**](MessagesApi.md#getMessageAggregates) | **GET** /messages/analytics/aggregates | Get Normalized Message Aggregates
 [**getMessageSnapshots**](MessagesApi.md#getMessageSnapshots) | **GET** /messages/snapshots | Get Message Snapshots
+[**getNormalizedActions**](MessagesApi.md#getNormalizedActions) | **GET** /actions | Get Normalized Actions
 [**getNormalizedMessages**](MessagesApi.md#getNormalizedMessages) | **GET** /messages | Get Normalized Messages
-[**sendMessageAction**](MessagesApi.md#sendMessageAction) | **POST** /messages | Send Message Action
+[**sendActions**](MessagesApi.md#sendActions) | **POST** /actions | Send Actions
+[**sendMessage**](MessagesApi.md#sendMessage) | **POST** /messages | Send Message
 
 
 <a name="getAggregatesHistogram"></a>
@@ -306,6 +308,73 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+<a name="getNormalizedActions"></a>
+# **getNormalizedActions**
+> NormalizedActionsEnvelope getNormalizedActions(uid, ddid, mid, offset, count, startDate, endDate, order)
+
+Get Normalized Actions
+
+Get the actions normalized
+
+### Example
+```java
+// Import classes:
+//import cloud.artik.client.ApiClient;
+//import cloud.artik.client.ApiException;
+//import cloud.artik.client.Configuration;
+//import cloud.artik.client.auth.*;
+//import cloud.artik.api.MessagesApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure OAuth2 access token for authorization: artikcloud_oauth
+OAuth artikcloud_oauth = (OAuth) defaultClient.getAuthentication("artikcloud_oauth");
+artikcloud_oauth.setAccessToken("YOUR ACCESS TOKEN");
+
+MessagesApi apiInstance = new MessagesApi();
+String uid = "uid_example"; // String | User ID. If not specified, assume that of the current authenticated user. If specified, it must be that of a user for which the current authenticated user has read access to.
+String ddid = "ddid_example"; // String | Destination device ID of the actions being searched.
+String mid = "mid_example"; // String | The message ID being searched.
+String offset = "offset_example"; // String | A string that represents the starting item, should be the value of 'next' field received in the last response. (required for pagination)
+Integer count = 56; // Integer | count
+Long startDate = 789L; // Long | startDate
+Long endDate = 789L; // Long | endDate
+String order = "order_example"; // String | Desired sort order: 'asc' or 'desc'
+try {
+    NormalizedActionsEnvelope result = apiInstance.getNormalizedActions(uid, ddid, mid, offset, count, startDate, endDate, order);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling MessagesApi#getNormalizedActions");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **uid** | **String**| User ID. If not specified, assume that of the current authenticated user. If specified, it must be that of a user for which the current authenticated user has read access to. | [optional]
+ **ddid** | **String**| Destination device ID of the actions being searched. | [optional]
+ **mid** | **String**| The message ID being searched. | [optional]
+ **offset** | **String**| A string that represents the starting item, should be the value of &#39;next&#39; field received in the last response. (required for pagination) | [optional]
+ **count** | **Integer**| count | [optional]
+ **startDate** | **Long**| startDate | [optional]
+ **endDate** | **Long**| endDate | [optional]
+ **order** | **String**| Desired sort order: &#39;asc&#39; or &#39;desc&#39; | [optional]
+
+### Return type
+
+[**NormalizedActionsEnvelope**](NormalizedActionsEnvelope.md)
+
+### Authorization
+
+[artikcloud_oauth](../README.md#artikcloud_oauth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
 <a name="getNormalizedMessages"></a>
 # **getNormalizedMessages**
 > NormalizedMessagesEnvelope getNormalizedMessages(uid, sdid, mid, fieldPresence, filter, offset, count, startDate, endDate, order)
@@ -332,7 +401,7 @@ artikcloud_oauth.setAccessToken("YOUR ACCESS TOKEN");
 MessagesApi apiInstance = new MessagesApi();
 String uid = "uid_example"; // String | User ID. If not specified, assume that of the current authenticated user. If specified, it must be that of a user for which the current authenticated user has read access to.
 String sdid = "sdid_example"; // String | Source device ID of the messages being searched.
-String mid = "mid_example"; // String | The SAMI message ID being searched.
+String mid = "mid_example"; // String | The message ID being searched.
 String fieldPresence = "fieldPresence_example"; // String | String representing a field from the specified device ID.
 String filter = "filter_example"; // String | Filter.
 String offset = "offset_example"; // String | A string that represents the starting item, should be the value of 'next' field received in the last response. (required for pagination)
@@ -355,7 +424,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **uid** | **String**| User ID. If not specified, assume that of the current authenticated user. If specified, it must be that of a user for which the current authenticated user has read access to. | [optional]
  **sdid** | **String**| Source device ID of the messages being searched. | [optional]
- **mid** | **String**| The SAMI message ID being searched. | [optional]
+ **mid** | **String**| The message ID being searched. | [optional]
  **fieldPresence** | **String**| String representing a field from the specified device ID. | [optional]
  **filter** | **String**| Filter. | [optional]
  **offset** | **String**| A string that represents the starting item, should be the value of &#39;next&#39; field received in the last response. (required for pagination) | [optional]
@@ -377,13 +446,13 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
-<a name="sendMessageAction"></a>
-# **sendMessageAction**
-> MessageIDEnvelope sendMessageAction(data)
+<a name="sendActions"></a>
+# **sendActions**
+> MessageIDEnvelope sendActions(data)
 
-Send Message Action
+Send Actions
 
-(Deprecated) Send a message or an Action:&lt;br/&gt;&lt;table&gt;&lt;tr&gt;&lt;th&gt;Combination&lt;/th&gt;&lt;th&gt;Parameters&lt;/th&gt;&lt;th&gt;Description&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Send Message&lt;/td&gt;&lt;td&gt;sdid, type&#x3D;message&lt;/td&gt;&lt;td&gt;Send a message from a Source Device&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Send Action&lt;/td&gt;&lt;td&gt;ddid, type&#x3D;action&lt;/td&gt;&lt;td&gt;Send an action to a Destination Device&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Common&lt;/td&gt;&lt;td&gt;data, ts, token&lt;/td&gt;&lt;td&gt;Parameters that can be used with the above combinations.&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+Send Actions
 
 ### Example
 ```java
@@ -401,12 +470,12 @@ OAuth artikcloud_oauth = (OAuth) defaultClient.getAuthentication("artikcloud_oau
 artikcloud_oauth.setAccessToken("YOUR ACCESS TOKEN");
 
 MessagesApi apiInstance = new MessagesApi();
-MessageAction data = new MessageAction(); // MessageAction | Message or Action object that is passed in the body
+Actions data = new Actions(); // Actions | Actions that are passed in the body
 try {
-    MessageIDEnvelope result = apiInstance.sendMessageAction(data);
+    MessageIDEnvelope result = apiInstance.sendActions(data);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling MessagesApi#sendMessageAction");
+    System.err.println("Exception when calling MessagesApi#sendActions");
     e.printStackTrace();
 }
 ```
@@ -415,7 +484,60 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **data** | [**MessageAction**](MessageAction.md)| Message or Action object that is passed in the body |
+ **data** | [**Actions**](Actions.md)| Actions that are passed in the body |
+
+### Return type
+
+[**MessageIDEnvelope**](MessageIDEnvelope.md)
+
+### Authorization
+
+[artikcloud_oauth](../README.md#artikcloud_oauth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="sendMessage"></a>
+# **sendMessage**
+> MessageIDEnvelope sendMessage(data)
+
+Send Message
+
+Send a message
+
+### Example
+```java
+// Import classes:
+//import cloud.artik.client.ApiClient;
+//import cloud.artik.client.ApiException;
+//import cloud.artik.client.Configuration;
+//import cloud.artik.client.auth.*;
+//import cloud.artik.api.MessagesApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure OAuth2 access token for authorization: artikcloud_oauth
+OAuth artikcloud_oauth = (OAuth) defaultClient.getAuthentication("artikcloud_oauth");
+artikcloud_oauth.setAccessToken("YOUR ACCESS TOKEN");
+
+MessagesApi apiInstance = new MessagesApi();
+Message data = new Message(); // Message | Message object that is passed in the body
+try {
+    MessageIDEnvelope result = apiInstance.sendMessage(data);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling MessagesApi#sendMessage");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **data** | [**Message**](Message.md)| Message object that is passed in the body |
 
 ### Return type
 

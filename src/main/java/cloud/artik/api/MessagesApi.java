@@ -40,11 +40,14 @@ import java.io.IOException;
 
 import cloud.artik.model.AggregatesHistogramResponse;
 import cloud.artik.model.FieldPresenceEnvelope;
+import cloud.artik.model.MessageAction;
 import cloud.artik.model.NormalizedMessagesEnvelope;
 import cloud.artik.model.AggregatesResponse;
 import cloud.artik.model.SnapshotResponses;
-import cloud.artik.model.MessageAction;
+import cloud.artik.model.NormalizedActionsEnvelope;
+import cloud.artik.model.Actions;
 import cloud.artik.model.MessageIDEnvelope;
+import cloud.artik.model.Message;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -706,6 +709,144 @@ public class MessagesApi {
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
+    /* Build call for getNormalizedActions */
+    private com.squareup.okhttp.Call getNormalizedActionsCall(String uid, String ddid, String mid, String offset, Integer count, Long startDate, Long endDate, String order, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+        
+
+        // create path and map variables
+        String localVarPath = "/actions".replaceAll("\\{format\\}","json");
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        if (uid != null)
+        localVarQueryParams.addAll(apiClient.parameterToPairs("", "uid", uid));
+        if (ddid != null)
+        localVarQueryParams.addAll(apiClient.parameterToPairs("", "ddid", ddid));
+        if (mid != null)
+        localVarQueryParams.addAll(apiClient.parameterToPairs("", "mid", mid));
+        if (offset != null)
+        localVarQueryParams.addAll(apiClient.parameterToPairs("", "offset", offset));
+        if (count != null)
+        localVarQueryParams.addAll(apiClient.parameterToPairs("", "count", count));
+        if (startDate != null)
+        localVarQueryParams.addAll(apiClient.parameterToPairs("", "startDate", startDate));
+        if (endDate != null)
+        localVarQueryParams.addAll(apiClient.parameterToPairs("", "endDate", endDate));
+        if (order != null)
+        localVarQueryParams.addAll(apiClient.parameterToPairs("", "order", order));
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "artikcloud_oauth" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    /**
+     * Get Normalized Actions
+     * Get the actions normalized
+     * @param uid User ID. If not specified, assume that of the current authenticated user. If specified, it must be that of a user for which the current authenticated user has read access to. (optional)
+     * @param ddid Destination device ID of the actions being searched. (optional)
+     * @param mid The message ID being searched. (optional)
+     * @param offset A string that represents the starting item, should be the value of &#39;next&#39; field received in the last response. (required for pagination) (optional)
+     * @param count count (optional)
+     * @param startDate startDate (optional)
+     * @param endDate endDate (optional)
+     * @param order Desired sort order: &#39;asc&#39; or &#39;desc&#39; (optional)
+     * @return NormalizedActionsEnvelope
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public NormalizedActionsEnvelope getNormalizedActions(String uid, String ddid, String mid, String offset, Integer count, Long startDate, Long endDate, String order) throws ApiException {
+        ApiResponse<NormalizedActionsEnvelope> resp = getNormalizedActionsWithHttpInfo(uid, ddid, mid, offset, count, startDate, endDate, order);
+        return resp.getData();
+    }
+
+    /**
+     * Get Normalized Actions
+     * Get the actions normalized
+     * @param uid User ID. If not specified, assume that of the current authenticated user. If specified, it must be that of a user for which the current authenticated user has read access to. (optional)
+     * @param ddid Destination device ID of the actions being searched. (optional)
+     * @param mid The message ID being searched. (optional)
+     * @param offset A string that represents the starting item, should be the value of &#39;next&#39; field received in the last response. (required for pagination) (optional)
+     * @param count count (optional)
+     * @param startDate startDate (optional)
+     * @param endDate endDate (optional)
+     * @param order Desired sort order: &#39;asc&#39; or &#39;desc&#39; (optional)
+     * @return ApiResponse&lt;NormalizedActionsEnvelope&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<NormalizedActionsEnvelope> getNormalizedActionsWithHttpInfo(String uid, String ddid, String mid, String offset, Integer count, Long startDate, Long endDate, String order) throws ApiException {
+        com.squareup.okhttp.Call call = getNormalizedActionsCall(uid, ddid, mid, offset, count, startDate, endDate, order, null, null);
+        Type localVarReturnType = new TypeToken<NormalizedActionsEnvelope>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Get Normalized Actions (asynchronously)
+     * Get the actions normalized
+     * @param uid User ID. If not specified, assume that of the current authenticated user. If specified, it must be that of a user for which the current authenticated user has read access to. (optional)
+     * @param ddid Destination device ID of the actions being searched. (optional)
+     * @param mid The message ID being searched. (optional)
+     * @param offset A string that represents the starting item, should be the value of &#39;next&#39; field received in the last response. (required for pagination) (optional)
+     * @param count count (optional)
+     * @param startDate startDate (optional)
+     * @param endDate endDate (optional)
+     * @param order Desired sort order: &#39;asc&#39; or &#39;desc&#39; (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call getNormalizedActionsAsync(String uid, String ddid, String mid, String offset, Integer count, Long startDate, Long endDate, String order, final ApiCallback<NormalizedActionsEnvelope> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = getNormalizedActionsCall(uid, ddid, mid, offset, count, startDate, endDate, order, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<NormalizedActionsEnvelope>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
     /* Build call for getNormalizedMessages */
     private com.squareup.okhttp.Call getNormalizedMessagesCall(String uid, String sdid, String mid, String fieldPresence, String filter, String offset, Integer count, Long startDate, Long endDate, String order, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
@@ -773,7 +914,7 @@ public class MessagesApi {
      * Get the messages normalized
      * @param uid User ID. If not specified, assume that of the current authenticated user. If specified, it must be that of a user for which the current authenticated user has read access to. (optional)
      * @param sdid Source device ID of the messages being searched. (optional)
-     * @param mid The SAMI message ID being searched. (optional)
+     * @param mid The message ID being searched. (optional)
      * @param fieldPresence String representing a field from the specified device ID. (optional)
      * @param filter Filter. (optional)
      * @param offset A string that represents the starting item, should be the value of &#39;next&#39; field received in the last response. (required for pagination) (optional)
@@ -794,7 +935,7 @@ public class MessagesApi {
      * Get the messages normalized
      * @param uid User ID. If not specified, assume that of the current authenticated user. If specified, it must be that of a user for which the current authenticated user has read access to. (optional)
      * @param sdid Source device ID of the messages being searched. (optional)
-     * @param mid The SAMI message ID being searched. (optional)
+     * @param mid The message ID being searched. (optional)
      * @param fieldPresence String representing a field from the specified device ID. (optional)
      * @param filter Filter. (optional)
      * @param offset A string that represents the starting item, should be the value of &#39;next&#39; field received in the last response. (required for pagination) (optional)
@@ -816,7 +957,7 @@ public class MessagesApi {
      * Get the messages normalized
      * @param uid User ID. If not specified, assume that of the current authenticated user. If specified, it must be that of a user for which the current authenticated user has read access to. (optional)
      * @param sdid Source device ID of the messages being searched. (optional)
-     * @param mid The SAMI message ID being searched. (optional)
+     * @param mid The message ID being searched. (optional)
      * @param fieldPresence String representing a field from the specified device ID. (optional)
      * @param filter Filter. (optional)
      * @param offset A string that represents the starting item, should be the value of &#39;next&#39; field received in the last response. (required for pagination) (optional)
@@ -854,7 +995,221 @@ public class MessagesApi {
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
+    /* Build call for sendActions */
+    private com.squareup.okhttp.Call sendActionsCall(Actions data, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = data;
+        
+        // verify the required parameter 'data' is set
+        if (data == null) {
+            throw new ApiException("Missing the required parameter 'data' when calling sendActions(Async)");
+        }
+        
+
+        // create path and map variables
+        String localVarPath = "/actions".replaceAll("\\{format\\}","json");
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "artikcloud_oauth" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    /**
+     * Send Actions
+     * Send Actions
+     * @param data Actions that are passed in the body (required)
+     * @return MessageIDEnvelope
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public MessageIDEnvelope sendActions(Actions data) throws ApiException {
+        ApiResponse<MessageIDEnvelope> resp = sendActionsWithHttpInfo(data);
+        return resp.getData();
+    }
+
+    /**
+     * Send Actions
+     * Send Actions
+     * @param data Actions that are passed in the body (required)
+     * @return ApiResponse&lt;MessageIDEnvelope&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<MessageIDEnvelope> sendActionsWithHttpInfo(Actions data) throws ApiException {
+        com.squareup.okhttp.Call call = sendActionsCall(data, null, null);
+        Type localVarReturnType = new TypeToken<MessageIDEnvelope>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Send Actions (asynchronously)
+     * Send Actions
+     * @param data Actions that are passed in the body (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call sendActionsAsync(Actions data, final ApiCallback<MessageIDEnvelope> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = sendActionsCall(data, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<MessageIDEnvelope>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /* Build call for sendMessage */
+    private com.squareup.okhttp.Call sendMessageCall(Message data, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = data;
+        
+        // verify the required parameter 'data' is set
+        if (data == null) {
+            throw new ApiException("Missing the required parameter 'data' when calling sendMessage(Async)");
+        }
+        
+
+        // create path and map variables
+        String localVarPath = "/messages".replaceAll("\\{format\\}","json");
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "artikcloud_oauth" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    /**
+     * Send Message
+     * Send a message
+     * @param data Message object that is passed in the body (required)
+     * @return MessageIDEnvelope
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public MessageIDEnvelope sendMessage(Message data) throws ApiException {
+        ApiResponse<MessageIDEnvelope> resp = sendMessageWithHttpInfo(data);
+        return resp.getData();
+    }
+
+    /**
+     * Send Message
+     * Send a message
+     * @param data Message object that is passed in the body (required)
+     * @return ApiResponse&lt;MessageIDEnvelope&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<MessageIDEnvelope> sendMessageWithHttpInfo(Message data) throws ApiException {
+        com.squareup.okhttp.Call call = sendMessageCall(data, null, null);
+        Type localVarReturnType = new TypeToken<MessageIDEnvelope>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Send Message (asynchronously)
+     * Send a message
+     * @param data Message object that is passed in the body (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call sendMessageAsync(Message data, final ApiCallback<MessageIDEnvelope> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = sendMessageCall(data, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<MessageIDEnvelope>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    
     /* Build call for sendMessageAction */
+    @Deprecated
     private com.squareup.okhttp.Call sendMessageActionCall(MessageAction data, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = data;
         
@@ -908,6 +1263,7 @@ public class MessagesApi {
      * @return MessageIDEnvelope
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
+    @Deprecated
     public MessageIDEnvelope sendMessageAction(MessageAction data) throws ApiException {
         ApiResponse<MessageIDEnvelope> resp = sendMessageActionWithHttpInfo(data);
         return resp.getData();
@@ -920,6 +1276,7 @@ public class MessagesApi {
      * @return ApiResponse&lt;MessageIDEnvelope&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
+    @Deprecated
     public ApiResponse<MessageIDEnvelope> sendMessageActionWithHttpInfo(MessageAction data) throws ApiException {
         com.squareup.okhttp.Call call = sendMessageActionCall(data, null, null);
         Type localVarReturnType = new TypeToken<MessageIDEnvelope>(){}.getType();
@@ -934,6 +1291,7 @@ public class MessagesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
+    @Deprecated
     public com.squareup.okhttp.Call sendMessageActionAsync(MessageAction data, final ApiCallback<MessageIDEnvelope> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
@@ -959,5 +1317,5 @@ public class MessagesApi {
         Type localVarReturnType = new TypeToken<MessageIDEnvelope>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
-    }
+    }    
 }

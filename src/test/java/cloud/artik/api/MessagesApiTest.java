@@ -9,7 +9,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import cloud.artik.model.MessageAction;
+import cloud.artik.model.Action;
+import cloud.artik.model.ActionArray;
+import cloud.artik.model.Actions;
+import cloud.artik.model.Message;
 import cloud.artik.model.NormalizedMessage;
 import cloud.artik.model.NormalizedMessagesEnvelope;
 import cloud.artik.model.SnapshotResponses;
@@ -28,14 +31,13 @@ public class MessagesApiTest extends ArtikCloudApiTest {
     }
 
     @Test
-    public void testSendMessageAction() throws Exception {
-        MessageAction message = new MessageAction();
+    public void testSendMessage() throws Exception {
+        Message message = new Message();
         message.setSdid(this.getProperty("device1.id"));
         message.setTs(new Long(System.currentTimeMillis()));
-        message.setType("message");
         message.getData().put("steps", new Integer(500));
 
-        String messageId = this.apiClient.sendMessageAction(message).getData()
+        String messageId = this.apiClient.sendMessage(message).getData()
                 .getMid();
         assertNotNull("Message ID should not be null", messageId);
 
@@ -70,6 +72,30 @@ public class MessagesApiTest extends ArtikCloudApiTest {
         Map<String, Object> stepsInfo = (Map<String, Object>) env.getData().get(0).getData().get("steps");
         
         assertEquals("Steps must be 500", 500.0, stepsInfo.get("value"));       
+    }
+    
+    @Test
+    public void testSendActions() throws Exception {
+        String ddid = this.getProperty("device4.id");
+        MessagesApi newApi = (MessagesApi) super.api(MessagesApi.class, "user1.token");
+        
+        Action action = new Action();
+        action.setName("setVolume");
+        action.getParameters().put("volume", 5);
+        
+        ActionArray actionArray = new ActionArray();
+        actionArray.getActions().add(action);
+        
+        Actions actions = new Actions();
+        actions.setDdid(ddid);
+        actions.setTs(new Long(System.currentTimeMillis()));
+        actions.setData(actionArray);
+        
+        newApi.sendActions(actions);
+        
+        // Wait 2 seconds for the message to be normalized. 2 seconds just to be
+        // safe, usually much faster.
+        Thread.sleep(2000);
     }
 
 }
