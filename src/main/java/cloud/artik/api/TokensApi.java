@@ -116,7 +116,7 @@ public class TokensApi {
 
     /**
      * Check Token
-     * Check Token
+     * (Deprecated) Check Token. See tokenInfo
      * @param tokenInfo Token object to be checked (required)
      * @return CheckTokenResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -128,7 +128,7 @@ public class TokensApi {
 
     /**
      * Check Token
-     * Check Token
+     * (Deprecated) Check Token. See tokenInfo
      * @param tokenInfo Token object to be checked (required)
      * @return ApiResponse&lt;CheckTokenResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
@@ -141,7 +141,7 @@ public class TokensApi {
 
     /**
      * Check Token (asynchronously)
-     * Check Token
+     * (Deprecated) Check Token. See tokenInfo
      * @param tokenInfo Token object to be checked (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
