@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**checkToken**](TokensApi.md#checkToken) | **POST** /accounts/checkToken | Check Token
 [**refreshToken**](TokensApi.md#refreshToken) | **POST** /accounts/token | Refresh Token
+[**tokenInfo**](TokensApi.md#tokenInfo) | **GET** /accounts/tokenInfo | Token Info
 
 
 <a name="checkToken"></a>
@@ -114,5 +115,54 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/x-www-form-urlencoded
+ - **Accept**: application/json
+
+<a name="tokenInfo"></a>
+# **tokenInfo**
+> TokenInfoSuccessResponse tokenInfo()
+
+Token Info
+
+Returns the Token Information
+
+### Example
+```java
+// Import classes:
+//import cloud.artik.client.ApiClient;
+//import cloud.artik.client.ApiException;
+//import cloud.artik.client.Configuration;
+//import cloud.artik.client.auth.*;
+//import cloud.artik.api.TokensApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure OAuth2 access token for authorization: artikcloud_oauth
+OAuth artikcloud_oauth = (OAuth) defaultClient.getAuthentication("artikcloud_oauth");
+artikcloud_oauth.setAccessToken("YOUR ACCESS TOKEN");
+
+TokensApi apiInstance = new TokensApi();
+try {
+    TokenInfoSuccessResponse result = apiInstance.tokenInfo();
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling TokensApi#tokenInfo");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**TokenInfoSuccessResponse**](TokenInfoSuccessResponse.md)
+
+### Authorization
+
+[artikcloud_oauth](../README.md#artikcloud_oauth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 

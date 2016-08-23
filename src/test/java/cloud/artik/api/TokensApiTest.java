@@ -1,14 +1,12 @@
 package cloud.artik.api;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import cloud.artik.model.CheckTokenResponse;
 import cloud.artik.model.RefreshTokenResponse;
-import cloud.artik.model.TokenRequest;
+import cloud.artik.model.TokenInfoSuccessResponse;
 
 public class TokensApiTest extends ArtikCloudApiTest {
     protected TokensApi apiClient = null;
@@ -19,15 +17,11 @@ public class TokensApiTest extends ArtikCloudApiTest {
     }
     
     @Test
-    public void testCheckToken() throws Exception {
-        String userAccessToken = "6907fe156b6848fa82395b2b99a882ed";
+    public void testTokenInfo() throws Exception {
+        TokenInfoSuccessResponse tokenInfoResponse = apiClient.tokenInfo();
 
-        TokenRequest request = new TokenRequest();
-        request.setToken(userAccessToken);
-        CheckTokenResponse checkTokenResponse = apiClient.checkToken(request);
-
-        assertNotNull(checkTokenResponse);
-        assertEquals("Valid token", checkTokenResponse.getData().getMessage());
+        assertNotNull(tokenInfoResponse);
+        assertNotNull(tokenInfoResponse.getData().getExpiresIn());
     }
 
     @Test
