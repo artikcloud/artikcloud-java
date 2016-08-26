@@ -13,6 +13,8 @@ import cloud.artik.model.Action;
 import cloud.artik.model.ActionArray;
 import cloud.artik.model.Actions;
 import cloud.artik.model.Message;
+import cloud.artik.model.NormalizedAction;
+import cloud.artik.model.NormalizedActionsEnvelope;
 import cloud.artik.model.NormalizedMessage;
 import cloud.artik.model.NormalizedMessagesEnvelope;
 import cloud.artik.model.SnapshotResponses;
@@ -91,11 +93,25 @@ public class MessagesApiTest extends ArtikCloudApiTest {
         actions.setTs(new Long(System.currentTimeMillis()));
         actions.setData(actionArray);
         
-        newApi.sendActions(actions);
+        String mid = newApi.sendActions(actions).getData().getMid();
         
         // Wait 2 seconds for the message to be normalized. 2 seconds just to be
         // safe, usually much faster.
         Thread.sleep(2000);
+        
+        NormalizedActionsEnvelope envelope = newApi.getNormalizedActions(null, null, mid, null, null, null, null, null);
+        assertEquals(new Long(1), envelope.getSize());
+
+        NormalizedAction normalized = envelope.getData().get(0);
+        Action actionRx = normalized.getData().getActions().get(0);
+        
+        assertEquals("setVolume", actionRx.getName());
+
+        Object volume = actionRx.getParameters().get("volume");
+        assertNotNull("Volume should not be null", volume);
+        assertEquals(new Double(5.0), volume);
     }
+    
+    
 
 }
