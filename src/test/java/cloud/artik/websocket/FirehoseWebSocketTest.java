@@ -5,17 +5,12 @@ import static org.junit.Assert.assertEquals;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
+import cloud.artik.model.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import cloud.artik.api.ArtikCloudApiTest;
-import cloud.artik.model.Acknowledgement;
-import cloud.artik.model.ActionOut;
-import cloud.artik.model.MessageIn;
-import cloud.artik.model.MessageOut;
-import cloud.artik.model.RegisterMessage;
-import cloud.artik.model.WebSocketError;
 
 public class FirehoseWebSocketTest extends ArtikCloudApiTest {
 
@@ -74,6 +69,9 @@ public class FirehoseWebSocketTest extends ArtikCloudApiTest {
                     public void onPing(long timestamp) {
                         System.err.println("onPing: " + timestamp);
                     }
+
+                    @Override
+                    public void onEvent(EventFeedData eventFeedData) { System.out.println("onEvent: " + eventFeedData); }
                 });
 
         firehoseWS.connect();
@@ -133,6 +131,9 @@ public class FirehoseWebSocketTest extends ArtikCloudApiTest {
                     public void onPing(long timestamp) {
                         System.out.println("onPing: " + timestamp);
                     }
+
+                    @Override
+                    public void onEvent(EventFeedData eventFeedData) { System.out.println("onEvent: " + eventFeedData); }
                 });
 
         ws.connectBlocking();
@@ -187,6 +188,9 @@ public class FirehoseWebSocketTest extends ArtikCloudApiTest {
                     public void onPing(long timestamp) {
                         System.err.println("onPing: " + timestamp);
                     }
+
+                    @Override
+                    public void onEvent(EventFeedData eventFeedData) { System.out.println("onEvent: " + eventFeedData); }
                 });
 
         firehoseWS.connect();

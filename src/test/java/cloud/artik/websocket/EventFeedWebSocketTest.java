@@ -1,18 +1,22 @@
 package cloud.artik.websocket;
 
-import static org.junit.Assert.assertEquals;
-
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.TimeUnit;
-
+import cloud.artik.api.ArtikCloudApiTest;
 import cloud.artik.model.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import cloud.artik.api.ArtikCloudApiTest;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
-public class DeviceChannelWebSocketTest extends ArtikCloudApiTest {
+import static org.junit.Assert.assertEquals;
+
+/**
+ * Created by jniosi on 9/22/16.
+ */
+public class EventFeedWebSocketTest extends ArtikCloudApiTest {
 
     @Before
     public void setUp() throws Exception {
@@ -23,24 +27,20 @@ public class DeviceChannelWebSocketTest extends ArtikCloudApiTest {
     }
 
     @Test
-    public void testSendMessage() throws Exception {
-        String deviceId = getProperty("device2.id");
+    public void testSendEvent() throws Exception {
+        String deviceId = getProperty("device3.id");
         String userId = getProperty("user1.id");
-        String accessToken = getProperty("device2.token");
+        String accessToken = getProperty("user1.token");
 
-        
         final CountDownLatch registerLatch = new CountDownLatch(1);
         final CountDownLatch messageLatch = new CountDownLatch(1);
-        DeviceChannelWebSocket ws = new DeviceChannelWebSocket(true,
-                new ArtikCloudWebSocketCallback() {
+        EventFeedWebSocket eventWS = new EventFeedWebSocket(accessToken, null, null, null, null, new ArtikCloudWebSocketCallback() {
 
                     @Override
                     public void onAck(Acknowledgement ack) {
                         System.out.println("onAck: " + ack);
                         if (ack.getCid().equalsIgnoreCase("first")) {
                             registerLatch.countDown();
-                        } else if (ack.getCid().equalsIgnoreCase("second")) {
-                            messageLatch.countDown();
                         }
                     }
 
@@ -77,31 +77,16 @@ public class DeviceChannelWebSocketTest extends ArtikCloudApiTest {
                     }
 
                     @Override
-                    public void onEvent(EventFeedData eventFeedData) { System.out.println("onEvent: " + eventFeedData); }
+                    public void onEvent(EventFeedData eventFeedData) {
+                        System.out.println("onEvent: " + eventFeedData);
+                        messageLatch.countDown();
+                    }
                 });
 
-        ws.connectBlocking();
+        eventWS.connectBlocking();
 
-        RegisterMessage msg = new RegisterMessage();
-        msg.setAuthorization("bearer " + accessToken);
-        msg.setSdid(deviceId);
-        msg.setCid("first");
+        messageLatch.await(100, TimeUnit.SECONDS);
 
-        ws.registerChannel(msg);
-        assertEquals(Boolean.TRUE,
-                new Boolean(registerLatch.await(10, TimeUnit.SECONDS)));
-
-        MessageIn message = new MessageIn();
-        message.setSdid(deviceId);
-        message.setTs(new Long(System.currentTimeMillis()));
-        message.getData().put("steps", new Integer(500));
-        message.setCid("second");
-
-        ws.sendMessage(message);
-        assertEquals(Boolean.TRUE,
-                new Boolean(messageLatch.await(10, TimeUnit.SECONDS)));
-
-        ws.closeBlocking();
+        eventWS.closeBlocking();
     }
-
 }

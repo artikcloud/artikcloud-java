@@ -9,13 +9,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import cloud.artik.model.*;
 import okio.Buffer;
 import okio.BufferedSource;
-import cloud.artik.model.AckEnvelope;
-import cloud.artik.model.ActionOut;
-import cloud.artik.model.ErrorEnvelope;
-import cloud.artik.model.MessageOut;
-import cloud.artik.model.WebSocketError;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -149,6 +145,10 @@ public class WebSocketProxy implements WebSocketListener {
                             ActionOut.class);
                     this.callback.onAction(artikAction);
                 }
+            } else if (jsonMap.containsKey("event")) {
+                // Event feed
+                EventFeedData eventFeed = json.getGson().fromJson(message, EventFeedData.class);
+                this.callback.onEvent(eventFeed);
             } else if (jsonMap.containsKey("data")
                     && jsonMap.containsKey("mid")) {
                 // Message, in this case we don't have a way to check the type,

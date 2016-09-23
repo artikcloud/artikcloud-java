@@ -1,9 +1,6 @@
 package cloud.artik.websocket;
 
-import cloud.artik.model.Acknowledgement;
-import cloud.artik.model.ActionOut;
-import cloud.artik.model.MessageOut;
-import cloud.artik.model.WebSocketError;
+import cloud.artik.model.*;
 
 public interface ArtikCloudWebSocketCallback {
 
@@ -20,4 +17,6 @@ public interface ArtikCloudWebSocketCallback {
     public void onError(WebSocketError error);
     
     public void onPing(long timestamp);
+
+    public void onEvent(EventFeedData event);
 }
