@@ -46,14 +46,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DevicetypesApi {
+public class DeviceTypesApi {
     private ApiClient apiClient;
 
-    public DevicetypesApi() {
+    public DeviceTypesApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public DevicetypesApi(ApiClient apiClient) {
+    public DeviceTypesApi(ApiClient apiClient) {
         this.apiClient = apiClient;
     }
 
