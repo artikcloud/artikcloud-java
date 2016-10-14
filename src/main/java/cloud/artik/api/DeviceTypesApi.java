@@ -38,10 +38,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 
-import cloud.artik.model.ManifestVersionsEnvelope;
-import cloud.artik.model.DeviceTypeEnvelope;
 import cloud.artik.model.DeviceTypesEnvelope;
-import cloud.artik.model.ManifestPropertiesEnvelope;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -49,14 +46,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DeviceTypesApi {
+public class DevicetypesApi {
     private ApiClient apiClient;
 
-    public DeviceTypesApi() {
+    public DevicetypesApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public DeviceTypesApi(ApiClient apiClient) {
+    public DevicetypesApi(ApiClient apiClient) {
         this.apiClient = apiClient;
     }
 
@@ -68,242 +65,27 @@ public class DeviceTypesApi {
         this.apiClient = apiClient;
     }
 
-    /* Build call for getAvailableManifestVersions */
-    private com.squareup.okhttp.Call getAvailableManifestVersionsCall(String deviceTypeId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    /* Build call for getDeviceTypesByApplication */
+    private com.squareup.okhttp.Call getDeviceTypesByApplicationCall(String appId, Boolean productInfo, Integer count, Integer offset, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
-        // verify the required parameter 'deviceTypeId' is set
-        if (deviceTypeId == null) {
-            throw new ApiException("Missing the required parameter 'deviceTypeId' when calling getAvailableManifestVersions(Async)");
+        // verify the required parameter 'appId' is set
+        if (appId == null) {
+            throw new ApiException("Missing the required parameter 'appId' when calling getDeviceTypesByApplication(Async)");
         }
         
 
         // create path and map variables
-        String localVarPath = "/devicetypes/{deviceTypeId}/availablemanifestversions".replaceAll("\\{format\\}","json")
-        .replaceAll("\\{" + "deviceTypeId" + "\\}", apiClient.escapeString(deviceTypeId.toString()));
+        String localVarPath = "/applications/{appId}/devicetypes".replaceAll("\\{format\\}","json")
+        .replaceAll("\\{" + "appId" + "\\}", apiClient.escapeString(appId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
-
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
-
-        final String[] localVarContentTypes = {
-            
-        };
-        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
-                @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
-                    return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
-                }
-            });
-        }
-
-        String[] localVarAuthNames = new String[] { "artikcloud_oauth" };
-        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
-    }
-
-    /**
-     * Get Available Manifest Versions
-     * Get a Device Type&#39;s available manifest versions
-     * @param deviceTypeId deviceTypeId (required)
-     * @return ManifestVersionsEnvelope
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public ManifestVersionsEnvelope getAvailableManifestVersions(String deviceTypeId) throws ApiException {
-        ApiResponse<ManifestVersionsEnvelope> resp = getAvailableManifestVersionsWithHttpInfo(deviceTypeId);
-        return resp.getData();
-    }
-
-    /**
-     * Get Available Manifest Versions
-     * Get a Device Type&#39;s available manifest versions
-     * @param deviceTypeId deviceTypeId (required)
-     * @return ApiResponse&lt;ManifestVersionsEnvelope&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public ApiResponse<ManifestVersionsEnvelope> getAvailableManifestVersionsWithHttpInfo(String deviceTypeId) throws ApiException {
-        com.squareup.okhttp.Call call = getAvailableManifestVersionsCall(deviceTypeId, null, null);
-        Type localVarReturnType = new TypeToken<ManifestVersionsEnvelope>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
-    }
-
-    /**
-     * Get Available Manifest Versions (asynchronously)
-     * Get a Device Type&#39;s available manifest versions
-     * @param deviceTypeId deviceTypeId (required)
-     * @param callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     */
-    public com.squareup.okhttp.Call getAvailableManifestVersionsAsync(String deviceTypeId, final ApiCallback<ManifestVersionsEnvelope> callback) throws ApiException {
-
-        ProgressResponseBody.ProgressListener progressListener = null;
-        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
-
-        if (callback != null) {
-            progressListener = new ProgressResponseBody.ProgressListener() {
-                @Override
-                public void update(long bytesRead, long contentLength, boolean done) {
-                    callback.onDownloadProgress(bytesRead, contentLength, done);
-                }
-            };
-
-            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
-                @Override
-                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
-                    callback.onUploadProgress(bytesWritten, contentLength, done);
-                }
-            };
-        }
-
-        com.squareup.okhttp.Call call = getAvailableManifestVersionsCall(deviceTypeId, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<ManifestVersionsEnvelope>(){}.getType();
-        apiClient.executeAsync(call, localVarReturnType, callback);
-        return call;
-    }
-    /* Build call for getDeviceType */
-    private com.squareup.okhttp.Call getDeviceTypeCall(String deviceTypeId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = null;
-        
-        // verify the required parameter 'deviceTypeId' is set
-        if (deviceTypeId == null) {
-            throw new ApiException("Missing the required parameter 'deviceTypeId' when calling getDeviceType(Async)");
-        }
-        
-
-        // create path and map variables
-        String localVarPath = "/devicetypes/{deviceTypeId}".replaceAll("\\{format\\}","json")
-        .replaceAll("\\{" + "deviceTypeId" + "\\}", apiClient.escapeString(deviceTypeId.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
-
-        final String[] localVarContentTypes = {
-            
-        };
-        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
-                @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
-                    return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
-                }
-            });
-        }
-
-        String[] localVarAuthNames = new String[] { "artikcloud_oauth" };
-        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
-    }
-
-    /**
-     * Get Device Type
-     * Retrieves a Device Type
-     * @param deviceTypeId deviceTypeId (required)
-     * @return DeviceTypeEnvelope
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public DeviceTypeEnvelope getDeviceType(String deviceTypeId) throws ApiException {
-        ApiResponse<DeviceTypeEnvelope> resp = getDeviceTypeWithHttpInfo(deviceTypeId);
-        return resp.getData();
-    }
-
-    /**
-     * Get Device Type
-     * Retrieves a Device Type
-     * @param deviceTypeId deviceTypeId (required)
-     * @return ApiResponse&lt;DeviceTypeEnvelope&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public ApiResponse<DeviceTypeEnvelope> getDeviceTypeWithHttpInfo(String deviceTypeId) throws ApiException {
-        com.squareup.okhttp.Call call = getDeviceTypeCall(deviceTypeId, null, null);
-        Type localVarReturnType = new TypeToken<DeviceTypeEnvelope>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
-    }
-
-    /**
-     * Get Device Type (asynchronously)
-     * Retrieves a Device Type
-     * @param deviceTypeId deviceTypeId (required)
-     * @param callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     */
-    public com.squareup.okhttp.Call getDeviceTypeAsync(String deviceTypeId, final ApiCallback<DeviceTypeEnvelope> callback) throws ApiException {
-
-        ProgressResponseBody.ProgressListener progressListener = null;
-        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
-
-        if (callback != null) {
-            progressListener = new ProgressResponseBody.ProgressListener() {
-                @Override
-                public void update(long bytesRead, long contentLength, boolean done) {
-                    callback.onDownloadProgress(bytesRead, contentLength, done);
-                }
-            };
-
-            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
-                @Override
-                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
-                    callback.onUploadProgress(bytesWritten, contentLength, done);
-                }
-            };
-        }
-
-        com.squareup.okhttp.Call call = getDeviceTypeCall(deviceTypeId, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<DeviceTypeEnvelope>(){}.getType();
-        apiClient.executeAsync(call, localVarReturnType, callback);
-        return call;
-    }
-    /* Build call for getDeviceTypes */
-    private com.squareup.okhttp.Call getDeviceTypesCall(String name, Integer offset, Integer count, String tags, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = null;
-        
-        // verify the required parameter 'name' is set
-        if (name == null) {
-            throw new ApiException("Missing the required parameter 'name' when calling getDeviceTypes(Async)");
-        }
-        
-
-        // create path and map variables
-        String localVarPath = "/devicetypes".replaceAll("\\{format\\}","json");
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-        if (name != null)
-        localVarQueryParams.addAll(apiClient.parameterToPairs("", "name", name));
-        if (offset != null)
-        localVarQueryParams.addAll(apiClient.parameterToPairs("", "offset", offset));
+        if (productInfo != null)
+        localVarQueryParams.addAll(apiClient.parameterToPairs("", "productInfo", productInfo));
         if (count != null)
         localVarQueryParams.addAll(apiClient.parameterToPairs("", "count", count));
-        if (tags != null)
-        localVarQueryParams.addAll(apiClient.parameterToPairs("", "tags", tags));
+        if (offset != null)
+        localVarQueryParams.addAll(apiClient.parameterToPairs("", "offset", offset));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -338,48 +120,48 @@ public class DeviceTypesApi {
     }
 
     /**
-     * Get Device Types
-     * Retrieves Device Types
-     * @param name Device Type name (required)
+     * Get Device Types by Application
+     * Get Device Types by Application
+     * @param appId Application ID. (required)
+     * @param productInfo Flag to include the associated ProductInfo if present (optional)
+     * @param count Desired count of items in the result set. (optional)
      * @param offset Offset for pagination. (optional)
-     * @param count Desired count of items in the result set (optional)
-     * @param tags Elements tagged with the list of tags. (comma separated) (optional)
      * @return DeviceTypesEnvelope
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public DeviceTypesEnvelope getDeviceTypes(String name, Integer offset, Integer count, String tags) throws ApiException {
-        ApiResponse<DeviceTypesEnvelope> resp = getDeviceTypesWithHttpInfo(name, offset, count, tags);
+    public DeviceTypesEnvelope getDeviceTypesByApplication(String appId, Boolean productInfo, Integer count, Integer offset) throws ApiException {
+        ApiResponse<DeviceTypesEnvelope> resp = getDeviceTypesByApplicationWithHttpInfo(appId, productInfo, count, offset);
         return resp.getData();
     }
 
     /**
-     * Get Device Types
-     * Retrieves Device Types
-     * @param name Device Type name (required)
+     * Get Device Types by Application
+     * Get Device Types by Application
+     * @param appId Application ID. (required)
+     * @param productInfo Flag to include the associated ProductInfo if present (optional)
+     * @param count Desired count of items in the result set. (optional)
      * @param offset Offset for pagination. (optional)
-     * @param count Desired count of items in the result set (optional)
-     * @param tags Elements tagged with the list of tags. (comma separated) (optional)
      * @return ApiResponse&lt;DeviceTypesEnvelope&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<DeviceTypesEnvelope> getDeviceTypesWithHttpInfo(String name, Integer offset, Integer count, String tags) throws ApiException {
-        com.squareup.okhttp.Call call = getDeviceTypesCall(name, offset, count, tags, null, null);
+    public ApiResponse<DeviceTypesEnvelope> getDeviceTypesByApplicationWithHttpInfo(String appId, Boolean productInfo, Integer count, Integer offset) throws ApiException {
+        com.squareup.okhttp.Call call = getDeviceTypesByApplicationCall(appId, productInfo, count, offset, null, null);
         Type localVarReturnType = new TypeToken<DeviceTypesEnvelope>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * Get Device Types (asynchronously)
-     * Retrieves Device Types
-     * @param name Device Type name (required)
+     * Get Device Types by Application (asynchronously)
+     * Get Device Types by Application
+     * @param appId Application ID. (required)
+     * @param productInfo Flag to include the associated ProductInfo if present (optional)
+     * @param count Desired count of items in the result set. (optional)
      * @param offset Offset for pagination. (optional)
-     * @param count Desired count of items in the result set (optional)
-     * @param tags Elements tagged with the list of tags. (comma separated) (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getDeviceTypesAsync(String name, Integer offset, Integer count, String tags, final ApiCallback<DeviceTypesEnvelope> callback) throws ApiException {
+    public com.squareup.okhttp.Call getDeviceTypesByApplicationAsync(String appId, Boolean productInfo, Integer count, Integer offset, final ApiCallback<DeviceTypesEnvelope> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -400,231 +182,8 @@ public class DeviceTypesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getDeviceTypesCall(name, offset, count, tags, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getDeviceTypesByApplicationCall(appId, productInfo, count, offset, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<DeviceTypesEnvelope>(){}.getType();
-        apiClient.executeAsync(call, localVarReturnType, callback);
-        return call;
-    }
-    /* Build call for getLatestManifestProperties */
-    private com.squareup.okhttp.Call getLatestManifestPropertiesCall(String deviceTypeId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = null;
-        
-        // verify the required parameter 'deviceTypeId' is set
-        if (deviceTypeId == null) {
-            throw new ApiException("Missing the required parameter 'deviceTypeId' when calling getLatestManifestProperties(Async)");
-        }
-        
-
-        // create path and map variables
-        String localVarPath = "/devicetypes/{deviceTypeId}/manifests/latest/properties".replaceAll("\\{format\\}","json")
-        .replaceAll("\\{" + "deviceTypeId" + "\\}", apiClient.escapeString(deviceTypeId.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
-
-        final String[] localVarContentTypes = {
-            
-        };
-        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
-                @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
-                    return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
-                }
-            });
-        }
-
-        String[] localVarAuthNames = new String[] { "artikcloud_oauth" };
-        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
-    }
-
-    /**
-     * Get Latest Manifest Properties
-     * Get a Device Type&#39;s manifest properties for the latest version.
-     * @param deviceTypeId Device Type ID. (required)
-     * @return ManifestPropertiesEnvelope
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public ManifestPropertiesEnvelope getLatestManifestProperties(String deviceTypeId) throws ApiException {
-        ApiResponse<ManifestPropertiesEnvelope> resp = getLatestManifestPropertiesWithHttpInfo(deviceTypeId);
-        return resp.getData();
-    }
-
-    /**
-     * Get Latest Manifest Properties
-     * Get a Device Type&#39;s manifest properties for the latest version.
-     * @param deviceTypeId Device Type ID. (required)
-     * @return ApiResponse&lt;ManifestPropertiesEnvelope&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public ApiResponse<ManifestPropertiesEnvelope> getLatestManifestPropertiesWithHttpInfo(String deviceTypeId) throws ApiException {
-        com.squareup.okhttp.Call call = getLatestManifestPropertiesCall(deviceTypeId, null, null);
-        Type localVarReturnType = new TypeToken<ManifestPropertiesEnvelope>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
-    }
-
-    /**
-     * Get Latest Manifest Properties (asynchronously)
-     * Get a Device Type&#39;s manifest properties for the latest version.
-     * @param deviceTypeId Device Type ID. (required)
-     * @param callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     */
-    public com.squareup.okhttp.Call getLatestManifestPropertiesAsync(String deviceTypeId, final ApiCallback<ManifestPropertiesEnvelope> callback) throws ApiException {
-
-        ProgressResponseBody.ProgressListener progressListener = null;
-        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
-
-        if (callback != null) {
-            progressListener = new ProgressResponseBody.ProgressListener() {
-                @Override
-                public void update(long bytesRead, long contentLength, boolean done) {
-                    callback.onDownloadProgress(bytesRead, contentLength, done);
-                }
-            };
-
-            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
-                @Override
-                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
-                    callback.onUploadProgress(bytesWritten, contentLength, done);
-                }
-            };
-        }
-
-        com.squareup.okhttp.Call call = getLatestManifestPropertiesCall(deviceTypeId, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<ManifestPropertiesEnvelope>(){}.getType();
-        apiClient.executeAsync(call, localVarReturnType, callback);
-        return call;
-    }
-    /* Build call for getManifestProperties */
-    private com.squareup.okhttp.Call getManifestPropertiesCall(String deviceTypeId, String version, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = null;
-        
-        // verify the required parameter 'deviceTypeId' is set
-        if (deviceTypeId == null) {
-            throw new ApiException("Missing the required parameter 'deviceTypeId' when calling getManifestProperties(Async)");
-        }
-        
-        // verify the required parameter 'version' is set
-        if (version == null) {
-            throw new ApiException("Missing the required parameter 'version' when calling getManifestProperties(Async)");
-        }
-        
-
-        // create path and map variables
-        String localVarPath = "/devicetypes/{deviceTypeId}/manifests/{version}/properties".replaceAll("\\{format\\}","json")
-        .replaceAll("\\{" + "deviceTypeId" + "\\}", apiClient.escapeString(deviceTypeId.toString()))
-        .replaceAll("\\{" + "version" + "\\}", apiClient.escapeString(version.toString()));
-
-        List<Pair> localVarQueryParams = new ArrayList<Pair>();
-
-        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
-
-        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
-
-        final String[] localVarAccepts = {
-            "application/json"
-        };
-        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
-        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
-
-        final String[] localVarContentTypes = {
-            
-        };
-        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
-        localVarHeaderParams.put("Content-Type", localVarContentType);
-
-        if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
-                @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
-                    return originalResponse.newBuilder()
-                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
-                    .build();
-                }
-            });
-        }
-
-        String[] localVarAuthNames = new String[] { "artikcloud_oauth" };
-        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
-    }
-
-    /**
-     * Get manifest properties
-     * Get a Device Type&#39;s manifest properties for a specific version.
-     * @param deviceTypeId Device Type ID. (required)
-     * @param version Manifest Version. (required)
-     * @return ManifestPropertiesEnvelope
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public ManifestPropertiesEnvelope getManifestProperties(String deviceTypeId, String version) throws ApiException {
-        ApiResponse<ManifestPropertiesEnvelope> resp = getManifestPropertiesWithHttpInfo(deviceTypeId, version);
-        return resp.getData();
-    }
-
-    /**
-     * Get manifest properties
-     * Get a Device Type&#39;s manifest properties for a specific version.
-     * @param deviceTypeId Device Type ID. (required)
-     * @param version Manifest Version. (required)
-     * @return ApiResponse&lt;ManifestPropertiesEnvelope&gt;
-     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
-     */
-    public ApiResponse<ManifestPropertiesEnvelope> getManifestPropertiesWithHttpInfo(String deviceTypeId, String version) throws ApiException {
-        com.squareup.okhttp.Call call = getManifestPropertiesCall(deviceTypeId, version, null, null);
-        Type localVarReturnType = new TypeToken<ManifestPropertiesEnvelope>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
-    }
-
-    /**
-     * Get manifest properties (asynchronously)
-     * Get a Device Type&#39;s manifest properties for a specific version.
-     * @param deviceTypeId Device Type ID. (required)
-     * @param version Manifest Version. (required)
-     * @param callback The callback to be executed when the API call finishes
-     * @return The request call
-     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
-     */
-    public com.squareup.okhttp.Call getManifestPropertiesAsync(String deviceTypeId, String version, final ApiCallback<ManifestPropertiesEnvelope> callback) throws ApiException {
-
-        ProgressResponseBody.ProgressListener progressListener = null;
-        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
-
-        if (callback != null) {
-            progressListener = new ProgressResponseBody.ProgressListener() {
-                @Override
-                public void update(long bytesRead, long contentLength, boolean done) {
-                    callback.onDownloadProgress(bytesRead, contentLength, done);
-                }
-            };
-
-            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
-                @Override
-                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
-                    callback.onUploadProgress(bytesWritten, contentLength, done);
-                }
-            };
-        }
-
-        com.squareup.okhttp.Call call = getManifestPropertiesCall(deviceTypeId, version, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<ManifestPropertiesEnvelope>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
