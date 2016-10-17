@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | **String** | Free form JSON object |  [optional]
+**data** | **Map&lt;String, Object&gt;** | Free form JSON object |  [optional]
 
 
 

@@ -29,6 +29,9 @@ import java.util.Objects;
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -38,10 +41,15 @@ import io.swagger.annotations.ApiModelProperty;
 
 public class MetadataEnvelope   {
   @SerializedName("data")
-  private String data = null;
+  private Map<String, Object> data = new HashMap<String, Object>();
 
-  public MetadataEnvelope data(String data) {
+  public MetadataEnvelope data(Map<String, Object> data) {
     this.data = data;
+    return this;
+  }
+
+  public MetadataEnvelope putDataItem(String key, Object dataItem) {
+    this.data.put(key, dataItem);
     return this;
   }
 
@@ -50,11 +58,11 @@ public class MetadataEnvelope   {
    * @return data
   **/
   @ApiModelProperty(example = "null", value = "Free form JSON object")
-  public String getData() {
+  public Map<String, Object> getData() {
     return data;
   }
 
-  public void setData(String data) {
+  public void setData(Map<String, Object> data) {
     this.data = data;
   }
 

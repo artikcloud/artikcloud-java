@@ -29,6 +29,9 @@ import java.util.Objects;
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -41,7 +44,7 @@ public class MetadataQueryEnvelope   {
   private Integer total = null;
 
   @SerializedName("data")
-  private String data = null;
+  private Map<String, Object> data = new HashMap<String, Object>();
 
   @SerializedName("offset")
   private Integer offset = null;
@@ -67,8 +70,13 @@ public class MetadataQueryEnvelope   {
     this.total = total;
   }
 
-  public MetadataQueryEnvelope data(String data) {
+  public MetadataQueryEnvelope data(Map<String, Object> data) {
     this.data = data;
+    return this;
+  }
+
+  public MetadataQueryEnvelope putDataItem(String key, Object dataItem) {
+    this.data.put(key, dataItem);
     return this;
   }
 
@@ -77,11 +85,11 @@ public class MetadataQueryEnvelope   {
    * @return data
   **/
   @ApiModelProperty(example = "null", value = "Array of objects with device's metadata")
-  public String getData() {
+  public Map<String, Object> getData() {
     return data;
   }
 
-  public void setData(String data) {
+  public void setData(Map<String, Object> data) {
     this.data = data;
   }
 
