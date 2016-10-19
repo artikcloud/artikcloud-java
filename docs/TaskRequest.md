@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **taskType** | **String** | Task type |  [optional]
 **dtid** | **String** | Device Type ID |  [optional]
 **property** | **String** | Property |  [optional]
-**dids** | **String** | Device IDs |  [optional]
+**dids** | **List&lt;String&gt;** | Device IDs |  [optional]
 **taskParameters** | [**TaskParameters**](TaskParameters.md) | Task parameters |  [optional]
 
 

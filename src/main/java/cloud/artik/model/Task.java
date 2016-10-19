@@ -31,6 +31,8 @@ import cloud.artik.model.TaskStatusCounts;
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -61,7 +63,7 @@ public class Task   {
   private String id = null;
 
   @SerializedName("dids")
-  private String dids = null;
+  private List<String> dids = new ArrayList<String>();
 
   @SerializedName("taskParameters")
   private TaskParameters taskParameters = null;
@@ -198,8 +200,13 @@ public class Task   {
     this.id = id;
   }
 
-  public Task dids(String dids) {
+  public Task dids(List<String> dids) {
     this.dids = dids;
+    return this;
+  }
+
+  public Task addDidsItem(String didsItem) {
+    this.dids.add(didsItem);
     return this;
   }
 
@@ -208,11 +215,11 @@ public class Task   {
    * @return dids
   **/
   @ApiModelProperty(example = "null", value = "Device IDs")
-  public String getDids() {
+  public List<String> getDids() {
     return dids;
   }
 
-  public void setDids(String dids) {
+  public void setDids(List<String> dids) {
     this.dids = dids;
   }
 

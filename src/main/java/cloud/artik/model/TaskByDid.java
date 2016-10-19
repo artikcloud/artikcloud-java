@@ -67,7 +67,7 @@ public class TaskByDid   {
   private String id = null;
 
   @SerializedName("dids")
-  private String dids = null;
+  private List<String> dids = new ArrayList<String>();
 
   @SerializedName("taskParameters")
   private TaskParameters taskParameters = null;
@@ -227,8 +227,13 @@ public class TaskByDid   {
     this.id = id;
   }
 
-  public TaskByDid dids(String dids) {
+  public TaskByDid dids(List<String> dids) {
     this.dids = dids;
+    return this;
+  }
+
+  public TaskByDid addDidsItem(String didsItem) {
+    this.dids.add(didsItem);
     return this;
   }
 
@@ -237,11 +242,11 @@ public class TaskByDid   {
    * @return dids
   **/
   @ApiModelProperty(example = "null", value = "Device IDs")
-  public String getDids() {
+  public List<String> getDids() {
     return dids;
   }
 
-  public void setDids(String dids) {
+  public void setDids(List<String> dids) {
     this.dids = dids;
   }
 

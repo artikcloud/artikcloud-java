@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **property** | **String** | Property |  [optional]
 **statuses** | [**List&lt;DeviceTask&gt;**](DeviceTask.md) | Last known device task status for the specified did |  [optional]
 **id** | **String** | Task ID |  [optional]
-**dids** | **String** | Device IDs |  [optional]
+**dids** | **List&lt;String&gt;** | Device IDs |  [optional]
 **taskParameters** | [**TaskParameters**](TaskParameters.md) | Task parameters |  [optional]
 **createdOn** | **Long** | Created on |  [optional]
 **status** | **String** | Status |  [optional]
