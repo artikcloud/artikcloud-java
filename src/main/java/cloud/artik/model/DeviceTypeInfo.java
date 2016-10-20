@@ -40,8 +40,8 @@ public class DeviceTypeInfo   {
   @SerializedName("devicePropertiesEnabled")
   private Boolean devicePropertiesEnabled = null;
 
-  @SerializedName("pMax")
-  private Integer pMax = null;
+  @SerializedName("pmax")
+  private Integer pmax = null;
 
   @SerializedName("modifiedOn")
   private Long modifiedOn = null;
@@ -49,8 +49,8 @@ public class DeviceTypeInfo   {
   @SerializedName("dtid")
   private String dtid = null;
 
-  @SerializedName("pMin")
-  private Integer pMin = null;
+  @SerializedName("pmin")
+  private Integer pmin = null;
 
   @SerializedName("taskExpiresAfter")
   private Integer taskExpiresAfter = null;
@@ -76,22 +76,22 @@ public class DeviceTypeInfo   {
     this.devicePropertiesEnabled = devicePropertiesEnabled;
   }
 
-  public DeviceTypeInfo pMax(Integer pMax) {
-    this.pMax = pMax;
+  public DeviceTypeInfo pmax(Integer pmax) {
+    this.pmax = pmax;
     return this;
   }
 
    /**
    * Pmax value
-   * @return pMax
+   * @return pmax
   **/
   @ApiModelProperty(example = "null", value = "Pmax value")
-  public Integer getPMax() {
-    return pMax;
+  public Integer getPmax() {
+    return pmax;
   }
 
-  public void setPMax(Integer pMax) {
-    this.pMax = pMax;
+  public void setPmax(Integer pmax) {
+    this.pmax = pmax;
   }
 
   public DeviceTypeInfo modifiedOn(Long modifiedOn) {
@@ -130,22 +130,22 @@ public class DeviceTypeInfo   {
     this.dtid = dtid;
   }
 
-  public DeviceTypeInfo pMin(Integer pMin) {
-    this.pMin = pMin;
+  public DeviceTypeInfo pmin(Integer pmin) {
+    this.pmin = pmin;
     return this;
   }
 
    /**
    * Pmin value
-   * @return pMin
+   * @return pmin
   **/
   @ApiModelProperty(example = "null", value = "Pmin value")
-  public Integer getPMin() {
-    return pMin;
+  public Integer getPmin() {
+    return pmin;
   }
 
-  public void setPMin(Integer pMin) {
-    this.pMin = pMin;
+  public void setPmin(Integer pmin) {
+    this.pmin = pmin;
   }
 
   public DeviceTypeInfo taskExpiresAfter(Integer taskExpiresAfter) {
@@ -195,17 +195,17 @@ public class DeviceTypeInfo   {
     }
     DeviceTypeInfo deviceTypeInfo = (DeviceTypeInfo) o;
     return Objects.equals(this.devicePropertiesEnabled, deviceTypeInfo.devicePropertiesEnabled) &&
-        Objects.equals(this.pMax, deviceTypeInfo.pMax) &&
+        Objects.equals(this.pmax, deviceTypeInfo.pmax) &&
         Objects.equals(this.modifiedOn, deviceTypeInfo.modifiedOn) &&
         Objects.equals(this.dtid, deviceTypeInfo.dtid) &&
-        Objects.equals(this.pMin, deviceTypeInfo.pMin) &&
+        Objects.equals(this.pmin, deviceTypeInfo.pmin) &&
         Objects.equals(this.taskExpiresAfter, deviceTypeInfo.taskExpiresAfter) &&
         Objects.equals(this.createdOn, deviceTypeInfo.createdOn);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(devicePropertiesEnabled, pMax, modifiedOn, dtid, pMin, taskExpiresAfter, createdOn);
+    return Objects.hash(devicePropertiesEnabled, pmax, modifiedOn, dtid, pmin, taskExpiresAfter, createdOn);
   }
 
   @Override
@@ -214,10 +214,10 @@ public class DeviceTypeInfo   {
     sb.append("class DeviceTypeInfo {\n");
     
     sb.append("    devicePropertiesEnabled: ").append(toIndentedString(devicePropertiesEnabled)).append("\n");
-    sb.append("    pMax: ").append(toIndentedString(pMax)).append("\n");
+    sb.append("    pmax: ").append(toIndentedString(pmax)).append("\n");
     sb.append("    modifiedOn: ").append(toIndentedString(modifiedOn)).append("\n");
     sb.append("    dtid: ").append(toIndentedString(dtid)).append("\n");
-    sb.append("    pMin: ").append(toIndentedString(pMin)).append("\n");
+    sb.append("    pmin: ").append(toIndentedString(pmin)).append("\n");
     sb.append("    taskExpiresAfter: ").append(toIndentedString(taskExpiresAfter)).append("\n");
     sb.append("    createdOn: ").append(toIndentedString(createdOn)).append("\n");
     sb.append("}");
