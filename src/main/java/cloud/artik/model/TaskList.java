@@ -40,16 +40,16 @@ import java.util.List;
 @ApiModel(description = "")
 
 public class TaskList   {
-  @SerializedName("task")
-  private List<Task> task = new ArrayList<Task>();
+  @SerializedName("tasks")
+  private List<Task> tasks = new ArrayList<Task>();
 
-  public TaskList task(List<Task> task) {
-    this.task = task;
+  public TaskList tasks(List<Task> tasks) {
+    this.tasks = tasks;
     return this;
   }
 
   public TaskList addTaskItem(Task taskItem) {
-    this.task.add(taskItem);
+    this.tasks.add(taskItem);
     return this;
   }
 
@@ -59,11 +59,11 @@ public class TaskList   {
   **/
   @ApiModelProperty(example = "null", value = "Task list")
   public List<Task> getTask() {
-    return task;
+    return tasks;
   }
 
-  public void setTask(List<Task> task) {
-    this.task = task;
+  public void setTask(List<Task> tasks) {
+    this.tasks = tasks;
   }
 
 
@@ -76,12 +76,12 @@ public class TaskList   {
       return false;
     }
     TaskList taskList = (TaskList) o;
-    return Objects.equals(this.task, taskList.task);
+    return Objects.equals(this.tasks, taskList.tasks);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(task);
+    return Objects.hash(tasks);
   }
 
   @Override
@@ -89,7 +89,7 @@ public class TaskList   {
     StringBuilder sb = new StringBuilder();
     sb.append("class TaskList {\n");
     
-    sb.append("    task: ").append(toIndentedString(task)).append("\n");
+    sb.append("    tasks: ").append(toIndentedString(tasks)).append("\n");
     sb.append("}");
     return sb.toString();
   }
