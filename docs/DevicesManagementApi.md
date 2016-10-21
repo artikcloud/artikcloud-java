@@ -724,7 +724,7 @@ artikcloud_oauth.setAccessToken("YOUR ACCESS TOKEN");
 
 DevicesManagementApi apiInstance = new DevicesManagementApi();
 String did = "did_example"; // String | Device ID.
-Object deviceProperties = null; // Object | Device properties object to be set
+MetadataRequest deviceProperties = new MetadataRequest(); // MetadataRequest | Device properties object to be set
 try {
     MetadataEnvelope result = apiInstance.updateServerProperties(did, deviceProperties);
     System.out.println(result);
@@ -739,7 +739,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **did** | **String**| Device ID. |
- **deviceProperties** | **Object**| Device properties object to be set |
+ **deviceProperties** | [**MetadataRequest**](MetadataRequest.md)| Device properties object to be set |
 
 ### Return type
 
