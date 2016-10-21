@@ -48,21 +48,21 @@ public class TaskList   {
     return this;
   }
 
-  public TaskList addTaskItem(Task taskItem) {
-    this.tasks.add(taskItem);
+  public TaskList addTasksItem(Task tasksItem) {
+    this.tasks.add(tasksItem);
     return this;
   }
 
    /**
    * Task list
-   * @return task
+   * @return tasks
   **/
   @ApiModelProperty(example = "null", value = "Task list")
-  public List<Task> getTask() {
+  public List<Task> getTasks() {
     return tasks;
   }
 
-  public void setTask(List<Task> tasks) {
+  public void setTasks(List<Task> tasks) {
     this.tasks = tasks;
   }
 
