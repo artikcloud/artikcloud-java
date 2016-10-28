@@ -32,7 +32,6 @@ public class ArtikCloudApiTest {
 
             ApiClient client = new ApiClient();
             client.setAccessToken(this.getProperty(tokenKey));
-            client.setDebugging(true);
 
             Method setApiClient = className.getMethod("setApiClient",
                     ApiClient.class);
