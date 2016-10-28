@@ -49,7 +49,6 @@ import cloud.artik.model.TaskStatusesHistoryEnvelope;
 import cloud.artik.model.TaskListEnvelope;
 import cloud.artik.model.MetadataQueryEnvelope;
 import cloud.artik.model.DeviceTypesInfo;
-import cloud.artik.model.MetadataRequest;
 import cloud.artik.model.TaskUpdateRequest;
 import cloud.artik.model.TaskUpdateResponse;
 import cloud.artik.model.DeviceTaskUpdateRequest;
@@ -1474,7 +1473,7 @@ public class DevicesManagementApi {
         return call;
     }
     /* Build call for updateServerProperties */
-    private com.squareup.okhttp.Call updateServerPropertiesCall(String did, MetadataRequest deviceProperties, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call updateServerPropertiesCall(String did, Object deviceProperties, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = deviceProperties;
         
         // verify the required parameter 'did' is set
@@ -1534,7 +1533,7 @@ public class DevicesManagementApi {
      * @return MetadataEnvelope
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public MetadataEnvelope updateServerProperties(String did, MetadataRequest deviceProperties) throws ApiException {
+    public MetadataEnvelope updateServerProperties(String did, Object deviceProperties) throws ApiException {
         ApiResponse<MetadataEnvelope> resp = updateServerPropertiesWithHttpInfo(did, deviceProperties);
         return resp.getData();
     }
@@ -1547,7 +1546,7 @@ public class DevicesManagementApi {
      * @return ApiResponse&lt;MetadataEnvelope&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<MetadataEnvelope> updateServerPropertiesWithHttpInfo(String did, MetadataRequest deviceProperties) throws ApiException {
+    public ApiResponse<MetadataEnvelope> updateServerPropertiesWithHttpInfo(String did, Object deviceProperties) throws ApiException {
         com.squareup.okhttp.Call call = updateServerPropertiesCall(did, deviceProperties, null, null);
         Type localVarReturnType = new TypeToken<MetadataEnvelope>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -1562,7 +1561,7 @@ public class DevicesManagementApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call updateServerPropertiesAsync(String did, MetadataRequest deviceProperties, final ApiCallback<MetadataEnvelope> callback) throws ApiException {
+    public com.squareup.okhttp.Call updateServerPropertiesAsync(String did, Object deviceProperties, final ApiCallback<MetadataEnvelope> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
