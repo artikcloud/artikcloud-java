@@ -108,6 +108,7 @@ Class | Method | HTTP request | Description
 *DeviceTypesApi* | [**getAvailableManifestVersions**](docs/DeviceTypesApi.md#getAvailableManifestVersions) | **GET** /devicetypes/{deviceTypeId}/availablemanifestversions | Get Available Manifest Versions
 *DeviceTypesApi* | [**getDeviceType**](docs/DeviceTypesApi.md#getDeviceType) | **GET** /devicetypes/{deviceTypeId} | Get Device Type
 *DeviceTypesApi* | [**getDeviceTypes**](docs/DeviceTypesApi.md#getDeviceTypes) | **GET** /devicetypes | Get Device Types
+*DeviceTypesApi* | [**getDeviceTypesByApplication**](docs/DeviceTypesApi.md#getDeviceTypesByApplication) | **GET** /applications/{appId}/devicetypes | Get Device Types by Application
 *DeviceTypesApi* | [**getLatestManifestProperties**](docs/DeviceTypesApi.md#getLatestManifestProperties) | **GET** /devicetypes/{deviceTypeId}/manifests/latest/properties | Get Latest Manifest Properties
 *DeviceTypesApi* | [**getManifestProperties**](docs/DeviceTypesApi.md#getManifestProperties) | **GET** /devicetypes/{deviceTypeId}/manifests/{version}/properties | Get manifest properties
 *DevicesApi* | [**addDevice**](docs/DevicesApi.md#addDevice) | **POST** /devices | Add Device
@@ -118,6 +119,21 @@ Class | Method | HTTP request | Description
 *DevicesApi* | [**getDeviceToken**](docs/DevicesApi.md#getDeviceToken) | **GET** /devices/{deviceId}/tokens | Get Device Token
 *DevicesApi* | [**updateDevice**](docs/DevicesApi.md#updateDevice) | **PUT** /devices/{deviceId} | Update Device
 *DevicesApi* | [**updateDeviceToken**](docs/DevicesApi.md#updateDeviceToken) | **PUT** /devices/{deviceId}/tokens | Update Device Token
+*DevicesManagementApi* | [**createTasks**](docs/DevicesManagementApi.md#createTasks) | **POST** /devicemgmt/tasks | Create a new task for one or more devices
+*DevicesManagementApi* | [**deleteServerProperties**](docs/DevicesManagementApi.md#deleteServerProperties) | **DELETE** /devicemgmt/devices/{did}/serverproperties | Deletes a device&#39;s properties.
+*DevicesManagementApi* | [**getAllByDid**](docs/DevicesManagementApi.md#getAllByDid) | **GET** /devicemgmt/devices/{did}/tasks | Returns the list of tasks for a particular device id with optional status filter.
+*DevicesManagementApi* | [**getDeviceTypesInfo**](docs/DevicesManagementApi.md#getDeviceTypesInfo) | **GET** /devicemgmt/devicetypes/{dtid} | Read a device type device management information.
+*DevicesManagementApi* | [**getManifestProperties**](docs/DevicesManagementApi.md#getManifestProperties) | **GET** /devicemgmt/devicetypes/{dtid}/manifest/properties | Get a device type&#39;s device management manifest properties
+*DevicesManagementApi* | [**getProperties**](docs/DevicesManagementApi.md#getProperties) | **GET** /devicemgmt/devices/{did}/properties | Read a device&#39;s properties.
+*DevicesManagementApi* | [**getStatuses**](docs/DevicesManagementApi.md#getStatuses) | **GET** /devicemgmt/tasks/{tid}/statuses | Returns the details and status of a task id and the individual statuses of each device id in the list.
+*DevicesManagementApi* | [**getStatusesHistory**](docs/DevicesManagementApi.md#getStatusesHistory) | **GET** /devicemgmt/tasks/{tid}/statuses/history | Returns the history of the status changes for a specific task id, or for a specific device id in that task.
+*DevicesManagementApi* | [**getTaskByID**](docs/DevicesManagementApi.md#getTaskByID) | **GET** /devicemgmt/tasks/{tid} | Returns the details and global status of a specific task id.
+*DevicesManagementApi* | [**getTasks**](docs/DevicesManagementApi.md#getTasks) | **GET** /devicemgmt/tasks | Returns the all the tasks for a device type.
+*DevicesManagementApi* | [**queryProperties**](docs/DevicesManagementApi.md#queryProperties) | **GET** /devicemgmt/devices/properties | Query device properties across devices.
+*DevicesManagementApi* | [**updateDeviceTypesInfo**](docs/DevicesManagementApi.md#updateDeviceTypesInfo) | **PUT** /devicemgmt/devicetypes/{dtid} | Updates a device type information
+*DevicesManagementApi* | [**updateServerProperties**](docs/DevicesManagementApi.md#updateServerProperties) | **POST** /devicemgmt/devices/{did}/serverproperties | Updates a device&#39;s server properties.
+*DevicesManagementApi* | [**updateTask**](docs/DevicesManagementApi.md#updateTask) | **PUT** /devicemgmt/tasks/{tid} | Updates a task for all devices - For now just allows changing the state to cancelled.
+*DevicesManagementApi* | [**updateTaskForDevice**](docs/DevicesManagementApi.md#updateTaskForDevice) | **PUT** /devicemgmt/tasks/{tid}/devices/{did} | Updates a task for a specific device - For now just allows changing the state to cancelled.
 *ExportApi* | [**exportRequest**](docs/ExportApi.md#exportRequest) | **POST** /messages/export | Create Export Request
 *ExportApi* | [**getExportHistory**](docs/ExportApi.md#getExportHistory) | **GET** /messages/export/history | Get Export History
 *ExportApi* | [**getExportResult**](docs/ExportApi.md#getExportResult) | **GET** /messages/export/{exportId}/result | Get Export Result
@@ -181,14 +197,22 @@ Class | Method | HTTP request | Description
  - [DeviceRegConfirmUserResponseEnvelope](docs/DeviceRegConfirmUserResponseEnvelope.md)
  - [DeviceRegStatusResponse](docs/DeviceRegStatusResponse.md)
  - [DeviceRegStatusResponseEnvelope](docs/DeviceRegStatusResponseEnvelope.md)
+ - [DeviceTask](docs/DeviceTask.md)
+ - [DeviceTaskUpdateRequest](docs/DeviceTaskUpdateRequest.md)
+ - [DeviceTaskUpdateResponse](docs/DeviceTaskUpdateResponse.md)
  - [DeviceToken](docs/DeviceToken.md)
  - [DeviceTokenEnvelope](docs/DeviceTokenEnvelope.md)
  - [DeviceType](docs/DeviceType.md)
  - [DeviceTypeArray](docs/DeviceTypeArray.md)
  - [DeviceTypeEnvelope](docs/DeviceTypeEnvelope.md)
+ - [DeviceTypeInfo](docs/DeviceTypeInfo.md)
+ - [DeviceTypeInfoEnvelope](docs/DeviceTypeInfoEnvelope.md)
  - [DeviceTypesEnvelope](docs/DeviceTypesEnvelope.md)
+ - [DeviceTypesInfo](docs/DeviceTypesInfo.md)
+ - [DeviceTypesInfoEnvelope](docs/DeviceTypesInfoEnvelope.md)
  - [DevicesEnvelope](docs/DevicesEnvelope.md)
  - [ErrorEnvelope](docs/ErrorEnvelope.md)
+ - [EventFeedData](docs/EventFeedData.md)
  - [ExportData](docs/ExportData.md)
  - [ExportDataArray](docs/ExportDataArray.md)
  - [ExportHistoryResponse](docs/ExportHistoryResponse.md)
@@ -213,6 +237,9 @@ Class | Method | HTTP request | Description
  - [MessageIDEnvelope](docs/MessageIDEnvelope.md)
  - [MessageIn](docs/MessageIn.md)
  - [MessageOut](docs/MessageOut.md)
+ - [MetadataEnvelope](docs/MetadataEnvelope.md)
+ - [MetadataPropertiesEnvelope](docs/MetadataPropertiesEnvelope.md)
+ - [MetadataQueryEnvelope](docs/MetadataQueryEnvelope.md)
  - [NonEmptyString](docs/NonEmptyString.md)
  - [NormalizedAction](docs/NormalizedAction.md)
  - [NormalizedActionsEnvelope](docs/NormalizedActionsEnvelope.md)
@@ -237,6 +264,25 @@ Class | Method | HTTP request | Description
  - [Tag](docs/Tag.md)
  - [TagArray](docs/TagArray.md)
  - [TagsEnvelope](docs/TagsEnvelope.md)
+ - [Task](docs/Task.md)
+ - [TaskByDid](docs/TaskByDid.md)
+ - [TaskByDidList](docs/TaskByDidList.md)
+ - [TaskByDidListEnvelope](docs/TaskByDidListEnvelope.md)
+ - [TaskEnvelope](docs/TaskEnvelope.md)
+ - [TaskHistory](docs/TaskHistory.md)
+ - [TaskHistoryList](docs/TaskHistoryList.md)
+ - [TaskList](docs/TaskList.md)
+ - [TaskListEnvelope](docs/TaskListEnvelope.md)
+ - [TaskParameters](docs/TaskParameters.md)
+ - [TaskRequest](docs/TaskRequest.md)
+ - [TaskStatus](docs/TaskStatus.md)
+ - [TaskStatusCounts](docs/TaskStatusCounts.md)
+ - [TaskStatuses](docs/TaskStatuses.md)
+ - [TaskStatusesEnvelope](docs/TaskStatusesEnvelope.md)
+ - [TaskStatusesHistoryEnvelope](docs/TaskStatusesHistoryEnvelope.md)
+ - [TaskUpdateRequest](docs/TaskUpdateRequest.md)
+ - [TaskUpdateResponse](docs/TaskUpdateResponse.md)
+ - [TasksStatusCounts](docs/TasksStatusCounts.md)
  - [Token](docs/Token.md)
  - [TokenInfo](docs/TokenInfo.md)
  - [TokenInfoSuccessResponse](docs/TokenInfoSuccessResponse.md)
