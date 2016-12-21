@@ -76,8 +76,6 @@ public class DeviceChannelWebSocketTest extends ArtikCloudApiTest {
                         System.out.println("onPing: " + timestamp);
                     }
 
-                    @Override
-                    public void onEvent(EventFeedData eventFeedData) { System.out.println("onEvent: " + eventFeedData); }
                 });
 
         ws.connectBlocking();

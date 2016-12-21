@@ -1,10 +1,14 @@
 package cloud.artik.websocket;
 
 import cloud.artik.model.EventFeedData;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
+import okhttp3.ResponseBody;
+import okio.BufferedSource;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -12,17 +16,18 @@ import java.util.concurrent.TimeUnit;
  */
 public class EventFeedWebSocket extends WebSocketProxy {
 
-    public EventFeedWebSocket(String accessToken, String did, String dids,
-                              String uid, String events, ArtikCloudWebSocketCallback callback) throws URISyntaxException, IOException {
+    private EventFeedWebSocketCallback eventCallback;
 
-        this(new OkHttpClient().newBuilder().readTimeout(35, TimeUnit.SECONDS).build(), accessToken, did, dids, uid, events, callback);
+    public EventFeedWebSocket(String accessToken, String did, String dids,
+                              String uid, String events, ArtikCloudWebSocketCallback callback, EventFeedWebSocketCallback eventCallback) throws URISyntaxException, IOException {
+        this(new OkHttpClient().newBuilder().readTimeout(35, TimeUnit.SECONDS).build(), accessToken, did, dids, uid, events, callback, eventCallback);
+        this.eventCallback = eventCallback;
     }
 
     public EventFeedWebSocket(OkHttpClient client, String accessToken, String did, String dids,
-                              String uid, String events, ArtikCloudWebSocketCallback callback) throws URISyntaxException,
-            IOException {
-
+                              String uid, String events, ArtikCloudWebSocketCallback callback, EventFeedWebSocketCallback eventCallback) throws URISyntaxException, IOException {
         super("/events" + getQueryURI(accessToken, did, dids, uid, events), client, callback);
+        this.eventCallback = eventCallback;
     }
 
     public void sendEvent(EventFeedData eventFeedData) throws IOException {
@@ -52,4 +57,30 @@ public class EventFeedWebSocket extends WebSocketProxy {
         return sb.toString();
     }
 
+    @Override
+    public void onMessage(ResponseBody response) throws IOException {
+        BufferedSource source = response.source();
+        try {
+            MediaType contentType = response.contentType();
+            //System.out.println(contentType);
+            String message = source.readString(contentType.charset());
+            //String message = source.readString(Charset.defaultCharset());
+
+            Map<String, Object> jsonMap = (Map<String, Object>) json.getGson()
+                    .fromJson(message, Map.class);
+
+            if (jsonMap.containsKey("event")) {
+                // Event feed
+                EventFeedData eventFeed = json.getGson().fromJson(message, EventFeedData.class);
+                this.eventCallback.onEvent(eventFeed);
+            } else {
+                super.onMessage(response);
+            }
+        } catch (Exception exc) {
+            // Couldn't parse JSON. Shouldnt happen!
+            System.err.println(exc.getMessage());
+        } finally {
+            source.close();
+        }
+    }
 }

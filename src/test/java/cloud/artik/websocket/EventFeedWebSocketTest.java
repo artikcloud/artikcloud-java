@@ -28,65 +28,77 @@ public class EventFeedWebSocketTest extends ArtikCloudApiTest {
 
     @Test
     public void testSendEvent() throws Exception {
-        String deviceId = getProperty("device3.id");
-        String userId = getProperty("user1.id");
         String accessToken = getProperty("user1.token");
 
         final CountDownLatch registerLatch = new CountDownLatch(1);
-        final CountDownLatch messageLatch = new CountDownLatch(1);
-        EventFeedWebSocket eventWS = new EventFeedWebSocket(accessToken, null, null, null, null, new ArtikCloudWebSocketCallback() {
+        final CountDownLatch eventLatch = new CountDownLatch(1);
 
-                    @Override
-                    public void onAck(Acknowledgement ack) {
-                        System.out.println("onAck: " + ack);
-                        if (ack.getCid().equalsIgnoreCase("first")) {
-                            registerLatch.countDown();
-                        }
-                    }
+        EventFeedWebSocketCallback callback = new EventFeedCallback(registerLatch, eventLatch);
 
-                    @Override
-                    public void onAction(ActionOut action) {
-                        System.out.println("onAction: " + action);
-                    }
-
-                    @Override
-                    public void onClose(int code, String reason, boolean remote) {
-                        System.out.printf("onClose: %d %s %s\n", code, reason,
-                                remote);
-                    }
-
-                    @Override
-                    public void onError(WebSocketError error) {
-                        System.err.println("onError: " + error);
-                    }
-
-                    @Override
-                    public void onMessage(MessageOut message) {
-                        System.out.println("onMessage: " + message);
-                    }
-
-                    @Override
-                    public void onOpen(int httpStatus, String httpStatusMessage) {
-                        System.out.printf("onOpen: %d %s\n", httpStatus,
-                                httpStatusMessage);
-                    }
-
-                    @Override
-                    public void onPing(long timestamp) {
-                        System.out.println("onPing: " + timestamp);
-                    }
-
-                    @Override
-                    public void onEvent(EventFeedData eventFeedData) {
-                        System.out.println("onEvent: " + eventFeedData);
-                        messageLatch.countDown();
-                    }
-                });
+        EventFeedWebSocket eventWS = new EventFeedWebSocket(accessToken, null, null, null, null, (ArtikCloudWebSocketCallback)callback, callback);
 
         eventWS.connectBlocking();
 
-        messageLatch.await(100, TimeUnit.SECONDS);
+        eventLatch.await(100, TimeUnit.SECONDS);
 
         eventWS.closeBlocking();
     }
+
+    public class EventFeedCallback implements EventFeedWebSocketCallback, ArtikCloudWebSocketCallback {
+
+        private CountDownLatch registerLatch;
+        private CountDownLatch eventLatch;
+
+        public EventFeedCallback(CountDownLatch registerLatch, CountDownLatch eventLatch) {
+            this.registerLatch = registerLatch;
+            this.eventLatch = eventLatch;
+        }
+
+        @Override
+        public void onAck(Acknowledgement ack) {
+            System.out.println("onAck: " + ack);
+            if (ack.getCid().equalsIgnoreCase("first")) {
+                registerLatch.countDown();
+            }
+        }
+
+        @Override
+        public void onAction(ActionOut action) {
+            System.out.println("onAction: " + action);
+        }
+
+        @Override
+        public void onClose(int code, String reason, boolean remote) {
+            System.out.printf("onClose: %d %s %s\n", code, reason,
+                    remote);
+        }
+
+        @Override
+        public void onError(WebSocketError error) {
+            System.err.println("onError: " + error);
+        }
+
+        @Override
+        public void onMessage(MessageOut message) {
+            System.out.println("onMessage: " + message);
+        }
+
+        @Override
+        public void onOpen(int httpStatus, String httpStatusMessage) {
+            System.out.printf("onOpen: %d %s\n", httpStatus,
+                    httpStatusMessage);
+        }
+
+        @Override
+        public void onPing(long timestamp) {
+            System.out.println("onPing: " + timestamp);
+        }
+
+        @Override
+        public void onEvent(EventFeedData eventFeedData) {
+            System.out.println("onEvent: " + eventFeedData);
+            eventLatch.countDown();
+        }
+    }
+
 }

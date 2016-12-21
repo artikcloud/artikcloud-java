@@ -70,8 +70,6 @@ public class FirehoseWebSocketTest extends ArtikCloudApiTest {
                         System.err.println("onPing: " + timestamp);
                     }
 
-                    @Override
-                    public void onEvent(EventFeedData eventFeedData) { System.out.println("onEvent: " + eventFeedData); }
                 });
 
         firehoseWS.connect();
@@ -132,8 +130,6 @@ public class FirehoseWebSocketTest extends ArtikCloudApiTest {
                         System.out.println("onPing: " + timestamp);
                     }
 
-                    @Override
-                    public void onEvent(EventFeedData eventFeedData) { System.out.println("onEvent: " + eventFeedData); }
                 });
 
         ws.connectBlocking();
@@ -189,8 +185,6 @@ public class FirehoseWebSocketTest extends ArtikCloudApiTest {
                         System.err.println("onPing: " + timestamp);
                     }
 
-                    @Override
-                    public void onEvent(EventFeedData eventFeedData) { System.out.println("onEvent: " + eventFeedData); }
                 });
 
         firehoseWS.connect();

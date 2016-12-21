@@ -109,7 +109,7 @@ public class WebSocketProxy implements WebSocketListener {
 
     @SuppressWarnings("unchecked")
     @Override
-    public final void onMessage(ResponseBody response)
+    public void onMessage(ResponseBody response)
             throws IOException {
 
         BufferedSource source = response.source();
@@ -145,10 +145,6 @@ public class WebSocketProxy implements WebSocketListener {
                             ActionOut.class);
                     this.callback.onAction(artikAction);
                 }
-            } else if (jsonMap.containsKey("event")) {
-                // Event feed
-                EventFeedData eventFeed = json.getGson().fromJson(message, EventFeedData.class);
-                this.callback.onEvent(eventFeed);
             } else if (jsonMap.containsKey("data")
                     && jsonMap.containsKey("mid")) {
                 // Message, in this case we don't have a way to check the type,

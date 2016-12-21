@@ -17,6 +17,4 @@ public interface ArtikCloudWebSocketCallback {
     public void onError(WebSocketError error);
     
     public void onPing(long timestamp);
-
-    public void onEvent(EventFeedData event);
 }
