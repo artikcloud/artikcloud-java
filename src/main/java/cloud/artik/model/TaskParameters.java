@@ -43,9 +43,6 @@ public class TaskParameters   {
   @SerializedName("value")
   private String value = null;
 
-  @SerializedName("update")
-  private UpdateParameters updateParameters = null;
-
   public TaskParameters expiresAfter(Integer expiresAfter) {
     this.expiresAfter = expiresAfter;
     return this;
@@ -83,21 +80,6 @@ public class TaskParameters   {
   }
 
 
-  /**
-   * Update info
-   * @return
-   */
-  @ApiModelProperty(example = "null", value = "update parameters")
-  public UpdateParameters getUpdateParameters() { return updateParameters; }
-
-  public void setUpdateParameters(UpdateParameters updateParameters) { this.updateParameters = updateParameters; }
-
-  public TaskParameters updateParameters(UpdateParameters updateParameters) {
-    this.updateParameters = updateParameters;
-    return this;
-  }
-
-
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -108,13 +90,12 @@ public class TaskParameters   {
     }
     TaskParameters taskParameters = (TaskParameters) o;
     return Objects.equals(this.expiresAfter, taskParameters.expiresAfter) &&
-        Objects.equals(this.value, taskParameters.value) &&
-        Objects.equals(this.updateParameters, taskParameters.updateParameters);
+        Objects.equals(this.value, taskParameters.value);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(expiresAfter, value, updateParameters);
+    return Objects.hash(expiresAfter, value);
   }
 
   @Override
@@ -124,7 +105,6 @@ public class TaskParameters   {
     
     sb.append("    expiresAfter: ").append(toIndentedString(expiresAfter)).append("\n");
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
-    sb.append("    update: ").append(toIndentedString(updateParameters)).append("\n");
     sb.append("}");
     return sb.toString();
   }
