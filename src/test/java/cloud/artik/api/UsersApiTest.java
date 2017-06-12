@@ -52,7 +52,7 @@ public class UsersApiTest extends ArtikCloudApiTest {
     @Test
     public void testGetUserDevices() throws Exception {
         DevicesEnvelope userDevicesEnvelope = this.apiClient.getUserDevices(
-                this.userId, null, null, null);
+                this.userId, null, null, null, null, null);
 
         assertNotNull(userDevicesEnvelope);
 

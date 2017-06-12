@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**getUserDevices**](UsersApi.md#getUserDevices) | **GET** /users/{userId}/devices | Get User Devices
 [**getUserProperties**](UsersApi.md#getUserProperties) | **GET** /users/{userId}/properties | Get User application properties
 [**getUserRules**](UsersApi.md#getUserRules) | **GET** /users/{userId}/rules | Get User Rules
+[**listAllSharesForUser**](UsersApi.md#listAllSharesForUser) | **GET** in/api/users/{userId}/shares | Get User shares
 [**updateUserProperties**](UsersApi.md#updateUserProperties) | **PUT** /users/{userId}/properties | Update User Application Properties
 
 
@@ -236,7 +237,7 @@ Name | Type | Description  | Notes
 
 <a name="getUserDevices"></a>
 # **getUserDevices**
-> DevicesEnvelope getUserDevices(userId, offset, count, includeProperties)
+> DevicesEnvelope getUserDevices(userId, offset, count, includeProperties, owner, includeShareInfo)
 
 Get User Devices
 
@@ -262,8 +263,10 @@ String userId = "userId_example"; // String | User ID
 Integer offset = 56; // Integer | Offset for pagination.
 Integer count = 56; // Integer | Desired count of items in the result set
 Boolean includeProperties = true; // Boolean | Optional. Boolean (true/false) - If false, only return the user's device types. If true, also return device types shared by other users.
+String owner = "owner_example"; // String | Return owned and/or shared devices. Default to ALL.
+Boolean includeShareInfo = true; // Boolean | Include share info
 try {
-    DevicesEnvelope result = apiInstance.getUserDevices(userId, offset, count, includeProperties);
+    DevicesEnvelope result = apiInstance.getUserDevices(userId, offset, count, includeProperties, owner, includeShareInfo);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling UsersApi#getUserDevices");
@@ -279,6 +282,8 @@ Name | Type | Description  | Notes
  **offset** | **Integer**| Offset for pagination. | [optional]
  **count** | **Integer**| Desired count of items in the result set | [optional]
  **includeProperties** | **Boolean**| Optional. Boolean (true/false) - If false, only return the user&#39;s device types. If true, also return device types shared by other users. | [optional]
+ **owner** | **String**| Return owned and/or shared devices. Default to ALL. | [optional]
+ **includeShareInfo** | **Boolean**| Include share info | [optional]
 
 ### Return type
 
@@ -397,6 +402,65 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**RulesEnvelope**](RulesEnvelope.md)
+
+### Authorization
+
+[artikcloud_oauth](../README.md#artikcloud_oauth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="listAllSharesForUser"></a>
+# **listAllSharesForUser**
+> DeviceSharingEnvelope listAllSharesForUser(userId, filter, count, offset)
+
+Get User shares
+
+Get User shares
+
+### Example
+```java
+// Import classes:
+//import cloud.artik.client.ApiClient;
+//import cloud.artik.client.ApiException;
+//import cloud.artik.client.Configuration;
+//import cloud.artik.client.auth.*;
+//import cloud.artik.api.UsersApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure OAuth2 access token for authorization: artikcloud_oauth
+OAuth artikcloud_oauth = (OAuth) defaultClient.getAuthentication("artikcloud_oauth");
+artikcloud_oauth.setAccessToken("YOUR ACCESS TOKEN");
+
+UsersApi apiInstance = new UsersApi();
+String userId = "userId_example"; // String | User ID.
+String filter = "filter_example"; // String | filter
+Integer count = 56; // Integer | Desired count of items in the result set.
+Integer offset = 56; // Integer | Offset for pagination.
+try {
+    DeviceSharingEnvelope result = apiInstance.listAllSharesForUser(userId, filter, count, offset);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling UsersApi#listAllSharesForUser");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **userId** | **String**| User ID. |
+ **filter** | **String**| filter |
+ **count** | **Integer**| Desired count of items in the result set. | [optional]
+ **offset** | **Integer**| Offset for pagination. | [optional]
+
+### Return type
+
+[**DeviceSharingEnvelope**](DeviceSharingEnvelope.md)
 
 ### Authorization
 

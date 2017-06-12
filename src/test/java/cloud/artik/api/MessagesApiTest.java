@@ -111,7 +111,7 @@ public class MessagesApiTest extends ArtikCloudApiTest {
 
     @Test
     public void testSendMessageActionAsync() throws Exception {
-        MessageAction message = new MessageAction();
+        Message message = new Message();
         message.setSdid("09174ee9e12644ec91f7ff4ed0e40700");
         message.setTs(new Long(System.currentTimeMillis()));
         message.setType("message");
@@ -120,7 +120,7 @@ public class MessagesApiTest extends ArtikCloudApiTest {
         final CountDownLatch lock = new CountDownLatch(1);
         final MessageIDEnvelope envelopeResult = new MessageIDEnvelope();
 
-        this.apiClient.sendMessageActionAsync(message, new ApiCallback<MessageIDEnvelope>() {
+        this.apiClient.sendMessageAsync(message, new ApiCallback<MessageIDEnvelope>() {
             @Override
             public void onFailure(ApiException e, int statusCode, Map<String, List<String>> responseHeaders) {
                 e.printStackTrace();

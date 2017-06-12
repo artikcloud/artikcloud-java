@@ -38,7 +38,7 @@ Add this dependency to your project's POM:
 <dependency>
     <groupId>cloud.artik</groupId>
     <artifactId>artikcloud-java</artifactId>
-    <version>2.0.7</version>
+    <version>2.1.0</version>
     <scope>compile</scope>
 </dependency>
 ```
@@ -48,7 +48,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "cloud.artik:artikcloud-java:2.0.7"
+compile "cloud.artik:artikcloud-java:2.1.0"
 ```
 
 ### Others
@@ -59,7 +59,7 @@ At first generate the JAR by executing:
 
 Then manually install the following JARs:
 
-* target/artikcloud-java-2.0.7.jar
+* target/artikcloud-java-2.1.0.jar
 * target/lib/*.jar
 
 ## Getting Started
@@ -340,4 +340,4 @@ License and Copyright
 
 Licensed under the Apache License. See [LICENSE](https://github.com/artikcloud/artikcloud-java/blob/master/LICENSE).
 
-Copyright (c) 2016 Samsung Electronics Co., Ltd.
+Copyright (c) 2017 Samsung Electronics Co., Ltd.

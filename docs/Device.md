@@ -18,6 +18,8 @@ Name | Type | Description | Notes
 **certificateSignature** | **String** | Certificate Signature (if any) |  [optional]
 **eid** | **String** | External ID (if any) |  [optional]
 **providerCredentials** | **Map&lt;String, Object&gt;** |  |  [optional]
+**sharedWithOthers** | **Boolean** | Is shared with other users |  [optional]
+**sharedWithMe** | **String** | Share id (if shared with me) |  [optional]
 
 
 
