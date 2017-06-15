@@ -134,6 +134,13 @@ Class | Method | HTTP request | Description
 *DevicesManagementApi* | [**updateServerProperties**](docs/DevicesManagementApi.md#updateServerProperties) | **POST** /devicemgmt/devices/{did}/serverproperties | Updates a device&#39;s server properties.
 *DevicesManagementApi* | [**updateTask**](docs/DevicesManagementApi.md#updateTask) | **PUT** /devicemgmt/tasks/{tid} | Updates a task for all devices - For now just allows changing the state to cancelled.
 *DevicesManagementApi* | [**updateTaskForDevice**](docs/DevicesManagementApi.md#updateTaskForDevice) | **PUT** /devicemgmt/tasks/{tid}/devices/{did} | Updates a task for a specific device - For now just allows changing the state to cancelled.
+*DevicessharesApi* | [**create_share_for_device**](docs/DevicessharesApi.md#create_share_for_device) | **POST** in/api/devices/{deviceId}/shares | Share a device 
+*DevicessharesApi* | [**delete_sharing_for_device**](docs/DevicessharesApi.md#delete_sharing_for_device) | **DELETE** in/api/devices/{deviceId}/shares/{shareId} | Delete specific share of the given device id
+*DevicessharesApi* | [**get_all_shares_for_device**](docs/DevicessharesApi.md#get_all_shares_for_device) | **GET** in/api/devices/{deviceId}/shares | List all shares for the given device id
+*DevicessharesApi* | [**get_sharing_for_device**](docs/DevicessharesApi.md#get_sharing_for_device) | **GET** in/api/devices/{deviceId}/shares/{shareId} | Get specific share of the given device id
+*DevicestatusApi* | [**get_device_status**](docs/DevicestatusApi.md#get_device_status) | **GET** /devices/{deviceId}/status | Get Device Status
+*DevicestatusApi* | [**get_devices_status**](docs/DevicestatusApi.md#get_devices_status) | **GET** /devices/status | Get Devices Status
+*DevicestatusApi* | [**put_device_status**](docs/DevicestatusApi.md#put_device_status) | **PUT** /devices/{deviceId}/status | Update Device Status
 *ExportApi* | [**exportRequest**](docs/ExportApi.md#exportRequest) | **POST** /messages/export | Create Export Request
 *ExportApi* | [**getExportHistory**](docs/ExportApi.md#getExportHistory) | **GET** /messages/export/history | Get Export History
 *ExportApi* | [**getExportResult**](docs/ExportApi.md#getExportResult) | **GET** /messages/export/{exportId}/result | Get Export Result
