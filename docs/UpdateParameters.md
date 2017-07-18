@@ -1,10 +1,10 @@
 
-# DeviceShareInfo
+# UpdateParameters
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**email** | **String** | User email |  [optional]
+**updateId** | **String** | Update ID |  [optional]
 
 
 

@@ -62,7 +62,7 @@ public class DevicesSharesApi {
         Object localVarPostBody = deviceShareInfo;
         
         // create path and map variables
-        String localVarPath = "in/api/devices/{deviceId}/shares".replaceAll("\\{format\\}","json")
+        String localVarPath = "/devices/{deviceId}/shares".replaceAll("\\{format\\}","json")
         .replaceAll("\\{" + "deviceId" + "\\}", apiClient.escapeString(deviceId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -189,7 +189,7 @@ public class DevicesSharesApi {
         Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "in/api/devices/{deviceId}/shares/{shareId}".replaceAll("\\{format\\}","json")
+        String localVarPath = "/devices/{deviceId}/shares/{shareId}".replaceAll("\\{format\\}","json")
         .replaceAll("\\{" + "deviceId" + "\\}", apiClient.escapeString(deviceId.toString()))
         .replaceAll("\\{" + "shareId" + "\\}", apiClient.escapeString(shareId.toString()));
 
@@ -317,7 +317,7 @@ public class DevicesSharesApi {
         Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "in/api/devices/{deviceId}/shares".replaceAll("\\{format\\}","json")
+        String localVarPath = "/devices/{deviceId}/shares".replaceAll("\\{format\\}","json")
         .replaceAll("\\{" + "deviceId" + "\\}", apiClient.escapeString(deviceId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
@@ -446,7 +446,7 @@ public class DevicesSharesApi {
         Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "in/api/devices/{deviceId}/shares/{shareId}".replaceAll("\\{format\\}","json")
+        String localVarPath = "/devices/{deviceId}/shares/{shareId}".replaceAll("\\{format\\}","json")
         .replaceAll("\\{" + "deviceId" + "\\}", apiClient.escapeString(deviceId.toString()))
         .replaceAll("\\{" + "shareId" + "\\}", apiClient.escapeString(shareId.toString()));
 

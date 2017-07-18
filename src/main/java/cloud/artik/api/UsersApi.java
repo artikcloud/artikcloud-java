@@ -829,7 +829,7 @@ public class UsersApi {
         return call;
     }
     /* Build call for getUserRules */
-    private com.squareup.okhttp.Call getUserRulesCall(String userId, Boolean excludeDisabled, Integer count, Integer offset, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getUserRulesCall(String userId, Boolean excludeDisabled, Integer count, Integer offset, String owner, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -843,6 +843,8 @@ public class UsersApi {
         localVarQueryParams.addAll(apiClient.parameterToPairs("", "count", count));
         if (offset != null)
         localVarQueryParams.addAll(apiClient.parameterToPairs("", "offset", offset));
+        if (owner != null)
+        localVarQueryParams.addAll(apiClient.parameterToPairs("", "owner", owner));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -877,7 +879,7 @@ public class UsersApi {
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getUserRulesValidateBeforeCall(String userId, Boolean excludeDisabled, Integer count, Integer offset, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getUserRulesValidateBeforeCall(String userId, Boolean excludeDisabled, Integer count, Integer offset, String owner, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'userId' is set
         if (userId == null) {
@@ -885,7 +887,7 @@ public class UsersApi {
         }
         
         
-        com.squareup.okhttp.Call call = getUserRulesCall(userId, excludeDisabled, count, offset, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getUserRulesCall(userId, excludeDisabled, count, offset, owner, progressListener, progressRequestListener);
         return call;
 
         
@@ -901,11 +903,12 @@ public class UsersApi {
      * @param excludeDisabled Exclude disabled rules in the result. (optional)
      * @param count Desired count of items in the result set. (optional)
      * @param offset Offset for pagination. (optional)
+     * @param owner Rule owner (optional)
      * @return RulesEnvelope
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public RulesEnvelope getUserRules(String userId, Boolean excludeDisabled, Integer count, Integer offset) throws ApiException {
-        ApiResponse<RulesEnvelope> resp = getUserRulesWithHttpInfo(userId, excludeDisabled, count, offset);
+    public RulesEnvelope getUserRules(String userId, Boolean excludeDisabled, Integer count, Integer offset, String owner) throws ApiException {
+        ApiResponse<RulesEnvelope> resp = getUserRulesWithHttpInfo(userId, excludeDisabled, count, offset, owner);
         return resp.getData();
     }
 
@@ -916,11 +919,12 @@ public class UsersApi {
      * @param excludeDisabled Exclude disabled rules in the result. (optional)
      * @param count Desired count of items in the result set. (optional)
      * @param offset Offset for pagination. (optional)
+     * @param owner Rule owner (optional)
      * @return ApiResponse&lt;RulesEnvelope&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<RulesEnvelope> getUserRulesWithHttpInfo(String userId, Boolean excludeDisabled, Integer count, Integer offset) throws ApiException {
-        com.squareup.okhttp.Call call = getUserRulesValidateBeforeCall(userId, excludeDisabled, count, offset, null, null);
+    public ApiResponse<RulesEnvelope> getUserRulesWithHttpInfo(String userId, Boolean excludeDisabled, Integer count, Integer offset, String owner) throws ApiException {
+        com.squareup.okhttp.Call call = getUserRulesValidateBeforeCall(userId, excludeDisabled, count, offset, owner, null, null);
         Type localVarReturnType = new TypeToken<RulesEnvelope>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -932,11 +936,12 @@ public class UsersApi {
      * @param excludeDisabled Exclude disabled rules in the result. (optional)
      * @param count Desired count of items in the result set. (optional)
      * @param offset Offset for pagination. (optional)
+     * @param owner Rule owner (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getUserRulesAsync(String userId, Boolean excludeDisabled, Integer count, Integer offset, final ApiCallback<RulesEnvelope> callback) throws ApiException {
+    public com.squareup.okhttp.Call getUserRulesAsync(String userId, Boolean excludeDisabled, Integer count, Integer offset, String owner, final ApiCallback<RulesEnvelope> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -957,7 +962,7 @@ public class UsersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getUserRulesValidateBeforeCall(userId, excludeDisabled, count, offset, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getUserRulesValidateBeforeCall(userId, excludeDisabled, count, offset, owner, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<RulesEnvelope>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -967,7 +972,7 @@ public class UsersApi {
         Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "in/api/users/{userId}/shares".replaceAll("\\{format\\}","json")
+        String localVarPath = "/users/{userId}/shares".replaceAll("\\{format\\}","json")
         .replaceAll("\\{" + "userId" + "\\}", apiClient.escapeString(userId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();

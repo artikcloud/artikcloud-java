@@ -1,10 +1,10 @@
 
-# DeviceShareInfo
+# NotifMessageArray
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**email** | **String** | User email |  [optional]
+**messages** | [**List&lt;NotifMessage&gt;**](NotifMessage.md) |  |  [optional]
 
 
 
