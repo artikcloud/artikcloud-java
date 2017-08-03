@@ -1,9 +1,8 @@
-ARTIK Cloud Java/Android SDK
-================
+# artikcloud-java
 
-[![Build Status](https://travis-ci.org/artikcloud/artikcloud-java.svg?branch=master)](https://travis-ci.org/artikcloud/artikcloud-java)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/cloud.artik/artikcloud-java/badge.svg?style=plastic)](https://maven-badges.herokuapp.com/maven-central/cloud.artik/artikcloud-java)
+## Requirements
 
+Building the API client library requires [Maven](https://maven.apache.org/) to be installed.
 This SDK helps you connect your Java or Android apps to ARTIK Cloud. The SDK exposes a number of methods to easily execute REST and WebSockets API calls to ARTIK Cloud.
 
 Prerequisites
@@ -38,7 +37,7 @@ Add this dependency to your project's POM:
 <dependency>
     <groupId>cloud.artik</groupId>
     <artifactId>artikcloud-java</artifactId>
-    <version>2.1.0</version>
+    <version>2.1.1</version>
     <scope>compile</scope>
 </dependency>
 ```
@@ -48,7 +47,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "cloud.artik:artikcloud-java:2.1.0"
+compile "cloud.artik:artikcloud-java:2.1.1"
 ```
 
 ### Others
@@ -59,7 +58,7 @@ At first generate the JAR by executing:
 
 Then manually install the following JARs:
 
-* target/artikcloud-java-2.1.0.jar
+* target/artikcloud-java-2.1.1.jar
 * target/lib/*.jar
 
 ## Getting Started
@@ -70,7 +69,7 @@ Please follow the [installation](#installation) instruction and execute the foll
 
 import cloud.artik.client.*;
 import cloud.artik.client.auth.*;
-import cloud.artik.client.model.*;
+import cloud.artik.model.*;
 import cloud.artik.api.DeviceTypesApi;
 
 import java.io.File;
@@ -337,7 +336,7 @@ Authentication schemes defined for the API:
 - **Type**: OAuth
 - **Flow**: implicit
 - **Authorizatoin URL**: https://accounts.artik.cloud/authorize
-- **Scopes**:
+- **Scopes**: 
   - read:artikcloud: Read from ARTIK Cloud
   - write:artikcloud: Write from ARTIK Cloud
 
