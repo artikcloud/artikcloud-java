@@ -1,10 +1,10 @@
 
-# DeviceShareInfo
+# SubscriptionArray
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**email** | **String** | User email |  [optional]
+**subscriptions** | [**List&lt;Subscription&gt;**](Subscription.md) |  |  [optional]
 
 
 

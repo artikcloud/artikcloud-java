@@ -1,9 +1,8 @@
-ARTIK Cloud Java/Android SDK
-================
+# artikcloud-java
 
-[![Build Status](https://travis-ci.org/artikcloud/artikcloud-java.svg?branch=master)](https://travis-ci.org/artikcloud/artikcloud-java)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/cloud.artik/artikcloud-java/badge.svg?style=plastic)](https://maven-badges.herokuapp.com/maven-central/cloud.artik/artikcloud-java)
+## Requirements
 
+Building the API client library requires [Maven](https://maven.apache.org/) to be installed.
 This SDK helps you connect your Java or Android apps to ARTIK Cloud. The SDK exposes a number of methods to easily execute REST and WebSockets API calls to ARTIK Cloud.
 
 Prerequisites
@@ -38,7 +37,7 @@ Add this dependency to your project's POM:
 <dependency>
     <groupId>cloud.artik</groupId>
     <artifactId>artikcloud-java</artifactId>
-    <version>2.1.0</version>
+    <version>2.1.1</version>
     <scope>compile</scope>
 </dependency>
 ```
@@ -48,7 +47,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "cloud.artik:artikcloud-java:2.1.0"
+compile "cloud.artik:artikcloud-java:2.1.1"
 ```
 
 ### Others
@@ -59,7 +58,7 @@ At first generate the JAR by executing:
 
 Then manually install the following JARs:
 
-* target/artikcloud-java-2.1.0.jar
+* target/artikcloud-java-2.1.1.jar
 * target/lib/*.jar
 
 ## Getting Started
@@ -70,7 +69,7 @@ Please follow the [installation](#installation) instruction and execute the foll
 
 import cloud.artik.client.*;
 import cloud.artik.client.auth.*;
-import cloud.artik.client.model.*;
+import cloud.artik.model.*;
 import cloud.artik.api.DeviceTypesApi;
 
 import java.io.File;
@@ -134,6 +133,13 @@ Class | Method | HTTP request | Description
 *DevicesManagementApi* | [**updateServerProperties**](docs/DevicesManagementApi.md#updateServerProperties) | **POST** /devicemgmt/devices/{did}/serverproperties | Updates a device&#39;s server properties.
 *DevicesManagementApi* | [**updateTask**](docs/DevicesManagementApi.md#updateTask) | **PUT** /devicemgmt/tasks/{tid} | Updates a task for all devices - For now just allows changing the state to cancelled.
 *DevicesManagementApi* | [**updateTaskForDevice**](docs/DevicesManagementApi.md#updateTaskForDevice) | **PUT** /devicemgmt/tasks/{tid}/devices/{did} | Updates a task for a specific device - For now just allows changing the state to cancelled.
+*DevicesSharesApi* | [**createShareForDevice**](docs/DevicesSharesApi.md#createShareForDevice) | **POST** /devices/{deviceId}/shares | Share a device 
+*DevicesSharesApi* | [**deleteSharingForDevice**](docs/DevicesSharesApi.md#deleteSharingForDevice) | **DELETE** /devices/{deviceId}/shares/{shareId} | Delete specific share of the given device id
+*DevicesSharesApi* | [**getAllSharesForDevice**](docs/DevicesSharesApi.md#getAllSharesForDevice) | **GET** /devices/{deviceId}/shares | List all shares for the given device id
+*DevicesSharesApi* | [**getSharingForDevice**](docs/DevicesSharesApi.md#getSharingForDevice) | **GET** /devices/{deviceId}/shares/{shareId} | Get specific share of the given device id
+*DevicesStatusApi* | [**getDeviceStatus**](docs/DevicesStatusApi.md#getDeviceStatus) | **GET** /devices/{deviceId}/status | Get Device Status
+*DevicesStatusApi* | [**getDevicesStatus**](docs/DevicesStatusApi.md#getDevicesStatus) | **GET** /devices/status | Get Devices Status
+*DevicesStatusApi* | [**putDeviceStatus**](docs/DevicesStatusApi.md#putDeviceStatus) | **PUT** /devices/{deviceId}/status | Update Device Status
 *ExportApi* | [**exportRequest**](docs/ExportApi.md#exportRequest) | **POST** /messages/export | Create Export Request
 *ExportApi* | [**getExportHistory**](docs/ExportApi.md#getExportHistory) | **GET** /messages/export/history | Get Export History
 *ExportApi* | [**getExportResult**](docs/ExportApi.md#getExportResult) | **GET** /messages/export/{exportId}/result | Get Export Result
@@ -154,6 +160,12 @@ Class | Method | HTTP request | Description
 *RulesApi* | [**deleteRule**](docs/RulesApi.md#deleteRule) | **DELETE** /rules/{ruleId} | Delete Rule
 *RulesApi* | [**getRule**](docs/RulesApi.md#getRule) | **GET** /rules/{ruleId} | Get Rule
 *RulesApi* | [**updateRule**](docs/RulesApi.md#updateRule) | **PUT** /rules/{ruleId} | Update Rule
+*SubscriptionsApi* | [**createSubscription**](docs/SubscriptionsApi.md#createSubscription) | **POST** /subscriptions | Create Subscription
+*SubscriptionsApi* | [**deleteSubscription**](docs/SubscriptionsApi.md#deleteSubscription) | **DELETE** /subscriptions/{subId} | Delete Subscription
+*SubscriptionsApi* | [**getAllSubscriptions**](docs/SubscriptionsApi.md#getAllSubscriptions) | **GET** /subscriptions | Get All Subscriptions
+*SubscriptionsApi* | [**getMessages**](docs/SubscriptionsApi.md#getMessages) | **GET** /notifications/{notifId}/messages | Get Messages
+*SubscriptionsApi* | [**getSubscription**](docs/SubscriptionsApi.md#getSubscription) | **GET** /subscriptions/{subId} | Get Subscription
+*SubscriptionsApi* | [**validateSubscription**](docs/SubscriptionsApi.md#validateSubscription) | **POST** /subscriptions/{subId}/validate | Validate Subscription
 *TagsApi* | [**getTagCategories**](docs/TagsApi.md#getTagCategories) | **GET** /tags/categories | Get all categories
 *TagsApi* | [**getTagSuggestions**](docs/TagsApi.md#getTagSuggestions) | **GET** /tags/suggestions | Get tag suggestions
 *TagsApi* | [**getTagsByCategories**](docs/TagsApi.md#getTagsByCategories) | **GET** /tags | Get all tags of categories
@@ -167,6 +179,7 @@ Class | Method | HTTP request | Description
 *UsersApi* | [**getUserDevices**](docs/UsersApi.md#getUserDevices) | **GET** /users/{userId}/devices | Get User Devices
 *UsersApi* | [**getUserProperties**](docs/UsersApi.md#getUserProperties) | **GET** /users/{userId}/properties | Get User application properties
 *UsersApi* | [**getUserRules**](docs/UsersApi.md#getUserRules) | **GET** /users/{userId}/rules | Get User Rules
+*UsersApi* | [**listAllSharesForUser**](docs/UsersApi.md#listAllSharesForUser) | **GET** /users/{userId}/shares | Get User shares
 *UsersApi* | [**updateUserProperties**](docs/UsersApi.md#updateUserProperties) | **PUT** /users/{userId}/properties | Update User Application Properties
 
 
@@ -197,6 +210,16 @@ Class | Method | HTTP request | Description
  - [DeviceRegConfirmUserResponseEnvelope](docs/DeviceRegConfirmUserResponseEnvelope.md)
  - [DeviceRegStatusResponse](docs/DeviceRegStatusResponse.md)
  - [DeviceRegStatusResponseEnvelope](docs/DeviceRegStatusResponseEnvelope.md)
+ - [DeviceShareInfo](docs/DeviceShareInfo.md)
+ - [DeviceSharing](docs/DeviceSharing.md)
+ - [DeviceSharingArray](docs/DeviceSharingArray.md)
+ - [DeviceSharingEnvelope](docs/DeviceSharingEnvelope.md)
+ - [DeviceSharingId](docs/DeviceSharingId.md)
+ - [DeviceStatus](docs/DeviceStatus.md)
+ - [DeviceStatusBatch](docs/DeviceStatusBatch.md)
+ - [DeviceStatusData](docs/DeviceStatusData.md)
+ - [DeviceStatusPut](docs/DeviceStatusPut.md)
+ - [DeviceStatusPutData](docs/DeviceStatusPutData.md)
  - [DeviceTask](docs/DeviceTask.md)
  - [DeviceTaskUpdateRequest](docs/DeviceTaskUpdateRequest.md)
  - [DeviceTaskUpdateResponse](docs/DeviceTaskUpdateResponse.md)
@@ -245,6 +268,9 @@ Class | Method | HTTP request | Description
  - [NormalizedActionsEnvelope](docs/NormalizedActionsEnvelope.md)
  - [NormalizedMessage](docs/NormalizedMessage.md)
  - [NormalizedMessagesEnvelope](docs/NormalizedMessagesEnvelope.md)
+ - [NotifMessage](docs/NotifMessage.md)
+ - [NotifMessageArray](docs/NotifMessageArray.md)
+ - [NotifMessagesResponse](docs/NotifMessagesResponse.md)
  - [OutputRule](docs/OutputRule.md)
  - [PresenceEnvelope](docs/PresenceEnvelope.md)
  - [PresenceModel](docs/PresenceModel.md)
@@ -261,6 +287,11 @@ Class | Method | HTTP request | Description
  - [SnapshotResponse](docs/SnapshotResponse.md)
  - [SnapshotResponses](docs/SnapshotResponses.md)
  - [SnapshotsResponseEnvelope](docs/SnapshotsResponseEnvelope.md)
+ - [Subscription](docs/Subscription.md)
+ - [SubscriptionArray](docs/SubscriptionArray.md)
+ - [SubscriptionEnvelope](docs/SubscriptionEnvelope.md)
+ - [SubscriptionInfo](docs/SubscriptionInfo.md)
+ - [SubscriptionsEnvelope](docs/SubscriptionsEnvelope.md)
  - [Tag](docs/Tag.md)
  - [TagArray](docs/TagArray.md)
  - [TagsEnvelope](docs/TagsEnvelope.md)
@@ -290,8 +321,10 @@ Class | Method | HTTP request | Description
  - [TokenResponse](docs/TokenResponse.md)
  - [UnregisterDeviceResponse](docs/UnregisterDeviceResponse.md)
  - [UnregisterDeviceResponseEnvelope](docs/UnregisterDeviceResponseEnvelope.md)
+ - [UpdateParameters](docs/UpdateParameters.md)
  - [User](docs/User.md)
  - [UserEnvelope](docs/UserEnvelope.md)
+ - [ValidationCallbackInfo](docs/ValidationCallbackInfo.md)
  - [WebSocketError](docs/WebSocketError.md)
 
 
@@ -303,7 +336,7 @@ Authentication schemes defined for the API:
 - **Type**: OAuth
 - **Flow**: implicit
 - **Authorizatoin URL**: https://accounts.artik.cloud/authorize
-- **Scopes**:
+- **Scopes**: 
   - read:artikcloud: Read from ARTIK Cloud
   - write:artikcloud: Write from ARTIK Cloud
 

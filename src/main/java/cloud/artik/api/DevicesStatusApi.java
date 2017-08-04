@@ -37,14 +37,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DevicestatusApi {
+public class DevicesStatusApi {
     private ApiClient apiClient;
 
-    public DevicestatusApi() {
+    public DevicesStatusApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public DevicestatusApi(ApiClient apiClient) {
+    public DevicesStatusApi(ApiClient apiClient) {
         this.apiClient = apiClient;
     }
 

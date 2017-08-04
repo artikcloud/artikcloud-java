@@ -1,10 +1,10 @@
 
-# DeviceShareInfo
+# SubscriptionEnvelope
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**email** | **String** | User email |  [optional]
+**data** | [**Subscription**](Subscription.md) |  |  [optional]
 
 
 

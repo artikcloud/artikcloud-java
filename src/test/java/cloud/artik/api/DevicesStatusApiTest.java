@@ -26,12 +26,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * API tests for DevicestatusApi
+ * API tests for DevicesStatusApi
  */
 @Ignore
-public class DevicestatusApiTest {
+public class DevicesStatusApiTest {
 
-    private final DevicestatusApi api = new DevicestatusApi();
+    private final DevicesStatusApi api = new DevicesStatusApi();
 
     
     /**
@@ -62,10 +62,10 @@ public class DevicestatusApiTest {
      */
     @Test
     public void getDevicesStatusTest() throws ApiException {
-        String sdids = null;
+        String dids = null;
         Boolean includeSnapshot = null;
         Boolean includeSnapshotTimestamp = null;
-        DeviceStatusBatch response = api.getDevicesStatus(sdids, includeSnapshot, includeSnapshotTimestamp);
+        DeviceStatusBatch response = api.getDevicesStatus(dids, includeSnapshot, includeSnapshotTimestamp);
 
         // TODO: test validations
     }

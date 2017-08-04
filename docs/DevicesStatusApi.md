@@ -1,12 +1,12 @@
-# DevicestatusApi
+# DevicesStatusApi
 
 All URIs are relative to *https://api.artik.cloud/v1.1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getDeviceStatus**](DevicestatusApi.md#getDeviceStatus) | **GET** /devices/{deviceId}/status | Get Device Status
-[**getDevicesStatus**](DevicestatusApi.md#getDevicesStatus) | **GET** /devices/status | Get Devices Status
-[**putDeviceStatus**](DevicestatusApi.md#putDeviceStatus) | **PUT** /devices/{deviceId}/status | Update Device Status
+[**getDeviceStatus**](DevicesStatusApi.md#getDeviceStatus) | **GET** /devices/{deviceId}/status | Get Device Status
+[**getDevicesStatus**](DevicesStatusApi.md#getDevicesStatus) | **GET** /devices/status | Get Devices Status
+[**putDeviceStatus**](DevicesStatusApi.md#putDeviceStatus) | **PUT** /devices/{deviceId}/status | Update Device Status
 
 
 <a name="getDeviceStatus"></a>
@@ -24,7 +24,7 @@ Get Device Status
 //import cloud.artik.client.ApiException;
 //import cloud.artik.client.Configuration;
 //import cloud.artik.client.auth.*;
-//import cloud.artik.api.DevicestatusApi;
+//import cloud.artik.api.DevicesStatusApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -32,7 +32,7 @@ ApiClient defaultClient = Configuration.getDefaultApiClient();
 OAuth artikcloud_oauth = (OAuth) defaultClient.getAuthentication("artikcloud_oauth");
 artikcloud_oauth.setAccessToken("YOUR ACCESS TOKEN");
 
-DevicestatusApi apiInstance = new DevicestatusApi();
+DevicesStatusApi apiInstance = new DevicesStatusApi();
 String deviceId = "deviceId_example"; // String | Device ID.
 Boolean includeSnapshot = true; // Boolean | Include device snapshot into the response
 Boolean includeSnapshotTimestamp = true; // Boolean | Include device snapshot timestamp into the response
@@ -40,7 +40,7 @@ try {
     DeviceStatus result = apiInstance.getDeviceStatus(deviceId, includeSnapshot, includeSnapshotTimestamp);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling DevicestatusApi#getDeviceStatus");
+    System.err.println("Exception when calling DevicesStatusApi#getDeviceStatus");
     e.printStackTrace();
 }
 ```
@@ -81,7 +81,7 @@ Get Devices Status
 //import cloud.artik.client.ApiException;
 //import cloud.artik.client.Configuration;
 //import cloud.artik.client.auth.*;
-//import cloud.artik.api.DevicestatusApi;
+//import cloud.artik.api.DevicesStatusApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -89,7 +89,7 @@ ApiClient defaultClient = Configuration.getDefaultApiClient();
 OAuth artikcloud_oauth = (OAuth) defaultClient.getAuthentication("artikcloud_oauth");
 artikcloud_oauth.setAccessToken("YOUR ACCESS TOKEN");
 
-DevicestatusApi apiInstance = new DevicestatusApi();
+DevicesStatusApi apiInstance = new DevicesStatusApi();
 String dids = "dids_example"; // String | List of device ids (comma-separated) for which the statuses are requested.
 Boolean includeSnapshot = true; // Boolean | Include device snapshot into the response
 Boolean includeSnapshotTimestamp = true; // Boolean | Include device snapshot timestamp into the response
@@ -97,7 +97,7 @@ try {
     DeviceStatusBatch result = apiInstance.getDevicesStatus(dids, includeSnapshot, includeSnapshotTimestamp);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling DevicestatusApi#getDevicesStatus");
+    System.err.println("Exception when calling DevicesStatusApi#getDevicesStatus");
     e.printStackTrace();
 }
 ```
@@ -138,7 +138,7 @@ Update Device Status
 //import cloud.artik.client.ApiException;
 //import cloud.artik.client.Configuration;
 //import cloud.artik.client.auth.*;
-//import cloud.artik.api.DevicestatusApi;
+//import cloud.artik.api.DevicesStatusApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -146,14 +146,14 @@ ApiClient defaultClient = Configuration.getDefaultApiClient();
 OAuth artikcloud_oauth = (OAuth) defaultClient.getAuthentication("artikcloud_oauth");
 artikcloud_oauth.setAccessToken("YOUR ACCESS TOKEN");
 
-DevicestatusApi apiInstance = new DevicestatusApi();
+DevicesStatusApi apiInstance = new DevicesStatusApi();
 String deviceId = "deviceId_example"; // String | Device ID.
 DeviceStatusPut body = new DeviceStatusPut(); // DeviceStatusPut | Body
 try {
     DeviceStatus result = apiInstance.putDeviceStatus(deviceId, body);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling DevicestatusApi#putDeviceStatus");
+    System.err.println("Exception when calling DevicesStatusApi#putDeviceStatus");
     e.printStackTrace();
 }
 ```

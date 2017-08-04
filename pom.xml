@@ -5,7 +5,7 @@
   <artifactId>artikcloud-java</artifactId>
   <packaging>jar</packaging>
   <name>artikcloud-java</name>
-  <version>2.1.0</version>
+  <version>2.1.1</version>
   <description>Artik Cloud Java SDK</description>
   <url>https://github.com/artikcloud/artikcloud-java</url>
 
@@ -249,7 +249,7 @@
       <groupId>joda-time</groupId>
       <artifactId>joda-time</artifactId>
       <version>${jodatime-version}</version>
-  	</dependency>
+    </dependency>
     
 
     <!-- test dependencies -->

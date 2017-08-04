@@ -11,7 +11,7 @@ Method | HTTP request | Description
 [**getUserDevices**](UsersApi.md#getUserDevices) | **GET** /users/{userId}/devices | Get User Devices
 [**getUserProperties**](UsersApi.md#getUserProperties) | **GET** /users/{userId}/properties | Get User application properties
 [**getUserRules**](UsersApi.md#getUserRules) | **GET** /users/{userId}/rules | Get User Rules
-[**listAllSharesForUser**](UsersApi.md#listAllSharesForUser) | **GET** in/api/users/{userId}/shares | Get User shares
+[**listAllSharesForUser**](UsersApi.md#listAllSharesForUser) | **GET** /users/{userId}/shares | Get User shares
 [**updateUserProperties**](UsersApi.md#updateUserProperties) | **PUT** /users/{userId}/properties | Update User Application Properties
 
 
@@ -355,7 +355,7 @@ Name | Type | Description  | Notes
 
 <a name="getUserRules"></a>
 # **getUserRules**
-> RulesEnvelope getUserRules(userId, excludeDisabled, count, offset)
+> RulesEnvelope getUserRules(userId, excludeDisabled, count, offset, owner)
 
 Get User Rules
 
@@ -381,8 +381,9 @@ String userId = "userId_example"; // String | User ID.
 Boolean excludeDisabled = true; // Boolean | Exclude disabled rules in the result.
 Integer count = 56; // Integer | Desired count of items in the result set.
 Integer offset = 56; // Integer | Offset for pagination.
+String owner = "owner_example"; // String | Rule owner
 try {
-    RulesEnvelope result = apiInstance.getUserRules(userId, excludeDisabled, count, offset);
+    RulesEnvelope result = apiInstance.getUserRules(userId, excludeDisabled, count, offset, owner);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling UsersApi#getUserRules");
@@ -398,6 +399,7 @@ Name | Type | Description  | Notes
  **excludeDisabled** | **Boolean**| Exclude disabled rules in the result. | [optional]
  **count** | **Integer**| Desired count of items in the result set. | [optional]
  **offset** | **Integer**| Offset for pagination. | [optional]
+ **owner** | **String**| Rule owner | [optional] [enum: user, application, all]
 
 ### Return type
 

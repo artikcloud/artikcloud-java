@@ -4,10 +4,10 @@ All URIs are relative to *https://api.artik.cloud/v1.1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createShareForDevice**](DevicesSharesApi.md#createShareForDevice) | **POST** in/api/devices/{deviceId}/shares | Share a device 
-[**deleteSharingForDevice**](DevicesSharesApi.md#deleteSharingForDevice) | **DELETE** in/api/devices/{deviceId}/shares/{shareId} | Delete specific share of the given device id
-[**getAllSharesForDevice**](DevicesSharesApi.md#getAllSharesForDevice) | **GET** in/api/devices/{deviceId}/shares | List all shares for the given device id
-[**getSharingForDevice**](DevicesSharesApi.md#getSharingForDevice) | **GET** in/api/devices/{deviceId}/shares/{shareId} | Get specific share of the given device id
+[**createShareForDevice**](DevicesSharesApi.md#createShareForDevice) | **POST** /devices/{deviceId}/shares | Share a device 
+[**deleteSharingForDevice**](DevicesSharesApi.md#deleteSharingForDevice) | **DELETE** /devices/{deviceId}/shares/{shareId} | Delete specific share of the given device id
+[**getAllSharesForDevice**](DevicesSharesApi.md#getAllSharesForDevice) | **GET** /devices/{deviceId}/shares | List all shares for the given device id
+[**getSharingForDevice**](DevicesSharesApi.md#getSharingForDevice) | **GET** /devices/{deviceId}/shares/{shareId} | Get specific share of the given device id
 
 
 <a name="createShareForDevice"></a>
