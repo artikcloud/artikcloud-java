@@ -1,8 +1,9 @@
-# artikcloud-java
+ARTIK Cloud Java/Android SDK
+================
 
-## Requirements
+[![Build Status](https://travis-ci.org/artikcloud/artikcloud-java.svg?branch=master)](https://travis-ci.org/artikcloud/artikcloud-java)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/cloud.artik/artikcloud-java/badge.svg?style=plastic)](https://maven-badges.herokuapp.com/maven-central/cloud.artik/artikcloud-java)
 
-Building the API client library requires [Maven](https://maven.apache.org/) to be installed.
 This SDK helps you connect your Java or Android apps to ARTIK Cloud. The SDK exposes a number of methods to easily execute REST and WebSockets API calls to ARTIK Cloud.
 
 Prerequisites
@@ -12,7 +13,6 @@ Prerequisites
  * JavaSE 1.7 or above
 
 The SDK was developed with Maven and tested with Android 4.4.2. Building Maven will fetch the correct libraries. You might be able to build the SDK in a different environment and we would be happy to hear about your (success) stories.
-
 ## Installation
 
 To install the API client library to your local Maven repository, simply execute:
