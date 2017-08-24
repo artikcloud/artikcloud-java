@@ -2,7 +2,7 @@ lazy val root = (project in file(".")).
   settings(
     organization := "cloud.artik",
     name := "artikcloud-java",
-    version := "2.1.1",
+    version := "2.1.2",
     scalaVersion := "2.11.4",
     scalacOptions ++= Seq("-feature"),
     javacOptions in compile ++= Seq("-Xlint:deprecation"),

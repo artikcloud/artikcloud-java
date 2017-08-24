@@ -5,7 +5,7 @@
   <artifactId>artikcloud-java</artifactId>
   <packaging>jar</packaging>
   <name>artikcloud-java</name>
-  <version>2.1.1</version>
+  <version>2.1.2</version>
   <description>Artik Cloud Java SDK</description>
   <url>https://github.com/artikcloud/artikcloud-java</url>
 
