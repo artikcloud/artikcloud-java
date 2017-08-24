@@ -24,6 +24,24 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel(description = "Action received in a WebSocket.")
 
 public class ActionOut {
+  @SerializedName("data")
+  private ActionDetailsArray data = null;
+
+  @SerializedName("cid")
+  private String cid = null;
+
+  @SerializedName("ddid")
+  private String ddid = null;
+
+  @SerializedName("sdid")
+  private String sdid = null;
+
+  @SerializedName("ts")
+  private Long ts = null;
+
+  @SerializedName("type")
+  private String type = "action";
+
   @SerializedName("mid")
   private String mid = null;
 
@@ -38,6 +56,114 @@ public class ActionOut {
 
   @SerializedName("mv")
   private Integer mv = null;
+
+  public ActionOut data(ActionDetailsArray data) {
+    this.data = data;
+    return this;
+  }
+
+   /**
+   * Get data
+   * @return data
+  **/
+  @ApiModelProperty(example = "null", value = "")
+  public ActionDetailsArray getData() {
+    return data;
+  }
+
+  public void setData(ActionDetailsArray data) {
+    this.data = data;
+  }
+
+  public ActionOut cid(String cid) {
+    this.cid = cid;
+    return this;
+  }
+
+   /**
+   * Confirmation ID.
+   * @return cid
+  **/
+  @ApiModelProperty(example = "null", value = "Confirmation ID.")
+  public String getCid() {
+    return cid;
+  }
+
+  public void setCid(String cid) {
+    this.cid = cid;
+  }
+
+  public ActionOut ddid(String ddid) {
+    this.ddid = ddid;
+    return this;
+  }
+
+   /**
+   * Destination Device ID.
+   * @return ddid
+  **/
+  @ApiModelProperty(example = "null", value = "Destination Device ID.")
+  public String getDdid() {
+    return ddid;
+  }
+
+  public void setDdid(String ddid) {
+    this.ddid = ddid;
+  }
+
+  public ActionOut sdid(String sdid) {
+    this.sdid = sdid;
+    return this;
+  }
+
+   /**
+   * Source Device ID.
+   * @return sdid
+  **/
+  @ApiModelProperty(example = "null", value = "Source Device ID.")
+  public String getSdid() {
+    return sdid;
+  }
+
+  public void setSdid(String sdid) {
+    this.sdid = sdid;
+  }
+
+  public ActionOut ts(Long ts) {
+    this.ts = ts;
+    return this;
+  }
+
+   /**
+   * Timestamp (past, present or future). Defaults to current time if not provided.
+   * @return ts
+  **/
+  @ApiModelProperty(example = "null", value = "Timestamp (past, present or future). Defaults to current time if not provided.")
+  public Long getTs() {
+    return ts;
+  }
+
+  public void setTs(Long ts) {
+    this.ts = ts;
+  }
+
+  public ActionOut type(String type) {
+    this.type = type;
+    return this;
+  }
+
+   /**
+   * Type.
+   * @return type
+  **/
+  @ApiModelProperty(example = "null", value = "Type.")
+  public String getType() {
+    return type;
+  }
+
+  public void setType(String type) {
+    this.type = type;
+  }
 
   public ActionOut mid(String mid) {
     this.mid = mid;
@@ -129,7 +255,6 @@ public class ActionOut {
     this.mv = mv;
   }
 
-
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -138,8 +263,15 @@ public class ActionOut {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
+
     ActionOut actionOut = (ActionOut) o;
-    return Objects.equals(this.mid, actionOut.mid) &&
+    return Objects.equals(this.data, actionOut.data) &&
+        Objects.equals(this.cid, actionOut.cid) &&
+        Objects.equals(this.ddid, actionOut.ddid) &&
+        Objects.equals(this.sdid, actionOut.sdid) &&
+        Objects.equals(this.ts, actionOut.ts) &&
+        Objects.equals(this.type, actionOut.type) &&
+        Objects.equals(this.mid, actionOut.mid) &&
         Objects.equals(this.uid, actionOut.uid) &&
         Objects.equals(this.sdtid, actionOut.sdtid) &&
         Objects.equals(this.cts, actionOut.cts) &&
@@ -148,21 +280,26 @@ public class ActionOut {
 
   @Override
   public int hashCode() {
-    return Objects.hash(mid, uid, sdtid, cts, mv);
+    return Objects.hash(mid, uid, sdtid, cts, mv, data, cid, ddid, sdid, ts, type);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ActionOut {\n");
-    
-    sb.append("    mid: ").append(toIndentedString(mid)).append("\n");
-    sb.append("    uid: ").append(toIndentedString(uid)).append("\n");
-    sb.append("    sdtid: ").append(toIndentedString(sdtid)).append("\n");
-    sb.append("    cts: ").append(toIndentedString(cts)).append("\n");
-    sb.append("    mv: ").append(toIndentedString(mv)).append("\n");
-    sb.append("}");
+      sb.append("class ActionOut {\n");
+      sb.append("    data: ").append(toIndentedString(data)).append("\n");
+      sb.append("    cid: ").append(toIndentedString(cid)).append("\n");
+      sb.append("    ddid: ").append(toIndentedString(ddid)).append("\n");
+      sb.append("    sdid: ").append(toIndentedString(sdid)).append("\n");
+      sb.append("    ts: ").append(toIndentedString(ts)).append("\n");
+      sb.append("    type: ").append(toIndentedString(type)).append("\n");
+      sb.append("    mid: ").append(toIndentedString(mid)).append("\n");
+      sb.append("    uid: ").append(toIndentedString(uid)).append("\n");
+      sb.append("    sdtid: ").append(toIndentedString(sdtid)).append("\n");
+      sb.append("    cts: ").append(toIndentedString(cts)).append("\n");
+      sb.append("    mv: ").append(toIndentedString(mv)).append("\n");
+      sb.append("}");
     return sb.toString();
   }
 

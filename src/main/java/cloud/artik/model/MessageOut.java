@@ -17,6 +17,9 @@ import java.util.Objects;
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Message received by a WebSocket.
@@ -24,6 +27,25 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel(description = "Message received by a WebSocket.")
 
 public class MessageOut {
+
+  @SerializedName("data")
+  private Map<String, Object> data = new HashMap<String, Object>();
+
+  @SerializedName("cid")
+  private String cid = null;
+
+  @SerializedName("ddid")
+  private String ddid = null;
+
+  @SerializedName("sdid")
+  private String sdid = null;
+
+  @SerializedName("ts")
+  private Long ts = null;
+
+  @SerializedName("type")
+  private String type = "message";
+
   @SerializedName("mid")
   private String mid = null;
 
@@ -39,10 +61,124 @@ public class MessageOut {
   @SerializedName("mv")
   private Integer mv = null;
 
+  public MessageOut data(Map<String, Object> data) {
+    this.data = data;
+    return this;
+  }
+
+  public MessageOut putDataItem(String key, Object dataItem) {
+    this.data.put(key, dataItem);
+    return this;
+  }
+
+   /**
+   * Message Payload.
+   * @return data
+  **/
+  @ApiModelProperty(example = "null", value = "Message Payload.")
+  public Map<String, Object> getData() {
+    return data;
+  }
+
+  public void setData(Map<String, Object> data) {
+    this.data = data;
+  }
+
+  public MessageOut cid(String cid) {
+    this.cid = cid;
+    return this;
+  }
+
+   /**
+   * Confirmation ID.
+   * @return cid
+  **/
+  @ApiModelProperty(example = "null", value = "Confirmation ID.")
+  public String getCid() {
+    return cid;
+  }
+
+  public void setCid(String cid) {
+    this.cid = cid;
+  }
+
+  public MessageOut ddid(String ddid) {
+    this.ddid = ddid;
+    return this;
+  }
+
+   /**
+   * Destination Device ID.
+   * @return ddid
+  **/
+  @ApiModelProperty(example = "null", value = "Destination Device ID.")
+  public String getDdid() {
+    return ddid;
+  }
+
+  public void setDdid(String ddid) {
+    this.ddid = ddid;
+  }
+
+  public MessageOut sdid(String sdid) {
+    this.sdid = sdid;
+    return this;
+  }
+
+   /**
+   * Source Device ID.
+   * @return sdid
+  **/
+  @ApiModelProperty(example = "null", value = "Source Device ID.")
+  public String getSdid() {
+    return sdid;
+  }
+
+  public void setSdid(String sdid) {
+    this.sdid = sdid;
+  }
+
+  public MessageOut ts(Long ts) {
+    this.ts = ts;
+    return this;
+  }
+
+   /**
+   * Timestamp (past, present or future). Defaults to current time if not provided.
+   * @return ts
+  **/
+  @ApiModelProperty(example = "null", value = "Timestamp (past, present or future). Defaults to current time if not provided.")
+  public Long getTs() {
+    return ts;
+  }
+
+  public void setTs(Long ts) {
+    this.ts = ts;
+  }
+
+  public MessageOut type(String type) {
+    this.type = type;
+    return this;
+  }
+
+   /**
+   * Type.
+   * @return type
+  **/
+  @ApiModelProperty(example = "null", value = "Type.")
+  public String getType() {
+    return type;
+  }
+
+  public void setType(String type) {
+    this.type = type;
+  }
+
   public MessageOut mid(String mid) {
     this.mid = mid;
     return this;
   }
+
 
    /**
    * Message ID.
@@ -138,8 +274,16 @@ public class MessageOut {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
+
     MessageOut messageOut = (MessageOut) o;
-    return Objects.equals(this.mid, messageOut.mid) &&
+
+    return Objects.equals(this.data, messageOut.data) &&
+        Objects.equals(this.cid, messageOut.cid) &&
+        Objects.equals(this.ddid, messageOut.ddid) &&
+        Objects.equals(this.sdid, messageOut.sdid) &&
+        Objects.equals(this.ts, messageOut.ts) &&
+        Objects.equals(this.type, messageOut.type) &&
+        Objects.equals(this.mid, messageOut.mid) &&
         Objects.equals(this.uid, messageOut.uid) &&
         Objects.equals(this.sdtid, messageOut.sdtid) &&
         Objects.equals(this.cts, messageOut.cts) &&
@@ -148,21 +292,26 @@ public class MessageOut {
 
   @Override
   public int hashCode() {
-    return Objects.hash(mid, uid, sdtid, cts, mv);
+    return Objects.hash(data, cid, ddid, sdid, ts, type, mid, uid, sdtid, cts, mv);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class MessageOut {\n");
-    
-    sb.append("    mid: ").append(toIndentedString(mid)).append("\n");
-    sb.append("    uid: ").append(toIndentedString(uid)).append("\n");
-    sb.append("    sdtid: ").append(toIndentedString(sdtid)).append("\n");
-    sb.append("    cts: ").append(toIndentedString(cts)).append("\n");
-    sb.append("    mv: ").append(toIndentedString(mv)).append("\n");
-    sb.append("}");
+      sb.append("class MessageOut {\n");
+      sb.append("    data: ").append(toIndentedString(data)).append("\n");
+      sb.append("    cid: ").append(toIndentedString(cid)).append("\n");
+      sb.append("    ddid: ").append(toIndentedString(ddid)).append("\n");
+      sb.append("    sdid: ").append(toIndentedString(sdid)).append("\n");
+      sb.append("    ts: ").append(toIndentedString(ts)).append("\n");
+      sb.append("    type: ").append(toIndentedString(type)).append("\n");
+      sb.append("    mid: ").append(toIndentedString(mid)).append("\n");
+      sb.append("    uid: ").append(toIndentedString(uid)).append("\n");
+      sb.append("    sdtid: ").append(toIndentedString(sdtid)).append("\n");
+      sb.append("    cts: ").append(toIndentedString(cts)).append("\n");
+      sb.append("    mv: ").append(toIndentedString(mv)).append("\n");
+      sb.append("}");
     return sb.toString();
   }
 
