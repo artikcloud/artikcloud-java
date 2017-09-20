@@ -2,7 +2,7 @@ apply plugin: 'idea'
 apply plugin: 'eclipse'
 
 group = 'cloud.artik'
-version = '2.1.1'
+version = '2.2.0'
 
 buildscript {
     repositories {
@@ -100,5 +100,6 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp-ws:3.4.1'
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'joda-time:joda-time:2.9.3'
+    compile 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.0'
     testCompile 'junit:junit:4.12'
 }

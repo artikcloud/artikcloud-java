@@ -5,7 +5,7 @@
   <artifactId>artikcloud-java</artifactId>
   <packaging>jar</packaging>
   <name>artikcloud-java</name>
-  <version>2.1.2</version>
+  <version>2.2.0</version>
   <description>Artik Cloud Java SDK</description>
   <url>https://github.com/artikcloud/artikcloud-java</url>
 
@@ -251,6 +251,12 @@
       <version>${jodatime-version}</version>
     </dependency>
     
+    <!--  customization mqtt -->
+    <dependency>
+       <groupId>org.eclipse.paho</groupId>
+       <artifactId>org.eclipse.paho.client.mqttv3</artifactId>
+       <version>${paho-mqtt-version}</version>
+    </dependency>
 
     <!-- test dependencies -->
     <dependency>
@@ -263,11 +269,14 @@
   <properties>
     <swagger-core-version>1.5.9</swagger-core-version>
     <okhttp-version>2.7.5</okhttp-version>
-    <okhttpws-version>3.4.1</okhttpws-version>
+    <okhttpws-version>3.4.1</okhttpws-version> 
     <gson-version>2.6.2</gson-version>
     <jodatime-version>2.9.3</jodatime-version>
     <maven-plugin-version>1.0.0</maven-plugin-version>
     <junit-version>4.12</junit-version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!-- customization mqtt -->
+    <paho-mqtt-version>1.2.0</paho-mqtt-version>
+    
   </properties>
 </project>
