@@ -4,7 +4,7 @@ ARTIK Cloud Java/Android SDK
 [![Build Status](https://travis-ci.org/artikcloud/artikcloud-java.svg?branch=master)](https://travis-ci.org/artikcloud/artikcloud-java)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/cloud.artik/artikcloud-java/badge.svg?style=plastic)](https://maven-badges.herokuapp.com/maven-central/cloud.artik/artikcloud-java)
 
-This SDK helps you connect your Java or Android apps to ARTIK Cloud. The SDK exposes a number of methods to easily execute REST and WebSockets API calls to ARTIK Cloud.
+This SDK helps you connect your Java or Android apps to ARTIK Cloud. The SDK exposes a number of methods to easily execute REST, WebSockets, and MQTT API calls to ARTIK Cloud.
 
 Prerequisites
 -------------
@@ -37,7 +37,7 @@ Add this dependency to your project's POM:
 <dependency>
     <groupId>cloud.artik</groupId>
     <artifactId>artikcloud-java</artifactId>
-    <version>2.1.2</version>
+    <version>2.2.0</version>
     <scope>compile</scope>
 </dependency>
 ```
@@ -47,7 +47,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "cloud.artik:artikcloud-java:2.1.2"
+compile "cloud.artik:artikcloud-java:2.2.0"
 ```
 
 ### Others
@@ -58,7 +58,7 @@ At first generate the JAR by executing:
 
 Then manually install the following JARs:
 
-* target/artikcloud-java-2.1.2.jar
+* target/artikcloud-java-2.2.0.jar
 * target/lib/*.jar
 
 ## Getting Started
@@ -350,10 +350,7 @@ Usage
 
 Peek into [tests](https://github.com/artikcloud/artikcloud-java/tree/master/src/test/java/cloud/artik) for examples about how to use the SDK.
 
-In addition, you can look at our tutorial and sample applications. These will give you a good overview of what you can do and how to do it. Read more about it at
-
-- https://developer.artik.cloud/documentation/tutorials/your-first-android-app.html
-- https://developer.artik.cloud/documentation/tutorials/an-iot-remote-control.html
+In addition, you can look at our tutorial and sample applications. These will give you a good overview of what you can do and how to do it. Read more about it at https://developer.artik.cloud/documentation/tutorials/code-samples/
 
 More about ARTIK Cloud
 ----------------------
@@ -362,7 +359,7 @@ If you are not familiar with ARTIK Cloud, we have extensive documentation at htt
 
 The full ARTIK Cloud API specification can be found at https://developer.artik.cloud/documentation/api-reference/
 
-Check out advanced sample applications at https://developer.artik.cloud/documentation/samples/
+Check out advanced sample applications at https://developer.artik.cloud/documentation/tutorials/
 
 To create and manage your services and devices on ARTIK Cloud, create an account at https://developer.artik.cloud
 
