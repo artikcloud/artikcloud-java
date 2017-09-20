@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2018 Samsung Electronics Co., Ltd.
+ * Copyright (C) 2017 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,30 +14,6 @@
  * limitations under the License.
  */
 
-/**
- * This test case tests the basic mqtt functions using Junit framework. 
- * It is disabled by default. Consult the instruction below to enable and run the tests
- * 
- * How to run the tests of this test case
- * 
- * 1. Connect a device of type "Example Simple Smart Light" at my.artik.cloud
- *    by clicking the following link. If you already have such a device in your account, skip this step. 
- *    https://my.artik.cloud/new_device/cloud.artik.example.simple_smartlight
- *    
- * 2. Get the device ID and device token of the above device per instruction
- *    https://developer.artik.cloud/documentation/tools/web-tools.html#managing-a-device-token
- *    
- * 3. Copy the device ID and token obtained above to fill in deviceId and deviceToken data member.
- * 
- * 4. Remove @ignore from the test you want to run
- * 
- * 5. Disable "<skipTests>true</skipTests>" in the pom.xml
- * 
- * 5. In the terminal, at the root directory of this SDK (cloned from github), run the following command
- *    $ mvn -Dtest=MqttTest test
- *    
- */
-
 package cloud.artik.mqtt;
 
 import static org.junit.Assert.*;
@@ -50,10 +26,24 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import cloud.artik.config.*;
+
+/**
+ * This test case tests the basic mqtt functions using Junit framework. 
+ * It is disabled by default. Consult the instruction below to enable and run the tests
+ * 
+ * How to run the tests of this test case
+ * 
+ * Follow the instruction in Configure.java:
+ *  Fill in device id/token for "Example Simple Smart Light"
+ *  Run the test case: "mvn -Dtest=MqttTest test"
+ *    
+ */
+
 public class MqttTest {
     // Device of "Example Simple Smart Light"
-    final private String deviceId     = "<YOUR DEVICE ID>";
-    final private String deviceToken  = "<YOUR DEVICE TOKEN>";
+    private String deviceId     = null;
+    private String deviceToken  = null;
     
     // The maximum time to wait for each mqtt operation to finish
     final int waitingTimeInMs = 2000;
@@ -90,8 +80,17 @@ public class MqttTest {
 	};
 	
 	@Before
-	public void setUpConnection() {
-		System.out.println("\nsetUpConnection");
+	public void setUp() {
+		System.out.println("\nsetUp");
+		deviceId = Config.smartLightDeviceId;
+		assertNotNull(deviceId);
+		assertFalse(deviceId.isEmpty());
+		
+		deviceToken = Config.smartLightdeviceToken;
+		assertNotNull(deviceToken);
+		assertFalse(deviceToken.isEmpty());
+		
+		System.out.println("Device ID:" + deviceId +"; Device Token:" + deviceToken);
 		try {
 	 		mqttSession = new MqttSession(deviceId, deviceToken, callback);
 			System.out.println("Connecting to broker: "+ mqttSession.getBrokerUri());
@@ -109,8 +108,8 @@ public class MqttTest {
 	
 
 	@After
-	public void disconnect() {
-		System.out.println("Disconnect");
+	public void cleanup() {
+		System.out.println("cleanup");
 		try {
 			mqttSession.disconnect();
 			Thread.sleep(waitingTimeInMs); // sleep for a moment to wait for mqtt operation finished
