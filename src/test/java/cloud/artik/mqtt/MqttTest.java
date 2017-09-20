@@ -45,19 +45,21 @@ import static org.junit.Assert.*;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.IMqttToken;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
 public class MqttTest {
     // Device of "Example Simple Smart Light"
-    final String deviceId     = "<YOUR DEVICE ID>";
-    final String deviceToken  = "<YOUR DEVICE TOKEN>";
+    final private String deviceId     = "<YOUR DEVICE ID>";
+    final private String deviceToken  = "<YOUR DEVICE TOKEN>";
     
     // The maximum time to wait for each mqtt operation to finish
     final int waitingTimeInMs = 2000;
     final int qos             = 2;
 
-   
+    MqttSession mqttSession = null;
 	ArtikCloudMqttCallback callback = new ArtikCloudMqttCallback() {
 		@Override
 		public void onFailure(OperationMode opMode, IMqttToken mqttToken, Throwable throwable) {
@@ -86,20 +88,32 @@ public class MqttTest {
 		public void deliveryComplete(IMqttDeliveryToken token) {
 		}
 	};
-
-	@Test
-	public void connectionTest() {
-		System.out.println("\nRunning connectionTest");
+	
+	@Before
+	public void setUpConnection() {
+		System.out.println("\nsetUpConnection");
 		try {
-	 		MqttSession mqttSession = new MqttSession(deviceId, deviceToken, callback);
+	 		mqttSession = new MqttSession(deviceId, deviceToken, callback);
 			System.out.println("Connecting to broker: "+ mqttSession.getBrokerUri());
 			mqttSession.connect();
 			Thread.sleep(waitingTimeInMs);// sleep for a moment to wait for mqtt operation finished
 			assertEquals(true, mqttSession.isConnected());
+		} catch(ArtikCloudMqttException e) {
+			e.printStackTrace();
+			fail();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
 
-			System.out.println("Disconnecting ... ");
+	@After
+	public void disconnect() {
+		System.out.println("Disconnect");
+		try {
 			mqttSession.disconnect();
-    		Thread.sleep(waitingTimeInMs); // sleep for a moment to wait for mqtt operation finished
+			Thread.sleep(waitingTimeInMs); // sleep for a moment to wait for mqtt operation finished
 			assertEquals(false, mqttSession.isConnected());
 		} catch(ArtikCloudMqttException e) {
 			e.printStackTrace();
@@ -107,27 +121,22 @@ public class MqttTest {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		System.out.println("====================");
+	}
+
+	@Test
+	public void connectionTest() {
+		System.out.println("Running connectionTest");
 	}
 	
 	@Test 
 	public void publishTest() {
-		System.out.println("\nRunning publishTest");
+		System.out.println("Running publishTest");
 		try {
-	    	MqttSession mqttSession = new MqttSession(deviceId, deviceToken, callback);
-			System.out.println("Connecting to broker: "+ mqttSession.getBrokerUri());
-			mqttSession.connect();
-			Thread.sleep(waitingTimeInMs);
-			assertEquals(true, mqttSession.isConnected());
-			
 			String payload    =  "{\"state\":true}";
 	        System.out.println("Publishing to topic: " + mqttSession.getPublishTopic() + "; message payload: " + payload );
 	        mqttSession.publish(qos, payload);
 			Thread.sleep(waitingTimeInMs);
-	
-			System.out.println("Disconnecting ... ");
-			mqttSession.disconnect();
-			Thread.sleep(waitingTimeInMs);
-			assertEquals(false, mqttSession.isConnected());
 		} catch(ArtikCloudMqttException e) {
 			e.printStackTrace();
 			fail();
@@ -138,22 +147,11 @@ public class MqttTest {
 
 	@Test
 	public void subscribeTest() {
-		System.out.println("\nRunning subscribeTest");
+		System.out.println("Running subscribeTest");
 		try {
-		    MqttSession mqttSession = new MqttSession(deviceId, deviceToken, callback);
-			System.out.println("Connecting to broker: "+ mqttSession.getBrokerUri());
-			mqttSession.connect();
-		    Thread.sleep(waitingTimeInMs);
-			assertEquals(true, mqttSession.isConnected());
-			
 	        System.out.println("Subscribing to topic: " + mqttSession.getSubscribeTopic() );
 	        mqttSession.subscribe();
 		    Thread.sleep(5000);//If sending action to the device within this time period (ms), it will receive it
-	
-			System.out.println("Disconnecting ... ");
-			mqttSession.disconnect();
-		    Thread.sleep(waitingTimeInMs);
-			assertEquals(false, mqttSession.isConnected());
 		} catch(ArtikCloudMqttException e) {
 			e.printStackTrace();
 			fail();
