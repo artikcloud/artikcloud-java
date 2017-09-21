@@ -98,7 +98,7 @@ public class DeviceTypesApiExample {
 
 ```
 
-## Documentation for API Endpoints
+## Documentation for REST API Endpoints
 
 All URIs are relative to *https://api.artik.cloud/v1.1*
 
@@ -181,7 +181,6 @@ Class | Method | HTTP request | Description
 *UsersApi* | [**getUserRules**](docs/UsersApi.md#getUserRules) | **GET** /users/{userId}/rules | Get User Rules
 *UsersApi* | [**listAllSharesForUser**](docs/UsersApi.md#listAllSharesForUser) | **GET** /users/{userId}/shares | Get User shares
 *UsersApi* | [**updateUserProperties**](docs/UsersApi.md#updateUserProperties) | **PUT** /users/{userId}/properties | Update User Application Properties
-
 
 ## Documentation for Models
 
@@ -340,13 +339,18 @@ Authentication schemes defined for the API:
   - read:artikcloud: Read from ARTIK Cloud
   - write:artikcloud: Write from ARTIK Cloud
 
-Coding Recommendation
-------
+## Documentation for MQTT
 
-It's recommended to create an instance of `ApiClient` per thread in a multithreaded environment to avoid any potential issue.
+- [MQTT feature](https://developer.artik.cloud/documentation/data-management/mqtt.html)
+- [MQTT API reference](https://developer.artik.cloud/documentation/api-reference/mqtt-api.html)
+- [MQTT SDK APIs](./src/main/java/cloud/artik/mqtt)
+- [MQTT SDK API usage examples](./src/test/java/cloud/artik/mqtt)
 
-Usage
-------
+## Coding Recommendation
+
+For REST API calls, it's recommended to create an instance of `ApiClient` per thread in a multithreaded environment to avoid any potential issue.
+
+## Usage
 
 Peek into [tests](https://github.com/artikcloud/artikcloud-java/tree/master/src/test/java/cloud/artik) for examples about how to use the SDK.
 
@@ -368,6 +372,6 @@ Also see the ARTIK Cloud blog for tutorials, updates, and more: http://artik.io/
 License and Copyright
 ---------------------
 
-Licensed under the Apache License. See [LICENSE](https://github.com/artikcloud/artikcloud-java/blob/master/LICENSE).
+Licensed under the Apache License. See [LICENSE](./LICENSE).
 
 Copyright (c) 2017 Samsung Electronics Co., Ltd.
