@@ -1,4 +1,4 @@
-//Special handling
+# Special handling:ignore test configuration file
 src/test/java/cloud/artik/config/Config.java
 
 *.class
