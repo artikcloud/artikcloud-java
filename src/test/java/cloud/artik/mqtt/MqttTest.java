@@ -34,9 +34,9 @@ import cloud.artik.config.*;
  * 
  * How to run the tests of this test case
  * 
- * Follow the instruction in Configure.java:
+ * Follow the instruction in config/Config.java:
  *  Fill in device id/token for "Example Simple Smart Light"
- *  Run the test case: "mvn -Dtest=MqttTest test"
+ *  Run the test case: "mvn clean -Dtest=MqttTest test"
  *    
  */
 

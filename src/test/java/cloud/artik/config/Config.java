@@ -46,4 +46,7 @@ public final class Config {
     static public String smartLightDeviceId     = "";
     static public String smartLightdeviceToken  = "";
 
+    // Device of device type: "Demo Fire Sensor" (unique name cloud.artik.sample.demofiresensor) 
+    static public String fireSensorDeviceId     = "";
+    static public String fireSensorDeviceToken  = "";
 }
