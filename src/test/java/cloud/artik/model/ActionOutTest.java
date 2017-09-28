@@ -20,18 +20,6 @@ public class ActionOutTest {
 	public void getDataTest() {
 		ActionOut actionOut = new ActionOut();
 		assertNull(actionOut.getData());
-		//YWU
-//        ActionDetails action = new ActionDetails();
-//        ArrayList<ActionDetails> actions = new ArrayList<>();
-//        ActionDetailsArray actionDetailsArray = new ActionDetailsArray();
-//        ActionOut actionOut = new ActionOut();
-//
-//        action.setName("setOn");
-//        actions.add(action);
-//        actionDetailsArray.setActions(actions);
-//        actionOut.data(actionDetailsArray);
-//		
-//		assertEquals(actionDetailsArray,actionOut.getData());
 	}
 	
 	@Test
@@ -62,5 +50,25 @@ public class ActionOutTest {
 	public void getTypeTest() {
 		ActionOut actionOut = new ActionOut();
 		assertEquals("action", actionOut.getType());
+	}
+	
+	@Test
+	public void setDataTest() {
+		ActionOut actionOut = new ActionOut();
+		try {
+			actionOut.setData(null);
+			actionOut.setData(new ActionDetailsArray());
+		} catch (Exception e) {
+			fail();
+		}
+	}
+	
+	
+	@Test
+	public void integrationSetDataGetDataTest() {
+		ActionOut actionOut = new ActionOut();
+		ActionDetailsArray actionDetailsArray = new ActionDetailsArray();
+		actionOut.setData(actionDetailsArray);
+		assertEquals(actionDetailsArray, actionOut.getData());
 	}
 }

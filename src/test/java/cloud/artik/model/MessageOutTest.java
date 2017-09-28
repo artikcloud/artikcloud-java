@@ -19,6 +19,11 @@ public class MessageOutTest {
 	@Test
 	public void getDataTest() {
 		MessageOut messageOut = new MessageOut();
+		
+		//expected to be initialized
+		assertNotNull(messageOut.getData());
+		
+		//expected to be initialized with 0 elements
 		assertEquals(0, messageOut.getData().size());
 	}
 	
