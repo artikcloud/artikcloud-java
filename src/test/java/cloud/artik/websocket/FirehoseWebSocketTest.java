@@ -108,15 +108,15 @@ public class FirehoseWebSocketTest {
             // fire the request to make WebSocket connection
             ws.connect();
             lock.await(maxWaitingTimeInMs, TimeUnit.MILLISECONDS);
-          	assertTrue(ws.getConnectionStatus() == ConnectionStatus.CONNECTED);
-          	
-          	//now close connection
-          	ws.close();
+            assertTrue(ws.getConnectionStatus() == ConnectionStatus.CONNECTED);
+            
+            //now close connection
+            ws.close();
             lock.await(maxWaitingTimeInMs, TimeUnit.MILLISECONDS);
-          	assertTrue((ws.getConnectionStatus() == ConnectionStatus.CLOSING)
-          			 ||(ws.getConnectionStatus() == ConnectionStatus.CLOSED));
+            assertTrue((ws.getConnectionStatus() == ConnectionStatus.CLOSING)
+                 ||(ws.getConnectionStatus() == ConnectionStatus.CLOSED));
         } catch (URISyntaxException|IOException|InterruptedException e) {
-        	e.printStackTrace();
+            e.printStackTrace();
             fail();
         } 
     }
