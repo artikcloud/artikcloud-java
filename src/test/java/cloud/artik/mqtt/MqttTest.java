@@ -18,6 +18,9 @@ package cloud.artik.mqtt;
 
 import static org.junit.Assert.*;
 
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.IMqttToken;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
@@ -42,122 +45,122 @@ import cloud.artik.config.*;
 
 public class MqttTest {
     // Device of "Example Simple Smart Light"
-    private String deviceId     = null;
-    private String deviceToken  = null;
+    private String deviceId      = null;
+    private String deviceToken   = null;
     
     // The maximum time to wait for each mqtt operation to finish
-    final int waitingTimeInMs = 2000;
-    final int qos             = 2;
+    final int maxWaitingTimeInMs = 5000;
+    private CountDownLatch lock  = null;
+    
+    final int qos                = 2;
 
     MqttSession mqttSession = null;
-	ArtikCloudMqttCallback callback = new ArtikCloudMqttCallback() {
-		@Override
-		public void onFailure(OperationMode opMode, IMqttToken mqttToken, Throwable throwable) {
-			System.out.println("ArtikCloudMqttCallback::onFailure is called with Mode " + opMode  + "; throwable (" + throwable.toString() + ")");
-			fail();
-		}
+    ArtikCloudMqttCallback callback = new ArtikCloudMqttCallback() {
+        @Override
+        public void onFailure(OperationMode opMode, IMqttToken mqttToken, Throwable throwable) {
+            System.out.println("ArtikCloudMqttCallback::onFailure is called with Mode " + opMode  + "; throwable (" + throwable.toString() + ")");
+            lock.countDown();
+            fail();
+        }
 
-		@Override
-		public void onSuccess(OperationMode opMode, IMqttToken mqttToken) {
-			System.out.println("ArtikCloudMqttCallback::onSuccess() with Mode " 
-					+ opMode);
-		}
+        @Override
+        public void onSuccess(OperationMode opMode, IMqttToken mqttToken) {
+            System.out.println("ArtikCloudMqttCallback::onSuccess() with Mode " 
+                    + opMode);
+            lock.countDown();
+        }
 
-		@Override
-		public void connectionLost(Throwable cause) {
-			System.out.println("Connection is lost due to " + cause);
-			fail();
-		}
+        @Override
+        public void connectionLost(Throwable cause) {
+            System.out.println("Connection is lost due to " + cause);
+            fail();
+        }
 
-		@Override
-		public void messageArrived(String topic, MqttMessage message) {
-			System.out.println("Received message. Payload: " + new String(message.getPayload()) + ". Qos:" + message.getQos() + "; Topic:" + topic);
-		}
+        @Override
+        public void messageArrived(String topic, MqttMessage message) {
+            System.out.println("Received message. Payload: " + new String(message.getPayload()) + ". Qos:" + message.getQos() + "; Topic:" + topic);
+        }
 
-		@Override
-		public void deliveryComplete(IMqttDeliveryToken token) {
-		}
-	};
-	
-	@Before
-	public void setUp() {
-		System.out.println("\nsetUp");
-		deviceId = Config.smartLightDeviceId;
-		assertNotNull(deviceId);
-		assertFalse(deviceId.isEmpty());
-		
-		deviceToken = Config.smartLightdeviceToken;
-		assertNotNull(deviceToken);
-		assertFalse(deviceToken.isEmpty());
-		
-		System.out.println("Device ID:" + deviceId +"; Device Token:" + deviceToken);
-		try {
-	 		mqttSession = new MqttSession(deviceId, deviceToken, callback);
-			System.out.println("Connecting to broker: "+ mqttSession.getBrokerUri());
-			mqttSession.connect();
-			Thread.sleep(waitingTimeInMs);// sleep for a moment to wait for mqtt operation finished
-			assertEquals(true, mqttSession.isConnected());
-		} catch(ArtikCloudMqttException e) {
-			e.printStackTrace();
-			fail();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
-	}
-	
+        @Override
+        public void deliveryComplete(IMqttDeliveryToken token) {
+        }
+    };
+    
+    @Before
+    public void setup() {
+        System.out.println("\nsetUp");
+        deviceId = Config.smartLightDeviceId;
+        assertNotNull(deviceId);
+        assertFalse(deviceId.isEmpty());
+        
+        deviceToken = Config.smartLightdeviceToken;
+        assertNotNull(deviceToken);
+        assertFalse(deviceToken.isEmpty());
+        
+        System.out.println("Device ID:" + deviceId +"; Device Token:" + deviceToken);
+        try {
+            mqttSession = new MqttSession(deviceId, deviceToken, callback);
+            System.out.println("Connecting to broker: "+ mqttSession.getBrokerUri());
+            mqttSession.connect();
+            lock = new CountDownLatch(1);
+            lock.await(maxWaitingTimeInMs, TimeUnit.MILLISECONDS);//wait for mqtt operation finished
+            assertEquals(true, mqttSession.isConnected());
+        } catch(ArtikCloudMqttException|InterruptedException e) {
+            e.printStackTrace();
+            fail();
+        }
+        
+    }
+    
 
-	@After
-	public void cleanup() {
-		System.out.println("cleanup");
-		try {
-			mqttSession.disconnect();
-			Thread.sleep(waitingTimeInMs); // sleep for a moment to wait for mqtt operation finished
-			assertEquals(false, mqttSession.isConnected());
-		} catch(ArtikCloudMqttException e) {
-			e.printStackTrace();
-			fail();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		System.out.println("====================");
-	}
+    @After
+    public void cleanup() {
+        System.out.println("cleanup");
+        try {
+            mqttSession.disconnect();
+            lock = new CountDownLatch(1);
+            lock.await(maxWaitingTimeInMs, TimeUnit.MILLISECONDS);
+            assertEquals(false, mqttSession.isConnected());
+        } catch(ArtikCloudMqttException|InterruptedException e) {
+            e.printStackTrace();
+            fail();
+        } 
+        System.out.println("====================");
+    }
 
-	@Test
-	public void connectionTest() {
-		System.out.println("Running connectionTest");
-	}
-	
-	@Test 
-	public void publishTest() {
-		System.out.println("Running publishTest");
-		try {
-			String payload    =  "{\"state\":true}";
-	        System.out.println("Publishing to topic: " + mqttSession.getPublishTopic() + "; message payload: " + payload );
-	        mqttSession.publish(qos, payload);
-			Thread.sleep(waitingTimeInMs);
-		} catch(ArtikCloudMqttException e) {
-			e.printStackTrace();
-			fail();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
+    @Test
+    public void connectionSuccessTest() {
+        // This test case will trigger setup() and cleanup(); 
+        // Should anything is wrong, it will trigger assertion there.
+    }
+    
+    @Test
+    public void publishTest() {
+        try {
+            String payload    =  "{\"state\":true}";
+            System.out.println("Publishing to topic: " + mqttSession.getPublishTopic() + "; message payload: " + payload );
+            mqttSession.publish(qos, payload);
+            lock = new CountDownLatch(1);
+            lock.await(maxWaitingTimeInMs, TimeUnit.MILLISECONDS);//wait for mqtt operation finished
+        } catch(Exception e) {
+            e.printStackTrace();
+            fail();
+        } 
+    }
 
-	@Test
-	public void subscribeTest() {
-		System.out.println("Running subscribeTest");
-		try {
-	        System.out.println("Subscribing to topic: " + mqttSession.getSubscribeTopic() );
-	        mqttSession.subscribe();
-		    Thread.sleep(5000);//If sending action to the device within this time period (ms), it will receive it
-		} catch(ArtikCloudMqttException e) {
-			e.printStackTrace();
-			fail();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	
-	}
+    @Test
+    public void subscribeTest() {
+        try {
+            System.out.println("Subscribing to topic: " + mqttSession.getSubscribeTopic() );
+            mqttSession.subscribe();
+            lock = new CountDownLatch(1);
+            lock.await(maxWaitingTimeInMs, TimeUnit.MILLISECONDS);//wait for mqtt operation finished
+        } catch(Exception e) {
+            e.printStackTrace();
+            fail();
+        }
+    
+    }
 
 }
+

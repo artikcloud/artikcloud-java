@@ -23,8 +23,8 @@ public class FirehoseWebSocketTest {
     private String deviceToken  = null;
     
     // The maximum time to wait
-    final int maxWaitingTimeInMs = 3000;
-    private CountDownLatch lock = new CountDownLatch(1);
+    final int maxWaitingTimeInMs = 5000;
+    private CountDownLatch lock = null;
     
     private ArtikCloudWebSocketCallback callback = new ArtikCloudWebSocketCallback() {
         @Override
@@ -53,7 +53,7 @@ public class FirehoseWebSocketTest {
         
         @Override
         public void onClose(int arg0, String arg1, boolean arg2) {
-            System.out.println("< Connection Closed.");
+//            System.out.println("< Connection Closed.");
             lock.countDown();
         }
         
@@ -107,11 +107,13 @@ public class FirehoseWebSocketTest {
             ws = new FirehoseWebSocket(accessToken, sdid, sdids, sdtids, uid, callback);
             // fire the request to make WebSocket connection
             ws.connect();
+            lock = new CountDownLatch(1);
             lock.await(maxWaitingTimeInMs, TimeUnit.MILLISECONDS);
             assertTrue(ws.getConnectionStatus() == ConnectionStatus.CONNECTED);
             
             //now close connection
             ws.close();
+            lock = new CountDownLatch(1);
             lock.await(maxWaitingTimeInMs, TimeUnit.MILLISECONDS);
             assertTrue((ws.getConnectionStatus() == ConnectionStatus.CLOSING)
                  ||(ws.getConnectionStatus() == ConnectionStatus.CLOSED));

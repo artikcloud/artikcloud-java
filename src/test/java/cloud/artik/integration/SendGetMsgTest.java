@@ -85,7 +85,7 @@ public class SendGetMsgTest {
 
         data.setData(myData);
        
-        // Now lets send our data.   You should receive a message id (mid) in a successful response.
+        // Now lets send our data. You should receive a message id (mid) in a successful response.
         try {
             MessageIDEnvelope result = messageApiInstance.sendMessage(data);
             assertNotNull(result.getData().getMid());
