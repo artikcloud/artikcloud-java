@@ -16,12 +16,7 @@
 
 package cloud.artik.mqtt;
 
-public enum OperationMode {
-    CONNECT,    // connect to broker
-    DISCONNECT, // disconnect from broker
-    PUBLISH,    // publish a data message
-    SUBSCRIBE,   // subscribe to receive action type messages (AKA Action)
-    SUBSCRIBE_ERROR,
-    UNKNOWN
+public enum Topics {
+    SUBSCRIBE_TOPIC_ACTIONS, 
+    SUBSCRIBE_TOPIC_ERRORS
 }
-

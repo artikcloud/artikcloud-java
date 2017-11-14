@@ -36,19 +36,25 @@ import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
  * The MQTT client ID uses ARTIK Cloud device ID.
  */
 public class MqttSession {
-    private final static String PUBLISH_TOPIC_BASE    = "/v1.1/messages/";
-    private final static String SUBSCRIBE_TOPIC_BASE  = "/v1.1/actions/";
+    private final static String PUBLISH_TOPIC_MESSAGES_BASE    = "/v1.1/messages/";
+    private final static String SUBSCRIBE_TOPIC_ACTIONS_BASE   = "/v1.1/actions/";
+    private final static String SUBSCRIBE_TOPIC_ERRORS_BASE    = "/v1.1/errors/";
     private final static String SCHEME                = "ssl";
     private final static String HOST                  = "api.artik.cloud";
     private final static String PORT                  = "8883";
+    
+    
+    
+   
 
     private MqttAsyncClient mqttClient;
     private OperationListener operationListener;
     private MessageListener msgListener;
     private String deviceId;
     private String deviceToken;
-    private String publishTopic;
-    private String subscribeTopic;
+    private String publishMessageTopicPath;
+    private String subscribeActionsTopicPath;
+    private String subscribeErrorTopicPath;
     private String brokerUri;
     
     /**
@@ -68,8 +74,9 @@ public class MqttSession {
     	this.deviceToken = deviceToken;
     	
     	this.brokerUri = SCHEME + "://" + HOST + ":" + PORT; 
-    	this.publishTopic = PUBLISH_TOPIC_BASE + deviceId;
-    	this.subscribeTopic = SUBSCRIBE_TOPIC_BASE + deviceId;
+    	this.publishMessageTopicPath = PUBLISH_TOPIC_MESSAGES_BASE + deviceId;
+    	this.subscribeActionsTopicPath = SUBSCRIBE_TOPIC_ACTIONS_BASE + deviceId;
+    	this.subscribeErrorTopicPath = SUBSCRIBE_TOPIC_ERRORS_BASE + deviceId;
     	
         try {
             mqttClient = new MqttAsyncClient(brokerUri, deviceId, new MemoryPersistence());
@@ -105,49 +112,119 @@ public class MqttSession {
     }
 
     /**
-     * 
      * @param qos Quality of Service (0, 1, or 2) used for publishing a message to ARTIK Cloud
      * @param payload the payload of the published message
      * @throws ArtikCloudMqttException
+     * 
      */
-    public void publish(int qos, String payload) throws ArtikCloudMqttException {
+   public void publish(int qos, String payload) throws ArtikCloudMqttException {
         MqttMessage mqttMessage = new MqttMessage(payload.getBytes());
         mqttMessage.setQos(qos);
 //        System.out.println("****** Thread: " + Thread.currentThread().getName()+ "; MqttSession publishing : "+ "topic: " + publishTopic +"; payload: " + payload);
         try {
-            mqttClient.publish(publishTopic, mqttMessage, String.valueOf(OperationMode.PUBLISH), operationListener);
+            mqttClient.publish(publishMessageTopicPath, mqttMessage, String.valueOf(OperationMode.PUBLISH), operationListener);
         } catch (MqttException e) {
         	throw new ArtikCloudMqttException(e);
         }
     }
     
-    public void subscribe() throws ArtikCloudMqttException {
+    /**
+     * @deprecated As of release 2.2.1, replace with {@link #subscribe(int, String)}}
+     * This deprecated version will not subscribe to error topic.
+     * @throws ArtikCloudMqttException
+     */
+    @Deprecated public void subscribe() throws ArtikCloudMqttException {
         try {
 //            System.out.println("****** Thread: " + Thread.currentThread().getName()+ "; MqttSession subscribing to:" + subscribeTopic);
 
         	// When sending Actions back to the client, ARTIK Cloud broker uses QoS 0, which is also called "fire and forget".
         	// Given this, the subscriber can only use QoS 0 to subscribe to ARTIK Cloud broker
-        	mqttClient.subscribe(subscribeTopic, 0, String.valueOf(OperationMode.SUBSCRIB), operationListener);
+        	mqttClient.subscribe(subscribeActionsTopicPath, 0, String.valueOf(OperationMode.SUBSCRIBE), operationListener);
         } catch (MqttException e) {
         	throw new ArtikCloudMqttException(e);
         }
     	
+    }
+     
+    /**
+     * @param topics - Enum Topics representing topics available for subscribe
+     * ie: SUBSCRIBE_TOPIC_ACTIONS, SUBSCRIBE_TOPIC_ERRORS
+     * @throws ArtikCloudMqttException
+     */
+    public void subscribe(Topics topic) throws ArtikCloudMqttException {
+    	
+    	String path = "";
+    	OperationMode operationMode = null;
+    	
+    	switch(topic) {
+    		case SUBSCRIBE_TOPIC_ACTIONS:
+    			path = SUBSCRIBE_TOPIC_ACTIONS_BASE + deviceId;
+    			operationMode = OperationMode.SUBSCRIBE;
+    			break;
+    			
+    		case SUBSCRIBE_TOPIC_ERRORS:
+    			path = SUBSCRIBE_TOPIC_ERRORS_BASE + deviceId;
+    			operationMode = OperationMode.SUBSCRIBE_ERROR;
+    			break;
+    	}
+    		
+    	try {
+    		// When sending Actions back to the client, ARTIK Cloud broker uses QoS 0, which is also called "fire and forget".
+        	// Given this, the subscriber can only use QoS 0 to subscribe to ARTIK Cloud broker
+			System.out.println(String.format("subscribe to: %s ", path));
+    		mqttClient.subscribe(path, 0, String.valueOf(operationMode), operationListener);
+		} catch (MqttException e) {
+			// TODO Auto-generated catch block
+			throw new ArtikCloudMqttException(e);
+		}
     }
     
     public boolean isConnected() {
     	return mqttClient.isConnected();
     }
     
+    
+    /**
+     * @deprecated as of release 2.2.1, replace with {@link #getPublishTopicPath}
+     * in favor of consistent method naming and describing a topic path.
+     * @return
+     */
     public String getPublishTopic() {
-    	return publishTopic;
+    	return publishMessageTopicPath;
+    }
+    
+    public String getPublishTopicPath() {
+    	return publishMessageTopicPath;
     }
 
     public String getBrokerUri() {
     	return brokerUri;
     }
 
+    /**
+     * @deprecated as of release 2.2.1, replace with {@link #getSubscribeActionsTopicPath()}
+     * in favor of consistent method naming and describing a topic path.
+     * @return
+     */
     public String getSubscribeTopic() {
-    	return subscribeTopic;
+    	return subscribeActionsTopicPath;
+    }
+    
+    public String getSubscribeActionsTopicPath() {
+    	return subscribeActionsTopicPath;
+    }
+    
+    /**
+     * @deprecated as of release 2.2.1, replace with {@link #getSubscribeErrorsTopicPath()}
+     * in favor of consistent method naming and describing a topic path.
+     * @return
+     */
+    public String getErrorTopic() {
+    	return subscribeErrorTopicPath;
+    }
+    
+    public String getSubscribeErrorsTopicPath() {
+    	return subscribeErrorTopicPath;
     }
     
     ////////////////////////////////////////////////////////////////
@@ -216,8 +293,10 @@ public class MqttSession {
      			mode = OperationMode.DISCONNECT;
      		} else if (userContext.equals(String.valueOf(OperationMode.PUBLISH))) {
      			mode = OperationMode.PUBLISH;
-     		} else if (userContext.equals(String.valueOf(OperationMode.SUBSCRIB))) {
-     			mode = OperationMode.SUBSCRIB;
+     		} else if (userContext.equals(String.valueOf(OperationMode.SUBSCRIBE))) {
+     			mode = OperationMode.SUBSCRIBE;
+     		} else if (userContext.equals(String.valueOf(OperationMode.SUBSCRIBE_ERROR))) {
+     			mode = OperationMode.SUBSCRIBE_ERROR;
      		}
      		
      		return mode;

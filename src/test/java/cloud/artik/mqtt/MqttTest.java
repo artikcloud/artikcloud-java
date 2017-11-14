@@ -161,6 +161,38 @@ public class MqttTest {
         }
     
     }
-
+    
+    @Test
+    public void subscribeToActionsTopicTest() {
+    	
+    	System.out.println("Test: subscribeToActionTopicTest()");
+    	
+    	try {
+            System.out.println("Subscribing to actions topic: " + mqttSession.getSubscribeActionsTopicPath());
+            mqttSession.subscribe(Topics.SUBSCRIBE_TOPIC_ACTIONS);
+            lock = new CountDownLatch(1);
+            lock.await(maxWaitingTimeInMs, TimeUnit.MILLISECONDS);//wait for mqtt operation finished
+        } catch(Exception e) {
+            e.printStackTrace();
+            fail();
+        }
+    	
+    }
+    
+    @Test
+    public void subscribeToErrorsTopicTest() {
+    	
+    	System.out.println("Test: subscribeToErrorsTopicTest()");
+    	
+    	try {
+            System.out.println("Subscribing to error topic: " + mqttSession.getSubscribeErrorsTopicPath());
+            mqttSession.subscribe(Topics.SUBSCRIBE_TOPIC_ERRORS);
+            lock = new CountDownLatch(1);
+            lock.await(maxWaitingTimeInMs, TimeUnit.MILLISECONDS);//wait for mqtt operation finished
+        } catch(Exception e) {
+            e.printStackTrace();
+            fail();
+        }
+    }
 }
 
