@@ -59,7 +59,8 @@ public interface ArtikCloudMqttCallback {
 	public void deliveryComplete(IMqttDeliveryToken mqttDeliveryToken);
 
     /**
-     * This method is called when a message arrived
+     * This method is called when a message arrived. The message could come from
+     * any subscribed topics (e.g. error topic, action topic)
      * 
      * @param the name of the topic that the message was published to
 	 * @param message the actual message.

@@ -20,8 +20,8 @@ public enum OperationMode {
     CONNECT,    // connect to broker
     DISCONNECT, // disconnect from broker
     PUBLISH,    // publish a data message
-    SUBSCRIBE,   // subscribe to receive action type messages (AKA Action)
-    SUBSCRIBE_ERROR,
+    SUBSCRIBE_ACTIONS,   // subscribe to receive action type messages (AKA Action)
+    SUBSCRIBE_ERRORS, // subscribe to receive error messages from error topics
     UNKNOWN
 }
 

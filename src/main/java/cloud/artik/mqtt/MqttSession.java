@@ -43,10 +43,6 @@ public class MqttSession {
     private final static String HOST                  = "api.artik.cloud";
     private final static String PORT                  = "8883";
     
-    
-    
-   
-
     private MqttAsyncClient mqttClient;
     private OperationListener operationListener;
     private MessageListener msgListener;
@@ -66,18 +62,18 @@ public class MqttSession {
      * @throws ArtikCloudMqttException
      */
     public MqttSession(String deviceId,
-    		String deviceToken,
-    		ArtikCloudMqttCallback callback
-    	) throws ArtikCloudMqttException {
-    	this.operationListener = new OperationListener(callback);
-    	this.deviceId = deviceId;
-    	this.deviceToken = deviceToken;
-    	
-    	this.brokerUri = SCHEME + "://" + HOST + ":" + PORT; 
-    	this.publishMessageTopicPath = PUBLISH_TOPIC_MESSAGES_BASE + deviceId;
-    	this.subscribeActionsTopicPath = SUBSCRIBE_TOPIC_ACTIONS_BASE + deviceId;
-    	this.subscribeErrorTopicPath = SUBSCRIBE_TOPIC_ERRORS_BASE + deviceId;
-    	
+            String deviceToken,
+            ArtikCloudMqttCallback callback
+        ) throws ArtikCloudMqttException {
+        this.operationListener = new OperationListener(callback);
+        this.deviceId = deviceId;
+        this.deviceToken = deviceToken;
+        
+        this.brokerUri = SCHEME + "://" + HOST + ":" + PORT; 
+        this.publishMessageTopicPath = PUBLISH_TOPIC_MESSAGES_BASE + deviceId;
+        this.subscribeActionsTopicPath = SUBSCRIBE_TOPIC_ACTIONS_BASE + deviceId;
+        this.subscribeErrorTopicPath = SUBSCRIBE_TOPIC_ERRORS_BASE + deviceId;
+        
         try {
             mqttClient = new MqttAsyncClient(brokerUri, deviceId, new MemoryPersistence());
             msgListener = new MessageListener(callback);
@@ -99,13 +95,13 @@ public class MqttSession {
         } catch (Exception e) {
             throw new ArtikCloudMqttException(e);
         }
-    	
+        
     }
     
     public void disconnect() throws ArtikCloudMqttException {
         try {
 //            System.out.println("****** Thread: " + Thread.currentThread().getName()+ "; MqttSession disconnecting to : "+ brokerUri);
-        	mqttClient.disconnect(0, String.valueOf(OperationMode.DISCONNECT), operationListener);
+            mqttClient.disconnect(0, String.valueOf(OperationMode.DISCONNECT), operationListener);
         } catch (MqttException e) {
             throw new ArtikCloudMqttException(e);
         }
@@ -124,7 +120,7 @@ public class MqttSession {
         try {
             mqttClient.publish(publishMessageTopicPath, mqttMessage, String.valueOf(OperationMode.PUBLISH), operationListener);
         } catch (MqttException e) {
-        	throw new ArtikCloudMqttException(e);
+            throw new ArtikCloudMqttException(e);
         }
     }
     
@@ -137,13 +133,13 @@ public class MqttSession {
         try {
 //            System.out.println("****** Thread: " + Thread.currentThread().getName()+ "; MqttSession subscribing to:" + subscribeTopic);
 
-        	// When sending Actions back to the client, ARTIK Cloud broker uses QoS 0, which is also called "fire and forget".
-        	// Given this, the subscriber can only use QoS 0 to subscribe to ARTIK Cloud broker
-        	mqttClient.subscribe(subscribeActionsTopicPath, 0, String.valueOf(OperationMode.SUBSCRIBE), operationListener);
+            // When sending Actions back to the client, ARTIK Cloud broker uses QoS 0, which is also called "fire and forget".
+            // Given this, the subscriber can only use QoS 0 to subscribe to ARTIK Cloud broker
+            mqttClient.subscribe(subscribeActionsTopicPath, 0, String.valueOf(OperationMode.SUBSCRIBE_ACTIONS), operationListener);
         } catch (MqttException e) {
-        	throw new ArtikCloudMqttException(e);
+            throw new ArtikCloudMqttException(e);
         }
-    	
+        
     }
      
     /**
@@ -152,35 +148,35 @@ public class MqttSession {
      * @throws ArtikCloudMqttException
      */
     public void subscribe(Topics topic) throws ArtikCloudMqttException {
-    	
-    	String path = "";
-    	OperationMode operationMode = null;
-    	
-    	switch(topic) {
-    		case SUBSCRIBE_TOPIC_ACTIONS:
-    			path = SUBSCRIBE_TOPIC_ACTIONS_BASE + deviceId;
-    			operationMode = OperationMode.SUBSCRIBE;
-    			break;
-    			
-    		case SUBSCRIBE_TOPIC_ERRORS:
-    			path = SUBSCRIBE_TOPIC_ERRORS_BASE + deviceId;
-    			operationMode = OperationMode.SUBSCRIBE_ERROR;
-    			break;
-    	}
-    		
-    	try {
-    		// When sending Actions back to the client, ARTIK Cloud broker uses QoS 0, which is also called "fire and forget".
-        	// Given this, the subscriber can only use QoS 0 to subscribe to ARTIK Cloud broker
-			System.out.println(String.format("subscribe to: %s ", path));
-    		mqttClient.subscribe(path, 0, String.valueOf(operationMode), operationListener);
-		} catch (MqttException e) {
-			// TODO Auto-generated catch block
-			throw new ArtikCloudMqttException(e);
-		}
+        
+        String path = "";
+        OperationMode operationMode = null;
+        
+        switch(topic) {
+            case SUBSCRIBE_TOPIC_ACTIONS:
+                path = SUBSCRIBE_TOPIC_ACTIONS_BASE + deviceId;
+                operationMode = OperationMode.SUBSCRIBE_ACTIONS;
+                break;
+                
+            case SUBSCRIBE_TOPIC_ERRORS:
+                path = SUBSCRIBE_TOPIC_ERRORS_BASE + deviceId;
+                operationMode = OperationMode.SUBSCRIBE_ERRORS;
+                break;
+        }
+            
+        try {
+            // When sending Actions back to the client, ARTIK Cloud broker uses QoS 0, which is also called "fire and forget".
+            // Given this, the subscriber can only use QoS 0 to subscribe to ARTIK Cloud broker
+            System.out.println(String.format("subscribe to: %s ", path));
+            mqttClient.subscribe(path, 0, String.valueOf(operationMode), operationListener);
+        } catch (MqttException e) {
+            // TODO Auto-generated catch block
+            throw new ArtikCloudMqttException(e);
+        }
     }
     
     public boolean isConnected() {
-    	return mqttClient.isConnected();
+        return mqttClient.isConnected();
     }
     
     
@@ -190,15 +186,15 @@ public class MqttSession {
      * @return
      */
     public String getPublishTopic() {
-    	return publishMessageTopicPath;
+        return publishMessageTopicPath;
     }
     
     public String getPublishTopicPath() {
-    	return publishMessageTopicPath;
+        return publishMessageTopicPath;
     }
 
     public String getBrokerUri() {
-    	return brokerUri;
+        return brokerUri;
     }
 
     /**
@@ -207,24 +203,15 @@ public class MqttSession {
      * @return
      */
     public String getSubscribeTopic() {
-    	return subscribeActionsTopicPath;
+        return subscribeActionsTopicPath;
     }
     
     public String getSubscribeActionsTopicPath() {
-    	return subscribeActionsTopicPath;
-    }
-    
-    /**
-     * @deprecated as of release 2.2.1, replace with {@link #getSubscribeErrorsTopicPath()}
-     * in favor of consistent method naming and describing a topic path.
-     * @return
-     */
-    public String getErrorTopic() {
-    	return subscribeErrorTopicPath;
+        return subscribeActionsTopicPath;
     }
     
     public String getSubscribeErrorsTopicPath() {
-    	return subscribeErrorTopicPath;
+        return subscribeErrorTopicPath;
     }
     
     ////////////////////////////////////////////////////////////////
@@ -245,62 +232,62 @@ public class MqttSession {
      * OperationMode class document the operations that OperationListener is listening to.
      */
     private class OperationListener implements IMqttActionListener {
-    	ArtikCloudMqttCallback userCallback;
+        ArtikCloudMqttCallback userCallback;
 
-    	OperationListener(ArtikCloudMqttCallback callback) {
-    		this.userCallback = callback;
-    	}
-    	
-    	@Override
-    	public void onFailure(final IMqttToken arg0, final Throwable arg1) {
-     		if (userCallback == null) {
-     			return;
-     		}
-     		
-     		Thread t = new Thread(new Runnable() {
-    	         @Override
-    	         public void run() {
-    	             OperationMode opMode = getOperationModeFromContext((String)arg0.getUserContext());
-    	        	 userCallback.onFailure(opMode, arg0, arg1);
-    	         }
-    	     });
-    		t.start();
-    	}
+        OperationListener(ArtikCloudMqttCallback callback) {
+            this.userCallback = callback;
+        }
+        
+        @Override
+        public void onFailure(final IMqttToken arg0, final Throwable arg1) {
+             if (userCallback == null) {
+                 return;
+             }
+             
+             Thread t = new Thread(new Runnable() {
+                 @Override
+                 public void run() {
+                     OperationMode opMode = getOperationModeFromContext((String)arg0.getUserContext());
+                     userCallback.onFailure(opMode, arg0, arg1);
+                 }
+             });
+            t.start();
+        }
 
-    	@Override
-    	public void onSuccess(final IMqttToken arg0) {
+        @Override
+        public void onSuccess(final IMqttToken arg0) {
 //            System.out.println("-------- Thread: " + Thread.currentThread().getName()+ "; MqttSession.OperationListener onSuccess: ");
-     		if (userCallback == null) {
-     			return;
-     		}
+             if (userCallback == null) {
+                 return;
+             }
 
-    		Thread t = new Thread(new Runnable() {
-    	         @Override
-    	         public void run() {
-    	        	 OperationMode opMode = getOperationModeFromContext((String)arg0.getUserContext());
-    	        	 userCallback.onSuccess(opMode, arg0);
-    	         }
-    	     });
-    		t.start();
-    	}
-    	
-    	private OperationMode getOperationModeFromContext(String userContext) {
-     		OperationMode mode = OperationMode.UNKNOWN;
+            Thread t = new Thread(new Runnable() {
+                 @Override
+                 public void run() {
+                     OperationMode opMode = getOperationModeFromContext((String)arg0.getUserContext());
+                     userCallback.onSuccess(opMode, arg0);
+                 }
+             });
+            t.start();
+        }
+        
+        private OperationMode getOperationModeFromContext(String userContext) {
+             OperationMode mode = OperationMode.UNKNOWN;
 
-     		if (userContext.equals(String.valueOf(OperationMode.CONNECT))) {
-     			mode = OperationMode.CONNECT;
-     		} else if (userContext.equals(String.valueOf(OperationMode.DISCONNECT))) {
-     			mode = OperationMode.DISCONNECT;
-     		} else if (userContext.equals(String.valueOf(OperationMode.PUBLISH))) {
-     			mode = OperationMode.PUBLISH;
-     		} else if (userContext.equals(String.valueOf(OperationMode.SUBSCRIBE))) {
-     			mode = OperationMode.SUBSCRIBE;
-     		} else if (userContext.equals(String.valueOf(OperationMode.SUBSCRIBE_ERROR))) {
-     			mode = OperationMode.SUBSCRIBE_ERROR;
-     		}
-     		
-     		return mode;
-    	}
+             if (userContext.equals(String.valueOf(OperationMode.CONNECT))) {
+                 mode = OperationMode.CONNECT;
+             } else if (userContext.equals(String.valueOf(OperationMode.DISCONNECT))) {
+                 mode = OperationMode.DISCONNECT;
+             } else if (userContext.equals(String.valueOf(OperationMode.PUBLISH))) {
+                 mode = OperationMode.PUBLISH;
+             } else if (userContext.equals(String.valueOf(OperationMode.SUBSCRIBE_ACTIONS))) {
+                 mode = OperationMode.SUBSCRIBE_ACTIONS;
+             } else if (userContext.equals(String.valueOf(OperationMode.SUBSCRIBE_ERRORS))) {
+                 mode = OperationMode.SUBSCRIBE_ERRORS;
+             }
+             
+             return mode;
+        }
 
     }
     
@@ -321,60 +308,60 @@ public class MqttSession {
      *    
      */
     private class MessageListener implements MqttCallback {
-    	ArtikCloudMqttCallback userCallback;
+        ArtikCloudMqttCallback userCallback;
 
-    	MessageListener(ArtikCloudMqttCallback callback) {
-    		this.userCallback = callback;
-    	}
+        MessageListener(ArtikCloudMqttCallback callback) {
+            this.userCallback = callback;
+        }
 
-    	@Override
-    	public void connectionLost(final Throwable cause) {
-     		if (userCallback == null) {
-     			return;
-     		}
+        @Override
+        public void connectionLost(final Throwable cause) {
+             if (userCallback == null) {
+                 return;
+             }
 
-    		Thread t = new Thread(new Runnable() {
-    	         @Override
-    	         public void run() {
-    	        	 userCallback.connectionLost(cause);
-    	         }
-    	     });
-    		t.start();
-    	}
+            Thread t = new Thread(new Runnable() {
+                 @Override
+                 public void run() {
+                     userCallback.connectionLost(cause);
+                 }
+             });
+            t.start();
+        }
 
-   		
+           
 
-    	@Override
-    	public void deliveryComplete(final IMqttDeliveryToken mqttDelToken) {
-     		if (userCallback == null) {
-     			return;
-     		}
+        @Override
+        public void deliveryComplete(final IMqttDeliveryToken mqttDelToken) {
+             if (userCallback == null) {
+                 return;
+             }
 
-    		Thread t = new Thread(new Runnable() {
-    	         @Override
-    	         public void run() {
-    	        	 userCallback.deliveryComplete(mqttDelToken);
-    	         }
-    	     });
-    		t.start();
-    	
-     	}
+            Thread t = new Thread(new Runnable() {
+                 @Override
+                 public void run() {
+                     userCallback.deliveryComplete(mqttDelToken);
+                 }
+             });
+            t.start();
+        
+         }
 
-    	@Override
-    	public void messageArrived(final String fromTopic, final MqttMessage mqttMessage) {
+        @Override
+        public void messageArrived(final String fromTopic, final MqttMessage mqttMessage) {
  //           System.out.println("-------- Thread: " + Thread.currentThread().getName()+ "; MqttSession.MessageListener messageArrived: " + mqttMessage);
-      		if (userCallback == null) {
-     			return;
-     		}
+              if (userCallback == null) {
+                 return;
+             }
 
-    		Thread t = new Thread(new Runnable() {
-    	         @Override
-    	         public void run() {
-    	        	 userCallback.messageArrived(fromTopic, mqttMessage);
-    	         }
-    	     });
-    		t.start();
-    	}
+            Thread t = new Thread(new Runnable() {
+                 @Override
+                 public void run() {
+                     userCallback.messageArrived(fromTopic, mqttMessage);
+                 }
+             });
+            t.start();
+        }
     }
 
 }

@@ -130,15 +130,17 @@ public class MqttTest {
 
     @Test
     public void connectionSuccessTest() {
+        System.out.println("Test: connectionSuccessTest()");
         // This test case will trigger setup() and cleanup(); 
         // Should anything is wrong, it will trigger assertion there.
     }
     
     @Test
     public void publishTest() {
+        System.out.println("Test: publishTest()");
         try {
             String payload    =  "{\"state\":true}";
-            System.out.println("Publishing to topic: " + mqttSession.getPublishTopic() + "; message payload: " + payload );
+            System.out.println("Publishing to topic: " + mqttSession.getPublishTopicPath() + "; message payload: " + payload );
             mqttSession.publish(qos, payload);
             lock = new CountDownLatch(1);
             lock.await(maxWaitingTimeInMs, TimeUnit.MILLISECONDS);//wait for mqtt operation finished
@@ -149,25 +151,10 @@ public class MqttTest {
     }
 
     @Test
-    public void subscribeTest() {
-        try {
-            System.out.println("Subscribing to topic: " + mqttSession.getSubscribeTopic() );
-            mqttSession.subscribe();
-            lock = new CountDownLatch(1);
-            lock.await(maxWaitingTimeInMs, TimeUnit.MILLISECONDS);//wait for mqtt operation finished
-        } catch(Exception e) {
-            e.printStackTrace();
-            fail();
-        }
-    
-    }
-    
-    @Test
     public void subscribeToActionsTopicTest() {
-    	
-    	System.out.println("Test: subscribeToActionTopicTest()");
-    	
-    	try {
+        System.out.println("Test: subscribeToActionTopicTest()");
+        
+        try {
             System.out.println("Subscribing to actions topic: " + mqttSession.getSubscribeActionsTopicPath());
             mqttSession.subscribe(Topics.SUBSCRIBE_TOPIC_ACTIONS);
             lock = new CountDownLatch(1);
@@ -176,15 +163,14 @@ public class MqttTest {
             e.printStackTrace();
             fail();
         }
-    	
+        
     }
     
     @Test
     public void subscribeToErrorsTopicTest() {
-    	
-    	System.out.println("Test: subscribeToErrorsTopicTest()");
-    	
-    	try {
+        System.out.println("Test: subscribeToErrorsTopicTest()");
+        
+        try {
             System.out.println("Subscribing to error topic: " + mqttSession.getSubscribeErrorsTopicPath());
             mqttSession.subscribe(Topics.SUBSCRIBE_TOPIC_ERRORS);
             lock = new CountDownLatch(1);
@@ -194,5 +180,6 @@ public class MqttTest {
             fail();
         }
     }
+
 }
 
