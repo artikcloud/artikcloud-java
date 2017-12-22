@@ -14,6 +14,7 @@
 package cloud.artik.model;
 
 import java.util.Objects;
+import cloud.artik.model.ActionDetailsArray;
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -255,6 +256,7 @@ public class ActionOut {
     this.mv = mv;
   }
 
+
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -263,7 +265,6 @@ public class ActionOut {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-
     ActionOut actionOut = (ActionOut) o;
     return Objects.equals(this.data, actionOut.data) &&
         Objects.equals(this.cid, actionOut.cid) &&
@@ -280,26 +281,27 @@ public class ActionOut {
 
   @Override
   public int hashCode() {
-    return Objects.hash(mid, uid, sdtid, cts, mv, data, cid, ddid, sdid, ts, type);
+    return Objects.hash(data, cid, ddid, sdid, ts, type, mid, uid, sdtid, cts, mv);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-      sb.append("class ActionOut {\n");
-      sb.append("    data: ").append(toIndentedString(data)).append("\n");
-      sb.append("    cid: ").append(toIndentedString(cid)).append("\n");
-      sb.append("    ddid: ").append(toIndentedString(ddid)).append("\n");
-      sb.append("    sdid: ").append(toIndentedString(sdid)).append("\n");
-      sb.append("    ts: ").append(toIndentedString(ts)).append("\n");
-      sb.append("    type: ").append(toIndentedString(type)).append("\n");
-      sb.append("    mid: ").append(toIndentedString(mid)).append("\n");
-      sb.append("    uid: ").append(toIndentedString(uid)).append("\n");
-      sb.append("    sdtid: ").append(toIndentedString(sdtid)).append("\n");
-      sb.append("    cts: ").append(toIndentedString(cts)).append("\n");
-      sb.append("    mv: ").append(toIndentedString(mv)).append("\n");
-      sb.append("}");
+    sb.append("class ActionOut {\n");
+    
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    cid: ").append(toIndentedString(cid)).append("\n");
+    sb.append("    ddid: ").append(toIndentedString(ddid)).append("\n");
+    sb.append("    sdid: ").append(toIndentedString(sdid)).append("\n");
+    sb.append("    ts: ").append(toIndentedString(ts)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    mid: ").append(toIndentedString(mid)).append("\n");
+    sb.append("    uid: ").append(toIndentedString(uid)).append("\n");
+    sb.append("    sdtid: ").append(toIndentedString(sdtid)).append("\n");
+    sb.append("    cts: ").append(toIndentedString(cts)).append("\n");
+    sb.append("    mv: ").append(toIndentedString(mv)).append("\n");
+    sb.append("}");
     return sb.toString();
   }
 

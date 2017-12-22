@@ -24,25 +24,25 @@ import io.swagger.annotations.ApiModelProperty;
 @ApiModel(description = "")
 
 public class DeviceShareInfo {
-  @SerializedName("email")
-  private String email = null;
+  @SerializedName("uid")
+  private String uid = null;
 
-  public DeviceShareInfo email(String email) {
-    this.email = email;
+  public DeviceShareInfo uid(String uid) {
+    this.uid = uid;
     return this;
   }
 
    /**
    * User email
-   * @return email
+   * @return uid
   **/
   @ApiModelProperty(example = "null", value = "User email")
-  public String getEmail() {
-    return email;
+  public String getUid() {
+    return uid;
   }
 
-  public void setEmail(String email) {
-    this.email = email;
+  public void setUid(String uid) {
+    this.uid = uid;
   }
 
 
@@ -55,12 +55,12 @@ public class DeviceShareInfo {
       return false;
     }
     DeviceShareInfo deviceShareInfo = (DeviceShareInfo) o;
-    return Objects.equals(this.email, deviceShareInfo.email);
+    return Objects.equals(this.uid, deviceShareInfo.uid);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(email);
+    return Objects.hash(uid);
   }
 
 
@@ -69,7 +69,7 @@ public class DeviceShareInfo {
     StringBuilder sb = new StringBuilder();
     sb.append("class DeviceShareInfo {\n");
     
-    sb.append("    email: ").append(toIndentedString(email)).append("\n");
+    sb.append("    uid: ").append(toIndentedString(uid)).append("\n");
     sb.append("}");
     return sb.toString();
   }

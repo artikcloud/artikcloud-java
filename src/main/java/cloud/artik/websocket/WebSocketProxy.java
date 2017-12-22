@@ -19,9 +19,12 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
-import okhttp3.ws.WebSocket;
-import okhttp3.ws.WebSocketCall;
-import okhttp3.ws.WebSocketListener;
+//import okhttp3.ws.WebSocket;
+//import okhttp3.ws.WebSocketCall;
+//import okhttp3.ws.WebSocketListener;
+import okhttp3.WebSocket;
+import okhttp3.WebSocketCall;
+import okhttp3.WebSocketListener;
 
 public class WebSocketProxy implements WebSocketListener {
     protected Request request = null;
