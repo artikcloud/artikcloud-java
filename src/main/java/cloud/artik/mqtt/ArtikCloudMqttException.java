@@ -37,7 +37,7 @@ public class ArtikCloudMqttException extends MqttException{
      *
      * @param cause: the cause. A null value is permitted, and indicates that the
      *            cause is nonexistent or unknown.
-     * @return 
+     * 
      */
     public ArtikCloudMqttException(Throwable cause) {
         super(cause);

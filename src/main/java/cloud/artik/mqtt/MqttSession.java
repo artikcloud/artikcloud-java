@@ -57,8 +57,8 @@ public class MqttSession {
      * 
      * @param deviceId ARTIK Cloud device ID
      * @param deviceToken ARTIK Cloud device token
-     * @param msgCallback callback handling events such as receiving message from the topic subscribing to
-     * @param userCallback callback handling mqtt operations such as connect/disconnect/publish/subscribe et al.
+     * @param callback callback handling events such as receiving message from the topic subscribing to
+     *                 callback handling mqtt operations such as connect/disconnect/publish/subscribe et al.
      * @throws ArtikCloudMqttException
      */
     public MqttSession(String deviceId,
@@ -125,7 +125,7 @@ public class MqttSession {
     }
     
     /**
-     * @deprecated As of release 2.2.1, replace with {@link #subscribe(int, String)}}
+     * @deprecated As of release 2.2.1, replace with {@link #subscribe(Topics)}}
      * This deprecated version will not subscribe to error topic.
      * @throws ArtikCloudMqttException
      */
@@ -143,7 +143,7 @@ public class MqttSession {
     }
      
     /**
-     * @param topics - Enum Topics representing topics available for subscribe
+     * @param topic - Enum Topics representing topics available for subscribe
      * ie: SUBSCRIBE_TOPIC_ACTIONS, SUBSCRIBE_TOPIC_ERRORS
      * @throws ArtikCloudMqttException
      */

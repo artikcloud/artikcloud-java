@@ -62,8 +62,8 @@ public interface ArtikCloudMqttCallback {
      * This method is called when a message arrived. The message could come from
      * any subscribed topics (e.g. error topic, action topic)
      * 
-     * @param the name of the topic that the message was published to
-	 * @param message the actual message.
+     * @param fromTopic the name of the topic that the message was published to
+	 * @param mqttMessage Smessage the actual message.
 	 */
 	public void messageArrived(String fromTopic, MqttMessage mqttMessage);
 
@@ -84,7 +84,7 @@ public interface ArtikCloudMqttCallback {
 	 * are in the process of being delivered will be delivered to the requested
 	 * quality of service next time the client connects.
 	 * 
-	 * @param operationMode the mode of the operation that has failed
+	 * @param mode operationMode the mode of the operation that has failed
 	 * @param mqttToken associated with the operation that has failed
 	 * @param exception thrown by the operation that has failed
 	 */

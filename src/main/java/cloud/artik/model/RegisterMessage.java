@@ -63,7 +63,7 @@ public class RegisterMessage {
   }
 
    /**
-   * Authorization header containing access token (Bearer <access_token>).
+   * Authorization header containing access token (Bearer access_token).
    * @return authorization
   **/
   @ApiModelProperty(example = "null", value = "Authorization header containing access token (Bearer <access_token>).")
