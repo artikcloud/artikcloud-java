@@ -12,7 +12,6 @@ import java.util.concurrent.TimeUnit;
 import cloud.artik.model.*;
 import okio.Buffer;
 import okio.BufferedSource;
-
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -124,9 +123,66 @@ public class WebSocketProxy extends WebSocketListener {
 
     @Override
     public void onMessage(WebSocket webSocket, String text) {
-    	//SHOULD move implementation of onMessage(ResponseBody) here
+        try {
+        	String message = text;
+            //String message = source.readString(Charset.defaultCharset());
+
+            Map<String, Object> jsonMap = (Map<String, Object>) json.getGson()
+                    .fromJson(message, Map.class);
+            if (jsonMap.containsKey("error")) {
+                // Check if it is a rate limit
+                // Have to treat it differently.
+                ErrorEnvelope artikError = json.getGson().fromJson(message,
+                        ErrorEnvelope.class);
+                this.callback.onError(artikError.getError());
+            } else if (jsonMap.containsKey("type")) {
+                String type = (String) jsonMap.get("type");
+
+                if ("ping".equalsIgnoreCase(type)) {
+                    // Ping
+                    long ts = ((Double) jsonMap.get("ts")).longValue();
+                    this.callback.onPing(ts);
+                } else if ("message".equalsIgnoreCase(type)) {
+                    // Message
+                    MessageOut artikMessage = json.getGson().fromJson(message,
+                            MessageOut.class);
+                    this.callback.onMessage(artikMessage);
+                } else if ("action".equalsIgnoreCase(type)) {
+                    // Action
+                    ActionOut artikAction = json.getGson().fromJson(message,
+                            ActionOut.class);
+                    this.callback.onAction(artikAction);
+                }
+            } else if (jsonMap.containsKey("data")
+                    && jsonMap.containsKey("mid")) {
+                // Message, in this case we don't have a way to check the type,
+                // although we could assume it's a message since it's the
+                // default
+                MessageOut artikMessage = json.getGson().fromJson(message,
+                        MessageOut.class);
+                this.callback.onMessage(artikMessage);
+            } else if (jsonMap.containsKey("data")
+                    && ((Map<String, Object>) jsonMap.get("data"))
+                            .containsKey("mid")
+                    || ((Map<String, Object>) jsonMap.get("data"))
+                            .containsKey("code")) {
+                // Register/Action Ack
+                AckEnvelope ackEnv = json.getGson().fromJson(message,
+                        AckEnvelope.class);
+                this.callback.onAck(ackEnv.getData());
+            } else {
+                // Message Ack?
+                System.err.println("Un handled message: " + json);
+            }
+        } catch (Exception exc) {
+            // Couldn't parse JSON. Shouldnt happen!
+            System.err.println(exc.getMessage());
+        } 
+
     }
 
+    // YWU: I cannot delete this which is used by EventFeedWebsocket.
+    // TODO re-implement using onMessage (WebSocket webSocket, String text)
     @SuppressWarnings("unchecked")
     public void onMessage(ResponseBody response)
             throws IOException {
@@ -193,22 +249,11 @@ public class WebSocketProxy extends WebSocketListener {
         }
     }
 
-//YWU    @Override
     public final void onPong(Buffer arg0) {
         // TODO Pong
 
     }
 
-    //YWU comment
-//    public final void connect() throws IOException {
-//        if (this.status != ConnectionStatus.CONNECTING) {
-//            this.status = ConnectionStatus.CONNECTING;
-//            WebSocket ws = WebSocket.create(this.client, this.request);
-//            ws.enqueue(this);
-//        }
-//    }
-
-    //YWU
     public final void connect() throws IOException {
         if (this.status != ConnectionStatus.CONNECTING) {
             this.status = ConnectionStatus.CONNECTING;
@@ -249,6 +294,7 @@ public class WebSocketProxy extends WebSocketListener {
         closeSignal = null;
     }
 
+    //YWU
 //    protected void sendObject(Object object) throws IOException {
 //        if (!client.dispatcher().executorService().isShutdown()) {
 //            RequestBody request = RequestBody.create(WebSocket.TEXT, this.json.getGson().toJson(object));
@@ -259,7 +305,7 @@ public class WebSocketProxy extends WebSocketListener {
 
     protected void sendObject(Object object) throws IOException {
         if (!client.dispatcher().executorService().isShutdown()) {
-            webSocket.send(object.toString());
+            webSocket.send(this.json.getGson().toJson(object));
         }
     }
 }
