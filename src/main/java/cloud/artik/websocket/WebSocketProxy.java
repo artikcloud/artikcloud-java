@@ -19,14 +19,14 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
-//import okhttp3.ws.WebSocket;
-//import okhttp3.ws.WebSocketCall;
-//import okhttp3.ws.WebSocketListener;
+//YWU import okhttp3.ws.WebSocket;
+//YWU import okhttp3.ws.WebSocketCall;
+//YWU import okhttp3.ws.WebSocketListener;
 import okhttp3.WebSocket;
-import okhttp3.WebSocketCall;
 import okhttp3.WebSocketListener;
 
-public class WebSocketProxy implements WebSocketListener {
+//public class WebSocketProxy implements WebSocketListener {
+public class WebSocketProxy extends WebSocketListener {
     protected Request request = null;
 
     protected WebSocket webSocket = null;
@@ -71,8 +71,9 @@ public class WebSocketProxy implements WebSocketListener {
         this.callback.onOpen(response.code(), response.message());
     }
 
+  //YWU    public final void onClose(int code, String reason) {
     @Override
-    public final void onClose(int code, String reason) {
+    public final void onClosed(WebSocket webSocket, int code, String reason) {
         if (closeSignal != null) {
             closeSignal.countDown();
         }
@@ -80,8 +81,19 @@ public class WebSocketProxy implements WebSocketListener {
         this.callback.onClose(code, reason, true);
     }
 
+    //YWU
     @Override
-    public final void onFailure(IOException exc, Response response) {
+    public final void onClosing(WebSocket webSocket, int code, String reason) {
+    	//YWU do I need closeSignal????
+        if (closeSignal != null) {
+            closeSignal.countDown();
+        }
+        this.status = ConnectionStatus.CLOSING;
+    }
+
+    @Override
+//    public final void onFailure(IOException exc, Response response) {
+    public final void onFailure(WebSocket webSocket, Throwable exc, Response response) {
         if (closeSignal != null) {
             closeSignal.countDown();
         }
@@ -110,8 +122,12 @@ public class WebSocketProxy implements WebSocketListener {
         return sw.toString();
     }
 
-    @SuppressWarnings("unchecked")
     @Override
+    public void onMessage(WebSocket webSocket, String text) {
+    	//SHOULD move implementation of onMessage(ResponseBody) here
+    }
+
+    @SuppressWarnings("unchecked")
     public void onMessage(ResponseBody response)
             throws IOException {
 
@@ -177,17 +193,26 @@ public class WebSocketProxy implements WebSocketListener {
         }
     }
 
-    @Override
+//YWU    @Override
     public final void onPong(Buffer arg0) {
         // TODO Pong
 
     }
 
+    //YWU comment
+//    public final void connect() throws IOException {
+//        if (this.status != ConnectionStatus.CONNECTING) {
+//            this.status = ConnectionStatus.CONNECTING;
+//            WebSocket ws = WebSocket.create(this.client, this.request);
+//            ws.enqueue(this);
+//        }
+//    }
+
+    //YWU
     public final void connect() throws IOException {
         if (this.status != ConnectionStatus.CONNECTING) {
             this.status = ConnectionStatus.CONNECTING;
-            WebSocketCall ws = WebSocketCall.create(this.client, this.request);
-            ws.enqueue(this);
+            WebSocket ws = this.client.newWebSocket(this.request, this);
         }
     }
 
@@ -224,11 +249,17 @@ public class WebSocketProxy implements WebSocketListener {
         closeSignal = null;
     }
 
+//    protected void sendObject(Object object) throws IOException {
+//        if (!client.dispatcher().executorService().isShutdown()) {
+//            RequestBody request = RequestBody.create(WebSocket.TEXT, this.json.getGson().toJson(object));
+//
+//            webSocket.sendMessage(request);
+//        }
+//    }
+
     protected void sendObject(Object object) throws IOException {
         if (!client.dispatcher().executorService().isShutdown()) {
-            RequestBody request = RequestBody.create(WebSocket.TEXT, this.json.getGson().toJson(object));
-
-            webSocket.sendMessage(request);
+            webSocket.send(object.toString());
         }
     }
 }
