@@ -1,11 +1,8 @@
 package cloud.artik.websocket;
 
 import cloud.artik.model.EventFeedData;
-import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
-import okhttp3.ResponseBody;
-import okio.BufferedSource;
-
+import okhttp3.WebSocket;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Map;
@@ -58,14 +55,9 @@ public class EventFeedWebSocket extends WebSocketProxy {
     }
 
     @Override
-    public void onMessage(ResponseBody response) throws IOException {
-        BufferedSource source = response.source();
-        try {
-            MediaType contentType = response.contentType();
-            //System.out.println(contentType);
-            String message = source.readString(contentType.charset());
-            //String message = source.readString(Charset.defaultCharset());
-
+    public void onMessage(WebSocket webSocket, String text) {
+    	try {
+        	String message = text;
             Map<String, Object> jsonMap = (Map<String, Object>) json.getGson()
                     .fromJson(message, Map.class);
 
@@ -74,13 +66,11 @@ public class EventFeedWebSocket extends WebSocketProxy {
                 EventFeedData eventFeed = json.getGson().fromJson(message, EventFeedData.class);
                 this.eventCallback.onEvent(eventFeed);
             } else {
-                super.onMessage(response);
+                super.onMessage(webSocket, text);
             }
-        } catch (Exception exc) {
+    	} catch (Exception exc) {
             // Couldn't parse JSON. Shouldnt happen!
             System.err.println(exc.getMessage());
-        } finally {
-            source.close();
         }
     }
 }
