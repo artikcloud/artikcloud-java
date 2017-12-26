@@ -5,7 +5,7 @@
   <artifactId>artikcloud-java</artifactId>
   <packaging>jar</packaging>
   <name>artikcloud-java</name>
-  <version>2.2.2</version>
+  <version>2.3-alpha-0</version>
   <url>https://github.com/swagger-api/swagger-codegen</url>
   <description>Swagger Java</description>
   <scm>
@@ -200,15 +200,9 @@
       <version>${jodatime-version}</version>
     </dependency>
 
-    <!--  customization websocket -->
-    <!--
-    <dependency>
-      <groupId>com.squareup.okhttp3</groupId>
-      <artifactId>okhttp-ws</artifactId>
-      <version>${okhttpws-version}</version>
-    </dependency>
-    -->
-    <!-- YWU -->
+    <!-- explicitly specify okhttp3 version
+         used by retrofit (for REST) & websocket customization
+     -->
     <dependency>
       <groupId>com.squareup.okhttp3</groupId>
       <artifactId>okhttp</artifactId>
@@ -221,7 +215,6 @@
        <artifactId>org.eclipse.paho.client.mqttv3</artifactId>
        <version>${paho-mqtt-version}</version>
     </dependency>
-
 
     <!-- test dependencies -->
     <dependency>
@@ -242,9 +235,6 @@
     <oltu-version>1.0.1</oltu-version>
     <junit-version>4.12</junit-version>
 
-    <!-- customization websocket -->
-    <!--YWU <okhttpws-version>3.4.1</okhttpws-version> --> 
-    
     <!-- customization mqtt -->
     <paho-mqtt-version>1.2.0</paho-mqtt-version>
     
