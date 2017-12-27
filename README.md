@@ -58,6 +58,8 @@ Consult the samples for how to use [different types of WebSockets](https://devel
 - [Starter code for event feed WebSocket](https://github.com/artikcloud/tutorial-java-WebSocketEventFeed)
 - [Starter code for device channel WebSocket](https://github.com/artikcloud/tutorial-java-WebSocketDeviceChannel)
 
+*To use the SDK built from this repository, modify pom.xml of the above samples by following the [instructions for Maven user](#maven-users) above.*
+
 ## Documentation for MQTT
 
 - [MQTT feature](https://developer.artik.cloud/documentation/data-management/mqtt.html)
