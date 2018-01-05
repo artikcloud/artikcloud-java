@@ -37,7 +37,7 @@ Add this dependency to your project's POM:
 <dependency>
     <groupId>cloud.artik</groupId>
     <artifactId>artikcloud-java</artifactId>
-    <version>2.2.1</version>
+    <version>2.2.2</version>
     <scope>compile</scope>
 </dependency>
 ```
@@ -47,7 +47,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "cloud.artik:artikcloud-java:2.2.1"
+compile "cloud.artik:artikcloud-java:2.2.2"
 ```
 
 ### Others
@@ -58,7 +58,7 @@ At first generate the JAR by executing:
 
 Then manually install the following JARs:
 
-* target/artikcloud-java-2.2.1.jar
+* target/artikcloud-java-2.2.2.jar
 * target/lib/*.jar
 
 ## Getting Started
@@ -153,6 +153,11 @@ Class | Method | HTTP request | Description
 *MessagesApi* | [**getNormalizedMessages**](docs/MessagesApi.md#getNormalizedMessages) | **GET** /messages | Get Normalized Messages
 *MessagesApi* | [**sendActions**](docs/MessagesApi.md#sendActions) | **POST** /actions | Send Actions
 *MessagesApi* | [**sendMessage**](docs/MessagesApi.md#sendMessage) | **POST** /messages | Send Message
+*MonetizationApi* | [**createPricingTiers**](docs/MonetizationApi.md#createPricingTiers) | **POST** /pricing/devicetypes/{dtid}/pricingtiers | Define devicetype&#39;s pricing tiers.
+*MonetizationApi* | [**getPricingTiers**](docs/MonetizationApi.md#getPricingTiers) | **GET** /pricing/devices/{did}/pricingtiers | Get a device&#39;s pricing tiers
+*MonetizationApi* | [**getThePricingTiers**](docs/MonetizationApi.md#getThePricingTiers) | **GET** /pricing/devicetypes/{dtid}/pricingtiers | Get devicetype&#39;s pricing tiers.
+*MonetizationApi* | [**getUpgradePath**](docs/MonetizationApi.md#getUpgradePath) | **GET** /pricing/devices/{did}/revenueshare/upgradepath | Get upgrade path
+*MonetizationApi* | [**setPricingTier**](docs/MonetizationApi.md#setPricingTier) | **PUT** /pricing/devices/{did}/pricingtiers | Set a device&#39;s pricing tier
 *RegistrationsApi* | [**confirmUser**](docs/RegistrationsApi.md#confirmUser) | **PUT** /devices/registrations/pin | Confirm User
 *RegistrationsApi* | [**getRequestStatusForUser**](docs/RegistrationsApi.md#getRequestStatusForUser) | **GET** /devices/registrations/{requestId}/status | Get Request Status For User
 *RegistrationsApi* | [**unregisterDevice**](docs/RegistrationsApi.md#unregisterDevice) | **DELETE** /devices/{deviceId}/registrations | Unregister Device
@@ -181,6 +186,15 @@ Class | Method | HTTP request | Description
 *UsersApi* | [**getUserRules**](docs/UsersApi.md#getUserRules) | **GET** /users/{userId}/rules | Get User Rules
 *UsersApi* | [**listAllSharesForUser**](docs/UsersApi.md#listAllSharesForUser) | **GET** /users/{userId}/shares | Get User shares
 *UsersApi* | [**updateUserProperties**](docs/UsersApi.md#updateUserProperties) | **PUT** /users/{userId}/properties | Update User Application Properties
+*WhitelistingApi* | [**deleteVdid**](docs/WhitelistingApi.md#deleteVdid) | **DELETE** /devicetypes/{dtid}/whitelist/{vdid} | Delete a vdid from the devicetype whitelist.
+*WhitelistingApi* | [**deleteWhitelistCertificate**](docs/WhitelistingApi.md#deleteWhitelistCertificate) | **DELETE** /devicetypes/{dtid}/whitelist/certificates/{cid} | Delete a whitelist certificate associated with a devicetype.
+*WhitelistingApi* | [**enableWhitelist**](docs/WhitelistingApi.md#enableWhitelist) | **PUT** /devicetypes/:dtid/whitelist/enable | Enable or disble whitelist feature of a device type
+*WhitelistingApi* | [**getRejectedRowList**](docs/WhitelistingApi.md#getRejectedRowList) | **GET** /devicetypes/{dtid}/whitelist/{uploadId}/rejectedRows | Get the list of rejected rows for an uploaded CSV file.
+*WhitelistingApi* | [**getUploadStatus**](docs/WhitelistingApi.md#getUploadStatus) | **GET** /devicetypes/{dtid}/whitelist/{uploadId}/status | Get the status of a uploaded CSV file.
+*WhitelistingApi* | [**getWhitelist**](docs/WhitelistingApi.md#getWhitelist) | **GET** /devicetypes/{dtid}/whitelist | Get whitelisted vdids of a device type.
+*WhitelistingApi* | [**getWhitelistCertificate**](docs/WhitelistingApi.md#getWhitelistCertificate) | **GET** /devicetypes/{dtid}/whitelist/certificates | Get whitelist certificate of device type.
+*WhitelistingApi* | [**getWhitelistStatus**](docs/WhitelistingApi.md#getWhitelistStatus) | **GET** /devicetypes/{dtid}/whitelist/status | Get the status of whitelist feature (enabled/disabled) of a device type.
+*WhitelistingApi* | [**uploadCSV**](docs/WhitelistingApi.md#uploadCSV) | **POST** /devicetypes/{dtid}/whitelist | Upload a CSV file related to the Device Type.
 
 ## Documentation for Models
 
@@ -198,11 +212,21 @@ Class | Method | HTTP request | Description
  - [AggregatesHistogramResponse](docs/AggregatesHistogramResponse.md)
  - [AggregatesResponse](docs/AggregatesResponse.md)
  - [AppProperties](docs/AppProperties.md)
+ - [CertificateData](docs/CertificateData.md)
+ - [CertificateEnvelope](docs/CertificateEnvelope.md)
+ - [CertificateFields](docs/CertificateFields.md)
+ - [CertificateId](docs/CertificateId.md)
  - [CheckTokenMessage](docs/CheckTokenMessage.md)
  - [CheckTokenResponse](docs/CheckTokenResponse.md)
+ - [ContactInfo](docs/ContactInfo.md)
  - [Device](docs/Device.md)
  - [DeviceArray](docs/DeviceArray.md)
  - [DeviceEnvelope](docs/DeviceEnvelope.md)
+ - [DevicePricingTier](docs/DevicePricingTier.md)
+ - [DevicePricingTierEnvelope](docs/DevicePricingTierEnvelope.md)
+ - [DevicePricingTierRequest](docs/DevicePricingTierRequest.md)
+ - [DevicePricingTiers](docs/DevicePricingTiers.md)
+ - [DevicePricingTiersEnvelope](docs/DevicePricingTiersEnvelope.md)
  - [DeviceRegCompleteRequest](docs/DeviceRegCompleteRequest.md)
  - [DeviceRegConfirmUserRequest](docs/DeviceRegConfirmUserRequest.md)
  - [DeviceRegConfirmUserResponse](docs/DeviceRegConfirmUserResponse.md)
@@ -229,6 +253,10 @@ Class | Method | HTTP request | Description
  - [DeviceTypeEnvelope](docs/DeviceTypeEnvelope.md)
  - [DeviceTypeInfo](docs/DeviceTypeInfo.md)
  - [DeviceTypeInfoEnvelope](docs/DeviceTypeInfoEnvelope.md)
+ - [DeviceTypePricingList](docs/DeviceTypePricingList.md)
+ - [DeviceTypePricingTier](docs/DeviceTypePricingTier.md)
+ - [DeviceTypePricingTiersEnvelope](docs/DeviceTypePricingTiersEnvelope.md)
+ - [DeviceTypeUpdateInput](docs/DeviceTypeUpdateInput.md)
  - [DeviceTypesEnvelope](docs/DeviceTypesEnvelope.md)
  - [DeviceTypesInfo](docs/DeviceTypesInfo.md)
  - [DeviceTypesInfoEnvelope](docs/DeviceTypesInfoEnvelope.md)
@@ -276,6 +304,8 @@ Class | Method | HTTP request | Description
  - [PropertiesEnvelope](docs/PropertiesEnvelope.md)
  - [RefreshTokenResponse](docs/RefreshTokenResponse.md)
  - [RegisterMessage](docs/RegisterMessage.md)
+ - [RejectedCSVRow](docs/RejectedCSVRow.md)
+ - [RejectedCSVRowsEnvelope](docs/RejectedCSVRowsEnvelope.md)
  - [RuleArray](docs/RuleArray.md)
  - [RuleCreationInfo](docs/RuleCreationInfo.md)
  - [RuleEnvelope](docs/RuleEnvelope.md)
@@ -313,6 +343,7 @@ Class | Method | HTTP request | Description
  - [TaskUpdateRequest](docs/TaskUpdateRequest.md)
  - [TaskUpdateResponse](docs/TaskUpdateResponse.md)
  - [TasksStatusCounts](docs/TasksStatusCounts.md)
+ - [Tier](docs/Tier.md)
  - [Token](docs/Token.md)
  - [TokenInfo](docs/TokenInfo.md)
  - [TokenInfoSuccessResponse](docs/TokenInfoSuccessResponse.md)
@@ -321,10 +352,20 @@ Class | Method | HTTP request | Description
  - [UnregisterDeviceResponse](docs/UnregisterDeviceResponse.md)
  - [UnregisterDeviceResponseEnvelope](docs/UnregisterDeviceResponseEnvelope.md)
  - [UpdateParameters](docs/UpdateParameters.md)
+ - [UpgradePath](docs/UpgradePath.md)
+ - [UpgradePathEnvelope](docs/UpgradePathEnvelope.md)
+ - [UpgradePathUserToken](docs/UpgradePathUserToken.md)
+ - [UpgradePathUserTokenEnvelope](docs/UpgradePathUserTokenEnvelope.md)
+ - [UploadIdEnvelope](docs/UploadIdEnvelope.md)
+ - [UploadStatusEnvelope](docs/UploadStatusEnvelope.md)
  - [User](docs/User.md)
  - [UserEnvelope](docs/UserEnvelope.md)
  - [ValidationCallbackInfo](docs/ValidationCallbackInfo.md)
+ - [ValidityPeriod](docs/ValidityPeriod.md)
  - [WebSocketError](docs/WebSocketError.md)
+ - [Whitelist](docs/Whitelist.md)
+ - [WhitelistEnvelope](docs/WhitelistEnvelope.md)
+ - [WhitelistResultEnvelope](docs/WhitelistResultEnvelope.md)
 
 
 ## Documentation for Authorization
@@ -375,3 +416,5 @@ License and Copyright
 Licensed under the Apache License. See [LICENSE](./LICENSE).
 
 Copyright (c) 2017 Samsung Electronics Co., Ltd.
+
+

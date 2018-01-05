@@ -561,7 +561,7 @@ public class UsersApi {
         return call;
     }
     /* Build call for getUserDevices */
-    private com.squareup.okhttp.Call getUserDevicesCall(String userId, Integer offset, Integer count, Boolean includeProperties, String owner, Boolean includeShareInfo, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getUserDevicesCall(String userId, Integer offset, Integer count, Boolean includeProperties, String owner, Boolean includeShareInfo, String dtid, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
@@ -579,6 +579,8 @@ public class UsersApi {
         localVarQueryParams.addAll(apiClient.parameterToPairs("", "owner", owner));
         if (includeShareInfo != null)
         localVarQueryParams.addAll(apiClient.parameterToPairs("", "includeShareInfo", includeShareInfo));
+        if (dtid != null)
+        localVarQueryParams.addAll(apiClient.parameterToPairs("", "dtid", dtid));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -613,7 +615,7 @@ public class UsersApi {
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getUserDevicesValidateBeforeCall(String userId, Integer offset, Integer count, Boolean includeProperties, String owner, Boolean includeShareInfo, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call getUserDevicesValidateBeforeCall(String userId, Integer offset, Integer count, Boolean includeProperties, String owner, Boolean includeShareInfo, String dtid, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'userId' is set
         if (userId == null) {
@@ -621,7 +623,7 @@ public class UsersApi {
         }
         
         
-        com.squareup.okhttp.Call call = getUserDevicesCall(userId, offset, count, includeProperties, owner, includeShareInfo, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getUserDevicesCall(userId, offset, count, includeProperties, owner, includeShareInfo, dtid, progressListener, progressRequestListener);
         return call;
 
         
@@ -639,11 +641,12 @@ public class UsersApi {
      * @param includeProperties Optional. Boolean (true/false) - If false, only return the user&#39;s device types. If true, also return device types shared by other users. (optional)
      * @param owner Return owned and/or shared devices. Default to ALL. (optional)
      * @param includeShareInfo Include share info (optional)
+     * @param dtid Return only devices of this device type. If empty, assumes all device types allowed by the authorization. (optional)
      * @return DevicesEnvelope
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public DevicesEnvelope getUserDevices(String userId, Integer offset, Integer count, Boolean includeProperties, String owner, Boolean includeShareInfo) throws ApiException {
-        ApiResponse<DevicesEnvelope> resp = getUserDevicesWithHttpInfo(userId, offset, count, includeProperties, owner, includeShareInfo);
+    public DevicesEnvelope getUserDevices(String userId, Integer offset, Integer count, Boolean includeProperties, String owner, Boolean includeShareInfo, String dtid) throws ApiException {
+        ApiResponse<DevicesEnvelope> resp = getUserDevicesWithHttpInfo(userId, offset, count, includeProperties, owner, includeShareInfo, dtid);
         return resp.getData();
     }
 
@@ -656,11 +659,12 @@ public class UsersApi {
      * @param includeProperties Optional. Boolean (true/false) - If false, only return the user&#39;s device types. If true, also return device types shared by other users. (optional)
      * @param owner Return owned and/or shared devices. Default to ALL. (optional)
      * @param includeShareInfo Include share info (optional)
+     * @param dtid Return only devices of this device type. If empty, assumes all device types allowed by the authorization. (optional)
      * @return ApiResponse&lt;DevicesEnvelope&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<DevicesEnvelope> getUserDevicesWithHttpInfo(String userId, Integer offset, Integer count, Boolean includeProperties, String owner, Boolean includeShareInfo) throws ApiException {
-        com.squareup.okhttp.Call call = getUserDevicesValidateBeforeCall(userId, offset, count, includeProperties, owner, includeShareInfo, null, null);
+    public ApiResponse<DevicesEnvelope> getUserDevicesWithHttpInfo(String userId, Integer offset, Integer count, Boolean includeProperties, String owner, Boolean includeShareInfo, String dtid) throws ApiException {
+        com.squareup.okhttp.Call call = getUserDevicesValidateBeforeCall(userId, offset, count, includeProperties, owner, includeShareInfo, dtid, null, null);
         Type localVarReturnType = new TypeToken<DevicesEnvelope>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -674,11 +678,12 @@ public class UsersApi {
      * @param includeProperties Optional. Boolean (true/false) - If false, only return the user&#39;s device types. If true, also return device types shared by other users. (optional)
      * @param owner Return owned and/or shared devices. Default to ALL. (optional)
      * @param includeShareInfo Include share info (optional)
+     * @param dtid Return only devices of this device type. If empty, assumes all device types allowed by the authorization. (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getUserDevicesAsync(String userId, Integer offset, Integer count, Boolean includeProperties, String owner, Boolean includeShareInfo, final ApiCallback<DevicesEnvelope> callback) throws ApiException {
+    public com.squareup.okhttp.Call getUserDevicesAsync(String userId, Integer offset, Integer count, Boolean includeProperties, String owner, Boolean includeShareInfo, String dtid, final ApiCallback<DevicesEnvelope> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -699,7 +704,7 @@ public class UsersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getUserDevicesValidateBeforeCall(userId, offset, count, includeProperties, owner, includeShareInfo, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getUserDevicesValidateBeforeCall(userId, offset, count, includeProperties, owner, includeShareInfo, dtid, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<DevicesEnvelope>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

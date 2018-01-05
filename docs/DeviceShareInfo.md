@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**email** | **String** | User email |  [optional]
+**uid** | **String** | User email |  [optional]
 
 
 
