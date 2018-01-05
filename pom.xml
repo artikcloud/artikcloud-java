@@ -43,7 +43,7 @@
         <version>2.12</version>
         <configuration>
           <!-- Skip test for now -->
-          <skipTests>false</skipTests>
+          <!-- <skipTests>false</skipTests> -->
           <systemProperties>
             <property>
               <name>loggerPath</name>
