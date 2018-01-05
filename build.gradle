@@ -2,7 +2,7 @@ apply plugin: 'idea'
 apply plugin: 'eclipse'
 
 group = 'cloud.artik'
-version = '2.2.0'
+version = '2.2.2'
 
 buildscript {
     repositories {

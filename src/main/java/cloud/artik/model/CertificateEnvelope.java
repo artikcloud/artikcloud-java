@@ -14,6 +14,7 @@
 package cloud.artik.model;
 
 import java.util.Objects;
+import cloud.artik.model.CertificateData;
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -23,26 +24,26 @@ import io.swagger.annotations.ApiModelProperty;
  */
 @ApiModel(description = "")
 
-public class DeviceShareInfo {
-  @SerializedName("uid")
-  private String uid = null;
+public class CertificateEnvelope {
+  @SerializedName("id")
+  private CertificateData id = null;
 
-  public DeviceShareInfo uid(String uid) {
-    this.uid = uid;
+  public CertificateEnvelope id(CertificateData id) {
+    this.id = id;
     return this;
   }
 
    /**
-   * User email
-   * @return uid
+   * Output Certificate Data
+   * @return id
   **/
-  @ApiModelProperty(example = "null", value = "User email")
-  public String getUid() {
-    return uid;
+  @ApiModelProperty(example = "null", value = "Output Certificate Data")
+  public CertificateData getId() {
+    return id;
   }
 
-  public void setUid(String uid) {
-    this.uid = uid;
+  public void setId(CertificateData id) {
+    this.id = id;
   }
 
 
@@ -54,22 +55,22 @@ public class DeviceShareInfo {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DeviceShareInfo deviceShareInfo = (DeviceShareInfo) o;
-    return Objects.equals(this.uid, deviceShareInfo.uid);
+    CertificateEnvelope certificateEnvelope = (CertificateEnvelope) o;
+    return Objects.equals(this.id, certificateEnvelope.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(uid);
+    return Objects.hash(id);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DeviceShareInfo {\n");
+    sb.append("class CertificateEnvelope {\n");
     
-    sb.append("    uid: ").append(toIndentedString(uid)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");
     return sb.toString();
   }

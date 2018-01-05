@@ -1,10 +1,10 @@
 
-# DeviceShareInfo
+# UpgradePathEnvelope
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**uid** | **String** | User email |  [optional]
+**data** | [**UpgradePath**](UpgradePath.md) | data envelope |  [optional]
 
 
 

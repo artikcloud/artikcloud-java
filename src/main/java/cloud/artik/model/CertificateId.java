@@ -23,26 +23,26 @@ import io.swagger.annotations.ApiModelProperty;
  */
 @ApiModel(description = "")
 
-public class DeviceShareInfo {
-  @SerializedName("uid")
-  private String uid = null;
+public class CertificateId {
+  @SerializedName("stringId")
+  private String stringId = null;
 
-  public DeviceShareInfo uid(String uid) {
-    this.uid = uid;
+  public CertificateId stringId(String stringId) {
+    this.stringId = stringId;
     return this;
   }
 
    /**
-   * User email
-   * @return uid
+   * Certificate id
+   * @return stringId
   **/
-  @ApiModelProperty(example = "null", value = "User email")
-  public String getUid() {
-    return uid;
+  @ApiModelProperty(example = "null", value = "Certificate id")
+  public String getStringId() {
+    return stringId;
   }
 
-  public void setUid(String uid) {
-    this.uid = uid;
+  public void setStringId(String stringId) {
+    this.stringId = stringId;
   }
 
 
@@ -54,22 +54,22 @@ public class DeviceShareInfo {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DeviceShareInfo deviceShareInfo = (DeviceShareInfo) o;
-    return Objects.equals(this.uid, deviceShareInfo.uid);
+    CertificateId certificateId = (CertificateId) o;
+    return Objects.equals(this.stringId, certificateId.stringId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(uid);
+    return Objects.hash(stringId);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DeviceShareInfo {\n");
+    sb.append("class CertificateId {\n");
     
-    sb.append("    uid: ").append(toIndentedString(uid)).append("\n");
+    sb.append("    stringId: ").append(toIndentedString(stringId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

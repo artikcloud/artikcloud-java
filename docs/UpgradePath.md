@@ -1,10 +1,10 @@
 
-# DeviceShareInfo
+# UpgradePath
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**uid** | **String** | User email |  [optional]
+**url** | **String** | Url to display the upgrade path to the user |  [optional]
 
 
 

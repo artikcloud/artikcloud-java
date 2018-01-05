@@ -23,26 +23,47 @@ import io.swagger.annotations.ApiModelProperty;
  */
 @ApiModel(description = "")
 
-public class DeviceShareInfo {
-  @SerializedName("uid")
-  private String uid = null;
+public class ContactInfo {
+  @SerializedName("phone")
+  private String phone = null;
 
-  public DeviceShareInfo uid(String uid) {
-    this.uid = uid;
+  @SerializedName("email")
+  private String email = null;
+
+  public ContactInfo phone(String phone) {
+    this.phone = phone;
     return this;
   }
 
    /**
-   * User email
-   * @return uid
+   * phone
+   * @return phone
   **/
-  @ApiModelProperty(example = "null", value = "User email")
-  public String getUid() {
-    return uid;
+  @ApiModelProperty(example = "null", value = "phone")
+  public String getPhone() {
+    return phone;
   }
 
-  public void setUid(String uid) {
-    this.uid = uid;
+  public void setPhone(String phone) {
+    this.phone = phone;
+  }
+
+  public ContactInfo email(String email) {
+    this.email = email;
+    return this;
+  }
+
+   /**
+   * email
+   * @return email
+  **/
+  @ApiModelProperty(example = "null", value = "email")
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
   }
 
 
@@ -54,22 +75,24 @@ public class DeviceShareInfo {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DeviceShareInfo deviceShareInfo = (DeviceShareInfo) o;
-    return Objects.equals(this.uid, deviceShareInfo.uid);
+    ContactInfo contactInfo = (ContactInfo) o;
+    return Objects.equals(this.phone, contactInfo.phone) &&
+        Objects.equals(this.email, contactInfo.email);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(uid);
+    return Objects.hash(phone, email);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DeviceShareInfo {\n");
+    sb.append("class ContactInfo {\n");
     
-    sb.append("    uid: ").append(toIndentedString(uid)).append("\n");
+    sb.append("    phone: ").append(toIndentedString(phone)).append("\n");
+    sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("}");
     return sb.toString();
   }

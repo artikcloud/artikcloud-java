@@ -1,10 +1,10 @@
 
-# DeviceShareInfo
+# CertificateEnvelope
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**uid** | **String** | User email |  [optional]
+**id** | [**CertificateData**](CertificateData.md) | Output Certificate Data |  [optional]
 
 
 

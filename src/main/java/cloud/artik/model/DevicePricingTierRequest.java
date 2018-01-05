@@ -23,26 +23,26 @@ import io.swagger.annotations.ApiModelProperty;
  */
 @ApiModel(description = "")
 
-public class DeviceShareInfo {
-  @SerializedName("uid")
-  private String uid = null;
+public class DevicePricingTierRequest {
+  @SerializedName("ptid")
+  private String ptid = null;
 
-  public DeviceShareInfo uid(String uid) {
-    this.uid = uid;
+  public DevicePricingTierRequest ptid(String ptid) {
+    this.ptid = ptid;
     return this;
   }
 
    /**
-   * User email
-   * @return uid
+   * Pricing Tier ID
+   * @return ptid
   **/
-  @ApiModelProperty(example = "null", value = "User email")
-  public String getUid() {
-    return uid;
+  @ApiModelProperty(example = "null", value = "Pricing Tier ID")
+  public String getPtid() {
+    return ptid;
   }
 
-  public void setUid(String uid) {
-    this.uid = uid;
+  public void setPtid(String ptid) {
+    this.ptid = ptid;
   }
 
 
@@ -54,22 +54,22 @@ public class DeviceShareInfo {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DeviceShareInfo deviceShareInfo = (DeviceShareInfo) o;
-    return Objects.equals(this.uid, deviceShareInfo.uid);
+    DevicePricingTierRequest devicePricingTierRequest = (DevicePricingTierRequest) o;
+    return Objects.equals(this.ptid, devicePricingTierRequest.ptid);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(uid);
+    return Objects.hash(ptid);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DeviceShareInfo {\n");
+    sb.append("class DevicePricingTierRequest {\n");
     
-    sb.append("    uid: ").append(toIndentedString(uid)).append("\n");
+    sb.append("    ptid: ").append(toIndentedString(ptid)).append("\n");
     sb.append("}");
     return sb.toString();
   }

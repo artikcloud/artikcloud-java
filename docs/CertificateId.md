@@ -1,10 +1,10 @@
 
-# DeviceShareInfo
+# CertificateId
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**uid** | **String** | User email |  [optional]
+**stringId** | **String** | Certificate id |  [optional]
 
 
 
