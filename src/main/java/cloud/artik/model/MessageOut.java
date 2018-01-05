@@ -27,7 +27,6 @@ import java.util.Map;
 @ApiModel(description = "Message received by a WebSocket.")
 
 public class MessageOut {
-
   @SerializedName("data")
   private Map<String, Object> data = new HashMap<String, Object>();
 
@@ -179,7 +178,6 @@ public class MessageOut {
     return this;
   }
 
-
    /**
    * Message ID.
    * @return mid
@@ -274,9 +272,7 @@ public class MessageOut {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-
     MessageOut messageOut = (MessageOut) o;
-
     return Objects.equals(this.data, messageOut.data) &&
         Objects.equals(this.cid, messageOut.cid) &&
         Objects.equals(this.ddid, messageOut.ddid) &&
@@ -299,19 +295,20 @@ public class MessageOut {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-      sb.append("class MessageOut {\n");
-      sb.append("    data: ").append(toIndentedString(data)).append("\n");
-      sb.append("    cid: ").append(toIndentedString(cid)).append("\n");
-      sb.append("    ddid: ").append(toIndentedString(ddid)).append("\n");
-      sb.append("    sdid: ").append(toIndentedString(sdid)).append("\n");
-      sb.append("    ts: ").append(toIndentedString(ts)).append("\n");
-      sb.append("    type: ").append(toIndentedString(type)).append("\n");
-      sb.append("    mid: ").append(toIndentedString(mid)).append("\n");
-      sb.append("    uid: ").append(toIndentedString(uid)).append("\n");
-      sb.append("    sdtid: ").append(toIndentedString(sdtid)).append("\n");
-      sb.append("    cts: ").append(toIndentedString(cts)).append("\n");
-      sb.append("    mv: ").append(toIndentedString(mv)).append("\n");
-      sb.append("}");
+    sb.append("class MessageOut {\n");
+    
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    cid: ").append(toIndentedString(cid)).append("\n");
+    sb.append("    ddid: ").append(toIndentedString(ddid)).append("\n");
+    sb.append("    sdid: ").append(toIndentedString(sdid)).append("\n");
+    sb.append("    ts: ").append(toIndentedString(ts)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    mid: ").append(toIndentedString(mid)).append("\n");
+    sb.append("    uid: ").append(toIndentedString(uid)).append("\n");
+    sb.append("    sdtid: ").append(toIndentedString(sdtid)).append("\n");
+    sb.append("    cts: ").append(toIndentedString(cts)).append("\n");
+    sb.append("    mv: ").append(toIndentedString(mv)).append("\n");
+    sb.append("}");
     return sb.toString();
   }
 

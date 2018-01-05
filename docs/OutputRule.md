@@ -18,6 +18,15 @@ Name | Type | Description | Notes
 **rule** | **Map&lt;String, Object&gt;** |  |  [optional]
 **uid** | **String** |  |  [optional]
 **warning** | [**RuleWarningOutput**](RuleWarningOutput.md) |  |  [optional]
+**owner** | [**OwnerEnum**](#OwnerEnum) |  |  [optional]
+
+
+<a name="OwnerEnum"></a>
+## Enum: OwnerEnum
+Name | Value
+---- | -----
+USER | &quot;user&quot;
+APPLICATION | &quot;application&quot;
 
 
 

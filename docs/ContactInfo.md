@@ -1,10 +1,11 @@
 
-# DeviceShareInfo
+# ContactInfo
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**uid** | **String** | User email |  [optional]
+**phone** | **String** | phone |  [optional]
+**email** | **String** | email |  [optional]
 
 
 

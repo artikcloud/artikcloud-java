@@ -1,10 +1,10 @@
 
-# DeviceShareInfo
+# UpgradePathUserTokenEnvelope
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**uid** | **String** | User email |  [optional]
+**data** | [**UpgradePathUserToken**](UpgradePathUserToken.md) |  |  [optional]
 
 
 

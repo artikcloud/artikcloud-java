@@ -17,32 +17,40 @@ import java.util.Objects;
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 
  */
 @ApiModel(description = "")
 
-public class DeviceShareInfo {
-  @SerializedName("uid")
-  private String uid = null;
+public class WhitelistEnvelope {
+  @SerializedName("data")
+  private Map<String, Object> data = new HashMap<String, Object>();
 
-  public DeviceShareInfo uid(String uid) {
-    this.uid = uid;
+  public WhitelistEnvelope data(Map<String, Object> data) {
+    this.data = data;
+    return this;
+  }
+
+  public WhitelistEnvelope putDataItem(String key, Object dataItem) {
+    this.data.put(key, dataItem);
     return this;
   }
 
    /**
-   * User email
-   * @return uid
+   * Free form JSON object
+   * @return data
   **/
-  @ApiModelProperty(example = "null", value = "User email")
-  public String getUid() {
-    return uid;
+  @ApiModelProperty(example = "null", value = "Free form JSON object")
+  public Map<String, Object> getData() {
+    return data;
   }
 
-  public void setUid(String uid) {
-    this.uid = uid;
+  public void setData(Map<String, Object> data) {
+    this.data = data;
   }
 
 
@@ -54,22 +62,22 @@ public class DeviceShareInfo {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DeviceShareInfo deviceShareInfo = (DeviceShareInfo) o;
-    return Objects.equals(this.uid, deviceShareInfo.uid);
+    WhitelistEnvelope whitelistEnvelope = (WhitelistEnvelope) o;
+    return Objects.equals(this.data, whitelistEnvelope.data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(uid);
+    return Objects.hash(data);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DeviceShareInfo {\n");
+    sb.append("class WhitelistEnvelope {\n");
     
-    sb.append("    uid: ").append(toIndentedString(uid)).append("\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("}");
     return sb.toString();
   }

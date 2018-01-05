@@ -23,26 +23,26 @@ import io.swagger.annotations.ApiModelProperty;
  */
 @ApiModel(description = "")
 
-public class DeviceShareInfo {
-  @SerializedName("uid")
-  private String uid = null;
+public class RejectedCSVRow {
+  @SerializedName("message")
+  private String message = null;
 
-  public DeviceShareInfo uid(String uid) {
-    this.uid = uid;
+  public RejectedCSVRow message(String message) {
+    this.message = message;
     return this;
   }
 
    /**
-   * User email
-   * @return uid
+   * Rejection message
+   * @return message
   **/
-  @ApiModelProperty(example = "null", value = "User email")
-  public String getUid() {
-    return uid;
+  @ApiModelProperty(example = "null", value = "Rejection message")
+  public String getMessage() {
+    return message;
   }
 
-  public void setUid(String uid) {
-    this.uid = uid;
+  public void setMessage(String message) {
+    this.message = message;
   }
 
 
@@ -54,22 +54,22 @@ public class DeviceShareInfo {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DeviceShareInfo deviceShareInfo = (DeviceShareInfo) o;
-    return Objects.equals(this.uid, deviceShareInfo.uid);
+    RejectedCSVRow rejectedCSVRow = (RejectedCSVRow) o;
+    return Objects.equals(this.message, rejectedCSVRow.message);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(uid);
+    return Objects.hash(message);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DeviceShareInfo {\n");
+    sb.append("class RejectedCSVRow {\n");
     
-    sb.append("    uid: ").append(toIndentedString(uid)).append("\n");
+    sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("}");
     return sb.toString();
   }

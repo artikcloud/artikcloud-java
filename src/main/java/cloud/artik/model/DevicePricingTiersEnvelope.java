@@ -14,6 +14,7 @@
 package cloud.artik.model;
 
 import java.util.Objects;
+import cloud.artik.model.DevicePricingTiers;
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -23,26 +24,26 @@ import io.swagger.annotations.ApiModelProperty;
  */
 @ApiModel(description = "")
 
-public class DeviceShareInfo {
-  @SerializedName("uid")
-  private String uid = null;
+public class DevicePricingTiersEnvelope {
+  @SerializedName("data")
+  private DevicePricingTiers data = null;
 
-  public DeviceShareInfo uid(String uid) {
-    this.uid = uid;
+  public DevicePricingTiersEnvelope data(DevicePricingTiers data) {
+    this.data = data;
     return this;
   }
 
    /**
-   * User email
-   * @return uid
+   * Data envelope
+   * @return data
   **/
-  @ApiModelProperty(example = "null", value = "User email")
-  public String getUid() {
-    return uid;
+  @ApiModelProperty(example = "null", value = "Data envelope")
+  public DevicePricingTiers getData() {
+    return data;
   }
 
-  public void setUid(String uid) {
-    this.uid = uid;
+  public void setData(DevicePricingTiers data) {
+    this.data = data;
   }
 
 
@@ -54,22 +55,22 @@ public class DeviceShareInfo {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DeviceShareInfo deviceShareInfo = (DeviceShareInfo) o;
-    return Objects.equals(this.uid, deviceShareInfo.uid);
+    DevicePricingTiersEnvelope devicePricingTiersEnvelope = (DevicePricingTiersEnvelope) o;
+    return Objects.equals(this.data, devicePricingTiersEnvelope.data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(uid);
+    return Objects.hash(data);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DeviceShareInfo {\n");
+    sb.append("class DevicePricingTiersEnvelope {\n");
     
-    sb.append("    uid: ").append(toIndentedString(uid)).append("\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("}");
     return sb.toString();
   }

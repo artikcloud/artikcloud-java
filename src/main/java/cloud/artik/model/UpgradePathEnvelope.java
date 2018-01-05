@@ -14,6 +14,7 @@
 package cloud.artik.model;
 
 import java.util.Objects;
+import cloud.artik.model.UpgradePath;
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -23,26 +24,26 @@ import io.swagger.annotations.ApiModelProperty;
  */
 @ApiModel(description = "")
 
-public class DeviceShareInfo {
-  @SerializedName("uid")
-  private String uid = null;
+public class UpgradePathEnvelope {
+  @SerializedName("data")
+  private UpgradePath data = null;
 
-  public DeviceShareInfo uid(String uid) {
-    this.uid = uid;
+  public UpgradePathEnvelope data(UpgradePath data) {
+    this.data = data;
     return this;
   }
 
    /**
-   * User email
-   * @return uid
+   * data envelope
+   * @return data
   **/
-  @ApiModelProperty(example = "null", value = "User email")
-  public String getUid() {
-    return uid;
+  @ApiModelProperty(example = "null", value = "data envelope")
+  public UpgradePath getData() {
+    return data;
   }
 
-  public void setUid(String uid) {
-    this.uid = uid;
+  public void setData(UpgradePath data) {
+    this.data = data;
   }
 
 
@@ -54,22 +55,22 @@ public class DeviceShareInfo {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DeviceShareInfo deviceShareInfo = (DeviceShareInfo) o;
-    return Objects.equals(this.uid, deviceShareInfo.uid);
+    UpgradePathEnvelope upgradePathEnvelope = (UpgradePathEnvelope) o;
+    return Objects.equals(this.data, upgradePathEnvelope.data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(uid);
+    return Objects.hash(data);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DeviceShareInfo {\n");
+    sb.append("class UpgradePathEnvelope {\n");
     
-    sb.append("    uid: ").append(toIndentedString(uid)).append("\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("}");
     return sb.toString();
   }

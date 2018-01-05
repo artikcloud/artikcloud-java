@@ -23,26 +23,26 @@ import io.swagger.annotations.ApiModelProperty;
  */
 @ApiModel(description = "")
 
-public class DeviceShareInfo {
-  @SerializedName("uid")
-  private String uid = null;
+public class UploadIdEnvelope {
+  @SerializedName("uploadId")
+  private String uploadId = null;
 
-  public DeviceShareInfo uid(String uid) {
-    this.uid = uid;
+  public UploadIdEnvelope uploadId(String uploadId) {
+    this.uploadId = uploadId;
     return this;
   }
 
    /**
-   * User email
-   * @return uid
+   * Id identifying the uploaded CSV.
+   * @return uploadId
   **/
-  @ApiModelProperty(example = "null", value = "User email")
-  public String getUid() {
-    return uid;
+  @ApiModelProperty(example = "null", value = "Id identifying the uploaded CSV.")
+  public String getUploadId() {
+    return uploadId;
   }
 
-  public void setUid(String uid) {
-    this.uid = uid;
+  public void setUploadId(String uploadId) {
+    this.uploadId = uploadId;
   }
 
 
@@ -54,22 +54,22 @@ public class DeviceShareInfo {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DeviceShareInfo deviceShareInfo = (DeviceShareInfo) o;
-    return Objects.equals(this.uid, deviceShareInfo.uid);
+    UploadIdEnvelope uploadIdEnvelope = (UploadIdEnvelope) o;
+    return Objects.equals(this.uploadId, uploadIdEnvelope.uploadId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(uid);
+    return Objects.hash(uploadId);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DeviceShareInfo {\n");
+    sb.append("class UploadIdEnvelope {\n");
     
-    sb.append("    uid: ").append(toIndentedString(uid)).append("\n");
+    sb.append("    uploadId: ").append(toIndentedString(uploadId)).append("\n");
     sb.append("}");
     return sb.toString();
   }

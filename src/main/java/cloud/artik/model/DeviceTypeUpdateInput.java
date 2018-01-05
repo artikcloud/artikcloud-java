@@ -23,26 +23,26 @@ import io.swagger.annotations.ApiModelProperty;
  */
 @ApiModel(description = "")
 
-public class DeviceShareInfo {
-  @SerializedName("uid")
-  private String uid = null;
+public class DeviceTypeUpdateInput {
+  @SerializedName("enableWhitelist")
+  private Boolean enableWhitelist = null;
 
-  public DeviceShareInfo uid(String uid) {
-    this.uid = uid;
+  public DeviceTypeUpdateInput enableWhitelist(Boolean enableWhitelist) {
+    this.enableWhitelist = enableWhitelist;
     return this;
   }
 
    /**
-   * User email
-   * @return uid
+   * enable whitelist flag
+   * @return enableWhitelist
   **/
-  @ApiModelProperty(example = "null", value = "User email")
-  public String getUid() {
-    return uid;
+  @ApiModelProperty(example = "null", value = "enable whitelist flag")
+  public Boolean getEnableWhitelist() {
+    return enableWhitelist;
   }
 
-  public void setUid(String uid) {
-    this.uid = uid;
+  public void setEnableWhitelist(Boolean enableWhitelist) {
+    this.enableWhitelist = enableWhitelist;
   }
 
 
@@ -54,22 +54,22 @@ public class DeviceShareInfo {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DeviceShareInfo deviceShareInfo = (DeviceShareInfo) o;
-    return Objects.equals(this.uid, deviceShareInfo.uid);
+    DeviceTypeUpdateInput deviceTypeUpdateInput = (DeviceTypeUpdateInput) o;
+    return Objects.equals(this.enableWhitelist, deviceTypeUpdateInput.enableWhitelist);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(uid);
+    return Objects.hash(enableWhitelist);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DeviceShareInfo {\n");
+    sb.append("class DeviceTypeUpdateInput {\n");
     
-    sb.append("    uid: ").append(toIndentedString(uid)).append("\n");
+    sb.append("    enableWhitelist: ").append(toIndentedString(enableWhitelist)).append("\n");
     sb.append("}");
     return sb.toString();
   }

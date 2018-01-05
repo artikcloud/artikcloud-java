@@ -1,10 +1,10 @@
 
-# DeviceShareInfo
+# DeviceTypeUpdateInput
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**uid** | **String** | User email |  [optional]
+**enableWhitelist** | **Boolean** | enable whitelist flag |  [optional]
 
 
 

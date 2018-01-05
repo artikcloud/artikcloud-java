@@ -237,7 +237,7 @@ Name | Type | Description  | Notes
 
 <a name="getUserDevices"></a>
 # **getUserDevices**
-> DevicesEnvelope getUserDevices(userId, offset, count, includeProperties, owner, includeShareInfo)
+> DevicesEnvelope getUserDevices(userId, offset, count, includeProperties, owner, includeShareInfo, dtid)
 
 Get User Devices
 
@@ -265,8 +265,9 @@ Integer count = 56; // Integer | Desired count of items in the result set
 Boolean includeProperties = true; // Boolean | Optional. Boolean (true/false) - If false, only return the user's device types. If true, also return device types shared by other users.
 String owner = "owner_example"; // String | Return owned and/or shared devices. Default to ALL.
 Boolean includeShareInfo = true; // Boolean | Include share info
+String dtid = "dtid_example"; // String | Return only devices of this device type. If empty, assumes all device types allowed by the authorization.
 try {
-    DevicesEnvelope result = apiInstance.getUserDevices(userId, offset, count, includeProperties, owner, includeShareInfo);
+    DevicesEnvelope result = apiInstance.getUserDevices(userId, offset, count, includeProperties, owner, includeShareInfo, dtid);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling UsersApi#getUserDevices");
@@ -284,6 +285,7 @@ Name | Type | Description  | Notes
  **includeProperties** | **Boolean**| Optional. Boolean (true/false) - If false, only return the user&#39;s device types. If true, also return device types shared by other users. | [optional]
  **owner** | **String**| Return owned and/or shared devices. Default to ALL. | [optional]
  **includeShareInfo** | **Boolean**| Include share info | [optional]
+ **dtid** | **String**| Return only devices of this device type. If empty, assumes all device types allowed by the authorization. | [optional]
 
 ### Return type
 
