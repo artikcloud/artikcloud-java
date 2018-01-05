@@ -42,8 +42,7 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.12</version>
         <configuration>
-          <!-- Skip test for now -->
-          <!-- <skipTests>false</skipTests> -->
+          <skipTests>true</skipTests>
           <systemProperties>
             <property>
               <name>loggerPath</name>
