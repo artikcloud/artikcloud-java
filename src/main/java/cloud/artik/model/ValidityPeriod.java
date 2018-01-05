@@ -23,26 +23,47 @@ import io.swagger.annotations.ApiModelProperty;
  */
 @ApiModel(description = "")
 
-public class DeviceShareInfo {
-  @SerializedName("uid")
-  private String uid = null;
+public class ValidityPeriod {
+  @SerializedName("notBefore")
+  private Long notBefore = null;
 
-  public DeviceShareInfo uid(String uid) {
-    this.uid = uid;
+  @SerializedName("notAfter")
+  private Long notAfter = null;
+
+  public ValidityPeriod notBefore(Long notBefore) {
+    this.notBefore = notBefore;
     return this;
   }
 
    /**
-   * User email
-   * @return uid
+   * Not before
+   * @return notBefore
   **/
-  @ApiModelProperty(example = "null", value = "User email")
-  public String getUid() {
-    return uid;
+  @ApiModelProperty(example = "null", value = "Not before")
+  public Long getNotBefore() {
+    return notBefore;
   }
 
-  public void setUid(String uid) {
-    this.uid = uid;
+  public void setNotBefore(Long notBefore) {
+    this.notBefore = notBefore;
+  }
+
+  public ValidityPeriod notAfter(Long notAfter) {
+    this.notAfter = notAfter;
+    return this;
+  }
+
+   /**
+   * Not before
+   * @return notAfter
+  **/
+  @ApiModelProperty(example = "null", value = "Not before")
+  public Long getNotAfter() {
+    return notAfter;
+  }
+
+  public void setNotAfter(Long notAfter) {
+    this.notAfter = notAfter;
   }
 
 
@@ -54,22 +75,24 @@ public class DeviceShareInfo {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DeviceShareInfo deviceShareInfo = (DeviceShareInfo) o;
-    return Objects.equals(this.uid, deviceShareInfo.uid);
+    ValidityPeriod validityPeriod = (ValidityPeriod) o;
+    return Objects.equals(this.notBefore, validityPeriod.notBefore) &&
+        Objects.equals(this.notAfter, validityPeriod.notAfter);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(uid);
+    return Objects.hash(notBefore, notAfter);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DeviceShareInfo {\n");
+    sb.append("class ValidityPeriod {\n");
     
-    sb.append("    uid: ").append(toIndentedString(uid)).append("\n");
+    sb.append("    notBefore: ").append(toIndentedString(notBefore)).append("\n");
+    sb.append("    notAfter: ").append(toIndentedString(notAfter)).append("\n");
     sb.append("}");
     return sb.toString();
   }

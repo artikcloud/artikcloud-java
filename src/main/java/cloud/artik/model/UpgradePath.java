@@ -23,26 +23,26 @@ import io.swagger.annotations.ApiModelProperty;
  */
 @ApiModel(description = "")
 
-public class DeviceShareInfo {
-  @SerializedName("uid")
-  private String uid = null;
+public class UpgradePath {
+  @SerializedName("url")
+  private String url = null;
 
-  public DeviceShareInfo uid(String uid) {
-    this.uid = uid;
+  public UpgradePath url(String url) {
+    this.url = url;
     return this;
   }
 
    /**
-   * User email
-   * @return uid
+   * Url to display the upgrade path to the user
+   * @return url
   **/
-  @ApiModelProperty(example = "null", value = "User email")
-  public String getUid() {
-    return uid;
+  @ApiModelProperty(example = "null", value = "Url to display the upgrade path to the user")
+  public String getUrl() {
+    return url;
   }
 
-  public void setUid(String uid) {
-    this.uid = uid;
+  public void setUrl(String url) {
+    this.url = url;
   }
 
 
@@ -54,22 +54,22 @@ public class DeviceShareInfo {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DeviceShareInfo deviceShareInfo = (DeviceShareInfo) o;
-    return Objects.equals(this.uid, deviceShareInfo.uid);
+    UpgradePath upgradePath = (UpgradePath) o;
+    return Objects.equals(this.url, upgradePath.url);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(uid);
+    return Objects.hash(url);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DeviceShareInfo {\n");
+    sb.append("class UpgradePath {\n");
     
-    sb.append("    uid: ").append(toIndentedString(uid)).append("\n");
+    sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("}");
     return sb.toString();
   }

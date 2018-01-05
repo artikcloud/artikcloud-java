@@ -71,6 +71,31 @@ public class OutputRule {
   @SerializedName("warning")
   private RuleWarningOutput warning = null;
 
+  /**
+   * Gets or Sets owner
+   */
+  public enum OwnerEnum {
+    @SerializedName("user")
+    USER("user"),
+    
+    @SerializedName("application")
+    APPLICATION("application");
+
+    private String value;
+
+    OwnerEnum(String value) {
+      this.value = value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+  }
+
+  @SerializedName("owner")
+  private OwnerEnum owner = null;
+
   public OutputRule aid(String aid) {
     this.aid = aid;
     return this;
@@ -328,6 +353,24 @@ public class OutputRule {
     this.warning = warning;
   }
 
+  public OutputRule owner(OwnerEnum owner) {
+    this.owner = owner;
+    return this;
+  }
+
+   /**
+   * Get owner
+   * @return owner
+  **/
+  @ApiModelProperty(example = "null", value = "")
+  public OwnerEnum getOwner() {
+    return owner;
+  }
+
+  public void setOwner(OwnerEnum owner) {
+    this.owner = owner;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -351,12 +394,13 @@ public class OutputRule {
         Objects.equals(this.name, outputRule.name) &&
         Objects.equals(this.rule, outputRule.rule) &&
         Objects.equals(this.uid, outputRule.uid) &&
-        Objects.equals(this.warning, outputRule.warning);
+        Objects.equals(this.warning, outputRule.warning) &&
+        Objects.equals(this.owner, outputRule.owner);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(aid, createdOn, description, enabled, error, id, index, invalidatedOn, languageVersion, modifiedOn, name, rule, uid, warning);
+    return Objects.hash(aid, createdOn, description, enabled, error, id, index, invalidatedOn, languageVersion, modifiedOn, name, rule, uid, warning, owner);
   }
 
 
@@ -379,6 +423,7 @@ public class OutputRule {
     sb.append("    rule: ").append(toIndentedString(rule)).append("\n");
     sb.append("    uid: ").append(toIndentedString(uid)).append("\n");
     sb.append("    warning: ").append(toIndentedString(warning)).append("\n");
+    sb.append("    owner: ").append(toIndentedString(owner)).append("\n");
     sb.append("}");
     return sb.toString();
   }

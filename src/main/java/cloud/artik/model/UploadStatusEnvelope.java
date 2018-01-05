@@ -23,26 +23,26 @@ import io.swagger.annotations.ApiModelProperty;
  */
 @ApiModel(description = "")
 
-public class DeviceShareInfo {
-  @SerializedName("uid")
-  private String uid = null;
+public class UploadStatusEnvelope {
+  @SerializedName("status")
+  private String status = null;
 
-  public DeviceShareInfo uid(String uid) {
-    this.uid = uid;
+  public UploadStatusEnvelope status(String status) {
+    this.status = status;
     return this;
   }
 
    /**
-   * User email
-   * @return uid
+   * The uploaded CSV status, like 'Processing', 'Completed' or 'Failed'
+   * @return status
   **/
-  @ApiModelProperty(example = "null", value = "User email")
-  public String getUid() {
-    return uid;
+  @ApiModelProperty(example = "null", value = "The uploaded CSV status, like 'Processing', 'Completed' or 'Failed'")
+  public String getStatus() {
+    return status;
   }
 
-  public void setUid(String uid) {
-    this.uid = uid;
+  public void setStatus(String status) {
+    this.status = status;
   }
 
 
@@ -54,22 +54,22 @@ public class DeviceShareInfo {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DeviceShareInfo deviceShareInfo = (DeviceShareInfo) o;
-    return Objects.equals(this.uid, deviceShareInfo.uid);
+    UploadStatusEnvelope uploadStatusEnvelope = (UploadStatusEnvelope) o;
+    return Objects.equals(this.status, uploadStatusEnvelope.status);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(uid);
+    return Objects.hash(status);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DeviceShareInfo {\n");
+    sb.append("class UploadStatusEnvelope {\n");
     
-    sb.append("    uid: ").append(toIndentedString(uid)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("}");
     return sb.toString();
   }

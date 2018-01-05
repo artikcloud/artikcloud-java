@@ -1,10 +1,10 @@
 
-# DeviceShareInfo
+# WhitelistEnvelope
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**uid** | **String** | User email |  [optional]
+**data** | **Map&lt;String, Object&gt;** | Free form JSON object |  [optional]
 
 
 

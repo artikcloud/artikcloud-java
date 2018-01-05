@@ -1,10 +1,10 @@
 
-# DeviceShareInfo
+# RejectedCSVRow
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**uid** | **String** | User email |  [optional]
+**message** | **String** | Rejection message |  [optional]
 
 
 

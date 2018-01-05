@@ -123,7 +123,8 @@ public class UsersApiTest {
         Boolean includeProperties = null;
         String owner = null;
         Boolean includeShareInfo = null;
-        DevicesEnvelope response = api.getUserDevices(userId, offset, count, includeProperties, owner, includeShareInfo);
+        String dtid = null;
+        DevicesEnvelope response = api.getUserDevices(userId, offset, count, includeProperties, owner, includeShareInfo, dtid);
 
         // TODO: test validations
     }

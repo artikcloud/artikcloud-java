@@ -14,35 +14,43 @@
 package cloud.artik.model;
 
 import java.util.Objects;
+import cloud.artik.model.DevicePricingTier;
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 
  */
 @ApiModel(description = "")
 
-public class DeviceShareInfo {
-  @SerializedName("uid")
-  private String uid = null;
+public class DevicePricingTiers {
+  @SerializedName("pricingTiers")
+  private List<DevicePricingTier> pricingTiers = new ArrayList<DevicePricingTier>();
 
-  public DeviceShareInfo uid(String uid) {
-    this.uid = uid;
+  public DevicePricingTiers pricingTiers(List<DevicePricingTier> pricingTiers) {
+    this.pricingTiers = pricingTiers;
+    return this;
+  }
+
+  public DevicePricingTiers addPricingTiersItem(DevicePricingTier pricingTiersItem) {
+    this.pricingTiers.add(pricingTiersItem);
     return this;
   }
 
    /**
-   * User email
-   * @return uid
+   * Pricing Tiers list
+   * @return pricingTiers
   **/
-  @ApiModelProperty(example = "null", value = "User email")
-  public String getUid() {
-    return uid;
+  @ApiModelProperty(example = "null", value = "Pricing Tiers list")
+  public List<DevicePricingTier> getPricingTiers() {
+    return pricingTiers;
   }
 
-  public void setUid(String uid) {
-    this.uid = uid;
+  public void setPricingTiers(List<DevicePricingTier> pricingTiers) {
+    this.pricingTiers = pricingTiers;
   }
 
 
@@ -54,22 +62,22 @@ public class DeviceShareInfo {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DeviceShareInfo deviceShareInfo = (DeviceShareInfo) o;
-    return Objects.equals(this.uid, deviceShareInfo.uid);
+    DevicePricingTiers devicePricingTiers = (DevicePricingTiers) o;
+    return Objects.equals(this.pricingTiers, devicePricingTiers.pricingTiers);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(uid);
+    return Objects.hash(pricingTiers);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DeviceShareInfo {\n");
+    sb.append("class DevicePricingTiers {\n");
     
-    sb.append("    uid: ").append(toIndentedString(uid)).append("\n");
+    sb.append("    pricingTiers: ").append(toIndentedString(pricingTiers)).append("\n");
     sb.append("}");
     return sb.toString();
   }

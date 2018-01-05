@@ -1,10 +1,10 @@
 
-# DeviceShareInfo
+# DevicePricingTierRequest
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**uid** | **String** | User email |  [optional]
+**ptid** | **String** | Pricing Tier ID |  [optional]
 
 
 

@@ -14,6 +14,7 @@
 package cloud.artik.model;
 
 import java.util.Objects;
+import cloud.artik.model.UpgradePathUserToken;
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -23,26 +24,26 @@ import io.swagger.annotations.ApiModelProperty;
  */
 @ApiModel(description = "")
 
-public class DeviceShareInfo {
-  @SerializedName("uid")
-  private String uid = null;
+public class UpgradePathUserTokenEnvelope {
+  @SerializedName("data")
+  private UpgradePathUserToken data = null;
 
-  public DeviceShareInfo uid(String uid) {
-    this.uid = uid;
+  public UpgradePathUserTokenEnvelope data(UpgradePathUserToken data) {
+    this.data = data;
     return this;
   }
 
    /**
-   * User email
-   * @return uid
+   * Get data
+   * @return data
   **/
-  @ApiModelProperty(example = "null", value = "User email")
-  public String getUid() {
-    return uid;
+  @ApiModelProperty(example = "null", value = "")
+  public UpgradePathUserToken getData() {
+    return data;
   }
 
-  public void setUid(String uid) {
-    this.uid = uid;
+  public void setData(UpgradePathUserToken data) {
+    this.data = data;
   }
 
 
@@ -54,22 +55,22 @@ public class DeviceShareInfo {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DeviceShareInfo deviceShareInfo = (DeviceShareInfo) o;
-    return Objects.equals(this.uid, deviceShareInfo.uid);
+    UpgradePathUserTokenEnvelope upgradePathUserTokenEnvelope = (UpgradePathUserTokenEnvelope) o;
+    return Objects.equals(this.data, upgradePathUserTokenEnvelope.data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(uid);
+    return Objects.hash(data);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DeviceShareInfo {\n");
+    sb.append("class UpgradePathUserTokenEnvelope {\n");
     
-    sb.append("    uid: ").append(toIndentedString(uid)).append("\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("}");
     return sb.toString();
   }
