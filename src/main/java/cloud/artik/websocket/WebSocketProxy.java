@@ -46,6 +46,10 @@ public class WebSocketProxy extends WebSocketListener {
     public static void setHost(String host) {
         WebSocketProxy.host = host;
     }
+    
+    public static String getHost() {
+    	return WebSocketProxy.host;
+    }
 
     public ConnectionStatus getConnectionStatus() {
         return status;
