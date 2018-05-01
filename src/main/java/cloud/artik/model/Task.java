@@ -52,6 +52,9 @@ public class Task {
   @SerializedName("dids")
   private List<String> dids = new ArrayList<String>();
 
+  @SerializedName("needsAcceptance")
+  private Boolean needsAcceptance = null;
+
   @SerializedName("taskParameters")
   private TaskParameters taskParameters = null;
 
@@ -210,6 +213,24 @@ public class Task {
     this.dids = dids;
   }
 
+  public Task needsAcceptance(Boolean needsAcceptance) {
+    this.needsAcceptance = needsAcceptance;
+    return this;
+  }
+
+   /**
+   * Boolean to check if task needs acceptance for OTA
+   * @return needsAcceptance
+  **/
+  @ApiModelProperty(example = "null", value = "Boolean to check if task needs acceptance for OTA")
+  public Boolean getNeedsAcceptance() {
+    return needsAcceptance;
+  }
+
+  public void setNeedsAcceptance(Boolean needsAcceptance) {
+    this.needsAcceptance = needsAcceptance;
+  }
+
   public Task taskParameters(TaskParameters taskParameters) {
     this.taskParameters = taskParameters;
     return this;
@@ -282,6 +303,7 @@ public class Task {
         Objects.equals(this.property, task.property) &&
         Objects.equals(this.id, task.id) &&
         Objects.equals(this.dids, task.dids) &&
+        Objects.equals(this.needsAcceptance, task.needsAcceptance) &&
         Objects.equals(this.taskParameters, task.taskParameters) &&
         Objects.equals(this.createdOn, task.createdOn) &&
         Objects.equals(this.status, task.status);
@@ -289,7 +311,7 @@ public class Task {
 
   @Override
   public int hashCode() {
-    return Objects.hash(filter, taskType, modifiedOn, dtid, statusCounts, property, id, dids, taskParameters, createdOn, status);
+    return Objects.hash(filter, taskType, modifiedOn, dtid, statusCounts, property, id, dids, needsAcceptance, taskParameters, createdOn, status);
   }
 
 
@@ -306,6 +328,7 @@ public class Task {
     sb.append("    property: ").append(toIndentedString(property)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    dids: ").append(toIndentedString(dids)).append("\n");
+    sb.append("    needsAcceptance: ").append(toIndentedString(needsAcceptance)).append("\n");
     sb.append("    taskParameters: ").append(toIndentedString(taskParameters)).append("\n");
     sb.append("    createdOn: ").append(toIndentedString(createdOn)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");

@@ -14,6 +14,7 @@
 package cloud.artik.api;
 
 import cloud.artik.client.ApiException;
+import cloud.artik.model.AcceptanceStatusResponse;
 import cloud.artik.model.DeviceTaskUpdateRequest;
 import cloud.artik.model.DeviceTaskUpdateResponse;
 import cloud.artik.model.DeviceTypesInfo;
@@ -21,6 +22,7 @@ import cloud.artik.model.DeviceTypesInfoEnvelope;
 import cloud.artik.model.MetadataEnvelope;
 import cloud.artik.model.MetadataPropertiesEnvelope;
 import cloud.artik.model.MetadataQueryEnvelope;
+import cloud.artik.model.PendingTasksList;
 import cloud.artik.model.TaskByDidListEnvelope;
 import cloud.artik.model.TaskEnvelope;
 import cloud.artik.model.TaskListEnvelope;
@@ -95,6 +97,21 @@ public class DevicesManagementApiTest {
         String order = null;
         String sort = null;
         TaskByDidListEnvelope response = api.getAllByDid(did, count, offset, status, order, sort);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Returns the list of  pending tasks for a particular device id.
+     *
+     * Returns the list of all pending tasks (where acceptanceStatus is equal to WAITING ) for a particular device id.
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getAllPendingTasksByDidTest() throws ApiException {
+        PendingTasksList response = api.getAllPendingTasksByDid();
 
         // TODO: test validations
     }
@@ -218,6 +235,24 @@ public class DevicesManagementApiTest {
         String order = null;
         String sort = null;
         TaskListEnvelope response = api.getTasks(dtid, count, offset, status, order, sort);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Notify/Inform about task acceptance status
+     *
+     * User notify/informs to ARTIKCloud about task acceptance status
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void notifyAboutAcceptanceTest() throws ApiException {
+        String tid = null;
+        String did = null;
+        AcceptanceStatusResponse notifyAboutAcceptanceStatus = null;
+        AcceptanceStatusResponse response = api.notifyAboutAcceptance(tid, did, notifyAboutAcceptanceStatus);
 
         // TODO: test validations
     }

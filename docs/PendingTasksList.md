@@ -1,10 +1,10 @@
 
-# DeviceSharingId
+# PendingTasksList
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** | Share ID |  [optional]
+**data** | **List&lt;String&gt;** | Pending Tasks list |  [optional]
 
 
 

@@ -2,7 +2,7 @@ apply plugin: 'idea'
 apply plugin: 'eclipse'
 
 group = 'cloud.artik'
-version = '2.2.2'
+version = '2.2.3'
 
 buildscript {
     repositories {
@@ -95,7 +95,7 @@ if(hasProperty('target') && target == 'android') {
 
 dependencies {
     compile 'io.swagger:swagger-annotations:1.5.8'
-    compile 'com.squareup.okhttp:okhttp:2.7.2'
+    compile 'com.squareup.okhttp:okhttp:2.7.5'
     compile 'com.squareup.okhttp:logging-interceptor:2.7.5'
     compile 'com.squareup.okhttp3:okhttp-ws:3.4.1'
     compile 'com.google.code.gson:gson:2.6.2'

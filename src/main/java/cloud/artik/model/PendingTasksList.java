@@ -17,32 +17,39 @@ import java.util.Objects;
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * 
+ * List of pending tasks ids
  */
-@ApiModel(description = "")
+@ApiModel(description = "List of pending tasks ids")
 
-public class DeviceSharingId {
-  @SerializedName("id")
-  private String id = null;
+public class PendingTasksList {
+  @SerializedName("data")
+  private List<String> data = new ArrayList<String>();
 
-  public DeviceSharingId id(String id) {
-    this.id = id;
+  public PendingTasksList data(List<String> data) {
+    this.data = data;
+    return this;
+  }
+
+  public PendingTasksList addDataItem(String dataItem) {
+    this.data.add(dataItem);
     return this;
   }
 
    /**
-   * Share ID
-   * @return id
+   * Pending Tasks list
+   * @return data
   **/
-  @ApiModelProperty(example = "null", value = "Share ID")
-  public String getId() {
-    return id;
+  @ApiModelProperty(example = "null", value = "Pending Tasks list")
+  public List<String> getData() {
+    return data;
   }
 
-  public void setId(String id) {
-    this.id = id;
+  public void setData(List<String> data) {
+    this.data = data;
   }
 
 
@@ -54,22 +61,22 @@ public class DeviceSharingId {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DeviceSharingId deviceSharingId = (DeviceSharingId) o;
-    return Objects.equals(this.id, deviceSharingId.id);
+    PendingTasksList pendingTasksList = (PendingTasksList) o;
+    return Objects.equals(this.data, pendingTasksList.data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id);
+    return Objects.hash(data);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DeviceSharingId {\n");
+    sb.append("class PendingTasksList {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -1,10 +1,10 @@
 
-# DeviceSharingId
+# DeviceSharingDataResponseBody
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** | Share ID |  [optional]
+**data** | [**DeviceSharing**](DeviceSharing.md) |  |  [optional]
 
 
 

@@ -1,10 +1,10 @@
 
-# DeviceSharingId
+# PredictResponseBody
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** | Share ID |  [optional]
+**data** | [**PredictResponseData**](PredictResponseData.md) |  |  [optional]
 
 
 

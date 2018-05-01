@@ -42,6 +42,9 @@ public class TaskRequest {
   @SerializedName("dids")
   private List<String> dids = new ArrayList<String>();
 
+  @SerializedName("needsAcceptance")
+  private Boolean needsAcceptance = null;
+
   @SerializedName("taskParameters")
   private TaskParameters taskParameters = null;
 
@@ -140,6 +143,24 @@ public class TaskRequest {
     this.dids = dids;
   }
 
+  public TaskRequest needsAcceptance(Boolean needsAcceptance) {
+    this.needsAcceptance = needsAcceptance;
+    return this;
+  }
+
+   /**
+   * Boolean to check if task needs acceptance for OTA
+   * @return needsAcceptance
+  **/
+  @ApiModelProperty(example = "null", value = "Boolean to check if task needs acceptance for OTA")
+  public Boolean getNeedsAcceptance() {
+    return needsAcceptance;
+  }
+
+  public void setNeedsAcceptance(Boolean needsAcceptance) {
+    this.needsAcceptance = needsAcceptance;
+  }
+
   public TaskRequest taskParameters(TaskParameters taskParameters) {
     this.taskParameters = taskParameters;
     return this;
@@ -173,12 +194,13 @@ public class TaskRequest {
         Objects.equals(this.dtid, taskRequest.dtid) &&
         Objects.equals(this.property, taskRequest.property) &&
         Objects.equals(this.dids, taskRequest.dids) &&
+        Objects.equals(this.needsAcceptance, taskRequest.needsAcceptance) &&
         Objects.equals(this.taskParameters, taskRequest.taskParameters);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(filter, taskType, dtid, property, dids, taskParameters);
+    return Objects.hash(filter, taskType, dtid, property, dids, needsAcceptance, taskParameters);
   }
 
 
@@ -192,6 +214,7 @@ public class TaskRequest {
     sb.append("    dtid: ").append(toIndentedString(dtid)).append("\n");
     sb.append("    property: ").append(toIndentedString(property)).append("\n");
     sb.append("    dids: ").append(toIndentedString(dids)).append("\n");
+    sb.append("    needsAcceptance: ").append(toIndentedString(needsAcceptance)).append("\n");
     sb.append("    taskParameters: ").append(toIndentedString(taskParameters)).append("\n");
     sb.append("}");
     return sb.toString();

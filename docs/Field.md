@@ -1,10 +1,11 @@
 
-# DeviceSharingId
+# Field
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** | Share ID |  [optional]
+**name** | **String** |  |  [optional]
+**type** | **String** |  |  [optional]
 
 
 

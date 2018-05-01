@@ -1,10 +1,10 @@
 
-# DeviceSharingId
+# AcceptanceStatusResponse
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** | Share ID |  [optional]
+**acceptanceStatus** | **String** | Acceptance Status response |  [optional]
 
 
 

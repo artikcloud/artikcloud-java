@@ -1,10 +1,11 @@
 
-# DeviceSharingId
+# ManifestField
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** | Share ID |  [optional]
+**field** | **String** |  |  [optional]
+**did** | **String** |  |  [optional]
 
 
 

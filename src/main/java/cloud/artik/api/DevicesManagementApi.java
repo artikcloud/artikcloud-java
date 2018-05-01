@@ -27,6 +27,7 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
+import cloud.artik.model.AcceptanceStatusResponse;
 import cloud.artik.model.DeviceTaskUpdateRequest;
 import cloud.artik.model.DeviceTaskUpdateResponse;
 import cloud.artik.model.DeviceTypesInfo;
@@ -34,6 +35,7 @@ import cloud.artik.model.DeviceTypesInfoEnvelope;
 import cloud.artik.model.MetadataEnvelope;
 import cloud.artik.model.MetadataPropertiesEnvelope;
 import cloud.artik.model.MetadataQueryEnvelope;
+import cloud.artik.model.PendingTasksList;
 import cloud.artik.model.TaskByDidListEnvelope;
 import cloud.artik.model.TaskEnvelope;
 import cloud.artik.model.TaskListEnvelope;
@@ -446,6 +448,116 @@ public class DevicesManagementApi {
 
         com.squareup.okhttp.Call call = getAllByDidValidateBeforeCall(did, count, offset, status, order, sort, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<TaskByDidListEnvelope>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /* Build call for getAllPendingTasksByDid */
+    private com.squareup.okhttp.Call getAllPendingTasksByDidCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+        
+        // create path and map variables
+        String localVarPath = "/devicemgmt/devices/{did}/pendingtasks".replaceAll("\\{format\\}","json");
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "artikcloud_oauth" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+    
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call getAllPendingTasksByDidValidateBeforeCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        
+        com.squareup.okhttp.Call call = getAllPendingTasksByDidCall(progressListener, progressRequestListener);
+        return call;
+
+        
+        
+        
+        
+    }
+
+    /**
+     * Returns the list of  pending tasks for a particular device id.
+     * Returns the list of all pending tasks (where acceptanceStatus is equal to WAITING ) for a particular device id.
+     * @return PendingTasksList
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public PendingTasksList getAllPendingTasksByDid() throws ApiException {
+        ApiResponse<PendingTasksList> resp = getAllPendingTasksByDidWithHttpInfo();
+        return resp.getData();
+    }
+
+    /**
+     * Returns the list of  pending tasks for a particular device id.
+     * Returns the list of all pending tasks (where acceptanceStatus is equal to WAITING ) for a particular device id.
+     * @return ApiResponse&lt;PendingTasksList&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<PendingTasksList> getAllPendingTasksByDidWithHttpInfo() throws ApiException {
+        com.squareup.okhttp.Call call = getAllPendingTasksByDidValidateBeforeCall(null, null);
+        Type localVarReturnType = new TypeToken<PendingTasksList>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Returns the list of  pending tasks for a particular device id. (asynchronously)
+     * Returns the list of all pending tasks (where acceptanceStatus is equal to WAITING ) for a particular device id.
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call getAllPendingTasksByDidAsync(final ApiCallback<PendingTasksList> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = getAllPendingTasksByDidValidateBeforeCall(progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<PendingTasksList>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -1335,6 +1447,142 @@ public class DevicesManagementApi {
 
         com.squareup.okhttp.Call call = getTasksValidateBeforeCall(dtid, count, offset, status, order, sort, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<TaskListEnvelope>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /* Build call for notifyAboutAcceptance */
+    private com.squareup.okhttp.Call notifyAboutAcceptanceCall(String tid, String did, AcceptanceStatusResponse notifyAboutAcceptanceStatus, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = notifyAboutAcceptanceStatus;
+        
+        // create path and map variables
+        String localVarPath = "/devicemgmt/tasks/{tid}/devices/{did}/acceptance".replaceAll("\\{format\\}","json")
+        .replaceAll("\\{" + "tid" + "\\}", apiClient.escapeString(tid.toString()))
+        .replaceAll("\\{" + "did" + "\\}", apiClient.escapeString(did.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "artikcloud_oauth" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+    
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call notifyAboutAcceptanceValidateBeforeCall(String tid, String did, AcceptanceStatusResponse notifyAboutAcceptanceStatus, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'tid' is set
+        if (tid == null) {
+            throw new ApiException("Missing the required parameter 'tid' when calling notifyAboutAcceptance(Async)");
+        }
+        
+        // verify the required parameter 'did' is set
+        if (did == null) {
+            throw new ApiException("Missing the required parameter 'did' when calling notifyAboutAcceptance(Async)");
+        }
+        
+        // verify the required parameter 'notifyAboutAcceptanceStatus' is set
+        if (notifyAboutAcceptanceStatus == null) {
+            throw new ApiException("Missing the required parameter 'notifyAboutAcceptanceStatus' when calling notifyAboutAcceptance(Async)");
+        }
+        
+        
+        com.squareup.okhttp.Call call = notifyAboutAcceptanceCall(tid, did, notifyAboutAcceptanceStatus, progressListener, progressRequestListener);
+        return call;
+
+        
+        
+        
+        
+    }
+
+    /**
+     * Notify/Inform about task acceptance status
+     * User notify/informs to ARTIKCloud about task acceptance status
+     * @param tid Task ID. (required)
+     * @param did Device ID. (required)
+     * @param notifyAboutAcceptanceStatus Notify about task acceptance status (required)
+     * @return AcceptanceStatusResponse
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public AcceptanceStatusResponse notifyAboutAcceptance(String tid, String did, AcceptanceStatusResponse notifyAboutAcceptanceStatus) throws ApiException {
+        ApiResponse<AcceptanceStatusResponse> resp = notifyAboutAcceptanceWithHttpInfo(tid, did, notifyAboutAcceptanceStatus);
+        return resp.getData();
+    }
+
+    /**
+     * Notify/Inform about task acceptance status
+     * User notify/informs to ARTIKCloud about task acceptance status
+     * @param tid Task ID. (required)
+     * @param did Device ID. (required)
+     * @param notifyAboutAcceptanceStatus Notify about task acceptance status (required)
+     * @return ApiResponse&lt;AcceptanceStatusResponse&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<AcceptanceStatusResponse> notifyAboutAcceptanceWithHttpInfo(String tid, String did, AcceptanceStatusResponse notifyAboutAcceptanceStatus) throws ApiException {
+        com.squareup.okhttp.Call call = notifyAboutAcceptanceValidateBeforeCall(tid, did, notifyAboutAcceptanceStatus, null, null);
+        Type localVarReturnType = new TypeToken<AcceptanceStatusResponse>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Notify/Inform about task acceptance status (asynchronously)
+     * User notify/informs to ARTIKCloud about task acceptance status
+     * @param tid Task ID. (required)
+     * @param did Device ID. (required)
+     * @param notifyAboutAcceptanceStatus Notify about task acceptance status (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call notifyAboutAcceptanceAsync(String tid, String did, AcceptanceStatusResponse notifyAboutAcceptanceStatus, final ApiCallback<AcceptanceStatusResponse> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = notifyAboutAcceptanceValidateBeforeCall(tid, did, notifyAboutAcceptanceStatus, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<AcceptanceStatusResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

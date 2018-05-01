@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**createTasks**](DevicesManagementApi.md#createTasks) | **POST** /devicemgmt/tasks | Create a new task for one or more devices
 [**deleteServerProperties**](DevicesManagementApi.md#deleteServerProperties) | **DELETE** /devicemgmt/devices/{did}/serverproperties | Deletes a device&#39;s properties.
 [**getAllByDid**](DevicesManagementApi.md#getAllByDid) | **GET** /devicemgmt/devices/{did}/tasks | Returns the list of tasks for a particular device id with optional status filter.
+[**getAllPendingTasksByDid**](DevicesManagementApi.md#getAllPendingTasksByDid) | **GET** /devicemgmt/devices/{did}/pendingtasks | Returns the list of  pending tasks for a particular device id.
 [**getDeviceTypesInfo**](DevicesManagementApi.md#getDeviceTypesInfo) | **GET** /devicemgmt/devicetypes/{dtid} | Read a device type device management information.
 [**getManifestProperties**](DevicesManagementApi.md#getManifestProperties) | **GET** /devicemgmt/devicetypes/{dtid}/manifest/properties | Get a device type&#39;s device management manifest properties
 [**getProperties**](DevicesManagementApi.md#getProperties) | **GET** /devicemgmt/devices/{did}/properties | Read a device&#39;s properties.
@@ -14,6 +15,7 @@ Method | HTTP request | Description
 [**getStatusesHistory**](DevicesManagementApi.md#getStatusesHistory) | **GET** /devicemgmt/tasks/{tid}/statuses/history | Returns the history of the status changes for a specific task id, or for a specific device id in that task.
 [**getTaskByID**](DevicesManagementApi.md#getTaskByID) | **GET** /devicemgmt/tasks/{tid} | Returns the details and global status of a specific task id.
 [**getTasks**](DevicesManagementApi.md#getTasks) | **GET** /devicemgmt/tasks | Returns the all the tasks for a device type.
+[**notifyAboutAcceptance**](DevicesManagementApi.md#notifyAboutAcceptance) | **POST** /devicemgmt/tasks/{tid}/devices/{did}/acceptance | Notify/Inform about task acceptance status
 [**queryProperties**](DevicesManagementApi.md#queryProperties) | **GET** /devicemgmt/devices/properties | Query device properties across devices.
 [**updateDeviceTypesInfo**](DevicesManagementApi.md#updateDeviceTypesInfo) | **PUT** /devicemgmt/devicetypes/{dtid} | Updates a device type information
 [**updateServerProperties**](DevicesManagementApi.md#updateServerProperties) | **POST** /devicemgmt/devices/{did}/serverproperties | Updates a device&#39;s server properties.
@@ -180,6 +182,55 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**TaskByDidListEnvelope**](TaskByDidListEnvelope.md)
+
+### Authorization
+
+[artikcloud_oauth](../README.md#artikcloud_oauth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="getAllPendingTasksByDid"></a>
+# **getAllPendingTasksByDid**
+> PendingTasksList getAllPendingTasksByDid()
+
+Returns the list of  pending tasks for a particular device id.
+
+Returns the list of all pending tasks (where acceptanceStatus is equal to WAITING ) for a particular device id.
+
+### Example
+```java
+// Import classes:
+//import cloud.artik.client.ApiClient;
+//import cloud.artik.client.ApiException;
+//import cloud.artik.client.Configuration;
+//import cloud.artik.client.auth.*;
+//import cloud.artik.api.DevicesManagementApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure OAuth2 access token for authorization: artikcloud_oauth
+OAuth artikcloud_oauth = (OAuth) defaultClient.getAuthentication("artikcloud_oauth");
+artikcloud_oauth.setAccessToken("YOUR ACCESS TOKEN");
+
+DevicesManagementApi apiInstance = new DevicesManagementApi();
+try {
+    PendingTasksList result = apiInstance.getAllPendingTasksByDid();
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling DevicesManagementApi#getAllPendingTasksByDid");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**PendingTasksList**](PendingTasksList.md)
 
 ### Authorization
 
@@ -573,6 +624,63 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**TaskListEnvelope**](TaskListEnvelope.md)
+
+### Authorization
+
+[artikcloud_oauth](../README.md#artikcloud_oauth)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="notifyAboutAcceptance"></a>
+# **notifyAboutAcceptance**
+> AcceptanceStatusResponse notifyAboutAcceptance(tid, did, notifyAboutAcceptanceStatus)
+
+Notify/Inform about task acceptance status
+
+User notify/informs to ARTIKCloud about task acceptance status
+
+### Example
+```java
+// Import classes:
+//import cloud.artik.client.ApiClient;
+//import cloud.artik.client.ApiException;
+//import cloud.artik.client.Configuration;
+//import cloud.artik.client.auth.*;
+//import cloud.artik.api.DevicesManagementApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure OAuth2 access token for authorization: artikcloud_oauth
+OAuth artikcloud_oauth = (OAuth) defaultClient.getAuthentication("artikcloud_oauth");
+artikcloud_oauth.setAccessToken("YOUR ACCESS TOKEN");
+
+DevicesManagementApi apiInstance = new DevicesManagementApi();
+String tid = "tid_example"; // String | Task ID.
+String did = "did_example"; // String | Device ID.
+AcceptanceStatusResponse notifyAboutAcceptanceStatus = new AcceptanceStatusResponse(); // AcceptanceStatusResponse | Notify about task acceptance status
+try {
+    AcceptanceStatusResponse result = apiInstance.notifyAboutAcceptance(tid, did, notifyAboutAcceptanceStatus);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling DevicesManagementApi#notifyAboutAcceptance");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **tid** | **String**| Task ID. |
+ **did** | **String**| Device ID. |
+ **notifyAboutAcceptanceStatus** | [**AcceptanceStatusResponse**](AcceptanceStatusResponse.md)| Notify about task acceptance status |
+
+### Return type
+
+[**AcceptanceStatusResponse**](AcceptanceStatusResponse.md)
 
 ### Authorization
 

@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 <a name="createShareForDevice"></a>
 # **createShareForDevice**
-> DeviceSharingId createShareForDevice(deviceId, deviceShareInfo)
+> DeviceSharingIdResponseBody createShareForDevice(deviceId, deviceShareInfo)
 
 Share a device 
 
@@ -37,7 +37,7 @@ DevicesSharesApi apiInstance = new DevicesSharesApi();
 String deviceId = "deviceId_example"; // String | Device ID.
 DeviceShareInfo deviceShareInfo = new DeviceShareInfo(); // DeviceShareInfo | Device object that needs to be added
 try {
-    DeviceSharingId result = apiInstance.createShareForDevice(deviceId, deviceShareInfo);
+    DeviceSharingIdResponseBody result = apiInstance.createShareForDevice(deviceId, deviceShareInfo);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling DevicesSharesApi#createShareForDevice");
@@ -54,7 +54,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeviceSharingId**](DeviceSharingId.md)
+[**DeviceSharingIdResponseBody**](DeviceSharingIdResponseBody.md)
 
 ### Authorization
 
@@ -67,7 +67,7 @@ Name | Type | Description  | Notes
 
 <a name="deleteSharingForDevice"></a>
 # **deleteSharingForDevice**
-> DeviceSharingId deleteSharingForDevice(deviceId, shareId)
+> DeviceSharingIdResponseBody deleteSharingForDevice(deviceId, shareId)
 
 Delete specific share of the given device id
 
@@ -92,7 +92,7 @@ DevicesSharesApi apiInstance = new DevicesSharesApi();
 String deviceId = "deviceId_example"; // String | Device ID.
 String shareId = "shareId_example"; // String | Share ID.
 try {
-    DeviceSharingId result = apiInstance.deleteSharingForDevice(deviceId, shareId);
+    DeviceSharingIdResponseBody result = apiInstance.deleteSharingForDevice(deviceId, shareId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling DevicesSharesApi#deleteSharingForDevice");
@@ -109,7 +109,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeviceSharingId**](DeviceSharingId.md)
+[**DeviceSharingIdResponseBody**](DeviceSharingIdResponseBody.md)
 
 ### Authorization
 
@@ -179,7 +179,7 @@ Name | Type | Description  | Notes
 
 <a name="getSharingForDevice"></a>
 # **getSharingForDevice**
-> DeviceSharing getSharingForDevice(deviceId, shareId)
+> DeviceSharingDataResponseBody getSharingForDevice(deviceId, shareId)
 
 Get specific share of the given device id
 
@@ -204,7 +204,7 @@ DevicesSharesApi apiInstance = new DevicesSharesApi();
 String deviceId = "deviceId_example"; // String | Device ID.
 String shareId = "shareId_example"; // String | Share ID.
 try {
-    DeviceSharing result = apiInstance.getSharingForDevice(deviceId, shareId);
+    DeviceSharingDataResponseBody result = apiInstance.getSharingForDevice(deviceId, shareId);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling DevicesSharesApi#getSharingForDevice");
@@ -221,7 +221,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeviceSharing**](DeviceSharing.md)
+[**DeviceSharingDataResponseBody**](DeviceSharingDataResponseBody.md)
 
 ### Authorization
 

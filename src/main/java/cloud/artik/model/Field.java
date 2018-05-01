@@ -23,26 +23,47 @@ import io.swagger.annotations.ApiModelProperty;
  */
 @ApiModel(description = "")
 
-public class DeviceSharingId {
-  @SerializedName("id")
-  private String id = null;
+public class Field {
+  @SerializedName("name")
+  private String name = null;
 
-  public DeviceSharingId id(String id) {
-    this.id = id;
+  @SerializedName("type")
+  private String type = null;
+
+  public Field name(String name) {
+    this.name = name;
     return this;
   }
 
    /**
-   * Share ID
-   * @return id
+   * Get name
+   * @return name
   **/
-  @ApiModelProperty(example = "null", value = "Share ID")
-  public String getId() {
-    return id;
+  @ApiModelProperty(example = "null", value = "")
+  public String getName() {
+    return name;
   }
 
-  public void setId(String id) {
-    this.id = id;
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public Field type(String type) {
+    this.type = type;
+    return this;
+  }
+
+   /**
+   * Get type
+   * @return type
+  **/
+  @ApiModelProperty(example = "null", value = "")
+  public String getType() {
+    return type;
+  }
+
+  public void setType(String type) {
+    this.type = type;
   }
 
 
@@ -54,22 +75,24 @@ public class DeviceSharingId {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DeviceSharingId deviceSharingId = (DeviceSharingId) o;
-    return Objects.equals(this.id, deviceSharingId.id);
+    Field field = (Field) o;
+    return Objects.equals(this.name, field.name) &&
+        Objects.equals(this.type, field.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id);
+    return Objects.hash(name, type);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DeviceSharingId {\n");
+    sb.append("class Field {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("}");
     return sb.toString();
   }

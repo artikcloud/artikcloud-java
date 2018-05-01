@@ -14,35 +14,43 @@
 package cloud.artik.model;
 
 import java.util.Objects;
+import cloud.artik.model.Field;
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 
  */
 @ApiModel(description = "")
 
-public class DeviceSharingId {
-  @SerializedName("id")
-  private String id = null;
+public class PredictResponseData {
+  @SerializedName("outputs")
+  private List<Field> outputs = new ArrayList<Field>();
 
-  public DeviceSharingId id(String id) {
-    this.id = id;
+  public PredictResponseData outputs(List<Field> outputs) {
+    this.outputs = outputs;
+    return this;
+  }
+
+  public PredictResponseData addOutputsItem(Field outputsItem) {
+    this.outputs.add(outputsItem);
     return this;
   }
 
    /**
-   * Share ID
-   * @return id
+   * Get outputs
+   * @return outputs
   **/
-  @ApiModelProperty(example = "null", value = "Share ID")
-  public String getId() {
-    return id;
+  @ApiModelProperty(example = "null", value = "")
+  public List<Field> getOutputs() {
+    return outputs;
   }
 
-  public void setId(String id) {
-    this.id = id;
+  public void setOutputs(List<Field> outputs) {
+    this.outputs = outputs;
   }
 
 
@@ -54,22 +62,22 @@ public class DeviceSharingId {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DeviceSharingId deviceSharingId = (DeviceSharingId) o;
-    return Objects.equals(this.id, deviceSharingId.id);
+    PredictResponseData predictResponseData = (PredictResponseData) o;
+    return Objects.equals(this.outputs, predictResponseData.outputs);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id);
+    return Objects.hash(outputs);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DeviceSharingId {\n");
+    sb.append("class PredictResponseData {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    outputs: ").append(toIndentedString(outputs)).append("\n");
     sb.append("}");
     return sb.toString();
   }

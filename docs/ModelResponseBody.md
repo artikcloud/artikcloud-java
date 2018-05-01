@@ -1,10 +1,10 @@
 
-# DeviceSharingId
+# ModelResponseBody
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** | Share ID |  [optional]
+**data** | [**ModelResponseData**](ModelResponseData.md) |  |  [optional]
 
 
 

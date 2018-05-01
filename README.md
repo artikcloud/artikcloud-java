@@ -37,7 +37,7 @@ Add this dependency to your project's POM:
 <dependency>
     <groupId>cloud.artik</groupId>
     <artifactId>artikcloud-java</artifactId>
-    <version>2.2.2</version>
+    <version>2.2.3</version>
     <scope>compile</scope>
 </dependency>
 ```
@@ -47,7 +47,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "cloud.artik:artikcloud-java:2.2.2"
+compile "cloud.artik:artikcloud-java:2.2.3"
 ```
 
 ### Others
@@ -58,7 +58,7 @@ At first generate the JAR by executing:
 
 Then manually install the following JARs:
 
-* target/artikcloud-java-2.2.2.jar
+* target/artikcloud-java-2.2.3.jar
 * target/lib/*.jar
 
 ## Getting Started
@@ -70,27 +70,29 @@ Please follow the [installation](#installation) instruction and execute the foll
 import cloud.artik.client.*;
 import cloud.artik.client.auth.*;
 import cloud.artik.model.*;
-import cloud.artik.api.DeviceTypesApi;
+import cloud.artik.api.DefaultApi;
 
 import java.io.File;
 import java.util.*;
 
-public class DeviceTypesApiExample {
+public class DefaultApiExample {
 
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-
+        
         // Configure OAuth2 access token for authorization: artikcloud_oauth
         OAuth artikcloud_oauth = (OAuth) defaultClient.getAuthentication("artikcloud_oauth");
         artikcloud_oauth.setAccessToken("YOUR ACCESS TOKEN");
 
-        DeviceTypesApi apiInstance = new DeviceTypesApi();
-        String deviceTypeId = "deviceTypeId_example"; // String | deviceTypeId
+        DefaultApi apiInstance = new DefaultApi();
+        String uid = "uid_example"; // String | User id
+        String count = "count_example"; // String | count
+        String offset = "offset_example"; // String | offset
         try {
-            ManifestVersionsEnvelope result = apiInstance.getAvailableManifestVersions(deviceTypeId);
+            ScenesEnvelope result = apiInstance.getUserScenes(uid, count, offset);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling DeviceTypesApi#getAvailableManifestVersions");
+            System.err.println("Exception when calling DefaultApi#getUserScenes");
             e.printStackTrace();
         }
     }
@@ -104,6 +106,7 @@ All URIs are relative to *https://api.artik.cloud/v1.1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*DefaultApi* | [**getUserScenes**](docs/DefaultApi.md#getUserScenes) | **GET** /users/{uid}/scenes | Get all user scenes
 *DeviceTypesApi* | [**getAvailableManifestVersions**](docs/DeviceTypesApi.md#getAvailableManifestVersions) | **GET** /devicetypes/{deviceTypeId}/availablemanifestversions | Get Available Manifest Versions
 *DeviceTypesApi* | [**getDeviceType**](docs/DeviceTypesApi.md#getDeviceType) | **GET** /devicetypes/{deviceTypeId} | Get Device Type
 *DeviceTypesApi* | [**getDeviceTypes**](docs/DeviceTypesApi.md#getDeviceTypes) | **GET** /devicetypes | Get Device Types
@@ -121,6 +124,7 @@ Class | Method | HTTP request | Description
 *DevicesManagementApi* | [**createTasks**](docs/DevicesManagementApi.md#createTasks) | **POST** /devicemgmt/tasks | Create a new task for one or more devices
 *DevicesManagementApi* | [**deleteServerProperties**](docs/DevicesManagementApi.md#deleteServerProperties) | **DELETE** /devicemgmt/devices/{did}/serverproperties | Deletes a device&#39;s properties.
 *DevicesManagementApi* | [**getAllByDid**](docs/DevicesManagementApi.md#getAllByDid) | **GET** /devicemgmt/devices/{did}/tasks | Returns the list of tasks for a particular device id with optional status filter.
+*DevicesManagementApi* | [**getAllPendingTasksByDid**](docs/DevicesManagementApi.md#getAllPendingTasksByDid) | **GET** /devicemgmt/devices/{did}/pendingtasks | Returns the list of  pending tasks for a particular device id.
 *DevicesManagementApi* | [**getDeviceTypesInfo**](docs/DevicesManagementApi.md#getDeviceTypesInfo) | **GET** /devicemgmt/devicetypes/{dtid} | Read a device type device management information.
 *DevicesManagementApi* | [**getManifestProperties**](docs/DevicesManagementApi.md#getManifestProperties) | **GET** /devicemgmt/devicetypes/{dtid}/manifest/properties | Get a device type&#39;s device management manifest properties
 *DevicesManagementApi* | [**getProperties**](docs/DevicesManagementApi.md#getProperties) | **GET** /devicemgmt/devices/{did}/properties | Read a device&#39;s properties.
@@ -128,6 +132,7 @@ Class | Method | HTTP request | Description
 *DevicesManagementApi* | [**getStatusesHistory**](docs/DevicesManagementApi.md#getStatusesHistory) | **GET** /devicemgmt/tasks/{tid}/statuses/history | Returns the history of the status changes for a specific task id, or for a specific device id in that task.
 *DevicesManagementApi* | [**getTaskByID**](docs/DevicesManagementApi.md#getTaskByID) | **GET** /devicemgmt/tasks/{tid} | Returns the details and global status of a specific task id.
 *DevicesManagementApi* | [**getTasks**](docs/DevicesManagementApi.md#getTasks) | **GET** /devicemgmt/tasks | Returns the all the tasks for a device type.
+*DevicesManagementApi* | [**notifyAboutAcceptance**](docs/DevicesManagementApi.md#notifyAboutAcceptance) | **POST** /devicemgmt/tasks/{tid}/devices/{did}/acceptance | Notify/Inform about task acceptance status
 *DevicesManagementApi* | [**queryProperties**](docs/DevicesManagementApi.md#queryProperties) | **GET** /devicemgmt/devices/properties | Query device properties across devices.
 *DevicesManagementApi* | [**updateDeviceTypesInfo**](docs/DevicesManagementApi.md#updateDeviceTypesInfo) | **PUT** /devicemgmt/devicetypes/{dtid} | Updates a device type information
 *DevicesManagementApi* | [**updateServerProperties**](docs/DevicesManagementApi.md#updateServerProperties) | **POST** /devicemgmt/devices/{did}/serverproperties | Updates a device&#39;s server properties.
@@ -153,6 +158,11 @@ Class | Method | HTTP request | Description
 *MessagesApi* | [**getNormalizedMessages**](docs/MessagesApi.md#getNormalizedMessages) | **GET** /messages | Get Normalized Messages
 *MessagesApi* | [**sendActions**](docs/MessagesApi.md#sendActions) | **POST** /actions | Send Actions
 *MessagesApi* | [**sendMessage**](docs/MessagesApi.md#sendMessage) | **POST** /messages | Send Message
+*MlApi* | [**createModel**](docs/MlApi.md#createModel) | **POST** /ml/models | Create model
+*MlApi* | [**deleteModel**](docs/MlApi.md#deleteModel) | **DELETE** /ml/models/{modelId} | Delete model
+*MlApi* | [**getModel**](docs/MlApi.md#getModel) | **GET** /ml/models/{modelId} | Get model
+*MlApi* | [**getModels**](docs/MlApi.md#getModels) | **GET** /ml/models | Get models
+*MlApi* | [**predict**](docs/MlApi.md#predict) | **POST** /ml/models/{modelId}/predict | Predict
 *MonetizationApi* | [**createPricingTiers**](docs/MonetizationApi.md#createPricingTiers) | **POST** /pricing/devicetypes/{dtid}/pricingtiers | Define devicetype&#39;s pricing tiers.
 *MonetizationApi* | [**getPricingTiers**](docs/MonetizationApi.md#getPricingTiers) | **GET** /pricing/devices/{did}/pricingtiers | Get a device&#39;s pricing tiers
 *MonetizationApi* | [**getThePricingTiers**](docs/MonetizationApi.md#getThePricingTiers) | **GET** /pricing/devicetypes/{dtid}/pricingtiers | Get devicetype&#39;s pricing tiers.
@@ -165,6 +175,12 @@ Class | Method | HTTP request | Description
 *RulesApi* | [**deleteRule**](docs/RulesApi.md#deleteRule) | **DELETE** /rules/{ruleId} | Delete Rule
 *RulesApi* | [**getRule**](docs/RulesApi.md#getRule) | **GET** /rules/{ruleId} | Get Rule
 *RulesApi* | [**updateRule**](docs/RulesApi.md#updateRule) | **PUT** /rules/{ruleId} | Update Rule
+*ScenesApi* | [**createScene**](docs/ScenesApi.md#createScene) | **POST** /scenes | Create a new scene
+*ScenesApi* | [**getScene**](docs/ScenesApi.md#getScene) | **GET** /scenes/{sceneId} | Get a scene
+*ScenesApi* | [**getScenes**](docs/ScenesApi.md#getScenes) | **GET** /scenes | Get all user scenes
+*ScenesApi* | [**scenesSceneIdDelete**](docs/ScenesApi.md#scenesSceneIdDelete) | **DELETE** /scenes/{sceneId} | Delete a scene
+*ScenesApi* | [**triggerScene**](docs/ScenesApi.md#triggerScene) | **POST** /scenes/{sceneId} | Trigger a scene
+*ScenesApi* | [**updateScene**](docs/ScenesApi.md#updateScene) | **PUT** /scenes/{sceneId} | Update a scene
 *SubscriptionsApi* | [**createSubscription**](docs/SubscriptionsApi.md#createSubscription) | **POST** /subscriptions | Create Subscription
 *SubscriptionsApi* | [**deleteSubscription**](docs/SubscriptionsApi.md#deleteSubscription) | **DELETE** /subscriptions/{subId} | Delete Subscription
 *SubscriptionsApi* | [**getAllSubscriptions**](docs/SubscriptionsApi.md#getAllSubscriptions) | **GET** /subscriptions | Get All Subscriptions
@@ -196,8 +212,10 @@ Class | Method | HTTP request | Description
 *WhitelistingApi* | [**getWhitelistStatus**](docs/WhitelistingApi.md#getWhitelistStatus) | **GET** /devicetypes/{dtid}/whitelist/status | Get the status of whitelist feature (enabled/disabled) of a device type.
 *WhitelistingApi* | [**uploadCSV**](docs/WhitelistingApi.md#uploadCSV) | **POST** /devicetypes/{dtid}/whitelist | Upload a CSV file related to the Device Type.
 
+
 ## Documentation for Models
 
+ - [AcceptanceStatusResponse](docs/AcceptanceStatusResponse.md)
  - [AckEnvelope](docs/AckEnvelope.md)
  - [Acknowledgement](docs/Acknowledgement.md)
  - [Action](docs/Action.md)
@@ -219,6 +237,8 @@ Class | Method | HTTP request | Description
  - [CheckTokenMessage](docs/CheckTokenMessage.md)
  - [CheckTokenResponse](docs/CheckTokenResponse.md)
  - [ContactInfo](docs/ContactInfo.md)
+ - [CreateModelBody](docs/CreateModelBody.md)
+ - [CreateModelData](docs/CreateModelData.md)
  - [Device](docs/Device.md)
  - [DeviceArray](docs/DeviceArray.md)
  - [DeviceEnvelope](docs/DeviceEnvelope.md)
@@ -236,8 +256,10 @@ Class | Method | HTTP request | Description
  - [DeviceShareInfo](docs/DeviceShareInfo.md)
  - [DeviceSharing](docs/DeviceSharing.md)
  - [DeviceSharingArray](docs/DeviceSharingArray.md)
+ - [DeviceSharingDataResponseBody](docs/DeviceSharingDataResponseBody.md)
  - [DeviceSharingEnvelope](docs/DeviceSharingEnvelope.md)
  - [DeviceSharingId](docs/DeviceSharingId.md)
+ - [DeviceSharingIdResponseBody](docs/DeviceSharingIdResponseBody.md)
  - [DeviceStatus](docs/DeviceStatus.md)
  - [DeviceStatusBatch](docs/DeviceStatusBatch.md)
  - [DeviceStatusData](docs/DeviceStatusData.md)
@@ -273,10 +295,13 @@ Class | Method | HTTP request | Description
  - [ExportRequestResponse](docs/ExportRequestResponse.md)
  - [ExportResponse](docs/ExportResponse.md)
  - [ExportStatusResponse](docs/ExportStatusResponse.md)
+ - [Field](docs/Field.md)
  - [FieldPath](docs/FieldPath.md)
  - [FieldPresence](docs/FieldPresence.md)
  - [FieldPresenceEnvelope](docs/FieldPresenceEnvelope.md)
  - [FieldsActions](docs/FieldsActions.md)
+ - [GetModelsResponseBody](docs/GetModelsResponseBody.md)
+ - [ManifestField](docs/ManifestField.md)
  - [ManifestProperties](docs/ManifestProperties.md)
  - [ManifestPropertiesEnvelope](docs/ManifestPropertiesEnvelope.md)
  - [ManifestVersions](docs/ManifestVersions.md)
@@ -290,6 +315,8 @@ Class | Method | HTTP request | Description
  - [MetadataEnvelope](docs/MetadataEnvelope.md)
  - [MetadataPropertiesEnvelope](docs/MetadataPropertiesEnvelope.md)
  - [MetadataQueryEnvelope](docs/MetadataQueryEnvelope.md)
+ - [ModelResponseBody](docs/ModelResponseBody.md)
+ - [ModelResponseData](docs/ModelResponseData.md)
  - [NonEmptyString](docs/NonEmptyString.md)
  - [NormalizedAction](docs/NormalizedAction.md)
  - [NormalizedActionsEnvelope](docs/NormalizedActionsEnvelope.md)
@@ -299,6 +326,12 @@ Class | Method | HTTP request | Description
  - [NotifMessageArray](docs/NotifMessageArray.md)
  - [NotifMessagesResponse](docs/NotifMessagesResponse.md)
  - [OutputRule](docs/OutputRule.md)
+ - [OutputScene](docs/OutputScene.md)
+ - [Parameters](docs/Parameters.md)
+ - [PendingTasksList](docs/PendingTasksList.md)
+ - [PredictBody](docs/PredictBody.md)
+ - [PredictResponseBody](docs/PredictResponseBody.md)
+ - [PredictResponseData](docs/PredictResponseData.md)
  - [PresenceEnvelope](docs/PresenceEnvelope.md)
  - [PresenceModel](docs/PresenceModel.md)
  - [PropertiesEnvelope](docs/PropertiesEnvelope.md)
@@ -313,6 +346,9 @@ Class | Method | HTTP request | Description
  - [RuleUpdateInfo](docs/RuleUpdateInfo.md)
  - [RuleWarningOutput](docs/RuleWarningOutput.md)
  - [RulesEnvelope](docs/RulesEnvelope.md)
+ - [SceneCreationInfo](docs/SceneCreationInfo.md)
+ - [SceneEnvelope](docs/SceneEnvelope.md)
+ - [ScenesEnvelope](docs/ScenesEnvelope.md)
  - [SnapshotResponse](docs/SnapshotResponse.md)
  - [SnapshotResponses](docs/SnapshotResponses.md)
  - [SnapshotsResponseEnvelope](docs/SnapshotsResponseEnvelope.md)

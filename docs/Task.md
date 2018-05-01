@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **property** | **String** | Property |  [optional]
 **id** | **String** | Task ID |  [optional]
 **dids** | **List&lt;String&gt;** | Device IDs |  [optional]
+**needsAcceptance** | **Boolean** | Boolean to check if task needs acceptance for OTA |  [optional]
 **taskParameters** | [**TaskParameters**](TaskParameters.md) | Task parameters |  [optional]
 **createdOn** | **Long** | Created on |  [optional]
 **status** | **String** | Status |  [optional]

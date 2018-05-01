@@ -1,10 +1,10 @@
 
-# DeviceSharingId
+# CreateModelData
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** | Share ID |  [optional]
+**sources** | [**List&lt;ManifestField&gt;**](ManifestField.md) |  |  [optional]
 
 
 

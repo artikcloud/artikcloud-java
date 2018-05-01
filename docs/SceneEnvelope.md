@@ -1,10 +1,10 @@
 
-# DeviceSharingId
+# SceneEnvelope
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** | Share ID |  [optional]
+**data** | [**OutputScene**](OutputScene.md) |  |  [optional]
 
 
 

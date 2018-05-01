@@ -19,30 +19,30 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * 
+ * Acceptance Status response string. Could be either Accepted or Rejected
  */
-@ApiModel(description = "")
+@ApiModel(description = "Acceptance Status response string. Could be either Accepted or Rejected")
 
-public class DeviceSharingId {
-  @SerializedName("id")
-  private String id = null;
+public class AcceptanceStatusResponse {
+  @SerializedName("acceptanceStatus")
+  private String acceptanceStatus = null;
 
-  public DeviceSharingId id(String id) {
-    this.id = id;
+  public AcceptanceStatusResponse acceptanceStatus(String acceptanceStatus) {
+    this.acceptanceStatus = acceptanceStatus;
     return this;
   }
 
    /**
-   * Share ID
-   * @return id
+   * Acceptance Status response
+   * @return acceptanceStatus
   **/
-  @ApiModelProperty(example = "null", value = "Share ID")
-  public String getId() {
-    return id;
+  @ApiModelProperty(example = "null", value = "Acceptance Status response")
+  public String getAcceptanceStatus() {
+    return acceptanceStatus;
   }
 
-  public void setId(String id) {
-    this.id = id;
+  public void setAcceptanceStatus(String acceptanceStatus) {
+    this.acceptanceStatus = acceptanceStatus;
   }
 
 
@@ -54,22 +54,22 @@ public class DeviceSharingId {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DeviceSharingId deviceSharingId = (DeviceSharingId) o;
-    return Objects.equals(this.id, deviceSharingId.id);
+    AcceptanceStatusResponse acceptanceStatusResponse = (AcceptanceStatusResponse) o;
+    return Objects.equals(this.acceptanceStatus, acceptanceStatusResponse.acceptanceStatus);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id);
+    return Objects.hash(acceptanceStatus);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DeviceSharingId {\n");
+    sb.append("class AcceptanceStatusResponse {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    acceptanceStatus: ").append(toIndentedString(acceptanceStatus)).append("\n");
     sb.append("}");
     return sb.toString();
   }

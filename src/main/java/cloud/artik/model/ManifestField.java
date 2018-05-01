@@ -23,26 +23,47 @@ import io.swagger.annotations.ApiModelProperty;
  */
 @ApiModel(description = "")
 
-public class DeviceSharingId {
-  @SerializedName("id")
-  private String id = null;
+public class ManifestField {
+  @SerializedName("field")
+  private String field = null;
 
-  public DeviceSharingId id(String id) {
-    this.id = id;
+  @SerializedName("did")
+  private String did = null;
+
+  public ManifestField field(String field) {
+    this.field = field;
     return this;
   }
 
    /**
-   * Share ID
-   * @return id
+   * Get field
+   * @return field
   **/
-  @ApiModelProperty(example = "null", value = "Share ID")
-  public String getId() {
-    return id;
+  @ApiModelProperty(example = "null", value = "")
+  public String getField() {
+    return field;
   }
 
-  public void setId(String id) {
-    this.id = id;
+  public void setField(String field) {
+    this.field = field;
+  }
+
+  public ManifestField did(String did) {
+    this.did = did;
+    return this;
+  }
+
+   /**
+   * Get did
+   * @return did
+  **/
+  @ApiModelProperty(example = "null", value = "")
+  public String getDid() {
+    return did;
+  }
+
+  public void setDid(String did) {
+    this.did = did;
   }
 
 
@@ -54,22 +75,24 @@ public class DeviceSharingId {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DeviceSharingId deviceSharingId = (DeviceSharingId) o;
-    return Objects.equals(this.id, deviceSharingId.id);
+    ManifestField manifestField = (ManifestField) o;
+    return Objects.equals(this.field, manifestField.field) &&
+        Objects.equals(this.did, manifestField.did);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id);
+    return Objects.hash(field, did);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DeviceSharingId {\n");
+    sb.append("class ManifestField {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    field: ").append(toIndentedString(field)).append("\n");
+    sb.append("    did: ").append(toIndentedString(did)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -1,10 +1,10 @@
 
-# DeviceSharingId
+# PredictResponseData
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** | Share ID |  [optional]
+**outputs** | [**List&lt;Field&gt;**](Field.md) |  |  [optional]
 
 
 

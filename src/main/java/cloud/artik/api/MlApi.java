@@ -27,10 +27,11 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
-import cloud.artik.model.DeviceShareInfo;
-import cloud.artik.model.DeviceSharingDataResponseBody;
-import cloud.artik.model.DeviceSharingEnvelope;
-import cloud.artik.model.DeviceSharingIdResponseBody;
+import cloud.artik.model.CreateModelBody;
+import cloud.artik.model.GetModelsResponseBody;
+import cloud.artik.model.ModelResponseBody;
+import cloud.artik.model.PredictBody;
+import cloud.artik.model.PredictResponseBody;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -38,14 +39,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DevicesSharesApi {
+public class MlApi {
     private ApiClient apiClient;
 
-    public DevicesSharesApi() {
+    public MlApi() {
         this(Configuration.getDefaultApiClient());
     }
 
-    public DevicesSharesApi(ApiClient apiClient) {
+    public MlApi(ApiClient apiClient) {
         this.apiClient = apiClient;
     }
 
@@ -57,13 +58,12 @@ public class DevicesSharesApi {
         this.apiClient = apiClient;
     }
 
-    /* Build call for createShareForDevice */
-    private com.squareup.okhttp.Call createShareForDeviceCall(String deviceId, DeviceShareInfo deviceShareInfo, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = deviceShareInfo;
+    /* Build call for createModel */
+    private com.squareup.okhttp.Call createModelCall(CreateModelBody body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = body;
         
         // create path and map variables
-        String localVarPath = "/devices/{deviceId}/shares".replaceAll("\\{format\\}","json")
-        .replaceAll("\\{" + "deviceId" + "\\}", apiClient.escapeString(deviceId.toString()));
+        String localVarPath = "/ml/models".replaceAll("\\{format\\}","json");
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
 
@@ -100,20 +100,10 @@ public class DevicesSharesApi {
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call createShareForDeviceValidateBeforeCall(String deviceId, DeviceShareInfo deviceShareInfo, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
-        // verify the required parameter 'deviceId' is set
-        if (deviceId == null) {
-            throw new ApiException("Missing the required parameter 'deviceId' when calling createShareForDevice(Async)");
-        }
-        
-        // verify the required parameter 'deviceShareInfo' is set
-        if (deviceShareInfo == null) {
-            throw new ApiException("Missing the required parameter 'deviceShareInfo' when calling createShareForDevice(Async)");
-        }
+    private com.squareup.okhttp.Call createModelValidateBeforeCall(CreateModelBody body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         
-        com.squareup.okhttp.Call call = createShareForDeviceCall(deviceId, deviceShareInfo, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = createModelCall(body, progressListener, progressRequestListener);
         return call;
 
         
@@ -123,42 +113,39 @@ public class DevicesSharesApi {
     }
 
     /**
-     * Share a device 
-     * Share a device 
-     * @param deviceId Device ID. (required)
-     * @param deviceShareInfo Device object that needs to be added (required)
-     * @return DeviceSharingIdResponseBody
+     * Create model
+     * Create model
+     * @param body Body (optional)
+     * @return ModelResponseBody
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public DeviceSharingIdResponseBody createShareForDevice(String deviceId, DeviceShareInfo deviceShareInfo) throws ApiException {
-        ApiResponse<DeviceSharingIdResponseBody> resp = createShareForDeviceWithHttpInfo(deviceId, deviceShareInfo);
+    public ModelResponseBody createModel(CreateModelBody body) throws ApiException {
+        ApiResponse<ModelResponseBody> resp = createModelWithHttpInfo(body);
         return resp.getData();
     }
 
     /**
-     * Share a device 
-     * Share a device 
-     * @param deviceId Device ID. (required)
-     * @param deviceShareInfo Device object that needs to be added (required)
-     * @return ApiResponse&lt;DeviceSharingIdResponseBody&gt;
+     * Create model
+     * Create model
+     * @param body Body (optional)
+     * @return ApiResponse&lt;ModelResponseBody&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<DeviceSharingIdResponseBody> createShareForDeviceWithHttpInfo(String deviceId, DeviceShareInfo deviceShareInfo) throws ApiException {
-        com.squareup.okhttp.Call call = createShareForDeviceValidateBeforeCall(deviceId, deviceShareInfo, null, null);
-        Type localVarReturnType = new TypeToken<DeviceSharingIdResponseBody>(){}.getType();
+    public ApiResponse<ModelResponseBody> createModelWithHttpInfo(CreateModelBody body) throws ApiException {
+        com.squareup.okhttp.Call call = createModelValidateBeforeCall(body, null, null);
+        Type localVarReturnType = new TypeToken<ModelResponseBody>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * Share a device  (asynchronously)
-     * Share a device 
-     * @param deviceId Device ID. (required)
-     * @param deviceShareInfo Device object that needs to be added (required)
+     * Create model (asynchronously)
+     * Create model
+     * @param body Body (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call createShareForDeviceAsync(String deviceId, DeviceShareInfo deviceShareInfo, final ApiCallback<DeviceSharingIdResponseBody> callback) throws ApiException {
+    public com.squareup.okhttp.Call createModelAsync(CreateModelBody body, final ApiCallback<ModelResponseBody> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -179,19 +166,18 @@ public class DevicesSharesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = createShareForDeviceValidateBeforeCall(deviceId, deviceShareInfo, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<DeviceSharingIdResponseBody>(){}.getType();
+        com.squareup.okhttp.Call call = createModelValidateBeforeCall(body, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<ModelResponseBody>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
-    /* Build call for deleteSharingForDevice */
-    private com.squareup.okhttp.Call deleteSharingForDeviceCall(String deviceId, String shareId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    /* Build call for deleteModel */
+    private com.squareup.okhttp.Call deleteModelCall(String modelId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "/devices/{deviceId}/shares/{shareId}".replaceAll("\\{format\\}","json")
-        .replaceAll("\\{" + "deviceId" + "\\}", apiClient.escapeString(deviceId.toString()))
-        .replaceAll("\\{" + "shareId" + "\\}", apiClient.escapeString(shareId.toString()));
+        String localVarPath = "/ml/models/{modelId}".replaceAll("\\{format\\}","json")
+        .replaceAll("\\{" + "modelId" + "\\}", apiClient.escapeString(modelId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
 
@@ -228,20 +214,15 @@ public class DevicesSharesApi {
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call deleteSharingForDeviceValidateBeforeCall(String deviceId, String shareId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call deleteModelValidateBeforeCall(String modelId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
-        // verify the required parameter 'deviceId' is set
-        if (deviceId == null) {
-            throw new ApiException("Missing the required parameter 'deviceId' when calling deleteSharingForDevice(Async)");
-        }
-        
-        // verify the required parameter 'shareId' is set
-        if (shareId == null) {
-            throw new ApiException("Missing the required parameter 'shareId' when calling deleteSharingForDevice(Async)");
+        // verify the required parameter 'modelId' is set
+        if (modelId == null) {
+            throw new ApiException("Missing the required parameter 'modelId' when calling deleteModel(Async)");
         }
         
         
-        com.squareup.okhttp.Call call = deleteSharingForDeviceCall(deviceId, shareId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = deleteModelCall(modelId, progressListener, progressRequestListener);
         return call;
 
         
@@ -251,42 +232,39 @@ public class DevicesSharesApi {
     }
 
     /**
-     * Delete specific share of the given device id
-     * Delete specific share of the given device id
-     * @param deviceId Device ID. (required)
-     * @param shareId Share ID. (required)
-     * @return DeviceSharingIdResponseBody
+     * Delete model
+     * Delete model
+     * @param modelId modelId (required)
+     * @return ModelResponseBody
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public DeviceSharingIdResponseBody deleteSharingForDevice(String deviceId, String shareId) throws ApiException {
-        ApiResponse<DeviceSharingIdResponseBody> resp = deleteSharingForDeviceWithHttpInfo(deviceId, shareId);
+    public ModelResponseBody deleteModel(String modelId) throws ApiException {
+        ApiResponse<ModelResponseBody> resp = deleteModelWithHttpInfo(modelId);
         return resp.getData();
     }
 
     /**
-     * Delete specific share of the given device id
-     * Delete specific share of the given device id
-     * @param deviceId Device ID. (required)
-     * @param shareId Share ID. (required)
-     * @return ApiResponse&lt;DeviceSharingIdResponseBody&gt;
+     * Delete model
+     * Delete model
+     * @param modelId modelId (required)
+     * @return ApiResponse&lt;ModelResponseBody&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<DeviceSharingIdResponseBody> deleteSharingForDeviceWithHttpInfo(String deviceId, String shareId) throws ApiException {
-        com.squareup.okhttp.Call call = deleteSharingForDeviceValidateBeforeCall(deviceId, shareId, null, null);
-        Type localVarReturnType = new TypeToken<DeviceSharingIdResponseBody>(){}.getType();
+    public ApiResponse<ModelResponseBody> deleteModelWithHttpInfo(String modelId) throws ApiException {
+        com.squareup.okhttp.Call call = deleteModelValidateBeforeCall(modelId, null, null);
+        Type localVarReturnType = new TypeToken<ModelResponseBody>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * Delete specific share of the given device id (asynchronously)
-     * Delete specific share of the given device id
-     * @param deviceId Device ID. (required)
-     * @param shareId Share ID. (required)
+     * Delete model (asynchronously)
+     * Delete model
+     * @param modelId modelId (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call deleteSharingForDeviceAsync(String deviceId, String shareId, final ApiCallback<DeviceSharingIdResponseBody> callback) throws ApiException {
+    public com.squareup.okhttp.Call deleteModelAsync(String modelId, final ApiCallback<ModelResponseBody> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -307,20 +285,140 @@ public class DevicesSharesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = deleteSharingForDeviceValidateBeforeCall(deviceId, shareId, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<DeviceSharingIdResponseBody>(){}.getType();
+        com.squareup.okhttp.Call call = deleteModelValidateBeforeCall(modelId, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<ModelResponseBody>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
-    /* Build call for getAllSharesForDevice */
-    private com.squareup.okhttp.Call getAllSharesForDeviceCall(String deviceId, Integer count, Integer offset, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    /* Build call for getModel */
+    private com.squareup.okhttp.Call getModelCall(String modelId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
         
         // create path and map variables
-        String localVarPath = "/devices/{deviceId}/shares".replaceAll("\\{format\\}","json")
-        .replaceAll("\\{" + "deviceId" + "\\}", apiClient.escapeString(deviceId.toString()));
+        String localVarPath = "/ml/models/{modelId}".replaceAll("\\{format\\}","json")
+        .replaceAll("\\{" + "modelId" + "\\}", apiClient.escapeString(modelId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "artikcloud_oauth" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+    
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call getModelValidateBeforeCall(String modelId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'modelId' is set
+        if (modelId == null) {
+            throw new ApiException("Missing the required parameter 'modelId' when calling getModel(Async)");
+        }
+        
+        
+        com.squareup.okhttp.Call call = getModelCall(modelId, progressListener, progressRequestListener);
+        return call;
+
+        
+        
+        
+        
+    }
+
+    /**
+     * Get model
+     * Get model
+     * @param modelId modelId (required)
+     * @return ModelResponseBody
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ModelResponseBody getModel(String modelId) throws ApiException {
+        ApiResponse<ModelResponseBody> resp = getModelWithHttpInfo(modelId);
+        return resp.getData();
+    }
+
+    /**
+     * Get model
+     * Get model
+     * @param modelId modelId (required)
+     * @return ApiResponse&lt;ModelResponseBody&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<ModelResponseBody> getModelWithHttpInfo(String modelId) throws ApiException {
+        com.squareup.okhttp.Call call = getModelValidateBeforeCall(modelId, null, null);
+        Type localVarReturnType = new TypeToken<ModelResponseBody>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Get model (asynchronously)
+     * Get model
+     * @param modelId modelId (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call getModelAsync(String modelId, final ApiCallback<ModelResponseBody> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = getModelValidateBeforeCall(modelId, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<ModelResponseBody>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /* Build call for getModels */
+    private com.squareup.okhttp.Call getModelsCall(String uid, String count, String offset, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+        
+        // create path and map variables
+        String localVarPath = "/ml/models".replaceAll("\\{format\\}","json");
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        if (uid != null)
+        localVarQueryParams.addAll(apiClient.parameterToPairs("", "uid", uid));
         if (count != null)
         localVarQueryParams.addAll(apiClient.parameterToPairs("", "count", count));
         if (offset != null)
@@ -359,15 +457,10 @@ public class DevicesSharesApi {
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getAllSharesForDeviceValidateBeforeCall(String deviceId, Integer count, Integer offset, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        
-        // verify the required parameter 'deviceId' is set
-        if (deviceId == null) {
-            throw new ApiException("Missing the required parameter 'deviceId' when calling getAllSharesForDevice(Async)");
-        }
+    private com.squareup.okhttp.Call getModelsValidateBeforeCall(String uid, String count, String offset, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         
-        com.squareup.okhttp.Call call = getAllSharesForDeviceCall(deviceId, count, offset, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = getModelsCall(uid, count, offset, progressListener, progressRequestListener);
         return call;
 
         
@@ -377,45 +470,45 @@ public class DevicesSharesApi {
     }
 
     /**
-     * List all shares for the given device id
-     * List all shares for the given device id
-     * @param deviceId Device ID. (required)
-     * @param count Desired count of items in the result set. (optional)
-     * @param offset Offset for pagination. (optional)
-     * @return DeviceSharingEnvelope
+     * Get models
+     * Get models
+     * @param uid uid (optional)
+     * @param count count (optional)
+     * @param offset offset (optional)
+     * @return GetModelsResponseBody
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public DeviceSharingEnvelope getAllSharesForDevice(String deviceId, Integer count, Integer offset) throws ApiException {
-        ApiResponse<DeviceSharingEnvelope> resp = getAllSharesForDeviceWithHttpInfo(deviceId, count, offset);
+    public GetModelsResponseBody getModels(String uid, String count, String offset) throws ApiException {
+        ApiResponse<GetModelsResponseBody> resp = getModelsWithHttpInfo(uid, count, offset);
         return resp.getData();
     }
 
     /**
-     * List all shares for the given device id
-     * List all shares for the given device id
-     * @param deviceId Device ID. (required)
-     * @param count Desired count of items in the result set. (optional)
-     * @param offset Offset for pagination. (optional)
-     * @return ApiResponse&lt;DeviceSharingEnvelope&gt;
+     * Get models
+     * Get models
+     * @param uid uid (optional)
+     * @param count count (optional)
+     * @param offset offset (optional)
+     * @return ApiResponse&lt;GetModelsResponseBody&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<DeviceSharingEnvelope> getAllSharesForDeviceWithHttpInfo(String deviceId, Integer count, Integer offset) throws ApiException {
-        com.squareup.okhttp.Call call = getAllSharesForDeviceValidateBeforeCall(deviceId, count, offset, null, null);
-        Type localVarReturnType = new TypeToken<DeviceSharingEnvelope>(){}.getType();
+    public ApiResponse<GetModelsResponseBody> getModelsWithHttpInfo(String uid, String count, String offset) throws ApiException {
+        com.squareup.okhttp.Call call = getModelsValidateBeforeCall(uid, count, offset, null, null);
+        Type localVarReturnType = new TypeToken<GetModelsResponseBody>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * List all shares for the given device id (asynchronously)
-     * List all shares for the given device id
-     * @param deviceId Device ID. (required)
-     * @param count Desired count of items in the result set. (optional)
-     * @param offset Offset for pagination. (optional)
+     * Get models (asynchronously)
+     * Get models
+     * @param uid uid (optional)
+     * @param count count (optional)
+     * @param offset offset (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getAllSharesForDeviceAsync(String deviceId, Integer count, Integer offset, final ApiCallback<DeviceSharingEnvelope> callback) throws ApiException {
+    public com.squareup.okhttp.Call getModelsAsync(String uid, String count, String offset, final ApiCallback<GetModelsResponseBody> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -436,19 +529,18 @@ public class DevicesSharesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getAllSharesForDeviceValidateBeforeCall(deviceId, count, offset, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<DeviceSharingEnvelope>(){}.getType();
+        com.squareup.okhttp.Call call = getModelsValidateBeforeCall(uid, count, offset, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<GetModelsResponseBody>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
-    /* Build call for getSharingForDevice */
-    private com.squareup.okhttp.Call getSharingForDeviceCall(String deviceId, String shareId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = null;
+    /* Build call for predict */
+    private com.squareup.okhttp.Call predictCall(String modelId, PredictBody body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = body;
         
         // create path and map variables
-        String localVarPath = "/devices/{deviceId}/shares/{shareId}".replaceAll("\\{format\\}","json")
-        .replaceAll("\\{" + "deviceId" + "\\}", apiClient.escapeString(deviceId.toString()))
-        .replaceAll("\\{" + "shareId" + "\\}", apiClient.escapeString(shareId.toString()));
+        String localVarPath = "/ml/models/{modelId}/predict".replaceAll("\\{format\\}","json")
+        .replaceAll("\\{" + "modelId" + "\\}", apiClient.escapeString(modelId.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
 
@@ -481,24 +573,19 @@ public class DevicesSharesApi {
         }
 
         String[] localVarAuthNames = new String[] { "artikcloud_oauth" };
-        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
     
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call getSharingForDeviceValidateBeforeCall(String deviceId, String shareId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call predictValidateBeforeCall(String modelId, PredictBody body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
-        // verify the required parameter 'deviceId' is set
-        if (deviceId == null) {
-            throw new ApiException("Missing the required parameter 'deviceId' when calling getSharingForDevice(Async)");
-        }
-        
-        // verify the required parameter 'shareId' is set
-        if (shareId == null) {
-            throw new ApiException("Missing the required parameter 'shareId' when calling getSharingForDevice(Async)");
+        // verify the required parameter 'modelId' is set
+        if (modelId == null) {
+            throw new ApiException("Missing the required parameter 'modelId' when calling predict(Async)");
         }
         
         
-        com.squareup.okhttp.Call call = getSharingForDeviceCall(deviceId, shareId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = predictCall(modelId, body, progressListener, progressRequestListener);
         return call;
 
         
@@ -508,42 +595,42 @@ public class DevicesSharesApi {
     }
 
     /**
-     * Get specific share of the given device id
-     * Get specific share of the given device id
-     * @param deviceId Device ID. (required)
-     * @param shareId Share ID. (required)
-     * @return DeviceSharingDataResponseBody
+     * Predict
+     * Predict
+     * @param modelId modelId (required)
+     * @param body Body (optional)
+     * @return PredictResponseBody
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public DeviceSharingDataResponseBody getSharingForDevice(String deviceId, String shareId) throws ApiException {
-        ApiResponse<DeviceSharingDataResponseBody> resp = getSharingForDeviceWithHttpInfo(deviceId, shareId);
+    public PredictResponseBody predict(String modelId, PredictBody body) throws ApiException {
+        ApiResponse<PredictResponseBody> resp = predictWithHttpInfo(modelId, body);
         return resp.getData();
     }
 
     /**
-     * Get specific share of the given device id
-     * Get specific share of the given device id
-     * @param deviceId Device ID. (required)
-     * @param shareId Share ID. (required)
-     * @return ApiResponse&lt;DeviceSharingDataResponseBody&gt;
+     * Predict
+     * Predict
+     * @param modelId modelId (required)
+     * @param body Body (optional)
+     * @return ApiResponse&lt;PredictResponseBody&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<DeviceSharingDataResponseBody> getSharingForDeviceWithHttpInfo(String deviceId, String shareId) throws ApiException {
-        com.squareup.okhttp.Call call = getSharingForDeviceValidateBeforeCall(deviceId, shareId, null, null);
-        Type localVarReturnType = new TypeToken<DeviceSharingDataResponseBody>(){}.getType();
+    public ApiResponse<PredictResponseBody> predictWithHttpInfo(String modelId, PredictBody body) throws ApiException {
+        com.squareup.okhttp.Call call = predictValidateBeforeCall(modelId, body, null, null);
+        Type localVarReturnType = new TypeToken<PredictResponseBody>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * Get specific share of the given device id (asynchronously)
-     * Get specific share of the given device id
-     * @param deviceId Device ID. (required)
-     * @param shareId Share ID. (required)
+     * Predict (asynchronously)
+     * Predict
+     * @param modelId modelId (required)
+     * @param body Body (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call getSharingForDeviceAsync(String deviceId, String shareId, final ApiCallback<DeviceSharingDataResponseBody> callback) throws ApiException {
+    public com.squareup.okhttp.Call predictAsync(String modelId, PredictBody body, final ApiCallback<PredictResponseBody> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -564,8 +651,8 @@ public class DevicesSharesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = getSharingForDeviceValidateBeforeCall(deviceId, shareId, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<DeviceSharingDataResponseBody>(){}.getType();
+        com.squareup.okhttp.Call call = predictValidateBeforeCall(modelId, body, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<PredictResponseBody>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

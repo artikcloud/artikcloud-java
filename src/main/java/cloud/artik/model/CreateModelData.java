@@ -14,35 +14,43 @@
 package cloud.artik.model;
 
 import java.util.Objects;
+import cloud.artik.model.ManifestField;
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 
  */
 @ApiModel(description = "")
 
-public class DeviceSharingId {
-  @SerializedName("id")
-  private String id = null;
+public class CreateModelData {
+  @SerializedName("sources")
+  private List<ManifestField> sources = new ArrayList<ManifestField>();
 
-  public DeviceSharingId id(String id) {
-    this.id = id;
+  public CreateModelData sources(List<ManifestField> sources) {
+    this.sources = sources;
+    return this;
+  }
+
+  public CreateModelData addSourcesItem(ManifestField sourcesItem) {
+    this.sources.add(sourcesItem);
     return this;
   }
 
    /**
-   * Share ID
-   * @return id
+   * Get sources
+   * @return sources
   **/
-  @ApiModelProperty(example = "null", value = "Share ID")
-  public String getId() {
-    return id;
+  @ApiModelProperty(example = "null", value = "")
+  public List<ManifestField> getSources() {
+    return sources;
   }
 
-  public void setId(String id) {
-    this.id = id;
+  public void setSources(List<ManifestField> sources) {
+    this.sources = sources;
   }
 
 
@@ -54,22 +62,22 @@ public class DeviceSharingId {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DeviceSharingId deviceSharingId = (DeviceSharingId) o;
-    return Objects.equals(this.id, deviceSharingId.id);
+    CreateModelData createModelData = (CreateModelData) o;
+    return Objects.equals(this.sources, createModelData.sources);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id);
+    return Objects.hash(sources);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DeviceSharingId {\n");
+    sb.append("class CreateModelData {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    sources: ").append(toIndentedString(sources)).append("\n");
     sb.append("}");
     return sb.toString();
   }

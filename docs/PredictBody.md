@@ -1,10 +1,10 @@
 
-# DeviceSharingId
+# PredictBody
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **String** | Share ID |  [optional]
+**inputs** | [**List&lt;Field&gt;**](Field.md) |  |  [optional]
 
 
 
