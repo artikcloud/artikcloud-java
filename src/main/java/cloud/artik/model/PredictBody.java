@@ -14,35 +14,43 @@
 package cloud.artik.model;
 
 import java.util.Objects;
+import cloud.artik.model.Field;
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 
  */
 @ApiModel(description = "")
 
-public class DeviceSharingId {
-  @SerializedName("id")
-  private String id = null;
+public class PredictBody {
+  @SerializedName("inputs")
+  private List<Field> inputs = new ArrayList<Field>();
 
-  public DeviceSharingId id(String id) {
-    this.id = id;
+  public PredictBody inputs(List<Field> inputs) {
+    this.inputs = inputs;
+    return this;
+  }
+
+  public PredictBody addInputsItem(Field inputsItem) {
+    this.inputs.add(inputsItem);
     return this;
   }
 
    /**
-   * Share ID
-   * @return id
+   * Get inputs
+   * @return inputs
   **/
-  @ApiModelProperty(example = "null", value = "Share ID")
-  public String getId() {
-    return id;
+  @ApiModelProperty(example = "null", value = "")
+  public List<Field> getInputs() {
+    return inputs;
   }
 
-  public void setId(String id) {
-    this.id = id;
+  public void setInputs(List<Field> inputs) {
+    this.inputs = inputs;
   }
 
 
@@ -54,22 +62,22 @@ public class DeviceSharingId {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DeviceSharingId deviceSharingId = (DeviceSharingId) o;
-    return Objects.equals(this.id, deviceSharingId.id);
+    PredictBody predictBody = (PredictBody) o;
+    return Objects.equals(this.inputs, predictBody.inputs);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id);
+    return Objects.hash(inputs);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DeviceSharingId {\n");
+    sb.append("class PredictBody {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    inputs: ").append(toIndentedString(inputs)).append("\n");
     sb.append("}");
     return sb.toString();
   }

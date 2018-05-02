@@ -2,9 +2,9 @@ package cloud.artik.api;
 
 import cloud.artik.client.ApiClient;
 import cloud.artik.model.DeviceShareInfo;
-import cloud.artik.model.DeviceSharing;
+import cloud.artik.model.DeviceSharingDataResponseBody;
 import cloud.artik.model.DeviceSharingEnvelope;
-import cloud.artik.model.DeviceSharingId;
+import cloud.artik.model.DeviceSharingIdResponseBody;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -35,7 +35,7 @@ public class DevicesSharesApiTest {
     public void createShareForDeviceTest() {
         String deviceId = null;
         DeviceShareInfo deviceShareInfo = null;
-        // DeviceSharingId response = api.createShareForDevice(deviceId, deviceShareInfo);
+        // DeviceSharingIdResponseBody response = api.createShareForDevice(deviceId, deviceShareInfo);
 
         // TODO: test validations
     }
@@ -49,7 +49,7 @@ public class DevicesSharesApiTest {
     public void deleteSharingForDeviceTest() {
         String deviceId = null;
         String shareId = null;
-        // DeviceSharingId response = api.deleteSharingForDevice(deviceId, shareId);
+        // DeviceSharingIdResponseBody response = api.deleteSharingForDevice(deviceId, shareId);
 
         // TODO: test validations
     }
@@ -78,7 +78,7 @@ public class DevicesSharesApiTest {
     public void getSharingForDeviceTest() {
         String deviceId = null;
         String shareId = null;
-        // DeviceSharing response = api.getSharingForDevice(deviceId, shareId);
+        // DeviceSharingDataResponseBody response = api.getSharingForDevice(deviceId, shareId);
 
         // TODO: test validations
     }

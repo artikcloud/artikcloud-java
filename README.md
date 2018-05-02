@@ -29,7 +29,7 @@ Add this dependency to your project's POM:
 <dependency>
     <groupId>cloud.artik</groupId>
     <artifactId>artikcloud-java</artifactId>
-    <version>3.0.0-alpha-0</version>
+    <version>3.1.0-alpha-0</version>
     <scope>compile</scope>
 </dependency>
 ```
@@ -39,7 +39,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "cloud.artik:artikcloud-java:3.0.0-alpha-0"
+compile "cloud.artik:artikcloud-java:3.1.0-alpha-0"
 ```
 
 ### Enable test
@@ -76,4 +76,4 @@ License and Copyright
 
 Licensed under the Apache License. See [LICENSE](./LICENSE).
 
-Copyright (c) 2017 Samsung Electronics Co., Ltd.
+Copyright (c) 2018 Samsung Electronics Co., Ltd.

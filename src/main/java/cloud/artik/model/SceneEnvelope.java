@@ -14,35 +14,36 @@
 package cloud.artik.model;
 
 import java.util.Objects;
+import cloud.artik.model.OutputScene;
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 /**
- * 
+ * Scene Envelope
  */
-@ApiModel(description = "")
+@ApiModel(description = "Scene Envelope")
 
-public class DeviceSharingId {
-  @SerializedName("id")
-  private String id = null;
+public class SceneEnvelope {
+  @SerializedName("data")
+  private OutputScene data = null;
 
-  public DeviceSharingId id(String id) {
-    this.id = id;
+  public SceneEnvelope data(OutputScene data) {
+    this.data = data;
     return this;
   }
 
    /**
-   * Share ID
-   * @return id
+   * Get data
+   * @return data
   **/
-  @ApiModelProperty(example = "null", value = "Share ID")
-  public String getId() {
-    return id;
+  @ApiModelProperty(example = "null", value = "")
+  public OutputScene getData() {
+    return data;
   }
 
-  public void setId(String id) {
-    this.id = id;
+  public void setData(OutputScene data) {
+    this.data = data;
   }
 
 
@@ -54,22 +55,22 @@ public class DeviceSharingId {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DeviceSharingId deviceSharingId = (DeviceSharingId) o;
-    return Objects.equals(this.id, deviceSharingId.id);
+    SceneEnvelope sceneEnvelope = (SceneEnvelope) o;
+    return Objects.equals(this.data, sceneEnvelope.data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id);
+    return Objects.hash(data);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DeviceSharingId {\n");
+    sb.append("class SceneEnvelope {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("}");
     return sb.toString();
   }

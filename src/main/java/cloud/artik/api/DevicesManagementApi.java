@@ -8,6 +8,7 @@ import retrofit2.http.*;
 
 import okhttp3.RequestBody;
 
+import cloud.artik.model.AcceptanceStatusResponse;
 import cloud.artik.model.DeviceTaskUpdateRequest;
 import cloud.artik.model.DeviceTaskUpdateResponse;
 import cloud.artik.model.DeviceTypesInfo;
@@ -15,6 +16,7 @@ import cloud.artik.model.DeviceTypesInfoEnvelope;
 import cloud.artik.model.MetadataEnvelope;
 import cloud.artik.model.MetadataPropertiesEnvelope;
 import cloud.artik.model.MetadataQueryEnvelope;
+import cloud.artik.model.PendingTasksList;
 import cloud.artik.model.TaskByDidListEnvelope;
 import cloud.artik.model.TaskEnvelope;
 import cloud.artik.model.TaskListEnvelope;
@@ -71,6 +73,16 @@ public interface DevicesManagementApi {
   Call<TaskByDidListEnvelope> getAllByDid(
     @retrofit2.http.Path("did") String did, @retrofit2.http.Query("count") Integer count, @retrofit2.http.Query("offset") Integer offset, @retrofit2.http.Query("status") String status, @retrofit2.http.Query("order") String order, @retrofit2.http.Query("sort") String sort
   );
+
+  /**
+   * Returns the list of  pending tasks for a particular device id.
+   * Returns the list of all pending tasks (where acceptanceStatus is equal to WAITING ) for a particular device id.
+   * @return Call&lt;PendingTasksList&gt;
+   */
+  
+  @GET("devicemgmt/devices/{did}/pendingtasks")
+  Call<PendingTasksList> getAllPendingTasksByDid();
+    
 
   /**
    * Read a device type device management information.
@@ -165,6 +177,20 @@ public interface DevicesManagementApi {
   @GET("devicemgmt/tasks")
   Call<TaskListEnvelope> getTasks(
     @retrofit2.http.Query("dtid") String dtid, @retrofit2.http.Query("count") Integer count, @retrofit2.http.Query("offset") Integer offset, @retrofit2.http.Query("status") String status, @retrofit2.http.Query("order") String order, @retrofit2.http.Query("sort") String sort
+  );
+
+  /**
+   * Notify/Inform about task acceptance status
+   * User notify/informs to ARTIKCloud about task acceptance status
+   * @param tid Task ID. (required)
+   * @param did Device ID. (required)
+   * @param notifyAboutAcceptanceStatus Notify about task acceptance status (required)
+   * @return Call&lt;AcceptanceStatusResponse&gt;
+   */
+  
+  @POST("devicemgmt/tasks/{tid}/devices/{did}/acceptance")
+  Call<AcceptanceStatusResponse> notifyAboutAcceptance(
+    @retrofit2.http.Path("tid") String tid, @retrofit2.http.Path("did") String did, @retrofit2.http.Body AcceptanceStatusResponse notifyAboutAcceptanceStatus
   );
 
   /**

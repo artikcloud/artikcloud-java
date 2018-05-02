@@ -9,9 +9,9 @@ import retrofit2.http.*;
 import okhttp3.RequestBody;
 
 import cloud.artik.model.DeviceShareInfo;
-import cloud.artik.model.DeviceSharing;
+import cloud.artik.model.DeviceSharingDataResponseBody;
 import cloud.artik.model.DeviceSharingEnvelope;
-import cloud.artik.model.DeviceSharingId;
+import cloud.artik.model.DeviceSharingIdResponseBody;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,11 +25,11 @@ public interface DevicesSharesApi {
    * Share a device 
    * @param deviceId Device ID. (required)
    * @param deviceShareInfo Device object that needs to be added (required)
-   * @return Call&lt;DeviceSharingId&gt;
+   * @return Call&lt;DeviceSharingIdResponseBody&gt;
    */
   
   @POST("devices/{deviceId}/shares")
-  Call<DeviceSharingId> createShareForDevice(
+  Call<DeviceSharingIdResponseBody> createShareForDevice(
     @retrofit2.http.Path("deviceId") String deviceId, @retrofit2.http.Body DeviceShareInfo deviceShareInfo
   );
 
@@ -38,11 +38,11 @@ public interface DevicesSharesApi {
    * Delete specific share of the given device id
    * @param deviceId Device ID. (required)
    * @param shareId Share ID. (required)
-   * @return Call&lt;DeviceSharingId&gt;
+   * @return Call&lt;DeviceSharingIdResponseBody&gt;
    */
   
   @DELETE("devices/{deviceId}/shares/{shareId}")
-  Call<DeviceSharingId> deleteSharingForDevice(
+  Call<DeviceSharingIdResponseBody> deleteSharingForDevice(
     @retrofit2.http.Path("deviceId") String deviceId, @retrofit2.http.Path("shareId") String shareId
   );
 
@@ -65,11 +65,11 @@ public interface DevicesSharesApi {
    * Get specific share of the given device id
    * @param deviceId Device ID. (required)
    * @param shareId Share ID. (required)
-   * @return Call&lt;DeviceSharing&gt;
+   * @return Call&lt;DeviceSharingDataResponseBody&gt;
    */
   
   @GET("devices/{deviceId}/shares/{shareId}")
-  Call<DeviceSharing> getSharingForDevice(
+  Call<DeviceSharingDataResponseBody> getSharingForDevice(
     @retrofit2.http.Path("deviceId") String deviceId, @retrofit2.http.Path("shareId") String shareId
   );
 

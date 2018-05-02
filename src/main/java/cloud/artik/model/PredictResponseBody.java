@@ -14,6 +14,7 @@
 package cloud.artik.model;
 
 import java.util.Objects;
+import cloud.artik.model.PredictResponseData;
 import com.google.gson.annotations.SerializedName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -23,26 +24,26 @@ import io.swagger.annotations.ApiModelProperty;
  */
 @ApiModel(description = "")
 
-public class DeviceSharingId {
-  @SerializedName("id")
-  private String id = null;
+public class PredictResponseBody {
+  @SerializedName("data")
+  private PredictResponseData data = null;
 
-  public DeviceSharingId id(String id) {
-    this.id = id;
+  public PredictResponseBody data(PredictResponseData data) {
+    this.data = data;
     return this;
   }
 
    /**
-   * Share ID
-   * @return id
+   * Get data
+   * @return data
   **/
-  @ApiModelProperty(example = "null", value = "Share ID")
-  public String getId() {
-    return id;
+  @ApiModelProperty(example = "null", value = "")
+  public PredictResponseData getData() {
+    return data;
   }
 
-  public void setId(String id) {
-    this.id = id;
+  public void setData(PredictResponseData data) {
+    this.data = data;
   }
 
 
@@ -54,22 +55,22 @@ public class DeviceSharingId {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DeviceSharingId deviceSharingId = (DeviceSharingId) o;
-    return Objects.equals(this.id, deviceSharingId.id);
+    PredictResponseBody predictResponseBody = (PredictResponseBody) o;
+    return Objects.equals(this.data, predictResponseBody.data);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id);
+    return Objects.hash(data);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DeviceSharingId {\n");
+    sb.append("class PredictResponseBody {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("}");
     return sb.toString();
   }
